@@ -1,0 +1,507 @@
+﻿/* Edit jQuery UI CSS*/
+.ui-widget-content {
+	background: #FFF;
+	color: #444;
+	font-size:13px;
+}
+
+
+.clearboth {
+	clear: both;
+}
+.hidden {
+    display:none;
+}
+.bold {
+	font-weight:bold;
+}
+.big {
+	font-size:15px;
+}
+.small {
+	font-size:11px;
+}
+.center {
+	text-align:center;
+}
+.right {
+	text-align:right;
+}
+.float_right {
+	float:right;
+}
+.float_left {
+	float:left;
+}
+.red {
+	color:red;
+	font-size:12px;
+}
+.no_scroll {
+	overflow:hidden;
+}
+img.avatar {
+	border:1px solid #CCC;
+	padding:2px;
+}
+
+/**
+ *
+ */
+ 
+.form_div {
+	padding:1px 0 1px 0px;
+}
+.form_div p {
+	text-indent:0;
+	margin:5px 0;
+}
+
+.form_div label {
+	width:90px;
+	display:inline-block;
+	text-align:left;
+	vertical-align: top;
+}
+/**
+ *	input[type='text']  修复IE6,添加class
+ */
+.input_text{
+	padding:5px;
+	outline:none;
+	width:160px;
+}
+
+
+#loading,#loading_error {
+	position:fixed;
+	z-index:99999;
+	background:#FFF1A8;
+	width:10%;
+	height:20px;
+	line-height:20px;
+	margin:0 45%;
+}
+#loading_error {
+	background:#FDD;
+	display:none;
+}
+
+.session_message {
+	background: #FFFDDD;
+	width:100%;
+	border:1px solid #F8F3D6;
+
+	line-height:30px;
+	text-align:center;
+}
+#header {
+    height:70px;
+}
+
+
+#topbar {
+    background:url(../img/nav_bg.jpg) repeat-x;
+    width:100%;
+    height:43px;
+    *height:70px;  /* IE6 纠正,防止Wrapper向上顶 */
+}
+#topbar span.topbar_corner {
+    float:right;
+    background:url(../img/nav_right_corner.jpg);
+    height:40px;
+    width:15px;
+}
+#topbar span.topbar_corner:first-child {
+    float:left;
+    background:url(../img/nav_left_corner.jpg);
+}
+
+#nav {
+    text-align:left;
+    width:960px;
+    margin:0 auto;
+}
+#nav #logo { float:left;}
+#nav ul#menu {
+    float:left;
+    height:37px;
+    list-style:none;
+    margin:0 0 0 100px;
+    position:relative;
+}
+#nav ul#menu li {
+    float:left;
+    height:37px;
+    line-height:40px;
+    margin: 0 5px;
+    text-align:center;
+    width:80px;
+}
+#nav ul#menu li.menu_item a {
+    height:100%;
+    width:100%;
+    display:block;
+    font-size:13px;
+    color:#333;
+}
+#nav ul#menu li.menu_item a:hover {
+    color:#FFA700;
+    font-size:16px;
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+#nav ul#menu li.menu_item div.submenu {
+    background:url(../img/nav_submenu_bg.jpg);
+    height:22px;
+    line-height:22px;
+    position:absolute;
+    top:39px;
+    width:200px;
+}
+#nav ul#menu li.menu_item div.submenu a {
+    display:inline;
+    margin:0 10px;
+    color:#FFF;
+    font-size:13px;
+}
+
+div.submenu {
+	display:none;  /**子菜单默认不显示*/
+}
+
+#nav ul#menu li.current_menu div.submenu {
+	display:block;
+}
+#nav ul#menu li.current_menu a {
+    color:#FFA700;
+    font-size:15px;
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+
+
+div.submenu span.submenu_corner {
+    width:10px;
+    height:22px;
+    background:url(../img/nav_submenu_right_corner.jpg) no-repeat;
+    float:right; 
+}
+div.submenu span.submenu_corner:first-child {
+    background:url(../img/nav_submenu_left_corner.jpg) no-repeat;
+    float:left; 
+}
+
+/** 菜单结束 */
+
+
+#wrapper {
+    width:960px;
+    margin:0 auto;
+    text-align:left;
+    min-height:600px;
+}
+#container {
+    padding: 0 10px;
+    overflow:visible;
+}
+
+#sidebar {
+	width:140px;
+	min-height:300px;
+	float:left;
+	border-right:1px #B0F581 solid;
+}
+
+	.sidebar_menu {
+		list-style:none;
+		padding:0;
+		margin:0;
+	}
+	.sidebar_menu li {
+		height:30px;
+		line-height:30px;
+		text-align:center;
+		border-bottom:1px #B0F581 solid;
+	}
+	.sidebar_menu li a{
+		height:100%;
+		width:100%;
+		display:block;
+	}
+	.sidebar_menu li a:hover {
+		background:#009000;
+		color:#FFF;
+		text-decoration:none;
+	}
+	
+#content {
+    overflow:hidden;
+    position: relative;
+    float:left;
+    margin:0 10px;
+    padding:0 2px;
+}
+
+.three_columns {
+	width:500px;
+}
+
+.two_columns {
+	width:680px;
+}
+
+/* Aside  & its widgets */
+#aside {
+	width:220px;
+	float:right;
+}
+
+	.aside_widget {
+		margin: 20px 0;
+		border: 1px dotted #CCC;
+		padding:8px;
+	}
+	.aside_widget h3 {
+		font-size:15px;
+		font-weight: bold;
+	}
+	.aside_widget ul {
+		list-style: none;
+		padding: 0 0 0 5px;
+	}
+
+	#create_event_div {
+		margin: 5px 0;
+	}
+	#create_event_form .event_date {
+		width:76px;
+		padding: 5px;
+	}
+		#create_event_form select.event_time {
+			width:45px;
+			font-size:9px;
+		}
+
+/** Group. index */
+
+.group_list {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.group_list li {
+	width:160px;
+	height:120px;
+	/*
+	border-bottom: 1px dotted #CCC;
+	*/
+	float:left;
+	text-align:center;
+	padding: 5px 0;
+}
+
+
+
+
+
+
+/** Group.group_lookup */
+
+/*
+.group_topics_list {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.group_topic {
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #DDD;
+}
+*/
+
+
+.group_topics_list {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+	.group_topic {
+		border-bottom:1px solid #DDD;
+		margin:10px 0;
+		padding:0 0 5px 0;
+	}
+	
+	
+	.group_topic_user {
+		float:left;
+	}
+		.group_topic_user img {
+			border:1px solid #CCC;
+			padding:2px;
+		}
+	
+	.group_topic_detail {
+		margin: 0px 0 0 75px;
+		padding:0;
+		
+		*margin-top:-20px; /* IE6 */
+	}
+		.group_topic_date {
+			float:right;
+		}
+		
+		.group_topic_title {
+			
+		}
+		
+	.group_topic_panel {
+		width:560px;
+		margin: 0 0 0 75px;
+		text-align:right;
+	}
+/**
+ *	单复数行换色
+ */
+.odd {
+	background:#EDF3FE;
+}
+
+/*
+.group_topic .group_topic_user {
+	float:left;
+	text-align:center;
+	width:70px;
+}
+.group_topic .group_topic_detail {
+	display:block;
+	width:590px;
+	margin: 0 0 0 75px;
+}
+	.group_topic_date {
+		float:right;
+	}
+	
+.group_topic_panel {
+	width:580px;
+	margin: 0 0 0 75px;
+	display:hidden;
+}
+	.group_topic_panel .group_topic_controller {
+		text-align:right;
+	}
+	.group_topic_chats {
+		float:right;
+		width:580px;
+		
+	}
+	
+.group_topic h2 {
+	display:inline-block;
+	margin:0;
+}
+*/
+
+
+/** Chat iFrame */
+.chats_container, .chats_preview {
+	list-style:none;
+	text-align:left;
+	max-height:300px;
+	overflow:auto;
+	margin:10px 0;
+	padding:10px;
+	border:1px solid #C2CFF1;
+	background:#EBEFF9;
+	font-size:13px;
+}
+
+.chats_container p , .chats_preview p{
+	text-indent:0;
+}
+.chat_item {
+	
+	overflow:hidden;
+	margin:0px 0;
+	padding: 5px 0;
+	border-bottom:#C8CDD1 1px dotted;
+	background:#FFF;
+	border-left:5px solid #FFF1A8;
+}
+.odd {
+	background:#FAFAFA;
+}
+
+.chat_item .chat_avatar {
+	float:left;/*
+
+	position:relative;
+*/
+}
+.chat_item .chat_detail ,  .chat_item .chat_form {
+	margin:0 0 0 37px;
+}
+
+	.chat_content {
+		font-size:13px;
+	}
+
+	.chat_detail .chat_date {
+		font-size:10px;
+		color:#999;
+		margin:0 10px 0 0;
+		float:right;
+	}
+	
+	.chat_reply , .latest_chat_reply {
+		margin:0 10px 0 10px;
+		font-weight:bold;
+		float:right;
+	}
+	
+	
+	
+	
+	
+	
+	
+/** Footer */
+	
+	
+	
+#footer {
+	background: url(../img/footer_shadow.gif) no-repeat 50% 0 whiteSmoke;
+	width:100%;
+	height:200px;
+	/*border-top: #B0F581 solid 1px;*/
+	float:left;
+	margin:50px 0 0 0;
+	padding:30px 0;
+}
+	
+	
+	
+.footer_column {
+	float:left;
+	text-align:left;
+	margin-left:40px;
+}
+
+	.footer_column h2 {
+		font-size:15px;
+		margin: 5px 0 5px 0 ;
+	}
+	
+	.footer_column ul {
+		list-style: none;
+		margin-left:10px;
+	}
+	
+#footer_copyright {
+	float:right;
+	margin-right:40px;
+}

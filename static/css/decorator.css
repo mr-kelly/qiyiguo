@@ -1,0 +1,329 @@
+/* 
+    Document   : decorator
+    Created on : 2010-2-2, 23:49:07
+    Author     : mrkelly
+    Description:
+        一些div,button等的装饰
+*/
+
+
+
+
+
+/* Start custom button CSS here
+----------------------------------------
+    Google Button的实现！
+*/
+.btn:hover {
+    border-bottom: 0;
+}
+.btn {
+  display:inline-block;
+  background:none;
+  margin:0;
+  padding:3px 0;
+  border-width:0;
+  overflow:visible;
+  font:100%/1.2 Arial,Sans-serif;
+  text-decoration:none;
+  color:#333;
+  /*font-size: 14px;*/
+  }
+* html button.btn {
+  padding-bottom:1px;
+  }
+/* Immediately below is a temporary hack to serve the
+   following margin values only to Gecko browsers
+   Gecko browsers add an extra 3px of left/right
+   padding to button elements which can't be overriden.
+   Thus, we use -3px of left/right margin to overcome this. */
+
+.btn span {
+  background:#ddd url(../img/btn_bg.gif) repeat-x 0 0;
+  margin:0;
+  padding:3px 0;
+  border-left:1px solid #bbb;
+  border-right:1px solid #aaa;
+  color:#333;
+  }
+* html .btn span {
+  padding-top:0;
+  }
+.btn span span {
+  position:relative;
+  padding:3px .4em;
+  border-width:0;
+  border-top:1px solid #bbb;
+  border-bottom:1px solid #aaa;
+  }
+
+/* pill classes only needed if using pill style buttons ( LEFT | CENTER | RIGHT ) */
+button.pill-l span {
+  border-right-width:0;
+  }
+button.pill-l span span {
+  border-right:1px solid #bbb;
+  }
+button.pill-c span {
+  border-right-style:none;
+  border-left-color:#fff;
+  }
+button.pill-c span span {
+  border-right:1px solid #bbb;
+  }
+button.pill-r span {
+  border-left-color:#fff;
+  }
+
+/* only needed if implementing separate hover/focus/active state for buttons */
+.btn:hover span, .btn:hover span span, .btn:focus span, .btn:focus span span {
+  cursor:pointer; /* important for any clickable/pressable element */
+  border-color:#9cf !important;
+  color:#000;
+
+  }
+.btn:active span {
+  background-position:0 -400px;
+  outline:none;
+  }
+.btn:focus, .btn:active {
+  outline:none; /* doesn't seem to be respected for <button>, only <a> */
+  }
+
+/* use if one button should be the 'primary' button */
+.primary {
+  font-weight:bold;
+  color:#000;
+  }
+  
+  
+  /* Kelly custom  */
+  button.btn {
+	font-size:13px;
+	
+  }
+  
+  
+  
+/* submit button 图片+文字按钮 */
+										/* submit button 图片+文字按钮 */
+/* submit button 图片+文字按钮 */
+/* submit button 图片+文字按钮 */
+
+/* submit button 图片+文字按钮 */
+
+
+
+.buttons a, .buttons button{
+    display:block;
+    float:left;
+    margin:0 7px 0 0;
+    background-color:#f5f5f5;
+    border:1px solid #dedede;
+    border-top:1px solid #eee;
+    border-left:1px solid #eee;
+
+    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    font-size:12px;
+    line-height:130%;
+    text-decoration:none;
+    font-weight:bold;
+    color:#565656;
+    cursor:pointer;
+    padding:5px 10px 6px 7px; /* Links */
+}
+.buttons button{
+    width:auto;
+    overflow:visible;
+    padding:4px 10px 3px 7px; /* IE6 */
+}
+.buttons button[type]{
+    padding:5px 10px 5px 7px; /* Firefox */
+    line-height:17px; /* Safari */
+}
+*:first-child+html button[type]{
+    padding:4px 10px 3px 7px; /* IE7 */
+}
+.buttons button img, .buttons a img{
+    margin:0 3px -3px 0 !important;
+    padding:0;
+    border:none;
+    width:16px;
+    height:16px;
+}
+
+/* STANDARD */
+
+button:hover, .buttons a:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+.buttons a:active{
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+/* POSITIVE */
+
+button.positive, .buttons a.positive{
+    color:#529214;
+}
+.buttons a.positive:hover, button.positive:hover{
+    background-color:#E6EFC2;
+    border:1px solid #C6D880;
+    color:#529214;
+}
+.buttons a.positive:active{
+    background-color:#529214;
+    border:1px solid #529214;
+    color:#fff;
+}
+
+/* NEGATIVE */
+
+.buttons a.negative, button.negative{
+    color:#d12f19;
+}
+.buttons a.negative:hover, button.negative:hover{
+    background:#fbe3e4;
+    border:1px solid #fbc2c4;
+    color:#d12f19;
+}
+.buttons a.negative:active{
+    background-color:#d12f19;
+    border:1px solid #d12f19;
+    color:#fff;
+}
+
+/* REGULAR */
+
+button.regular, .buttons a.regular{
+    color:#336699;
+}
+.buttons a.regular:hover, button.regular:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+.buttons a.regular:active{
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+
+
+
+/****************Awesome Button ZURB *************/
+
+
+a.awesome:active, a.awesome:link, a.awesome:visited {
+	color:#FFF;
+}
+button.awesome {
+	border:none;
+}
+.awesome, .awesome:visited {
+	background: #222 url(../img/buttons/alert-overlay.png) repeat-x; 
+	display: inline-block; 
+	padding: 5px 10px 6px; 
+	color: #fff; 
+	text-decoration: none;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	
+	border-top:0;	/* 令<button>也可用*/
+	border-left:0;
+	border-right:0;
+	
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+ 	
+	.awesome:hover							{ background-color: #111; color: #fff; }
+	.awesome:active							{ top: 1px; color: #fff; }
+	.small.awesome, .small.awesome:visited 			{ font-size: 11px; padding: ; }
+	.awesome, .awesome:visited,
+	.medium.awesome, .medium.awesome:visited 		{ font-size: 13px; font-weight: bold; line-height: 1; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
+	.large.awesome, .large.awesome:visited 			{ color:#FFF; font-size: 14px; padding: 8px 14px 9px; }
+	
+	.green.awesome, .green.awesome:visited		{ background-color: #91bd09; }
+	.green.awesome:hover						{ background-color: #749a02; }
+	.blue.awesome, .blue.awesome:visited		{ background-color: #2daebf; }
+	.blue.awesome:hover							{ background-color: #007d9a; }
+	.red.awesome, .red.awesome:visited			{ background-color: #e33100; }
+	.red.awesome:hover							{ background-color: #872300; }
+	.magenta.awesome, .magenta.awesome:visited		{ background-color: #a9014b; }
+	.magenta.awesome:hover							{ background-color: #630030; }
+	.orange.awesome, .orange.awesome:visited		{ background-color: #ff5c00; }
+	.orange.awesome:hover							{ background-color: #d45500; }
+	.yellow.awesome, .yellow.awesome:visited		{ background-color: #ffb515; }
+	.yellow.awesome:hover							{ background-color: #fc9200; }
+
+
+
+
+/** Nice Button*/
+
+
+a.nicebutton{
+	background:url(img/button.gif);
+	display:inline-block;
+	color:#555555;
+	font-weight:bold;
+	height:30px;
+	line-height:29px;
+	margin-bottom:14px;
+	text-decoration:none;
+	width:191px;
+}
+a:hover.nicebutton{
+	color:#0066CC;
+}
+	.add{
+		background:url(img/add.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}
+	.delete{
+		background:url(img/delete.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}
+	.user{
+		background:url(img/user.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}
+	.alert{
+		background:url(img/alert.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}
+	.msg{
+		background:url(img/msg.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}
+	.download{
+		background:url(img/download.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}
+
+	.lens{
+		background:url(img/lens.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}
+	.info{
+		background:url(img/info.gif) no-repeat 10px 8px;
+		text-indent:30px;
+		display:block;
+	}

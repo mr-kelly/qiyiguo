@@ -1,0 +1,147 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+    font-size:13px;
+    color:#444;
+    line-height:18px;
+    margin:0;
+    padding:0;
+    text-align:center;
+    font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+    letter-spacing:0.05em;
+    white-space: normal;
+}
+
+
+/*滚动条*/
+
+body {
+	scrollbar-face-color:#DEDEDE;
+	scrollbar-base-color:#F5F5F5;
+	scrollbar-arrow-color:black;
+	scrollbar-track-color:#F5F5F5;
+	scrollbar-shadow-color:#EBF5FF;
+	scrollbar-highlight-color:#F5F5F5;
+	scrollbar-3dlight-color:#C3C3C3;
+	scrollbar-darkshadow-Color:#9D9D9D;
+}
+
+body ::-webkit-scrollbar {
+width: 10px;
+height: 10px;
+}
+body ::-webkit-scrollbar-track-piece {/*1*/
+background-color:#f6f6f6;
+-webkit-border-radius: 6px;
+}
+body ::-webkit-scrollbar-thumb:vertical {/*2*/
+background-color: #6b7f93;
+-webkit-border-radius: 6px;
+}
+body ::-webkit-scrollbar-thumb:horizontal {/*3*/
+background-color: #6b7f93;
+-webkit-border-radius: 6px;
+}
+body ::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {/*4*/
+/*height: 30px;*/
+display: block;
+background-color: transparent;
+}
+
+
+
+
+
+b {
+    font-weight: bold;
+    font-size: 13px;
+}
+h1 {
+    display:block;
+    padding:0;
+    margin:0;
+    font-size: 20px;
+    clear:left;
+}
+h2 {
+    display:block;
+    padding:0;
+    margin:20px 0 10px 0;
+    font-size: 18px;
+    clear:left;
+}
+h3 {
+    padding:0;
+    margin:0 0 10px 0;
+    font-size:16px;
+    clear:left;
+}
+p {
+    font-size:13px;
+    text-indent:2em;
+    margin:0;
+    padding:0;
+    letter-spacing: 1px;
+}
+
+a:active, a:link, a:visited {
+    color:#44A51C;
+    text-decoration:none;
+    font-size:13px;
+    /*line-height: 16px;*/
+    /*border-bottom:1px dotted #AAA;*/
+}
+a.user_view { font-size: 15px; font-weight: bold;}
+a:hover {
+    text-decoration: underline;
+ 
+}
+img {
+    border:0;
+    vertical-align: top;
+}
+
+input { 
+	border: 1px solid #D1D8E8; 
+	padding:1px 0 1px 3px; 
+	outline:none;
+}
+
+button {
+	vertical-align: top;
+}
+
+select {
+	width:170px;
+	margin:1px 0;
+	padding:5px 0;
+	outline:none;
+}
+textarea {
+	border:1px solid #DDD;
+
+}
+
+form p {
+	margin:0;/*
+
+	display:inline;
+*/
+}

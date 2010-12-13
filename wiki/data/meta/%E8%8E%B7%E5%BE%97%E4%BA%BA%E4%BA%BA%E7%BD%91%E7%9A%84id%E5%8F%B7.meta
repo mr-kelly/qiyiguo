@@ -1,0 +1,15 @@
+a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1282795996;s:8:"modified";i:1282805292;}s:7:"creator";s:5:"admin";s:11:"last_change";a:7:{s:4:"date";i:1282805292;s:2:"ip";s:9:"127.0.0.1";s:4:"type";s:1:"E";s:2:"id";s:23:"获得人人网的id号";s:4:"user";s:5:"admin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"admin";s:5:"admin";}s:5:"title";s:32:"获取你的人人网帐号ID号";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:32:"获取你的人人网帐号id号";s:5:"title";s:32:"获取你的人人网帐号ID号";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:1;a:4:{s:3:"hid";s:22:"一_进入个人主页";s:5:"title";s:24:"一、进入个人主页";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:2;a:4:{s:3:"hid";s:27:"二_从地址栏复制id号";s:5:"title";s:29:"二、从地址栏复制ID号";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:424:"获取你的人人网帐号ID号
+
+一、进入个人主页
+
+
+首先登录你的人人网，然后进入“个人主页”页面。
+
+
+
+
+二、从地址栏复制ID号
+
+在你的浏览器地址栏，你会找到你的ID编号。
+
+提醒：很多人在获取自己的人人网主页是用网址 <http://www.renren.com/home>。  这是错误的。  通常每个网站的用户专属页面，都含有用户ID号码或帐户名。";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:8:"relation";a:1:{s:10:"firstimage";s:28:"人人网id-个人主页.png";}}s:10:"persistent";a:4:{s:4:"date";a:2:{s:7:"created";i:1282795996;s:8:"modified";i:1282805292;}s:7:"creator";s:5:"admin";s:11:"last_change";a:7:{s:4:"date";i:1282805292;s:2:"ip";s:9:"127.0.0.1";s:4:"type";s:1:"E";s:2:"id";s:23:"获得人人网的id号";s:4:"user";s:5:"admin";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"admin";s:5:"admin";}}}

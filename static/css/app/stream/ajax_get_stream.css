@@ -1,0 +1,26 @@
+.stream_container {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+	.stream_item {
+		overflow:hidden;
+	}
+	
+	
+		.stream_avatar {
+			float:left;
+		}
+		.stream_avatar img {
+			height:30px;
+			width:30px;
+		}
+
+		.stream_detail {
+			margin: 0 0 0 37px;
+		}
+			.stream_date {
+				float:right;
+				font-size:10px;
+				color:#999;
+			}
