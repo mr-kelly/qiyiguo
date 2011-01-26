@@ -50,7 +50,20 @@
 	<div id="loading_error">
 		有加载出错
 	</div>
-        
+       
+       
+       
+    <div id="navigator">
+    	
+    	<div class="nav_content">
+	    	导航器
+    	</div>
+    	<div class="nav_autohide">
+    		<a href="#" class="autohide_btn">自动隐藏</a>
+    	</div>
+    </div>
+    
+    
     <div id="header">
         <div id="topbar">
             <!-- 
@@ -59,10 +72,10 @@
             <span class="topbar_corner"></span>
  -->
             
-            <div id="nav">
+            <div id="topbar_container">
                 <div id="logo">
                     <a href="<?=base_url();?>">
-                        <img src="<?=static_url();?>img/logo.gif" height="35" />
+                        <img src="<?=static_url();?>img/logo.png" height="35" />
                     </a>
                 </div>
                 
@@ -81,14 +94,14 @@
                      
                     <li class="menu_item <?= isset($current_group) ? $current_group : '' ;?>">
                     	<a href="<?=site_url('group');?>">
-                    		友群
+                    		群组
                     	</a>
                         <div class="submenu">
                             <span class="submenu_corner"></span>
                             <span class="submenu_corner"></span>
                             
 							<span class="submenu_item">
-								<a href="<?=site_url('group/new_group');?>">创建友群</a>
+								<a href="<?=site_url('group/new_group');?>">创建群组</a>
 							</span>
                         </div>
                     </li>

@@ -11,7 +11,7 @@
 ?>
 
 
-<ul class="sidebar_menu">
+<ul class="sidebar_menu sidebar_links">
 	
 	<?php 
 		if (isset($before_sidebar_item)) echo $before_sidebar_item; 
@@ -24,7 +24,9 @@
 			if ($ci->group_model->is_group_admin($group['id'], get_current_user_profile('id'))):
 	?>
 			<li>
-				<a href="<?=site_url('group/setting/'.$group['id']);?>">友群设置</a>
+				<a class="tooltip" title="群组的设置，公有、私有" href="<?=site_url('group/setting/'.$group['id']);?>">
+					<span class="icon_setting">友群设置</span>
+				</a>
 			</li>
 	<?php
 			endif;
@@ -34,7 +36,7 @@
 	
 	
 	<li>
-		<a href="<?=site_url('group/new_group');?>">
+		<a class="tooltip" title="由你来创建一个群组~它可以是你的朋友圈、公司、组织、兴趣小组" href="<?=site_url('group/new_group');?>">
 			创建新友群
 		</a>
 	</li>

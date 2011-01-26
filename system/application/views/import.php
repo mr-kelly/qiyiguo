@@ -29,8 +29,52 @@
 	<? // jQuery Form ?>
 	<?=import_js('js/jquery.form.js');?>
 	
+	<? //jQuery input tips ?>
+	<?=import_js('js/jquery.input_tips.js');?>
+		
+	<? // jQuery jSCroll 滚动条 ?>
+	<?=import_js('js/jquery.jscroll.js');?>
 	
-	<? // jQuery Corner   not for IE?>
+	<? // jQuery iframe auto height ?>
+	<?=import_js('js/jquery.iframeAutoHeight.js');?>
+	
+	<? // jQueryr pozFixed Position Fixed ?>
+	<?=import_js('js/jquery.pozFixed.js');?>
+
+	<? // jQueryr Center ?>
+	<?=import_js('js/jquery.center.js');?>
+	
+	
+	
+	
+	<? // jQuery Tipsy ?>
+	<?=import_js('js/tipsy/jquery.tipsy.js');?>
+	<?=import_css('js/tipsy/tipsy.css');?>
+	
+	<!-- jQuery Fancybox-->
+	<?=import_js('js/fancybox/jquery.easing-1.3.pack.js');?>
+	<?=import_js('js/fancybox/jquery.mousewheel-3.0.4.pack.js');?>
+	
+	<?=import_js('js/fancybox/jquery.fancybox-1.3.4.pack.js');?>
+	<?=import_css('js/fancybox/jquery.fancybox-1.3.4.css');?>
+	
+	
+	
+	
+	<? // jQuery Sticky Scroller ?>
+	<? //import_js('js/StickyScroller.min.js');?>
+	<? //import_js('js/GetSet.js');?>
+	
+	
+	<?=import_js('js/global.js');?>
+	
+	
+	<? // 简繁转换 ?>
+	<?=import_js('js/tw_cn.js');?>
+	
+	
+	
+	<?php // jQuery Corner   not for IE?>
 	<?php  if (strspn("MSIE",$_SERVER["HTTP_USER_AGENT"]) != 4 ): ?>
 	
 		<?=import_js('js/jquery.corner.js');?>
@@ -41,20 +85,6 @@
 		</script>
 		
 	<?php endif; ?>
-	
-	<? //jQuery input tips ?>
-	<?=import_js('js/jquery.input_tips.js');?>
-		
-	<? // jQuery jSCroll 滚动条 ?>
-	<?=import_js('js/jquery.jscroll.js');?>
-	
-	<? // jQuery iframe auto height ?>
-	<?=import_js('js/jquery.iframeAutoHeight.js');?>
-	
-	<script type="text/javascript" src="<?=static_url();?>js/global.js"></script> 
-	
-	<? // 简繁转换 ?>
-	<?=import_js('js/tw_cn.js');?>
 	
 	
 	<script>

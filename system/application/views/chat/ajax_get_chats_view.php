@@ -4,7 +4,9 @@
 	<? //import_css('css/decorator.css');?>
 	<? //import_css('css/style.css');?>
 	<?=import_js('js/app/chat/ajax_get_chats.js');?>
-	
+	<?php
+		$chat_width = 480;  // 聊天框的长度 ~
+	?>
 
 		 <div class="chat_form_div">
 			 <form class="chat_form" method="post" action="<?=site_url('chat/add/' . $model . '/'. $model_id . '?redirect=' . uri_string() );?>">
@@ -25,7 +27,7 @@
 								
 		<?php foreach ( $chats as $key=>$chat ) :?>
 			
-			<li id="chat_<?=$chat['id'];?>" class="chat_item <?= ( $key % 2 == 0 ) ? 'odd' : '';?>" style="margin-left:<?=$chat['depth'] * 10;?>px; width: <?=500 - $chat['depth'] * 10;?>px; ">
+			<li id="chat_<?=$chat['id'];?>" class="chat_item <?= ( $key % 2 == 0 ) ? 'odd' : '';?>" style="margin-left:<?=$chat['depth'] * 10;?>px; width: <?= $chat_width - $chat['depth'] * 10;?>px; ">
 			
 				<div class="chat_avatar">
 					<a target="_top" href="<?=site_url( 'user/' . $chat['User']['id']);?>">
