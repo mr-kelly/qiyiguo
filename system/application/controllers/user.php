@@ -550,6 +550,46 @@ EOT;
 		
 		
 		/**
+		 *	新浪微博OAuth 登录， 第一登录转到电邮绑定页面
+		 */
+		function login_by_t_sina( $action = 'authorize' ) {
+		
+			$this->load->library('t_sina');
+			
+			if ( $action == 'authorize' ) {
+				// 授权 。   转到新浪授权页面， 给用户进行授权， 授权成功, 返回oauth token，进行
+				redirect( $this->t_sina->getAuthorizeURL('http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback')) );
+				
+			} else if ( $action == 'callback' ) {
+				
+				
+				
+				// 授权callback, 通过oauth verifier 换取access token
+				$last_key = $this->t_sina->getAccessToken( 'user/login_by_t_sina/authorize' );
+				
+				
+				$this->session->set_userdata( 'last_key' , $last_key );
+				$self = $this->t_sina->getSelf();
+				
+				// 用户是否第一次登录（ user_t_sina 数据库是否存在绑定条目）
+				$this->load->model('user_t_sina_model');
+				if ( $this->user_t_sina_model->is_user_t_sina( array( 't_sina_id' => $self['id'] ) )   ) {
+					
+					// 存在，非第一次登录，协助用户直接登录
+					exit( 'exist!' );
+					
+				} else {
+					// 第一次登录， 未绑定，转到微博绑定页
+					redirect( 'user/register_by_t_sina');
+				}
+				
+			} else if ( $action == 'test' ) {
+				$weibo = $this->t_sina->getWeibo( );
+				print_r( $weibo->public_timeline() );
+			}
+		}
+		
+		/**
 		 *	用户注册, ajax
 		 */
 		function register() {
@@ -622,7 +662,71 @@ EOT;
 			);
 		}
 		
-		
+		function register_by_t_sina() {
+			$this->load->library('t_sina');
+			
+			// 登录过的用户的，微博未链接登录的用户，不能进入该页面
+			if ( $this->tank_auth->is_logged_in() ) {
+				exit( 'loggined cannot enter here!' );
+			}
+			
+			if ( !$this->t_sina->is_logined() ) {
+				// 微博未登录，不能获取信息进行绑定
+				exit( 't_sina have not logined!');
+			}
+			
+			
+			
+			
+			
+			$data = array();
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				$this->form_validation->set_rules( 'email',	'电邮', 'trim|required|xss_clean|valid_email');
+				$this->form_validation->set_rules( 'password',	'备用密码', 'trim|required|xss_clean');
+				$this->form_validation->set_rules( 'realname',	'真实姓名', 'trim|required|xss_clean');
+				$this->form_validation->set_rules( 'nickname',	'昵称', 'trim|required|xss_clean');
+				
+				if ( ! $this->form_validation->run() ) {
+					ajaxReturn(null, validation_errors(), 0 );
+				} else {
+					// 创建本地用户，再绑定新浪微博
+					$email = $this->form_validation->set_value('email');
+					$password = $this->form_validation->set_value('password');
+					
+					if ( !$this->tank_auth->create_user( '', $email, $password, FALSE ) ) {
+						exit( 'create user error' );
+					}
+					
+					// 立即登录
+					$this->tank_auth->login($email, $password, FALSE, FALSE, TRUE);
+					
+					
+					// 用户profiles
+					$data = array(
+						'realname' => $this->form_validation->set_value('realname' ),
+						'nickname' => $this->form_validation->set_value('nickname'),
+					);
+					$this->user_profiles_model->create_user_profile( $this->tank_auth->get_user_id(), $data );
+					
+
+					
+					// 用户新浪t_sina数据库绑定
+					$this->load->model('user_t_sina_model');
+					$this->load->library('t_sina');
+					$self = $this->t_sina->getSelf();
+					$t_sina_token = $this->session->userdata('last_key');
+					
+					$this->user_t_sina_model->create_user_t_sina( $this->tank_auth->get_user_id(), array(
+						't_sina_id' => $self['id'],
+						'oauth_token' => $t_sina_token['oauth_token'],
+						'oauth_token_secret' => $t_sina_token['oauth_token_secret'],
+					) );
+					
+				}
+			}
+			
+			$this->load->view('user/register_by_t_sina_view', $data );
+		}
 		
 		/**
 		 *	登出帐户
@@ -651,7 +755,17 @@ EOT;
 		}
 		
 		
+		/**
+		 *	AJAX的登录页面
+		 */
+		function ajax_login() {
+			
+			kk_show_view('user/login');
+		}
 		
+		function ajax_register() {
+			kk_show_view('user/register');
+		}
 		/**
 		 *	Ajax获得指定省份的城市~    传入GET   :  province_id
 		 */

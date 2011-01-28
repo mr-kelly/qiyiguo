@@ -1,4 +1,15 @@
-﻿/* Edit jQuery UI CSS*/
+﻿/** 
+ *
+ 	常用配色：
+ 		橙色 - 字体 #F47536
+ 		绿色 - 字体
+ 		蓝色 - 字体
+ */
+ 
+ 
+ 
+
+/* Edit jQuery UI CSS*/
 .ui-widget-content {
 	background: #FFF;
 	color: #444;
@@ -310,6 +321,7 @@ div.submenu span.submenu_corner:first-child {
 	.sidebar_links li a:hover {
 		background: url(../img/sidebar_a_hover.png);
 		color: #333;
+
 	}
 	
 #content {
@@ -601,3 +613,5 @@ div.submenu span.submenu_corner:first-child {
 	float:right;
 	margin-right:40px;
 }
+
+

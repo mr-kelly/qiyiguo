@@ -2,7 +2,6 @@
     <? // jQuery ?>
     <script type="text/javascript" src="<?=static_url();?>js/lib/lib.js"></script>
     
-
     <script type="text/javascript" src="<?=static_url();?>js/css_fixed.js"></script> 
    
    
@@ -16,7 +15,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>css/html.css" /> 
     <link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>css/decorator.css" /> 
     <link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>css/style.css" />
-
+	<?=import_css('css/kk_tabs.css');?>
 
 	<?php // CKEditor ?>
 	<?=import_js('js/ckeditor/ckeditor_basic.js');?>
@@ -59,7 +58,8 @@
 	<?=import_css('js/fancybox/jquery.fancybox-1.3.4.css');?>
 	
 	
-	
+	<!--jQuery idTabs-->
+	<?=import_js('js/jquery.idTabs.min.js');?>
 	
 	<? // jQuery Sticky Scroller ?>
 	<? //import_js('js/StickyScroller.min.js');?>

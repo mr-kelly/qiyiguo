@@ -72,57 +72,6 @@ pageTracker._trackPageview();
 
         
 
-    
-<?php
-	$ci =& get_instance();
-	// 未登录，放上登录box
-	if ( !$ci->tank_auth->is_logged_in() ) :
-?>
-
-
-<!--登录窗口-->
-
-        <!-- ui-dialog for login -->
-        <div id="login_box" class="hidden">
-			<div class="ui-overlay">
-				<div class="ui-widget-overlay"></div>
-				<div class="ui-widget-shadow ui-corner-all" style="width: 422px; height: 422px; position: absolute; left: 30%; top: 20%;"></div>
-	
-			</div>
-			<div style="position: absolute; width: 400px; height: 400px;left: 30%; top: 20%; padding: 10px;" class="ui-widget ui-widget-content ui-corner-all">
-					<div class="right"><a href="#" onclick="$('#login_box').fadeOut();return false;">X</a></div>
-					
-					<div class="ui-dialog-content ui-widget-content" style="background: none; border: 0;">
-
-						<?php $this->load->view('user/login'); ?>
-
-					</div>
-					
-					
-			</div>
-        </div>
-        
-        <div id="register_box" class="hidden"> 
-			<div class="ui-overlay">
-				<div class="ui-widget-overlay"></div>
-				<div class="ui-widget-shadow ui-corner-all" style="width: 422px; height: 322px; position: absolute; left: 30%; top: 20%;"></div>
-	
-			</div>
-			<div style="position: absolute; width: 400px; height: 300px;left: 30%; top: 20%; padding: 10px;" class="ui-widget ui-widget-content ui-corner-all">
-					<div class="right"><a href="#" onclick="$('#register_box').fadeOut();return false;">X</a></div>
-					<div class="ui-dialog-content ui-widget-content" style="background: none; border: 0;">
-						
-						<?php $this->load->view('user/register'); ?>
-						
-
-						
-					</div>
-			</div>
-        </div>
-
-<?php
-	endif;
-?>
         
 </body>
 </html>

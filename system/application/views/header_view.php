@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,6 +13,7 @@
     <meta http-equiv="Expires" content="-1"/>
     <meta http-equiv="Cache-Control" content="no-cache"/>
     <!-- end no cache headers -->
+    
     <title><?= isset($page_title) ? $page_title : '奇异果';?></title>
     <link rel="shortcut icon" href="<?=static_url();?>img/favicon.gif" type="image/gif" />
 
@@ -42,6 +42,7 @@
 </head>
 <body>
 
+	
 	<div id="loading">
 		<img src="<?=static_url();?>img/loading.gif" />
 		加载中...
@@ -162,11 +163,14 @@
 						else:
 					?>
 							<span class="submenu_item">
-								<a id="login_btn" href="<?=base_url();?>user/login">[登录]</a>
+								<a id="login_btn" class="sexybox_iframe" href="<?=site_url('user/ajax_login');?>" title="登录">[登录]</a>
 							</span>
+							
 							<span class="submenu_item">
-								<a id="register_btn" href="<?=base_url();?>user/register">[注册]</a>
+								<a id="register_btn" class="sexybox_iframe" href="<?=site_url('user/ajax_register');?>" title="注册" href="<?=base_url();?>user/register">[注册]</a>
 							</span>
+							
+							
 					<?php
 						endif;
 					?>

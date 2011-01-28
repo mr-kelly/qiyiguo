@@ -1,0 +1,17 @@
+#login_tab {
+	
+}
+#login_tab h2 {
+	
+}
+
+#general_login {
+	float: left;
+	border-left: 1px dashed #CCC;
+	padding: 0 0 0 10px;
+	margin: 0 0 0 10px;
+}
+
+#other_login {
+	float:left;
+}

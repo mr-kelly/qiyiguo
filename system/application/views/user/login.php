@@ -1,8 +1,74 @@
 <?php
-	// 用于每页面的login_box
+	$this->load->view('general/general_header_view');
 ?>
+		
+		<?=import_css('css/app/user/login.css');?>
+		
+		<div class="kk_tabs">
+			<ul>
+				<li><a href="#login_tab">登录</a></li>
+				<li><a href="#login_forget_password_tab">忘记密码?</a></li>
+			</ul>
+			<div id="login_tab" class="hidden">
+				
+				<div id="other_login" class="form_div">
+					<h2>直接登录</h2>
+					
+				</div>
+				
+				
+				<div id="general_login" class="form_div">
+					
+					<h2>正常登录</h2>
+					
+					<form id="user_login_form" method="post" action="<?=base_url();?>user/login">
+	
+						
+						<div class="session_message hidden"></div>
+						
+							<p>
+								<label for="user_login_login">Email</label>
+								<input class="input_text" id="user_login_login" name="login" type="text" />
+							</p>
+							
+							<p>
+								<label for="user_login_password">密    码</label>
+								<input class="input_text"  id="user_login_password" name="password" type="password" />
+							</p>
+		
+		
+							<p>
+								<input type="checkbox" name="remember" value="1" id="user_login_remember" style="margin:0;padding:0" />
+								<label for="user_login_remember">下次自动登录</label>
+							</p>
+		
+							
+							<br />
+							
+							<a class="awesome large blue" href="#" id="user_login_submit">
+								<span><span>登录</span></span>
+							</a>
+						
+						<br />
+						
+						<a href="#" onclick="$('#register_box').fadeIn();$('#login_box').fadeOut();">
+							还没有注册!
+						</a>
+					</form>
+				</div>
+				
 
-		<div id="login_tabs">
+				
+				<div class="clearboth"></div>
+				
+			</div><!-- END login_tab -->
+			
+			
+			
+			<div id="login_forget_password_tab" class="hidden">asfdwefwef  tab2</div>
+		</div>
+
+		<div class="clearboth"></div><div id="login_tabs">
 		
 			<ul>
 				<li>
@@ -13,7 +79,7 @@
 				</li>
 				<li>
 					<a href="#t_sina_login_tab">
-						<img src="http://t.sina.com.cn/favicon.ico" />
+						<img src="http://t.sina.com.cn/favicon.ico" width="16" />
 						用新浪微博帐号登录
 					</a>
 				</li>
@@ -113,3 +179,7 @@
 				</script>
 				<!--<js href="<?=static_url();?>js/app/user/login.js" />-->
 				<?=import_js('js/app/user/login.js');?>
+				
+<?php
+	$this->load->view('general/general_footer_view');
+?>

@@ -7,6 +7,44 @@
 	 		普通网站用户的的绑定，数据处理，放在user_profiles_model~
 	 */
 	class User_T_Sina_Model extends KK_Model {
+	
+		/**
+		 *	OAuth 绑定。全新改
+		 */
+		function create_user_t_sina( $user_id, $data ) {
+			$this->db->insert('user_t_sina', array(
+				'user_id' => $user_id,
+				'created' => date('Y-m-d H:i:s'),
+			) + $data);
+			
+			return $this->db->insert_id();
+		}
+		
+		
+		/**
+		 *	判断是否存在user_t_sina绑定信息
+		 */
+		function is_user_t_sina( $data ) {
+			$q = $this->db->get_where('user_t_sina', $data );
+			
+			if ( $q->num_rows() == 0 ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		/**
 		 *	用户通过新浪微博方式登录
@@ -97,9 +135,12 @@
 		 存在数据 =》 可能正常用户，已绑定
 		 		 =》 可能微博用户，未绑定
 		 
-
+			
+			
+			Depreciated 用于旧版http
+			
 		 */
-		function is_user_t_sina($t_sina_login) {
+		function is_user_t_sina_old_http($t_sina_login) {
 			$query = $this->db->get_where('user_t_sina',array(
 				't_sina_login' => $t_sina_login,
 				//'type'=> 't_sina',
@@ -163,8 +204,11 @@
 		
 		/**
 		 *	通过新浪微博登录，添加user_t_sina,并添加user, user_profiles
+		 
+		 
+		 	depreciated  用于http auth的旧版 
 		 */
-		function create_user_t_sina($login, $password, $type='t_sina') {
+		function create_user_t_sina_old_http($login, $password, $type='t_sina') {
 			$ci =& get_instance();
 			$ci->load->model('dict_model');
 			

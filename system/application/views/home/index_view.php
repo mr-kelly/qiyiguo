@@ -19,15 +19,15 @@
 						
 						<?php
 						
-							$ci =& get_instance();
-							$ci->load->library('t_sina');
-							
-							$ci->t_sina->weibo->setUser('chepy6','626626');
-							
-							$tweets = $ci->t_sina->weibo->friends_timeline();
-							foreach ( $tweets as $tweet ) {
-								echo '<p>'. $tweet['user']['screen_name'] . ': ' . $tweet['text'] . '</p>';
-							}
+							// $ci =& get_instance();
+// 							$ci->load->library('t_sina');
+// 							
+// 							$ci->t_sina->weibo->setUser('chepy6','password');
+// 							
+// 							$tweets = $ci->t_sina->weibo->friends_timeline();
+// 							foreach ( $tweets as $tweet ) {
+// 								echo '<p>'. $tweet['user']['screen_name'] . ': ' . $tweet['text'] . '</p>';
+// 							}
 							
 							
 		

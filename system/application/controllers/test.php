@@ -1,6 +1,12 @@
 <?
 	class Test extends KK_Controller {
 		
+		function test_qq() {
+			$this->load->library('QQ_Connect');
+			$qq_c = $this->qq_connect->get_client();
+			print_r( $qq_c->getUserInfo( '00000000000000000000000000BAB27C', '9A48BFD06811864150BB1C61FF5915C6B7D2A36951AEEFDF') );
+		}
+		
 		
 		function test_decrypt() {
 			$query = $this->db->get_where('user_t_sina', array( 'id'=> 35) );
@@ -129,5 +135,8 @@ EOT;
 			mkdir($path, 0777);
 		   }
 		}
+		
+		
+		
 
 	}

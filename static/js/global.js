@@ -8,13 +8,20 @@
 $(function() {
 	
 	// jquery Tipsy生成
-	$('.tooltip').tipsy( {  gravity: $.fn.tipsy.autoWE , fade: true, live:true});
+	$('.tooltip').tipsy( {   fade: true, live:true }); // gravity: $.fn.tipsy.auto ,
 	// Tipsy Form表单提示～
 	$('.tooltip_form [title]').tipsy( { trigger: 'focus', gravity: $.fn.tipsy.autoWE , fade: true } );
 	
 	
+	// jquery idTabs 
+	$('.kk_tabs ul').idTabs();
+	
 	// Fancyboxx  -  I call it sexy box!  cool!
 	$('.sexybox').fancybox();
+	$('.sexybox_iframe').fancybox( {
+		'type':'iframe',
+		'scrolling': 'yes'
+	});
 	
 	// Ajax Loading
 	$('#loading').ajaxStart(function(){
@@ -59,18 +66,18 @@ $(function() {
 
     // 登入按钮
     $('#login_btn').click(function() {
-       $('#login_box').fadeIn();
-       $('#user_login_login').focus();
+       //$('#login_box').fadeIn();
+       //$('#user_login_login').focus();
        return false;
     });
 	
-	$('#login_tabs').tabs();
+	//$('#login_tabs').tabs();
 	
 	
     // 注册按钮
     $('#register_btn').click(function() {
-    	$('#register_box').fadeIn();
-    	$('#user_register_email').focus();
+    	//$('#register_box').fadeIn();
+    	//$('#user_register_email').focus();
        return false;
     });
     
