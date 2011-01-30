@@ -39,7 +39,7 @@
 								
 								<p>
 									<label for="group_verify">加入友群</label>
-									<select id="group_verify" name="group_verify">
+									<select id="group_verify" name="group_verify" class="tipsy_nw" title="其他人加入你果群的方式">
 										<option value="request">需要管理员审核加入</option>
 										<option value="everyone">任何人都可以直接加入</option>
 										<option value="closed">不允许任何人加入</option>

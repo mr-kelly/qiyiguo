@@ -7,7 +7,7 @@ body {
     padding:0;
     text-align:center;
     font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
-    letter-spacing:0.05em;
+    letter-spacing:0em;
     white-space: normal;
     background: #F9F9F9;
     /*
@@ -66,6 +66,7 @@ h1 {
     margin:0;
     font-size: 20px;
     clear:left;
+    letter-spacing: 0.1em;
 }
 h2 {
     display:block;
@@ -73,6 +74,7 @@ h2 {
     margin:20px 0 10px 0;
     font-size: 18px;
     clear:left;
+    letter-spacing: 0.1em;
 }
 h3 {
     padding:0;
@@ -81,7 +83,6 @@ h3 {
     clear:left;
 }
 p {
-    font-size:13px;
     text-indent:2em;
     margin:0;
     padding:0;
@@ -108,7 +109,9 @@ img {
 input { 
 	border: 1px solid #D1D8E8; 
 	padding:1px 0 1px 3px; 
+	/*
 	outline:none;
+	*/
 }
 
 button {
@@ -187,3 +190,50 @@ form p {
 	width: 80px;
 }
 
+
+
+/**
+ *	超链小图标
+ */
+.icon {
+	background: url(../img/icons.png) no-repeat;
+	height: 16px;
+	display: inline-block;
+	padding: 0 0 0 18px;
+}
+
+.icon_setting {
+	background-position: 0 -5752px;
+}
+.icon_setting_group {
+	background-position: 0 -3830px;
+}
+.icon_members {
+	background-position: 0 -2550px;
+}
+
+.icon_logout {
+	background-position: 0 -5447px;
+}
+.icon_create_group {
+	background-position: 0 -2567px;
+}
+.icon_joined_group {
+	background-position: 0 -2283px;
+}
+
+.icon_reply {
+	background-position: 0 -1078px;
+}
+.icon_person {
+	background-position: 0 -5277px;
+}
+.icon_present {
+	background-position: 0 -2490px;
+}
+.icon_login {
+	background-position: 0 -2793px;
+}
+.icon_register {
+	background-position: 0 -5412px
+}

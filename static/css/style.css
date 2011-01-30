@@ -32,6 +32,7 @@ img.avatar {
 .form_div p {
 	text-indent:0;
 	margin:5px 0;
+	
 }
 
 .form_div label {
@@ -47,7 +48,6 @@ img.avatar {
  */
 .input_text,input[type="text"], input[type="password"], textarea {
 	padding:5px;
-	outline:none;
 	width:160px;
 	height: 15px
 }
@@ -132,22 +132,37 @@ img.avatar {
 	}
 	#navigator .nav_content ul li {
 		list-style: none;
-		border-bottom: 1px dashed #CCC;
 		width: 100px;
-		height: 30px;
-		line-height: 30px;
+		height: 25px;
+		line-height: 25px;
 	}
+		#navigator .nav_content .nav_h {
+			text-align: left;
+			border: none;
+			font-weight: bold;
+			font-size: 13px;
+		}
 	.nav_content ul li a {
 		display: block;
 		width: 100%;
 		height: 100%;
 		color: #FFF;
+		position: relative;
+		text-align: left;
+		text-indent: 23px;
 	}
+		
 		.nav_content ul li a:hover {
 			/*background: url(../img/sidebar_a_hover.png);*/
 			background: #FFF;
 			color: #96C63F;
 		}
+		
+			.nav_content ul li a .icon {
+				position: absolute;
+				top: 5px;
+				left: 5px;
+			}
 	
 #header {
     height:70px;
@@ -249,6 +264,13 @@ div.submenu span.submenu_corner:first-child {
     float:left; 
 }
 
+	.submenu_item {
+		margin: 0 0px 0 10px;
+	}
+		.submenu_user a {  /*顶部的用户菜单右下角的用户显示*/
+			margin: 0 5px 0 0;
+		}
+
 /** 菜单结束 */
 
 
@@ -271,18 +293,29 @@ div.submenu span.submenu_corner:first-child {
 }
 	
 	.sidebar_widget {
-		margin: 20px 0 0px 0;
+		margin: 0px 0 15px 0;
 	}
-	.sidebar_widget h2 {
-		background: url(../img/sidebar_h2_bg.png) no-repeat;
-		height: 27px;
-		line-height: 27px;
-		font-size: 14px;
-		width: 225px;
-		padding: 0 0 0 10px;
-		margin: 0 0 10px 0px;
-		color: #009900;
-	}
+		.sidebar_widget h2 {
+			background: url(../img/sidebar_h2_bg.png) no-repeat;
+			height: 27px;
+			line-height: 27px;
+			font-size: 14px;
+			width: 225px;
+			padding: 0 0 0 10px;
+			margin: 0 0 10px 0px;
+			color: #009900;
+			
+		}
+		
+		.sidebar_widget .form_div label {
+			width: 50px;
+		}
+		.sidebar_widget .form_div .input_text, 
+		.sidebar_widget .form_div input[type="text"], 
+		.sidebar_widget .form_div input[type="password"], 
+		.sidebar_widget .form_div textarea {
+			width: 140px;
+		}
 	
 	
 	.sidebar_top {
@@ -335,14 +368,19 @@ div.submenu span.submenu_corner:first-child {
 		height:100%;
 		width:100%;
 		display:block;
-		text-indent: 30px;
-
+		text-indent: 60px;
+		position: relative;
 	}
 	.sidebar_links li a:hover {
 		background: url(../img/sidebar_a_hover.png);
 		color: #333;
 
 	}
+		.sidebar_links li a span.icon {
+			position: absolute;
+			top: 7px;
+			left: 30px;
+		}
 	
 #content {
     overflow:hidden;
@@ -539,7 +577,7 @@ div.submenu span.submenu_corner:first-child {
 
 /** Chat iFrame */
 .chats_container, .chats_preview {
-	list-style:none;
+
 	text-align:left;
 	max-height:300px;
 	overflow:auto;
@@ -554,7 +592,7 @@ div.submenu span.submenu_corner:first-child {
 	text-indent:0;
 }
 .chat_item {
-	
+	list-style: none;
 	overflow:hidden;
 	margin:0px 0;
 	padding: 5px 0;
@@ -567,13 +605,14 @@ div.submenu span.submenu_corner:first-child {
 }
 
 .chat_item .chat_avatar {
-	float:left;/*
+	float:left;
+	/*
 
 	position:relative;
 */
 }
 .chat_item .chat_detail ,  .chat_item .chat_form {
-	margin:0 0 0 37px;
+	margin:0 0 0 40px;
 }
 
 	.chat_content {
@@ -594,7 +633,13 @@ div.submenu span.submenu_corner:first-child {
 	}
 	
 	
-	
+.top_chat .chat_avatar img.avatar {
+	height: 50px;
+	width: 50px;
+}
+	.top_chat .chat_detail, .top_chat .chat_form {
+		margin: 0px 0px 0px 60px;
+	}
 	
 	
 	

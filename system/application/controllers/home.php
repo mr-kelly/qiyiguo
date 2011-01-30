@@ -14,7 +14,7 @@ class Home extends KK_Controller {
 			'current_home' => 'current_menu',
 		);
 		
-		$this->load->view('home/index_view', $data);
+		kk_show_view('home/index_view', $data);
 	}
 	
 	/**

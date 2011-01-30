@@ -362,7 +362,7 @@
             <div id="sidebar">
             	<div class="sidebar_top">
             		<div class="sidebar_bottom">
-						<?php $this->load->view('aside/aside_group_view'); ?>
+						<?php $this->load->view('sidebar/sidebar_group_view'); ?>
 					</div>
 				</div>
 				

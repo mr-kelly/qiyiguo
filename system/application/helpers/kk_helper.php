@@ -10,7 +10,20 @@
     		redirect('user/login?redirect=' . uri_string() );
     	}
     }
-
+	
+	/**
+	 *	判断是否登录了
+	 */
+	function is_logged_in() {
+		$ci =& get_instance();
+		return $ci->tank_auth->is_logged_in();
+	}
+	
+	function get_current_user_id() {
+		login_redirect();
+		$ci =& get_instance();
+		return $ci->tank_auth->get_user_id();
+	}
 
 	function kk_log($url, $message) {
 		$ci =& get_instance();

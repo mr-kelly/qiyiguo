@@ -27,7 +27,7 @@
 								
 		<?php foreach ( $chats as $key=>$chat ) :?>
 			
-			<li id="chat_<?=$chat['id'];?>" class="chat_item <?= ( $key % 2 == 0 ) ? 'odd' : '';?>" style="margin-left:<?=$chat['depth'] * 10;?>px; width: <?= $chat_width - $chat['depth'] * 10;?>px; ">
+			<li id="chat_<?=$chat['id'];?>" class="chat_item <?= ( $key % 2 == 0 ) ? 'odd' : '';?> <?= ($chat['depth']==0)?'top_chat':'';?>" style="margin-left:<?=$chat['depth'] * 10;?>px; width: <?= $chat_width - $chat['depth'] * 10;?>px; ">
 			
 				<div class="chat_avatar">
 					<a target="_top" href="<?=site_url( 'user/' . $chat['User']['id']);?>">
@@ -67,7 +67,7 @@
 						
 						
 					</div>
-					<a href="#" class="chat_reply"> &nbsp;[回复↓]</a>
+					<a href="#" class="chat_reply icon icon_reply">回复↓</a>
 					
 
 				</div>

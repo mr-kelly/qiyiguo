@@ -26,3 +26,18 @@
 	opacity:0.8;
 	*/
 }
+
+.login_more_tip {  /* 文字 “你也可以..."*/
+	margin: 5px 0 0 0;
+	padding: 10px 0 0 0;
+	font-weight: bold;
+	font-size: 14px;
+	border-top: 1px dashed #CCC;
+	text-align: center;
+}
+.login_more {
+	text-align: center;
+}
+	.other_login_item {
+		margin: 10px 0;
+	}

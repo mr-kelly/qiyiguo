@@ -5,7 +5,6 @@
 // 时区
 date_default_timezone_set('Asia/Shanghai');
 
-
 /**
 	T_sina OAuth  新浪微博OAuth
 */
@@ -296,7 +295,7 @@ $config['cookie_path']		= "/";
 | COOKIE data is encountered
 |
 */
-$config['global_xss_filtering'] = FALSE;
+$config['global_xss_filtering'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

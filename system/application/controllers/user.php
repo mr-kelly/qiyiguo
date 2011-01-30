@@ -165,10 +165,14 @@
 			login_redirect();
 			
 			
-			
 			$data = array(
 				'user' => $this->user_profiles_model->get_profile($user_id),
 			);
+			
+			// 如果用户查看的是自己的页面~ 菜单聚焦"个人主页"
+			if ( $user_id == get_current_user_id() ) {
+				$data['current_user_home'] = 'current_menu';
+			}
 			
 			$this->load->view('user/user_lookup_view', $data);
 		}
@@ -177,7 +181,7 @@
 		/**
 		 *	登录的用户个人设置
 		 */
-		function setting() {
+		function setting( $action='index') {
 			login_redirect();
 			$user_id = $this->tank_auth->get_user_id();
 			
@@ -188,7 +192,12 @@
 				// 处理提交的用户profile资料
 				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('birth', '生日', 'trim|xss_clean');
+				//$this->form_validation->set_rules('birth', '生日', 'trim|xss_clean');
+				$this->form_validation->set_rules('birth_year', '生日年', 'trim|xss_clean');
+				$this->form_validation->set_rules('birth_month', '生日月', 'trim|xss_clean');
+				$this->form_validation->set_rules('birth_day', '生日日', 'trim|xss_clean');
+				
+				
 				$this->form_validation->set_rules('website', '个人网站', 'trim|xss_clean');
 				$this->form_validation->set_rules('email_1', '电子邮箱1', 'trim|xss_clean|valid_email');
 				$this->form_validation->set_rules('email_2', '电子邮箱2', 'trim|xss_clean|valid_email');
@@ -198,6 +207,9 @@
 				
 				$this->form_validation->set_rules('city_id', '城市', 'required|trim|xss_clean');
 				$this->form_validation->set_rules('province_id', '省份', 'required|trim|xss_clean');
+				
+				$this->form_validation->set_rules('hometown_province_id', '籍贯省份', 'required|trim|xss_clean');
+				$this->form_validation->set_rules('hometown_city_id', '籍贯城市', 'required|trim|xss_clean');
 				
 				/*	不采用http新浪微博验证模式
 				$this->form_validation->set_rules('t_sina_login', '新浪微博帐号', 'trim|xss_clean');
@@ -211,7 +223,10 @@
 				} else {
 					$realname = $this->form_validation->set_value('realname');
 					$nickname = $this->form_validation->set_value('nickname');
-					$birth = $this->form_validation->set_value('birth');
+					
+					// 将年月日组合起来
+					$birth = sprintf('%s-%s-%s', $this->form_validation->set_value('birth_year'), $this->form_validation->set_value('birth_month'), $this->form_validation->set_value('birth_day')) ;
+					
 					$website = $this->form_validation->set_value('website');
 					$email_1 = $this->form_validation->set_value('email_1');
 					$email_2 = $this->form_validation->set_value('email_2');
@@ -221,23 +236,27 @@
 					
 					$province_id = $this->form_validation->set_value('province_id');
 					$city_id = $this->form_validation->set_value('city_id');
-					
-
+					$hometown_province_id = $this->form_validation->set_value('hometown_province_id');
+					$hometown_city_id = $this->form_validation->set_value('hometown_city_id');
 					
 					
 					// 修改user profiles
 					$this->user_profiles_model->update_user_profile( $user_id, array(
 						'realname' => $realname,
 						'nickname' => $nickname,
-						'birth' => $birth,
+						'birth' => $birth, 
 						'website' => $website,
 						'email_1' => $email_1,
 						'email_2' => $email_2,
 						'email_3' => $email_3,
 						'link_renren' => $link_renren,
 						'description' => $description,
+						
 						'city_id' => $city_id,
 						'province_id' => $province_id,
+						'hometown_province_id' => $hometown_province_id,
+						'hometown_city_id' => $hometown_city_id,
+						
 					));
 					
 					/*  取消新浪微博http绑定功能
@@ -451,8 +470,10 @@ EOT;
 		/**
 		 *	Ajax，用户登入
 		 *  设置redirect_ 两个参数，可以登录后跳转
+		 
+		 	$type    ajax, general（PHP普通模式)
 		 */
-		function login() {
+		function login( $type="ajax") {
 			
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				

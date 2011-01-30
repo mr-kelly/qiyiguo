@@ -1,6 +1,9 @@
 <?
 	class Test extends KK_Controller {
 		
+		function __construct() {
+			exit('cannot enter test');
+		}
 		function test_qq() {
 			$this->load->library('QQ_Connect');
 			$qq_c = $this->qq_connect->get_client();

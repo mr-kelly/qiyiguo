@@ -172,6 +172,9 @@
 			} else if ( $action == 'stream' ) {
 				// 群组信息盒子
 				kk_show_view('group/group_lookup_stream_view', $data);
+			} else if ( $action == 'members' ) {
+				// 成员列表、成员管理
+				kk_show_view('group/group_lookup_members_view', $data);
 			}
 		}
 		
@@ -285,7 +288,7 @@
 		 */
 		function topic($topic_id = 0) {
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
-				$this->form_validation->set_rules('topic_title','Topic Title', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('topic_title','Topic Title', 'trim|xss_clean');
 				$this->form_validation->set_rules('topic_content','Topic Content', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('topic_group_id','Topic Group', 'trim|required|xss_clean');
 				

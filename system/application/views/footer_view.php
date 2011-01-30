@@ -44,13 +44,17 @@
         	</div>
         	
         	<div id="footer_copyright">
-        		Mrkelly出品
+        		<a href="http://mrkelly.cc" class="tipsy_s" title="知道吗？用「谷歌浏览器」会有最完整的网页效果哦">
+        			MrKelly出品
+        		</a>
         		
-			   {elapsed_time}
-			   
-			   <a href="<?=base_url();?>wiki/">
-				   帮助
-			   </a>
+        		<span>
+			   		{elapsed_time}
+			    </span>
+			    
+			    <a href="<?=base_url();?>wiki/">
+					帮助
+			    </a>
             
             </div>
 

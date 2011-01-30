@@ -133,6 +133,21 @@ $(function() {
     		);
     		
     	});
+    	// 跟上面一样!!!!!!!   不过用于籍贯的  - 重复吧~
+    	$('.hometown_province').change(function(){
+    		$.get( $get_cities_url, { province_id: $(this).val() }, function( data ){
+    				data = $.parseJSON(data);
+    				
+    				// 改变城市列表下拉菜单~
+    				select_cities = '';
+    				$.each(data.data, function(key, value){
+    					//alert(value.city_name);
+    					select_cities += '<option value="' + value.id + '">' + value.city_name + '</option>';
+    				});
+    				
+    				$('.hometown_city').html(select_cities);
+    		});
+    	});
     	
     	
     	

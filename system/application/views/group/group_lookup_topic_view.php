@@ -44,7 +44,7 @@
 								<div class="group_topic_user">
 									<? // 用户头像、名字、 topic的作者 ?>
 									<img width="50" src="<?=get_user_avatar_url(  $topic['User']['id'], false );?>" />
-			
+
 								</div>
 								
 								<div class="group_topic_detail">
@@ -59,24 +59,24 @@
 										<?=$ci->humanize->datetime( $topic['created'] );?>
 									</span>
 									
-									
-									<span class="group_topic_title">
-										<a href="<?=site_url('group/topic/' . $topic['id']);?>">
-											<?=$topic['title'];?>
-										</a>
-									</span>
-			
-									
-									<div>
-										<span class="small">
-											-
-										</span>
+									<span>
 										<a href="<?=site_url('user/'.$topic['User']['id']);?>">
 											<span class="small">
 												<?=$topic['User']['name'];?>
 											</span>
 										</a>
-									</div>
+									</span>
+									
+										<span class="small">
+											：
+										</span>
+										
+									<span class="group_topic_title">
+										<a href="<?=site_url('group/topic/' . $topic['id']);?>">
+											<?=$topic['title'];?>
+										</a>
+									</span>
+
 									
 									<div>
 										<?php

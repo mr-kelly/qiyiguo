@@ -27,7 +27,7 @@
 							
 							// 头像更改时同时提交 ajax form, 以确保用户修改资料后，未保存按修改头像资料丢失
 						?>
-							<a onclick="$('#user_profiles_form').submit();" href="<?=site_url('user/avatar_set' . '/' . $avatar['id'] );?>">
+							<a class="change_avatar" onclick="$('#user_profiles_form').submit();" href="<?=site_url('user/avatar_set' . '/' . $avatar['id'] );?>">
 								<img width="50" src="<?=static_url();?>upload/avatars/<?=$this->tank_auth->get_user_id();?>/<?=$avatar['avatar_thumb'];?>" />
 							</a>
 						<?php
@@ -60,6 +60,11 @@
 						<li>
 							<a href="#privacy_setting">
 								隐私设置
+							</a>
+						</li>
+						<li>
+							<a href="<?=site_url('user/setting/avatar');?>">
+								更换头像
 							</a>
 						</li>
 					</ul>
@@ -114,8 +119,11 @@
 											endforeach;
 										?>
 									</select>
+									
+									<!--
+									日期空间～～  过期不用了
 									<input class="datepicker" name="birth" type="text" value="<?=get_current_user_profile('birth');?>" />
-		
+									-->
 									
 								</p>
 								
@@ -162,14 +170,26 @@
 								
 								<p>
 									<label>籍贯</label>
-									<select class="dict_province location_select" name="country_province_id">
+									<select class="hometown_province location_select" name="hometown_province_id">
 									<?php
 										$ci =& get_instance();
 										$provinces =  $ci->dict_model->get_provinces();
-										$user_province = get_current_user_profile('province_id'); // 用户当前设置的省份
+										$user_province = get_current_user_profile('hometown_province_id'); // 用户当前设置的省份 - 籍贯！
 										foreach ( $provinces as $prov ):
 									?>
 										<option value="<?=$prov['id'];?>"<?=( $user_province == $prov['id'] ) ? ' selected="selected"' : '' ; ?>><?=$prov['province_name'];?></option>
+									
+									<?php endforeach; ?>
+									</select>
+									
+									<select class="hometown_city location_select" name="hometown_city_id">
+									<?php
+										$ci =& get_instance();
+										$cities =  $ci->dict_model->get_cities($user_province); 
+										$user_city = get_current_user_profile('hometown_city_id'); // 籍贯！
+										foreach ( $cities as $city ):
+									?>
+										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
 									
 									<?php endforeach; ?>
 									</select>

@@ -22,27 +22,24 @@
 	<?=import_js('js/ckeditor/ckeditor_basic.js');?>
 	<?//import_js('ckeditor/adapters/jquery.js');?>
 	
-	<? // jQuery Lightbox ?>
-	<?=import_js('js/jquery-lightbox/js/jquery.lightbox-0.5.min.js');?>
-	<?=import_css('js/jquery-lightbox/css/jquery.lightbox-0.5.css');?>
-	
+
 	<? // jQuery Form ?>
-	<?=import_js('js/jquery.form.js');?>
+	<?=import_js('js/kk.form.js');?>
 	
 	<? //jQuery input tips ?>
-	<?=import_js('js/jquery.input_tips.js');?>
+	<?=import_js('js/kk.input_tips.js');?>
 		
 	<? // jQuery jSCroll 滚动条 ?>
-	<?=import_js('js/jquery.jscroll.js');?>
+	<?=import_js('js/kk.jscroll.js');?>
 	
 	<? // jQuery iframe auto height ?>
-	<?=import_js('js/jquery.iframeAutoHeight.js');?>
+	<?=import_js('js/kk.iframeAutoHeight.js');?>
 	
 	<? // jQueryr pozFixed Position Fixed ?>
-	<?=import_js('js/jquery.pozFixed.js');?>
+	<?=import_js('js/kk.pozFixed.js');?>
 
 	<? // jQueryr Center ?>
-	<?=import_js('js/jquery.center.js');?>
+	<?=import_js('js/kk.center.js');?>
 	
 	<!-- jGrowl-->
 	<script type="text/javascript" src="<?=static_url('js/jGrowl/jquery.jgrowl_minimized.js');?>"></script>
@@ -51,19 +48,19 @@
 	
 	
 	<? // jQuery Tipsy ?>
-	<?=import_js('js/tipsy/jquery.tipsy.js');?>
+	<?=import_js('js/tipsy/kk.tipsy.js');?>
 	<?=import_css('js/tipsy/tipsy.css');?>
 	
 	<!-- jQuery Fancybox-->
-	<?=import_js('js/fancybox/jquery.easing-1.3.pack.js');?>
-	<?=import_js('js/fancybox/jquery.mousewheel-3.0.4.pack.js');?>
+	<?=import_js('js/fancybox/kk.easing-1.3.pack.js');?>
+	<?=import_js('js/fancybox/kk.mousewheel-3.0.4.pack.js');?>
 	
-	<?=import_js('js/fancybox/jquery.fancybox-1.3.4.pack.js');?>
-	<?=import_css('js/fancybox/jquery.fancybox-1.3.4.css');?>
+	<?=import_js('js/fancybox/kk.fancybox-1.3.4.pack.js');?>
+	<?=import_css('js/fancybox/kk.fancybox-1.3.4.css');?>
 	
 	
 	<!--jQuery idTabs-->
-	<?=import_js('js/jquery.idTabs.min.js');?>
+	<?=import_js('js/kk.idTabs.min.js');?>
 	
 	<? // jQuery Sticky Scroller ?>
 	<? //import_js('js/StickyScroller.min.js');?>
@@ -81,7 +78,7 @@
 	<?php // jQuery Corner   not for IE?>
 	<?php  if (strspn("MSIE",$_SERVER["HTTP_USER_AGENT"]) != 4 ): ?>
 	
-		<?=import_js('js/jquery.corner.js');?>
+		<?=import_js('js/kk.corner.js');?>
 		<script>
 			$(function(){
 				$('img').corner('5px');

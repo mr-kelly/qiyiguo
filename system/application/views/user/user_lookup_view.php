@@ -136,17 +136,17 @@
 							</a>
 						</li>
 						<li>
-							<a href="#user_fans">
-								粉丝(9999)
+							<a href="#user_fans" class="tipsy_s" title="拥趸,即是粉丝的意思,是fans的意译">
+								拥趸(9999)
 							</a>
 						</li>
 					</ul>
 					
-					<div id="user_friends">
+					<div id="user_friends" class="hidden">
 						朋友们在这里...
 					</div>
 					
-					<div id="user_fans">
+					<div id="user_fans" class="hidden">
 						粉丝们...  更多
 					</div>
 					

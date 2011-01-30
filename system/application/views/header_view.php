@@ -27,16 +27,16 @@
     	$this->load->view('import');
     ?>
     <script>
-    	$(function(){
-    		
-    		
-    		$('a.lightbox').lightBox({
-    			'imageLoading': '<?=static_url();?>js/jquery-lightbox/images/lightbox-ico-loading.gif',
-    			'imageBtnClose':'<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-close.gif',
-				'imageBtnPrev': '<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-prev.gif',
-				'imageBtnNext': '<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-next.gif'
-    		});
-    	});
+//     	$(function(){
+//     		
+//     		
+//     		$('a.lightbox').lightBox({
+//     			'imageLoading': '<?=static_url();?>js/jquery-lightbox/images/lightbox-ico-loading.gif',
+//     			'imageBtnClose':'<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-close.gif',
+// 				'imageBtnPrev': '<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-prev.gif',
+// 				'imageBtnNext': '<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-next.gif'
+//     		});
+//     	});
     	
 
     </script>
@@ -59,14 +59,34 @@
     <div id="navigator">
     	<div class="nav_content">
 	    	<ul>
+	    		<li class="nav_h">个人</li>
+	    		
 	    		<li>
 	    			<a href="#">
-	    				我的页面
+	    				<span class="icon icon_person"></span>
+	    				个人主页
 	    			</a>
 	    		</li>
 	    		<li>
 	    			<a href="#">
-	    				我的群组
+	    				<span class="icon icon_person"></span>
+	    				我的朋友
+	    			</a>
+	    		</li>
+	    		<li>
+	    			<a href="#">
+	    				<span class="icon icon_person"></span>
+	    				我的朋友
+	    			</a>
+	    		</li>
+	    		
+	    		
+	    		<li class="nav_h">果群</li>
+	    		
+	    		<li>
+	    			<a href="#">
+	    				<span class="icon icon_joined_group"></span>
+	    				我加入的果群
 	    			</a>
 	    		</li>
 	    	</ul>
@@ -100,21 +120,34 @@
                 </div>
                 
                 <ul id="menu">
+                
+					<?php if ( is_logged_in() ): ?>
+					<li class="menu_item <?=isset($current_user_home) ? $current_user_home : '' ;?>">
+						<a href="<?=site_url('user/' . get_current_user_id() );?>">
+							个人主页
+						</a>
+					</li>
+					<?php else: // 未登录，显示首页 ?>
+
+						
                     <li class="menu_item <?= isset($current_home) ? $current_home : '' ;?>">
                         <a href="<?=site_url('');?>">
                             首页
                         </a>
+                        <!--
                         <div class="submenu">
                             <span class="submenu_corner"></span>
                             <span class="submenu_corner"></span>
 							<span class="submenu_item">创建群组</span>
 							<span class="submenu_item">创建群组</span>
                         </div>
+                        -->
                     </li>
+                    <?php endif; ?>
                      
                     <li class="menu_item <?= isset($current_group) ? $current_group : '' ;?>">
                     	<a href="<?=site_url('group');?>">
-                    		群组
+                    		果群
                     	</a>
                         <div class="submenu">
                             <span class="submenu_corner"></span>
@@ -162,31 +195,39 @@
 						// 判断登录状态
 						if ($this->tank_auth->is_logged_in()) :
 					?>
-						<a class="sexybox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>">
-							<img width="18" src="<?=get_user_avatar_url();?>" />
-						</a>
+							<span class="submenu_item submenu_user">
+							   <a class="sexybox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>" title="<?=get_current_user_name();?>">
+								   <img width="18" src="<?=get_user_avatar_url();?>" />
+							   </a>
+							   
+							   <a href="<?=site_url('user/'. $this->tank_auth->get_user_id());?>"><?=get_current_user_name();?></a>
+							</span>
 						
-						<a href="<?=site_url('user/'. $this->tank_auth->get_user_id());?>"><?=get_current_user_name();?></a>
-						
+
+							
 							<span class="submenu_item">
-								<a href="<?=site_url('user/setting');?>">[设置]</a>
+								<a href="<?=site_url('user/setting');?>" class="icon icon_setting">设置</a>
 							</span>
 							<span class="submenu_item">
-								<a id="logout_btn" href="<?=base_url();?>user/logout">[登出]</a>
+								<a id="logout_btn" href="<?=base_url();?>user/logout" class="icon icon_logout">登出</a>
 								<script>
 									var $user_logout_action = '<?=base_url();?>user/logout';
 									var $user_home = '<?=base_url();?>';
 								</script>
 							</span>
+							
+							<span class="submenu_item">
+								<a title="哗啦啦~ 将奇异果通过微博、QQ介绍给你朋友吧" href="#" class="tipsy_n icon icon_present">邀请朋友</a>
+							</span>
 					<?php
 						else:
 					?>
 							<span class="submenu_item">
-								<a id="login_btn" class="sexybox_iframe" href="<?=site_url('user/iframe_login');?>?redirect=<?=$this->input->get('redirect');?>">[登录]</a>
+								<a id="login_btn" class="sexybox_iframe icon icon_login" href="<?=site_url('user/iframe_login');?>?redirect=<?=$this->input->get('redirect');?>">登录</a>
 							</span>
 							
 							<span class="submenu_item">
-								<a id="register_btn" class="sexybox_iframe" href="<?=site_url('user/iframe_register');?>" title="注册" href="<?=base_url();?>user/register">[注册]</a>
+								<a id="register_btn" class="sexybox_iframe icon icon_register" href="<?=site_url('user/iframe_register');?>" title="注册" href="<?=base_url();?>user/register">注册</a>
 							</span>
 							
 							
