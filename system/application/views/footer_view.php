@@ -44,7 +44,8 @@
         	</div>
         	
         	<div id="footer_copyright">
-        	
+        		Mrkelly出品
+        		
 			   {elapsed_time}
 			   
 			   <a href="<?=base_url();?>wiki/">
@@ -78,7 +79,7 @@ pageTracker._trackPageview();
 
 <!-- 然后将以下这段代码放到网页页尾 -->
 <!-- JiaThis Button BEGIN -->
-<script type="text/javascript" src="http://www.jiathis.com/code/jia.js" charset=utf-8></script>
+<script src="http://www.jiathis.com/code/jia.js" type="text/javascript" charset=utf-8></script>
 <!-- JiaThis Button END -->
 
 

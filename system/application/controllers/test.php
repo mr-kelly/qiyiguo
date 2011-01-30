@@ -18,6 +18,12 @@
 			$this->load->library('fun_crypt');
 			print $this->fun_crypt->deCrypt( $result[0]['t_sina_password'] );
 		}
+		
+		function test_guo_id() {
+			$this->load->library('Guo_id');
+			echo $this->guo_id->generate_user_id();
+		}
+		
 		function index() {
 			
 // 			date_default_timezone_set('Asia/Shanghai');

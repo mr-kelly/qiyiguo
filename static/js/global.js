@@ -9,12 +9,23 @@ $(function() {
 	
 	// jquery Tipsy生成
 	$('.tooltip').tipsy( {   fade: true, live:true }); // gravity: $.fn.tipsy.auto ,
+	
 	// Tipsy Form表单提示～
-	$('.tooltip_form [title]').tipsy( { trigger: 'focus', gravity: $.fn.tipsy.autoWE , fade: true } );
+	$('.tipsy_form [title]').tipsy( { trigger: 'focus', gravity: $.fn.tipsy.autoWE , fade: true } );
+	
+	// 控制东南西北的tipsy
+	$('.tipsy_w').tipsy({ gravity: 'w' });
+	$('.tipsy_e').tipsy({ gravity: 'e' });
+	$('.tipsy_n').tipsy({ gravity: 'n' });
+	$('.tipsy_s').tipsy({ gravity: 's' });
+	$('.tipsy_nw').tipsy({ gravity: 'nw'});
+	$('.tipsy_ne').tipsy({ gravity: 'ne'});
+	$('.tipsy_sw').tipsy({ gravity: 'sw'});
+	$('.tipsy_se').tipsy({ gravity: 'se'});
 	
 	
 	// jquery idTabs 
-	$('.kk_tabs ul').idTabs();
+	$('.kk_tabs > ul').idTabs();
 	
 	// Fancyboxx  -  I call it sexy box!  cool!
 	$('.sexybox').fancybox();
@@ -58,7 +69,7 @@ $(function() {
     // 登出按钮
     $('#logout_btn').click(function() {
         $.post($user_logout_action,function() {
-            alert('您已经成功地登出~');
+            // 直接登出ajax，然后刷新页面
             location.reload();
         });
         return false;
@@ -168,16 +179,23 @@ $(function() {
 	
 	
 	/*
-	 *	导航菜单固定漂浮
+	 *	导航菜单固定漂浮  Navigator
 	 */
 	 $(function(){
 		 //$('#navigator').pozFixed();
 		 
-		 $('.autohide_btn').hover(function(){
-			$('.nav_content').show();
+		 $('#nav_btn').click(function(){
+			$('.nav_content').toggle();
 			
 			return false;
 		 });
+		 
+		 //alert( document.body.clientWidth );
+		 
+		 // 根据屏幕分辨率默认显示导航菜单
+		 if ( document.body.clientWidth >= 1140 ) {
+		 	$('#nav_btn').trigger('click');
+		 }
 	});	 
 	 
 	 

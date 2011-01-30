@@ -76,6 +76,25 @@
 			return $age;
 		}
 		
+		/** 
+		 *	从字符串时间中获得 年、月、日    ( 如 1989-6-26, 析出 1989,  6,  26 )
+		 */
+		function get_year( $str_time ) {
+			$str_time = strtotime($str_time);
+			$datetime = getdate( $str_time );
+			return $datetime['year'];
+		}
+		function get_month( $str_time ) {
+			$str_time = strtotime($str_time);
+			$datetime = getdate( $str_time );
+			return $datetime['mon'];
+		}
+		function get_day( $str_time ) {
+			$str_time = strtotime($str_time);
+			$datetime = getdate( $str_time );
+			return $datetime['mday'];
+		}
+		
 		
 		/* 
 		* string get_zodiac_sign(string month, string day) 

@@ -10,8 +10,34 @@
 	border-left: 1px dashed #CCC;
 	padding: 0 0 0 10px;
 	margin: 0 0 0 10px;
+	width: 50%;
 }
+	#user_login_form {
+		margin: 20px 0 0 0;
+	}
+	.user_login_remember_div {
+		/* 下次自动登录*/
+		margin: 20px 0 20px 0;
 
+	}
+		.user_login_remember_div label {
+			display: inline;
+			width: auto;
+			line-height: 15px;
+			margin: 0 0 0 5px;
+		}
+	
+	.user_login_submit_div {
+		margin: 0 0 0 80px;
+	}
+	
+	
 #other_login {
 	float:left;
+	width: 45%;
 }
+
+	.other_login_item {
+		margin: 30px 0 10px 30px;
+		
+	}

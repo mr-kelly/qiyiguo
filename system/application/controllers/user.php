@@ -198,12 +198,13 @@
 				
 				$this->form_validation->set_rules('city_id', '城市', 'required|trim|xss_clean');
 				$this->form_validation->set_rules('province_id', '省份', 'required|trim|xss_clean');
-			
+				
+				/*	不采用http新浪微博验证模式
 				$this->form_validation->set_rules('t_sina_login', '新浪微博帐号', 'trim|xss_clean');
 				$this->form_validation->set_rules('t_sina_password', '城市', 'trim|xss_clean');
 				// 微博绑定
 				//$this->
-				
+				*/
 				
 				if ( !$this->form_validation->run() ) {
 					ajaxReturn(null, validation_errors(), 0);
@@ -239,7 +240,7 @@
 						'province_id' => $province_id,
 					));
 					
-					
+					/*  取消新浪微博http绑定功能
 					// ──────────微博帐号绑定，  表单验证要检查微博帐号是否合法～（帐号密码正确）
 					$t_sina_login = $this->form_validation->set_value('t_sina_login');
 					$t_sina_password = $this->form_validation->set_value('t_sina_password');
@@ -288,6 +289,7 @@
 						}
 					}  // ──────────────────────结束微博帐号绑定
 
+					*/
 					
 					ajaxReturn(null, '设置成功', 1);
 				}
@@ -595,7 +597,10 @@ EOT;
 		function register() {
 			//$email = $this->input->xss_clean($this->input->post('email'));
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
-			$this->form_validation->set_rules('username', '姓名', 'trim|required|xss_clean');
+//			$this->form_validation->set_rules('username', '姓名', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('nickname', '昵称', 'trim|required|xss_clean');
+			
 			$this->form_validation->set_rules('password', '密码', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
 			
 			$this->form_validation->set_rules('city_id', '城市', 'required|trim|xss_clean');
@@ -608,7 +613,8 @@ EOT;
 				//表单验证成功,开始注册
 				$email = $this->form_validation->set_value('email');
 				$password = $this->form_validation->set_value('password');
-				$username = $this->form_validation->set_value('username');
+				$realname = $this->form_validation->set_value('realname');
+				$nickname = $this->form_validation->set_value('nickname');
 				$province_id = $this->form_validation->set_value('province_id');
 				$city_id = $this->form_validation->set_value('city_id');
 				
@@ -623,19 +629,22 @@ EOT;
 					// 注册后立即帮用户登录   TODO EMAIL提醒
 					$this->tank_auth->login($email, $password, FALSE, FALSE, TRUE);
 					
+					
+					
+					// Depreciatd ...   用户需要填写 真实姓名 & 昵称称谓
 					// 根据username, 修改用户profile
 					// username 以空格explode成最多2项的数组
 					// 数组长度1， [0]那么直接设成nickname,
 					// 数组长度2， [0]设成realname, [1]设成nickname
 					
-					$name_array = explode(' ', $username, 2);
-					if ( sizeof($name_array) == 1 ) {
-						$realname = '';
-						$nickname = $name_array[0];
-					} elseif ( sizeof($name_array) == 2 ) {
-						$realname = $name_array[0];
-						$nickname = $name_array[1];
-					}
+// 					$name_array = explode(' ', $username, 2);
+// 					if ( sizeof($name_array) == 1 ) {
+// 						$realname = '';
+// 						$nickname = $name_array[0];
+// 					} elseif ( sizeof($name_array) == 2 ) {
+// 						$realname = $name_array[0];
+// 						$nickname = $name_array[1];
+// 					}
 					
 					$data = array(
 						'realname' => $realname,
@@ -756,16 +765,17 @@ EOT;
 		
 		
 		/**
-		 *	AJAX的登录页面
+		 *	AJAX的登录页面  iframe
 		 */
-		function ajax_login() {
-			
+		function iframe_login() {
 			kk_show_view('user/login');
 		}
 		
-		function ajax_register() {
+		function iframe_register() {
 			kk_show_view('user/register');
 		}
+		
+		
 		/**
 		 *	Ajax获得指定省份的城市~    传入GET   :  province_id
 		 */

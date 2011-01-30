@@ -10,11 +10,20 @@ class Home extends KK_Controller {
 	function index()
 	{
 		$data = array(
-			'page_title' => '奇异果 / 连接你的友群',
+			'page_title' => '奇异果 - 发现并创造你的生活',
 			'current_home' => 'current_menu',
 		);
 		
 		$this->load->view('home/index_view', $data);
+	}
+	
+	/**
+	 *	用户第一次登录成功显示的欢迎页！
+	 */
+	function welcome() {
+	
+		$data = array();
+		kk_show_view('home/welcome_view', $data );
 	}
 	
 	function test() {

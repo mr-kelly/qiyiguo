@@ -103,9 +103,13 @@
 				'user_id' => $user_id,
 			));
 			
-			$user_profile = $query->result_array();
-			$user_profile = $user_profile[0]; //取第一条记录
+			$user_profile = $query->row_array(); //取第一条记录
+//			$user_profile = $user_profile[0]; //取第一条记录
 			
+			// 用户的birth转化成birth_year, birth_month, birth_day
+			$user_profile['birth_year'] = $this->humanize->get_year($user_profile['birth']);
+			$user_profile['birth_month'] = $this->humanize->get_month($user_profile['birth']);
+			$user_profile['birth_day'] = $this->humanize->get_day( $user_profile['birth'] );
 			
 			// 关联 User Avatar 用户的头像信息，可参考user_avatars_model里的get_user_model
 			$this->load->model('user_avatars_model');
@@ -122,6 +126,7 @@
 				
 				$user_profile['Avatar'] = $avatar;
 			}
+			
 			
 
 			// 用户省份、城市

@@ -67,28 +67,44 @@
     	 *	 按下确认注册的按钮
     	 */
         $("#user_register_submit").click(function(){
-            $.post($user_register_action,
-                    {
-                        email:$('#user_register_email').val(),
-                        username:$('#user_register_username').val(),
-                        password:$('#user_register_password').val(),
-                        province_id: $('#user_register_province_id').val(),
-                        city_id: $('#user_register_city_id').val()
+        
+        
+//             $.post($user_register_action,    用ajaxForm改写！
+//                     {
+//                         email:$('#user_register_email').val(),
+//                         username:$('#user_register_username').val(),
+//                         password:$('#user_register_password').val(),
+//                         province_id: $('#user_register_province_id').val(),
+//                         city_id: $('#user_register_city_id').val()
                         
                         //__hash__:$(this).next().val() // 表单令牌
-                    },
-                    function(data){
-                        eval("data = " + data);
-                        
-                        if (data['status'] == 1) {
-                        	session_message(data.info);
-                            window.location = $user_home;
-                            
-                        } else {
-                        	session_message(data.info);
-                        }
-            });
-            
+//                     },
+//                     function(data){
+//                         eval("data = " + data);
+//                         
+//                         if (data['status'] == 1) {
+//                         	session_message(data.info);
+//                             window.location = $user_home;
+//                             
+//                         } else {
+//                         	session_message(data.info);
+//                         }
+//             });
+//             
+			$('#user_register_form').submit();
             return false;
         });
+        
+		$('#user_register_form').ajaxForm({
+			dataType: 'json',
+			success: function(data){
+				
+				if ( data.status == 1) {
+					session_message( data.info, 'normal');
+					window.parent.location = $redirect;
+				} else {
+					session_message( data.info, 'error');
+				}
+			}
+		});
     });

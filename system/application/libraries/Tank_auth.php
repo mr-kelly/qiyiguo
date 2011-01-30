@@ -149,6 +149,9 @@ class Tank_auth
 	{
 		return $this->ci->session->userdata('username');
 	}
+	
+	
+
 
 	/**
 	 * Create new user on the site and return some data about it:
@@ -172,8 +175,14 @@ class Tank_auth
 			// Hash password using phpass
 			$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
 			$hashed_password = $hasher->HashPassword($password);
-
+			
+			
+			
+			$ci =& get_instance();
+			$ci->load->library('Guo_id'); // 读取生成果号ID的库
 			$data = array(
+				'id' => $ci->guo_id->generate_user_id(),  // 随机生成一个 "果ID"， 五位数以上
+				
 				'username'	=> $username,
 				'password'	=> $hashed_password,
 				'email'		=> $email,

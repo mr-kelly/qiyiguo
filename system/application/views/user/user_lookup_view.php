@@ -128,12 +128,42 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
-				<div class="aside_widget">
-					<h3>所在友群</h3>
+				<div class="kk_tabs user_relation_tabs">
+					<ul>
+						<li>
+							<a href="#user_friends">
+								朋友(192)
+							</a>
+						</li>
+						<li>
+							<a href="#user_fans">
+								粉丝(9999)
+							</a>
+						</li>
+					</ul>
+					
+					<div id="user_friends">
+						朋友们在这里...
+					</div>
+					
+					<div id="user_fans">
+						粉丝们...  更多
+					</div>
+					
 				</div>
 				
-				<div class="aside_widget">
-					<h3>他的好友</h3>
+				<div class="sidebar_widget">
+					<h2>所在友群</h2>
+					<p>
+						加入的友群在这里
+					</p>
+				</div>
+				
+				<div class="sidebar_widget">
+					<h2>他的好友</h2>
+					<p>
+						好友列表
+					</p>
 				</div>
 				<?php
 					print_r( $user );

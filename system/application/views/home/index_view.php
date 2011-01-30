@@ -1,5 +1,8 @@
 <?php $this->load->view('header_view'); ?>
-
+			
+			
+		<?=import_css('css/app/home/index.css');?>
+		<?=import_js('js/app/home/index.js');?>
             <div id="sidebar">
             	<div class="sidebar_top">
             		<div class="sidebar_bottom">
@@ -17,6 +20,14 @@
         		<div class="content_top">
         			<div class="content_bottom">
 						
+						<div id="home_pic">
+							<div id="home_intro" class="hidden">
+								奇异果介绍
+							</div>
+						</div>
+						
+						
+						<div style="height:800px;"></div>
 						<?php
 						
 							// $ci =& get_instance();

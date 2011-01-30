@@ -14,8 +14,12 @@
 		function create_group($name, $cat_id=0, $privacy='public', $verify='request', $owner_id=0, $slug='') {
 		
 			
+			$ci =& get_instance();
+			$ci->load->library('Guo_id');
 			
 			$data = array(
+				'id' => $ci->guo_id->generate_group_id(), // 随机生成群组的果ID
+			
 				'name' => $name,
 				'category_id' => $cat_id,
 				'privacy' => $privacy,

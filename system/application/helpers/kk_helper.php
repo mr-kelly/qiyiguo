@@ -36,10 +36,16 @@
 
 	// 若存在site_url，则证明已经开启URL Helper
 	if ( function_exists( 'site_url') ) {
-	
-		function static_url() {
+		
+		/**
+		 *	读取static文件夹里的静态文件~   
+		 
+		 		$file可选
+		 */
+		function static_url( $file='' ) {
+		
 			$CI =& get_instance();
-			return $CI->config->item('static_url');
+			return $CI->config->item('static_url') . $file;
 		}
 		
 	}

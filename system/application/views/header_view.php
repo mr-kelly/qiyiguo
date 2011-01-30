@@ -28,6 +28,8 @@
     ?>
     <script>
     	$(function(){
+    		
+    		
     		$('a.lightbox').lightBox({
     			'imageLoading': '<?=static_url();?>js/jquery-lightbox/images/lightbox-ico-loading.gif',
     			'imageBtnClose':'<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-close.gif',
@@ -55,13 +57,30 @@
        
        
     <div id="navigator">
-    	
     	<div class="nav_content">
-	    	导航器
+	    	<ul>
+	    		<li>
+	    			<a href="#">
+	    				我的页面
+	    			</a>
+	    		</li>
+	    		<li>
+	    			<a href="#">
+	    				我的群组
+	    			</a>
+	    		</li>
+	    	</ul>
     	</div>
-    	<div class="nav_autohide">
-    		<a href="#" class="autohide_btn">自动隐藏</a>
+		
+		
+		<div class="clearboth"></div>
+		
+		
+    	<div id="nav_btn">
+    		<a href="#" class="autohide_btn" onclick="return false;">导航菜单</a>
     	</div>
+    	
+    	
     </div>
     
     
@@ -143,7 +162,7 @@
 						// 判断登录状态
 						if ($this->tank_auth->is_logged_in()) :
 					?>
-						<a class="lightbox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>">
+						<a class="sexybox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>">
 							<img width="18" src="<?=get_user_avatar_url();?>" />
 						</a>
 						
@@ -154,20 +173,20 @@
 							</span>
 							<span class="submenu_item">
 								<a id="logout_btn" href="<?=base_url();?>user/logout">[登出]</a>
-								 <script>
-								var $user_logout_action = '<?=base_url();?>user/logout';
-								var $user_home = '<?=base_url();?>';
+								<script>
+									var $user_logout_action = '<?=base_url();?>user/logout';
+									var $user_home = '<?=base_url();?>';
 								</script>
 							</span>
 					<?php
 						else:
 					?>
 							<span class="submenu_item">
-								<a id="login_btn" class="sexybox_iframe" href="<?=site_url('user/ajax_login');?>" title="登录">[登录]</a>
+								<a id="login_btn" class="sexybox_iframe" href="<?=site_url('user/iframe_login');?>?redirect=<?=$this->input->get('redirect');?>">[登录]</a>
 							</span>
 							
 							<span class="submenu_item">
-								<a id="register_btn" class="sexybox_iframe" href="<?=site_url('user/ajax_register');?>" title="注册" href="<?=base_url();?>user/register">[注册]</a>
+								<a id="register_btn" class="sexybox_iframe" href="<?=site_url('user/iframe_register');?>" title="注册" href="<?=base_url();?>user/register">[注册]</a>
 							</span>
 							
 							

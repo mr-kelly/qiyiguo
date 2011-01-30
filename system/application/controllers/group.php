@@ -121,11 +121,9 @@
 		/**
 		 *   Group 查看单项
 		 */
-		function group_lookup($group_id) {
+		function group_lookup($group_id, $action='index') {
 		
 			$this->load->model('chat_model');
-
-			
 			
 			if ( !$this->tank_auth->is_logged_in() ) {
 				redirect('user/login?redirect=/group/'. $group_id);
@@ -141,8 +139,12 @@
 			}
 			
 			
-			
-			
+			/**
+			 *	****** 开始，群组首页
+			 */
+			 
+			 
+
 			$group = $this->group_model->get_group_by_id($group_id);
 			
 			// 友群话题，并在里面包含latest chat
@@ -157,9 +159,20 @@
 				'group_users' => $this->group_model->get_group_users($group_id),
 				'topics' => $topics,
 				
+				'action' => $action,
 				'current_group' => 'current_menu',
 			);
-			$this->load->view('group/group_lookup_view', $data);
+			
+			if ( $action == 'index' ) {
+				// 群组首页
+				kk_show_view('group/group_lookup_view', $data);
+			} else if ( $action == 'topic' ) {
+				// 群组话题页
+				kk_show_view('group/group_lookup_topic_view', $data);
+			} else if ( $action == 'stream' ) {
+				// 群组信息盒子
+				kk_show_view('group/group_lookup_stream_view', $data);
+			}
 		}
 		
 		

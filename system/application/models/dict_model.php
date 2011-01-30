@@ -7,7 +7,7 @@
 			return $provinces;
 		}
 		
-		function get_cities( $province_id=1 ) {
+		function get_cities( $province_id=11 ) {
 			$cities = $this->db->get_where('dict_city', array(
 				'province_id' => $province_id,
 			))->result_array();

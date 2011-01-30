@@ -12,6 +12,35 @@
             <div id="content" class="two_columns">
 				<div class="content_top">
             		<div class="content_bottom">
+            		
+            			<div class="kk_tabs">
+            				<ul>
+            					<li>
+            						<a href="#group_home">
+            							首页
+            						</a>
+            					</li>
+            					<li>
+            						<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
+            							话题
+            						</a>
+            					</li>
+            					<li>
+            						<a href="<?=site_url('group/' . $group['id'] . '/stream');?>">
+            							新闻台
+            						</a>
+            					</li>
+            				</ul>
+            				
+            				
+            				<div id="group_home" class="hidden">
+            					群组首页
+            				</div>
+            				
+            				
+            			</div>
+            			
+            			
 						<?php if ( $this->tank_auth->is_logged_in() ) { ?>
 							<!--<iframe iframeborder="0" src="<?=site_url('group/join_group/'.$group['id'])?>"></iframe>-->
 						<?php } ?>
@@ -97,6 +126,8 @@
 								$('.tabs').tabs();
 							});
 						</script>
+						
+						
 						<!-- Start Tab -->
 						<div class="tabs">
 							<ul>
@@ -109,6 +140,8 @@
 							</ul>
 							
 							<div id="topic_container_tab" class="topic_container">
+
+
 								<?php
 									// 判断用户是否属于该群组，属于，可以发文章
 									if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
@@ -152,6 +185,8 @@
 								<?php
 									endif;  // 以上显示。，能发布友群文章时
 								?>
+								
+								
 								
 								<ul class="group_topics_list">
 								<?php foreach ( $topics as $key=>$topic ) : ?>

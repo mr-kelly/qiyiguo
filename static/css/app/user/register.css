@@ -1,0 +1,14 @@
+#register_general {
+	float: left;
+}
+#register_more {
+	float: right;
+	border-left: 1px dashed #CCC;
+	width: 200px;
+	padding: 0 0 0 10px;
+}
+
+
+.other_login_item {
+	margin: 5px 0;
+}

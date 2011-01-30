@@ -1,0 +1,28 @@
+#home_pic {
+	width: 658px;
+	height: 314px;
+	background: url(../../../img/home_pic.png) no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#home_pic #home_intro {
+	text-indent: -9999px;
+	top: 5px;
+	left: 5px;
+	position: absolute;
+	
+	width: 506px;
+	height: 305px;
+	/*
+	width: 408px;
+	height: 314px;
+	*/
+	background: url(../../../img/home_intro.png) no-repeat;
+	/*
+	filter: Alpha(opacity=80);
+	-moz-opacity:.8;
+	opacity:0.8;
+	*/
+}

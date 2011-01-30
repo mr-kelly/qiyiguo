@@ -36,14 +36,14 @@
 	
 	
 	<li>
-		<a class="tooltip" title="由你来创建一个群组~它可以是你的朋友圈、公司、组织、兴趣小组" href="<?=site_url('group/new_group');?>">
+		<a class="tipsy_e" title="由你来创建一个群组~它可以是你的朋友圈、公司、组织、兴趣小组" href="<?=site_url('group/new_group');?>">
 			创建新友群
 		</a>
 	</li>
 	
 	<li>
-		<a href="<?=site_url('user/joined_groups');?>">
-			我已加入的友群
+		<a class="tipsy_e" title="查看你已加入的群组" href="<?=site_url('user/joined_groups');?>">
+			已加入的群组
 		</a>
 	</li>
 </ul>

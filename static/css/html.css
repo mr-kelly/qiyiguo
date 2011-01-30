@@ -1,20 +1,3 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
-}
 
 body {
     font-size:12px;
@@ -149,3 +132,58 @@ form p {
 	display:inline;
 */
 }
+
+
+
+
+
+
+/** Usual Define */
+
+.clearboth {
+	clear: both;
+}
+.hidden {
+    display:none;
+}
+.bold {
+	font-weight:bold;
+}
+.big {
+	font-size:15px;
+}
+.small {
+	font-size:11px;
+}
+.center {
+	text-align:center;
+}
+.right {
+	text-align:right;
+}
+.float_right {
+	float:right;
+}
+.float_left {
+	float:left;
+}
+.red {
+	color:red;
+	font-size:12px;
+}
+.no_scroll {
+	overflow:hidden;
+}
+
+/* 用于生日选择的select */
+.birth_select {
+	width: 50px;
+}
+.birth_year { /* 用于年的select */
+	width: 60px;
+}
+/* 用于省份、城市选择的select*/
+.location_select {
+	width: 80px;
+}
+

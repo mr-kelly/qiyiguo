@@ -12,6 +12,7 @@
    
    
     <? // CSS ?>
+    <?=import_css('css/base.css');?>
     <link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>css/html.css" /> 
     <link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>css/decorator.css" /> 
     <link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>css/style.css" />
@@ -43,6 +44,9 @@
 	<? // jQueryr Center ?>
 	<?=import_js('js/jquery.center.js');?>
 	
+	<!-- jGrowl-->
+	<script type="text/javascript" src="<?=static_url('js/jGrowl/jquery.jgrowl_minimized.js');?>"></script>
+	<link href="<?=static_url('js/jGrowl/jquery.jgrowl.css');?>" type="text/css" rel="stylesheet" />
 	
 	
 	

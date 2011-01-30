@@ -62,7 +62,7 @@
 			
 			if ( data.status == 1) {
 				session_message( data.info, 'normal');
-				window.location = $redirect;
+				window.parent.location = $redirect;
 			} else {
 				session_message( data.info, 'error');
 			}
