@@ -1,5 +1,5 @@
 $(function(){
-		var $chat_form_input_tips = '向他发表回复';
+		var $chat_form_input_tips = '给力地回复他';
 		$('.chat_form .chat_content').input_tips( $chat_form_input_tips );
 		
 		

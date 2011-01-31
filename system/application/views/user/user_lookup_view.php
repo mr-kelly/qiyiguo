@@ -10,6 +10,12 @@
 	<div id="content">
 		<div class="content_top">
 			<div class="content_bottom">
+				
+				<?php
+					$this->load->view('general/general_user_relation_view', array('to_user_id'=>$user['id']));
+				?>
+            	
+            	
 				<div id="user_profile">
 					<div id="user_action">
 						<div id="user_profile_avatar">
@@ -130,20 +136,34 @@
 			<div class="sidebar_bottom">
 				<div class="kk_tabs user_relation_tabs">
 					<ul>
+						<?php
+							$ci =& get_instance();
+							$ci->load->model('relation_model');
+						?>
 						<li>
 							<a href="#user_friends">
-								朋友(192)
+								朋友(<?=$ci->relation_model->get_friends_count( $user['id'] );?>)
 							</a>
 						</li>
 						<li>
 							<a href="#user_fans" class="tipsy_s" title="拥趸,即是粉丝的意思,是fans的意译">
-								拥趸(9999)
+								拥趸(<?=$ci->relation_model->get_user_fans_count( $user['id'] );?>)
 							</a>
 						</li>
 					</ul>
 					
 					<div id="user_friends" class="hidden">
-						朋友们在这里...
+						<?php
+							$user_friends = $ci->relation_model->get_friends( $user['id'] );
+							//print_r( $user_friends );
+							foreach( $user_friends as $friend ):
+						?>
+							<a href="<?=site_url('user/'.$friend['id']);?>">
+								<?=$friend['realname'];?>
+							</a>
+						<?php
+							endforeach;
+						?>
 					</div>
 					
 					<div id="user_fans" class="hidden">
@@ -165,9 +185,6 @@
 						好友列表
 					</p>
 				</div>
-				<?php
-					print_r( $user );
-				?>
 			</div>
 		</div>
 	</div>

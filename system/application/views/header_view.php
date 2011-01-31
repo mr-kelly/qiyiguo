@@ -15,7 +15,7 @@
     <!-- end no cache headers -->
     
     <title><?= isset($page_title) ? $page_title : '奇异果';?></title>
-    <link rel="shortcut icon" href="<?=static_url();?>img/favicon.gif" type="image/gif" />
+    <link rel="shortcut icon" href="<?=static_url('img/favicon.gif');?>" type="image/gif" />
 
 
 	<script>
@@ -26,20 +26,6 @@
     <?php
     	$this->load->view('import');
     ?>
-    <script>
-//     	$(function(){
-//     		
-//     		
-//     		$('a.lightbox').lightBox({
-//     			'imageLoading': '<?=static_url();?>js/jquery-lightbox/images/lightbox-ico-loading.gif',
-//     			'imageBtnClose':'<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-close.gif',
-// 				'imageBtnPrev': '<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-prev.gif',
-// 				'imageBtnNext': '<?=static_url();?>js/jquery-lightbox/images/lightbox-btn-next.gif'
-//     		});
-//     	});
-    	
-
-    </script>
 
 </head>
 <body>
@@ -187,26 +173,34 @@
 
                     
                 </ul>
-
+				
+				<div class="search">
+					<a class="sexybox_iframe" href="<?=site_url('search/iframe_search');?>">搜索</a>
+				</div>
+				
 				<!-- User Controller -->
-				<div style="text-align:right;width:100%;float:right;margin:8px 0 0 0;">
+				<div id="user_controller">
 	
 					<?php 
 						// 判断登录状态
 						if ($this->tank_auth->is_logged_in()) :
 					?>
 							<span class="submenu_item submenu_user">
-							   <a class="sexybox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>" title="<?=get_current_user_name();?>">
-								   <img width="18" src="<?=get_user_avatar_url();?>" />
-							   </a>
-							   
-							   <a href="<?=site_url('user/'. $this->tank_auth->get_user_id());?>"><?=get_current_user_name();?></a>
+								<a class="sexybox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>" title="<?=get_current_user_name();?>">
+									<img width="18" src="<?=get_user_avatar_url();?>" />
+								</a>
+								
+								<a href="<?=site_url('user/'. $this->tank_auth->get_user_id());?>">
+									<?=get_current_user_name();?>
+								</a>
 							</span>
 						
 
 							
 							<span class="submenu_item">
-								<a href="<?=site_url('user/setting');?>" class="icon icon_setting">设置</a>
+								<a href="<?=site_url('user/setting');?>" class="icon icon_setting">
+									设置
+								</a>
 							</span>
 							<span class="submenu_item">
 								<a id="logout_btn" href="<?=base_url();?>user/logout" class="icon icon_logout">登出</a>
@@ -217,17 +211,23 @@
 							</span>
 							
 							<span class="submenu_item">
-								<a title="哗啦啦~ 将奇异果通过微博、QQ介绍给你朋友吧" href="#" class="tipsy_n icon icon_present">邀请朋友</a>
+								<a title="哗啦啦~ 将奇异果通过微博、QQ介绍给你朋友吧" href="#" class="tipsy_n icon icon_present">
+									邀请朋友
+								</a>
 							</span>
 					<?php
 						else:
 					?>
 							<span class="submenu_item">
-								<a id="login_btn" class="sexybox_iframe icon icon_login" href="<?=site_url('user/iframe_login');?>?redirect=<?=$this->input->get('redirect');?>">登录</a>
+								<a id="login_btn" class="sexybox_iframe icon icon_login" href="<?=site_url('user/iframe_login');?>?redirect=<?=$this->input->get('redirect');?>">
+									登录
+								</a>
 							</span>
 							
 							<span class="submenu_item">
-								<a id="register_btn" class="sexybox_iframe icon icon_register" href="<?=site_url('user/iframe_register');?>" title="注册" href="<?=base_url();?>user/register">注册</a>
+								<a id="register_btn" class="sexybox_iframe icon icon_register" href="<?=site_url('user/iframe_register');?>" title="注册" href="<?=base_url();?>user/register">
+									注册
+								</a>
 							</span>
 							
 							

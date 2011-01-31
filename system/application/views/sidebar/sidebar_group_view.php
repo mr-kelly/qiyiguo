@@ -14,7 +14,7 @@
 <?php if ( isset( $group ) ) : ?>
 <div class="sidebar_widget">
 	
-	<h2><?=$group['name'];?> <span class="small">(群号:<?=$group['id'];?>)</span></h2>
+	<h2><?=$group['name'];?> <span class="small">(<?=$group['id'];?>)</span></h2>
     <img width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
 </div>
 <?php endif; ?>
@@ -76,7 +76,7 @@
 
     <?php if ( isset( $group_users ) ) :?>
 	<div class="sidebar_widget">
-		<h2>友群成员<?= isset($group_users) ? '('.count($group_users).')' :'';?></h2>
+		<h2>友群成员<?= isset($group_users) ? ' <span class="small">('.count($group_users).')</span>' :'';?></h2>
 		<ul class="sidebar_users_list">
 			<?php	
 				foreach ($group_users as $u) {

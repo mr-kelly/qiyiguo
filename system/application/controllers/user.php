@@ -21,7 +21,7 @@
 			
 			$data = array();
 
-			$this->load->view('user/avatar_view', $data);
+			kk_show_view('user/avatar_view', $data);
 		}
 		
 		/**
@@ -78,7 +78,7 @@
 				$this->image_lib->resize();
 			}
 			
-			$this->load->view('user/avatar_upload_view', $data);
+			kk_show_view('user/avatar_upload_view', $data);
 		}
 		
 		/**
@@ -174,7 +174,7 @@
 				$data['current_user_home'] = 'current_menu';
 			}
 			
-			$this->load->view('user/user_lookup_view', $data);
+			kk_show_view('user/user_lookup_view', $data);
 		}
 		
 		

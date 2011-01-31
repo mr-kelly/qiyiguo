@@ -19,6 +19,7 @@
 		return $ci->tank_auth->is_logged_in();
 	}
 	
+	
 	function get_current_user_id() {
 		login_redirect();
 		$ci =& get_instance();
@@ -29,7 +30,19 @@
 		$ci =& get_instance();
 		$ci->log_model->create_log($url, $message);
 	}
-
+	
+	
+	/**
+	 *	获取用户关系 - mutual, follow, fans, none
+	 */
+	function get_user_relation( $to_user_id, $from_user_id ) {
+		$ci =& get_instance();
+		$ci->load->model('relation_model');
+		return $ci->relation_model->get_user_relation( $to_user_id, $from_user_id );
+	}
+	
+	
+	
 	/**
 	 *	Ajax, URL,登录
 	 */

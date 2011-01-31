@@ -2,7 +2,9 @@
 	class Test extends KK_Controller {
 		
 		function __construct() {
-			exit('cannot enter test');
+			parent::__construct();
+			//exit('cannot enter test');
+			
 		}
 		function test_qq() {
 			$this->load->library('QQ_Connect');
@@ -25,6 +27,12 @@
 		function test_guo_id() {
 			$this->load->library('Guo_id');
 			echo $this->guo_id->generate_user_id();
+		}
+		
+		function test_relation() {
+			$this->load->model('relation_model');
+			
+			echo $this->relation_model->create_relation();
 		}
 		
 		function index() {

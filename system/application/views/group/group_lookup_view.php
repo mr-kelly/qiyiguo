@@ -12,7 +12,7 @@
             <div id="content" class="two_columns">
 				<div class="content_top">
             		<div class="content_bottom">
-            		
+
             			<div class="kk_tabs">
             				<ul>
             					<li>

@@ -3,6 +3,58 @@
 			
 		<?=import_css('css/app/home/index.css');?>
 		<?=import_js('js/app/home/index.js');?>
+            
+            <div id="content">
+        		<div class="content_top">
+        			<div class="content_bottom">
+						
+						<div id="home_pic">
+							<div id="home_intro" class="hidden">
+								奇异果介绍
+							</div>
+						</div>
+						
+						<div id="home_show">
+							<div class="home_block">
+								<h2>活跃群组</h2>
+								<ul>
+									<li>某个</li>
+								</ul>
+							</div>
+							
+							
+							<div class="home_block">
+								<h2 class="tipsy_s" title="这些都是奇异果的用户哦~">他们在奇异果...</h2>
+								<ul>
+								
+								</ul>
+							</div>
+							
+							<div class="home_block">
+								<h2 class="tipsy_w" title="消息盒子整合了用户、果群的各种信息">消息盒子</h2>
+								<ul>
+								
+								</ul>
+							</div>
+							
+							<div class="home_block">
+								<h2>活动</h2>
+								<ul>
+								
+								</ul>
+							</div>
+							
+
+						</div>
+						
+						<div style="height:500px;"></div>
+					</div>
+        		</div>
+            </div>
+            
+            
+            
+
             <div id="sidebar">
             	<div class="sidebar_top">
             		<div class="sidebar_bottom">
@@ -21,6 +73,7 @@
 							<?=import_js('js/app/user/login.js');?>
             				
 							<h2>登录</h2>
+							
 							<div class="form_div">
 								<form id="user_login_form" method="post" action="<?=site_url('user/login');?>">
 									<p>
@@ -70,40 +123,9 @@
             				<h2>推荐友群</h2>
 		            		<?php $this->load->view('sidebar/sidebar_group_view'); ?>
 	            		</div>
-            		</div>
-            	</div>
-            </div>
+	            		
+            		</div> <!-- sidebar_bottom -->
+            	</div>	<!-- sidebar top-->
+            </div><!-- sidebar -->
             
-            
-            <div id="content" class="three_columns">
-        		<div class="content_top">
-        			<div class="content_bottom">
-						
-						<div id="home_pic">
-							<div id="home_intro" class="hidden">
-								奇异果介绍
-							</div>
-						</div>
-						
-						
-						<div style="height:800px;"></div>
-						<?php
-						
-							// $ci =& get_instance();
-// 							$ci->load->library('t_sina');
-// 							
-// 							$ci->t_sina->weibo->setUser('chepy6','password');
-// 							
-// 							$tweets = $ci->t_sina->weibo->friends_timeline();
-// 							foreach ( $tweets as $tweet ) {
-// 								echo '<p>'. $tweet['user']['screen_name'] . ': ' . $tweet['text'] . '</p>';
-// 							}
-							
-							
-		
-						?>
-					</div>
-        		</div>
-
-            </div>
 <?php $this->load->view('footer_view'); ?>

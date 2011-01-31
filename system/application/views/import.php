@@ -6,10 +6,13 @@
    
    
     <? // jQuery UI ?>
+    <?php
+    /*
     <script type="text/javascript" src="<?=static_url();?>js/ui/js/jquery-ui-1.8.4.min.js"></script> 
     <link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>js/ui/css/cupertino/jquery-ui-1.8.4.css" />
     <!--<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/cupertino/jquery-ui.css" type="text/css" />-->
-   
+    */
+    ?>
    
     <? // CSS ?>
     <?=import_css('css/base.css');?>
@@ -19,8 +22,8 @@
 	<?=import_css('css/kk_tabs.css');?>
 
 	<?php // CKEditor ?>
-	<?=import_js('js/ckeditor/ckeditor_basic.js');?>
-	<?//import_js('ckeditor/adapters/jquery.js');?>
+	<? //import_js('js/ckeditor/ckeditor_basic.js');?>
+	<? //import_js('ckeditor/adapters/jquery.js');?>
 	
 
 	<? // jQuery Form ?>

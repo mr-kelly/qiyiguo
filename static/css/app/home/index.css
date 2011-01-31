@@ -7,25 +7,45 @@
 	left: 0;
 }
 
-#home_pic #home_intro {
-	text-indent: -9999px;
-	top: 5px;
-	left: 5px;
+	#home_pic #home_intro {
+		text-indent: -9999px;
+		top: 5px;
+		left: 5px;
+		position: absolute;
+		
+		width: 506px;
+		height: 305px;
+		/*
+		width: 408px;
+		height: 314px;
+		*/
+		background: url(../../../img/home_intro.png) no-repeat;
+		/*
+		filter: Alpha(opacity=80);
+		-moz-opacity:.8;
+		opacity:0.8;
+		*/
+	}
+
+#home_show {
 	position: absolute;
-	
-	width: 506px;
-	height: 305px;
-	/*
-	width: 408px;
-	height: 314px;
-	*/
-	background: url(../../../img/home_intro.png) no-repeat;
-	/*
-	filter: Alpha(opacity=80);
-	-moz-opacity:.8;
-	opacity:0.8;
-	*/
+	top: 330px;
 }
+		#home_show h2 {
+			background: url(../../../img/sidebar_h2_bg.png) no-repeat;
+			height: 27px;
+			line-height: 27px;
+			font-size: 14px;
+			width: 225px;
+			padding: 0 0 0 10px;
+			margin: 0 0 10px 0px;
+			color: #009900;
+			
+		}
+	.home_block {
+		float: left;
+		width: 310px;
+	}
 
 .login_more_tip {  /* 文字 “你也可以..."*/
 	margin: 5px 0 0 0;
@@ -38,6 +58,6 @@
 .login_more {
 	text-align: center;
 }
-	.other_login_item {
+	.login_more .other_login_item {
 		margin: 10px 0;
 	}

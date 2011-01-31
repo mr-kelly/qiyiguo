@@ -59,6 +59,21 @@
 										<?=$ci->humanize->datetime( $topic['created'] );?>
 									</span>
 									
+
+									
+									
+									<?php if ( $topic['title'] != '' ) : //标题可用？ ?>
+										<span class="topic_title">
+											<a href="<?=site_url('group/topic/' . $topic['id']);?>">
+												<?=$topic['title'];?>
+											</a>
+										</span>
+										
+											<span class="small">
+												-
+											</span>
+									<?php endif; ?>
+
 									<span>
 										<a href="<?=site_url('user/'.$topic['User']['id']);?>">
 											<span class="small">
@@ -67,16 +82,6 @@
 										</a>
 									</span>
 									
-										<span class="small">
-											：
-										</span>
-										
-									<span class="group_topic_title">
-										<a href="<?=site_url('group/topic/' . $topic['id']);?>">
-											<?=$topic['title'];?>
-										</a>
-									</span>
-
 									
 									<div>
 										<?php

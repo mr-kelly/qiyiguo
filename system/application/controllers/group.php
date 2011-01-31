@@ -12,7 +12,7 @@
 				'groups' => $this->group_model->get_groups(null),
 				'current_group' => 'current_menu',
 			);
-			$this->load->view('group/index_view', $data);
+			kk_show_view('group/index_view', $data);
 		}
 		
 		
@@ -31,7 +31,7 @@
 			$data = array(
 				'group' => $this->group_model->get_group_by_id( $group_id ),
 			);
-			$this->load->view('group/setting_view', $data);
+			kk_show_view('group/setting_view', $data);
 		}
 		
 		/**
@@ -238,7 +238,7 @@
 				'group_categories' => $this->group_model->get_group_categories(),
 				'current_group' => 'current_menu',
 			);
-			$this->load->view('group/new_group_view', $data);
+			kk_show_view('group/new_group_view', $data);
 		}
 		
 		

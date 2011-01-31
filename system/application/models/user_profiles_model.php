@@ -22,7 +22,10 @@ class User_Profiles_Model extends KK_Model {
 	 */
 	function create_user_profile( $user_id , $data ){
 		$data['user_id'] = $user_id;
-		$this->db->insert('user_profiles', $data);
+		$this->db->insert('user_profiles', $data + array(
+			'created' => date('Y-m-d H:i:s'),
+		));
+		return $this->db->insert_id();
 	}
 	
 	function update_user_profile( $user_id, $data) {

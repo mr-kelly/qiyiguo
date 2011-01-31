@@ -190,7 +190,10 @@ img.avatar {
     text-align:left;
     width:960px;
     margin:0 auto;
+    position: relative;
 }
+
+
 #topbar_container #logo { float:left;}
 #topbar_container ul#menu {
     float:left;
@@ -237,6 +240,9 @@ img.avatar {
     font-size:13px;
 }
 
+
+
+
 div.submenu {
 	display:none;  /**子菜单默认不显示*/
 }
@@ -265,12 +271,45 @@ div.submenu span.submenu_corner:first-child {
 }
 
 	.submenu_item {
-		margin: 0 0px 0 10px;
+		margin: 0 8px 0 0px;
+		padding: 0;
+		display: inline-block;
+		
+	}
+
+
+
+	/**
+	 *	顶部用户控制器（注册、登录、登出)
+	 */
+	#user_controller {
+		 position: absolute;
+		 top: 45px;
+		 right: 0;
 	}
 		.submenu_user a {  /*顶部的用户菜单右下角的用户显示*/
-			margin: 0 5px 0 0;
+			margin: 0 3px 0 0;
 		}
-
+/**
+ *	搜索激活按钮
+ */
+.search {
+	width: 80px;
+	height: 30px;
+	position: absolute;
+	right: 5px;
+	top: 2px;
+}
+	.search a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		line-height: 30px;
+	}
+	
+	
+	
+	
 /** 菜单结束 */
 
 
@@ -293,7 +332,7 @@ div.submenu span.submenu_corner:first-child {
 }
 	
 	.sidebar_widget {
-		margin: 0px 0 15px 0;
+		margin: 10px 0 15px 0;
 	}
 		.sidebar_widget h2 {
 			background: url(../img/sidebar_h2_bg.png) no-repeat;
@@ -393,6 +432,9 @@ div.submenu span.submenu_corner:first-child {
     background: url(../img/content_bottom_bg.png) no-repeat 0px 100%;
     padding: 0 0 20px 0;
 }
+	#content p {
+		line-height: 18px;
+	}
 
 	.content_top {
 		padding: 20px 0 0 0;
@@ -523,8 +565,10 @@ div.submenu span.submenu_corner:first-child {
 			float:right;
 		}
 		
-		.group_topic_title {
-			
+		.topic_title a{
+			font-size: 14px;
+			letter-spacing: 0.1em;
+			font-weight: bold;
 		}
 		
 	.group_topic_panel {
@@ -676,7 +720,8 @@ div.submenu span.submenu_corner:first-child {
 		padding: 0;
 	}
 		.footer_column ul li {
-			list-style: none;
+			list-style: disc;
+			list-style-position: inside;
 		}
 	
 #footer_copyright {
