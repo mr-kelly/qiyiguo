@@ -32,19 +32,21 @@
 			$ci =& get_instance();
 			// 按时间排序
 			// Stream 排序
-			usort( $t_sina_stream_array, function( $a,  $b ){
+
+				function compare_t_sina( $a, $b ) {
+					$ci =& get_instance();
+										// 处理t_sina的时间字符串
+					$a_time = $ci->t_sina->t_sina_timestamp( $a['created_at'] );
+					$b_time = $ci->t_sina->t_sina_timestamp( $b['created_at'] );
+					
+					if ( $a_time == $b_time ) {
+						return 0;
+					}
 				
-				$ci =& get_instance();
-									// 处理t_sina的时间字符串
-				$a_time = $ci->t_sina->t_sina_timestamp( $a['created_at'] );
-				$b_time = $ci->t_sina->t_sina_timestamp( $b['created_at'] );
-				
-				if ( $a_time == $b_time ) {
-					return 0;
+					return ( $a_time > $b_time ) ? -1 : 1;
 				}
-			
-				return ( $a_time > $b_time ) ? -1 : 1;
-			});
+			usort( $t_sina_stream_array, 'compare_t_sina' );   // PHP 5.2语法 >>
+
 			
 			
 			// 设置 stream 规范, 改变原数据数组，   // stream_content

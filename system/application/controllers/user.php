@@ -162,6 +162,7 @@
 		 *	查看一个用户的资料~  根据权限显示
 		 */
 		function user_lookup($user_id) {
+			$this->_if_user_404( $user_id );
 			login_redirect();
 			
 			
@@ -232,7 +233,12 @@
 					$email_2 = $this->form_validation->set_value('email_2');
 					$email_3 = $this->form_validation->set_value('email_3');
 					$link_renren = $this->form_validation->set_value('link_renren');
-					$description = $this->form_validation->set_value('description');
+					
+					// 允许<a>标签出现在自我介绍
+					$description = $this->kk_filter->filter( $this->form_validation->set_value('description'), array(
+																'without_html' => true, 
+																'htmlspecialchars'=> false, 
+																));
 					
 					$province_id = $this->form_validation->set_value('province_id');
 					$city_id = $this->form_validation->set_value('city_id');
@@ -331,7 +337,7 @@
 			if ( $user_t_sina ) {
 				// 解密
 				$this->load->library('fun_crypt');
-				$user_t_sina['t_sina_password'] = $this->fun_crypt->deCrypt($user_t_sina['t_sina_password']);
+				//$user_t_sina['t_sina_password'] = $this->fun_crypt->deCrypt($user_t_sina['t_sina_password']);
 				
 				
 				$data['user_t_sina'] = $user_t_sina;
@@ -556,6 +562,9 @@ EOT;
 					}
 				}
 				
+				
+				// 非表单问题？
+				
 				ajaxReturn(null,'登录失败！未知原因！',0);
 			}
 			
@@ -585,10 +594,10 @@ EOT;
 				
 			} else if ( $action == 'callback' ) {
 				
-				
+				$remember = $this->input->get('remember'); // 是否记住登录状态
 				
 				// 授权callback, 通过oauth verifier 换取access token
-				$last_key = $this->t_sina->getAccessToken( 'user/login_by_t_sina/authorize' );
+				$last_key = $this->t_sina->getAccessToken('user/login_by_t_sina/authorize');  // 
 				
 				
 				$this->session->set_userdata( 'last_key' , $last_key );
@@ -599,6 +608,25 @@ EOT;
 				if ( $this->user_t_sina_model->is_user_t_sina( array( 't_sina_id' => $self['id'] ) )   ) {
 					
 					// 存在，非第一次登录，协助用户直接登录
+					
+					// 首先，刷新数据库的 oauth_token !!   TODO
+					
+					
+					// 然后，协助用户登录吧！ 获取t_sina, 再获取用户邮箱、密码
+					$user_t_sina = $this->user_t_sina_model->get_user_t_sina_by_t_sina_id( $self['id'] );
+					
+					$user_id = $user_t_sina['user_id'];
+					$user = $this->user_t_sina_model->_get_user( $user_id );
+
+					$this->load->library('Tank_auth');
+					
+					if ( $this->tank_auth->login_without_password( $user['email'] , $remember ) ) {
+						//echo 'logined';
+						redirect('home/welcome');
+					} else {
+						echo 'not logined';
+					}
+					
 					exit( 'exist!' );
 					
 				} else {
@@ -609,8 +637,163 @@ EOT;
 			} else if ( $action == 'test' ) {
 				$weibo = $this->t_sina->getWeibo( );
 				print_r( $weibo->public_timeline() );
+			} else if ( $action == 'bind' ) {
+				
+				// 普通用户, 未绑定的，在这里进行绑定新浪微博
+				
+				
 			}
 		}
+		
+		
+		/**
+		 *	豆瓣OAuth登录，第一次登录转到电邮绑定页面
+		 */
+		function login_by_douban( $action = 'authorize' ) {
+			
+			$this->load->library('Douban');
+			
+			if ( $action == 'authorize' ) {
+				
+				redirect( $this->douban->get_authorize_url( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_douban/callback') ) );
+				
+			} else if ( $action == 'callback' ) {
+				
+				$remember = $this->input->get('remember');
+				
+				// Array - access token
+				$access_token = $this->douban->get_access_token( $this->input->get('oauth_token') );
+				// 将access token存入 session～  令豆瓣oauth成效
+				$this->session->set_userdata('douban_access_token', $access_token );
+				
+				$douban_self = $this->douban->get_self();
+				//print_r( $access_token );
+				
+				// 判断该豆瓣用户是否第一次登录
+				$this->load->model('user_douban_model');
+				if ( !$this->user_douban_model->is_user_douban( array(
+																	'uid' => $douban_self['db:uid']['$t'],
+																))) {
+					// 第一次登录，转到regsiter_by_douban
+					//exit( 'first douban' );
+					redirect( 'user/register_by_douban' );
+					
+				} else {
+					// 非第一次登录， 通过豆瓣绑定帐户，直接登录
+					
+					// 通过用户豆瓣uid~ 获取数据库条目～  是对应哪个system user
+					$login_user_douban = $this->user_douban_model->get_user_douban( array( 'uid' => $douban_self['db:uid']['$t'], ) );
+					$login_user = $this->user_douban_model->_get_user( $login_user_douban['user_id'] );
+					
+					// 协助登录
+					$this->load->library('Tank_auth');
+					if ( $this->tank_auth->login_without_password( $login_user['email'] , $remember ) ) {
+						redirect('home/welcome');
+					} else {
+						echo 'not logined';
+					}
+					
+					
+					
+					
+				}
+			}
+
+		}
+		
+		
+		function register_by_douban() {
+			$this->load->library('Douban');
+			
+			// 登录过的用户的，不能进入该页面
+			if ( $this->tank_auth->is_logged_in() ) {
+				exit( 'loggined cannot enter here!' );
+			}
+			
+			$douban_self = $this->douban->get_self();
+			
+			
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				$this->form_validation->set_rules( 'email',	'电邮', 'trim|required|xss_clean|valid_email');
+				$this->form_validation->set_rules( 'password',	'备用密码', 'trim|required|xss_clean');
+				$this->form_validation->set_rules( 'realname',	'真实姓名', 'trim|required|xss_clean');
+				$this->form_validation->set_rules( 'nickname',	'昵称', 'trim|required|xss_clean');
+				$this->form_validation->set_rules( 'gender',	'性别', 'trim|required|xss_clean');
+				
+				$this->form_validation->set_rules( 'birth_year',	'生日年份', 'trim|required|integer|xss_clean');
+				$this->form_validation->set_rules( 'birth_month',	'生日月份', 'trim|required|integer|xss_clean');
+				$this->form_validation->set_rules( 'birth_day',	'生日日子', 'trim|required|integer|xss_clean');
+				
+				$this->form_validation->set_rules( 'province_id',	'所在省份', 'trim|required|integer|xss_clean');
+				$this->form_validation->set_rules( 'city_id',	'所在城市', 'trim|required|integer|xss_clean');
+				
+				if ( ! $this->form_validation->run() ) {
+					ajaxReturn(null, validation_errors(), 0 );
+				} else {
+					// 创建本地用户
+					$email = $this->form_validation->set_value('email');
+					$password = $this->form_validation->set_value('password');
+					
+					if ( !$this->tank_auth->create_user( '', $email, $password, FALSE ) ) {
+						exit( 'create user error' );
+					}
+					
+					// 创建后立即登录
+					$this->tank_auth->login($email, $password, FALSE, FALSE, TRUE);
+					$current_user_id = $this->tank_auth->get_user_id();
+					
+					
+					// 创建豆瓣关联
+					$douban_token = $this->session->userdata('douban_access_token');
+					
+					$this->load->model('user_douban_model');
+					$this->user_douban_model->create_user_douban( array(
+						'user_id' => $current_user_id,  // 绑定的用户
+						'uid' => $douban_self['db:uid']['$t'],
+						'oauth_token' => $douban_token['oauth_token'],
+						'oauth_token_secret' => $douban_token['oauth_token_secret'],
+						
+					));
+					
+					// 创建 profile~
+					$birth = sprintf( '%s-%s-%s', $this->form_validation->set_value('birth_year'), $this->form_validation->set_value('birth_month'), $this->form_validation->set_value('birth_day') );
+					
+					$profile_data = array();
+					$profile_data += array(
+						'realname' => $this->form_validation->set_value('realname' ),
+						'nickname' => $this->form_validation->set_value('nickname'),
+						
+						'gender' => $this->form_validation->set_value('gender'),
+						
+						
+						'province_id' => $this->form_validation->set_value('province_id'),
+						'city_id' => $this->form_validation->set_value('city_id'),
+						
+						'birth' => $birth,
+						
+						'description' => $douban_self['db:signature']['$t'],
+						'website' => isset( $douban_self['link'][3] ) ? $douban_self['link'][3]['@href'] : '' ,
+					);
+					
+					$this->user_profiles_model->create_user_profile( $current_user_id, $profile_data );
+						
+					exit( 'created douban' );
+					
+					
+				}
+			}
+			
+			
+			$render = array(
+				'douban_self' => $douban_self ,
+			);
+			kk_show_view('user/register_by_douban_view', $render );
+			// 记得头像要截成正方形
+			
+			
+		}
+		
+		
 		
 		/**
 		 *	用户注册, ajax
@@ -702,7 +885,9 @@ EOT;
 			
 			if ( !$this->t_sina->is_logined() ) {
 				// 微博未登录，不能获取信息进行绑定
-				exit( 't_sina have not logined!');
+				redirect('user/login_by_t_sina');
+				
+				//exit( 't_sina have not logined!');
 			}
 			
 			
@@ -715,6 +900,10 @@ EOT;
 				$this->form_validation->set_rules( 'password',	'备用密码', 'trim|required|xss_clean');
 				$this->form_validation->set_rules( 'realname',	'真实姓名', 'trim|required|xss_clean');
 				$this->form_validation->set_rules( 'nickname',	'昵称', 'trim|required|xss_clean');
+				
+				$this->form_validation->set_rules( 'birth_year',	'生日年份', 'trim|required|integer|xss_clean');
+				$this->form_validation->set_rules( 'birth_month',	'生日月份', 'trim|required|integer|xss_clean');
+				$this->form_validation->set_rules( 'birth_day',	'生日日子', 'trim|required|integer|xss_clean');
 				
 				if ( ! $this->form_validation->run() ) {
 					ajaxReturn(null, validation_errors(), 0 );
@@ -729,21 +918,65 @@ EOT;
 					
 					// 立即登录
 					$this->tank_auth->login($email, $password, FALSE, FALSE, TRUE);
+					$current_user_id = $this->tank_auth->get_user_id();
 					
 					
-					// 用户profiles
-					$data = array(
+					$user_t_sina = $this->t_sina->getSelf();
+										
+				   // 同步头像 ( 先同步头像， 同步资料时放入头像文件的数据id )
+				   if ( isset($user_t_sina['profile_image_url'] ) ) {
+				   
+																   // 修改默认新浪微博配置的头像大小
+					   $avatar = file_get_contents( str_replace( '/50/', '/180/', $user_t_sina['profile_image_url']) );
+					   
+					   // 写入头像到指定头像上传文件夹
+					   $avatar_path = $this->config->item('avatar_path') . '/' . $current_user_id . '/';
+					   $this->_createDir($avatar_path);
+					   
+					   $avatar_file_name = md5(rand(0,9999));
+					   $avatar_file_normal_name = $avatar_file_name . '.png';
+					   $avatar_file_thumb_name =  $avatar_file_name . '_thumb.png';
+					   
+					   // 下载成2个头像文件, 一个正常，一个thumb缩略图
+					   file_put_contents( $avatar_path . $avatar_file_normal_name , $avatar);  // 写入头像文件,用md5加随机数生成随机文件名
+					   file_put_contents( $avatar_path . $avatar_file_thumb_name, $avatar );
+					   
+					   // 头像下载完了，配置数据库绑定
+					   
+					   $this->load->model('user_avatars_model');
+					   $avatar_id = $this->user_avatars_model->create_user_avatar( $current_user_id, $avatar_file_normal_name );
+					   
+					   
+					   $profile_data['avatar_id'] = $avatar_id;//同步资料的头像
+				   }
+					
+
+
+					// 用户profiles    自动抓取微博！
+					$this->load->model('user_t_sina_model');
+					
+					// 资料 - 生日 构成
+					$birth = sprintf( '%s-%s-%s', $this->form_validation->set_value('birth_year'), $this->form_validation->set_value('birth_month'), $this->form_validation->set_value('birth_day') );
+					
+					$profile_data += array(
 						'realname' => $this->form_validation->set_value('realname' ),
 						'nickname' => $this->form_validation->set_value('nickname'),
+						
+						'gender' => ( ( $user_t_sina['gender'] == 'm' ) ? 'male' : 'female'),
+						
+						'description' => $user_t_sina['description'],
+						'province_id' => $user_t_sina['province'],
+						'city_id' => $this->user_t_sina_model->get_city_id_t_sina_adapter( $user_t_sina['province'], $user_t_sina['city'] ),
+						
+						'website' => $user_t_sina['url'],
+						'birth' => $birth,
 					);
-					$this->user_profiles_model->create_user_profile( $this->tank_auth->get_user_id(), $data );
+					$this->user_profiles_model->create_user_profile( $this->tank_auth->get_user_id(), $profile_data );
 					
 
 					
-					// 用户新浪t_sina数据库绑定
-					$this->load->model('user_t_sina_model');
-					$this->load->library('t_sina');
-					$self = $this->t_sina->getSelf();
+					// 先用户新浪t_sina数据库绑定
+					$self =& $user_t_sina; // 这时候，尚未写入数据库
 					$t_sina_token = $this->session->userdata('last_key');
 					
 					$this->user_t_sina_model->create_user_t_sina( $this->tank_auth->get_user_id(), array(
@@ -827,5 +1060,14 @@ EOT;
 		
 			mkdir($path, 0777);
 		   }
+		}
+		
+		/**
+		 *	lookup的用户不存在，404！
+		 */
+		function _if_user_404( $user_id ) {
+			if ( !$this->user_profiles_model->is_user( $user_id ) ) {
+				show_404();
+			}
 		}
 	}

@@ -9,12 +9,12 @@ class Home extends KK_Controller {
 	
 	function index()
 	{
-		$data = array(
+		$render = array(
 			'page_title' => '奇异果 - 发现并创造你的生活',
 			'current_home' => 'current_menu',
 		);
 		
-		kk_show_view('home/index_view', $data);
+		kk_show_view('home/index_view', $render);
 	}
 	
 	/**

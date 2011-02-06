@@ -1,0 +1,16 @@
+.lookup_avatar {
+	float: left;
+	margin: 8px 0 0 8px;
+}
+
+.lookup_easy_profile {
+
+}
+
+	.lookup_easy_profile {
+		margin: 8px 0 0 120px;
+	}
+		.lookup_easy_profile h2 {
+			display: inline-block;
+			margin: 0;
+		}

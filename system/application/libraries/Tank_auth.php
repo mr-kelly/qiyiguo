@@ -103,7 +103,49 @@ class Tank_auth
 		}
 		return FALSE;
 	}
+	
+	/**
+	 *		免密码登录，用于第三方api的直接登录～  慎用。有安全漏洞
+	 */
+	function login_without_password( $login, $remember ) {
+		if ( strlen($login) > 0 ) {
+			$get_user_func = 'get_user_by_login';
+			if (!is_null($user = $this->ci->users->$get_user_func($login))) {
 
+					if ($user->banned == 1) {									// fail - banned
+						$this->error = array('banned' => $user->ban_reason);
+
+					} else {
+						$this->ci->session->set_userdata(array(
+								'user_id'	=> $user->id,
+								'username'	=> $user->username,
+								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
+						));
+
+						if ($user->activated == 0) {							// fail - not activated
+							$this->error = array('not_activated' => '');
+
+						} else {												// success
+							if ($remember) {
+								$this->create_autologin($user->id);
+							}
+
+							$this->clear_login_attempts($login);
+
+							$this->ci->users->update_login_info(
+									$user->id,
+									$this->ci->config->item('login_record_ip', 'tank_auth'),
+									$this->ci->config->item('login_record_time', 'tank_auth'));
+							return TRUE;
+						}
+					}
+				
+				
+			}
+		}
+		
+		return false;
+	}
 	/**
 	 * Logout user from the site
 	 *

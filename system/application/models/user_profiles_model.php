@@ -107,4 +107,21 @@ class User_Profiles_Model extends KK_Model {
 	function is_user_t_sina_binding($user_id) {
 	
 	}
+	
+	
+	/**
+	 *	User是否存在~
+	 */
+	function is_user( $user_id ) {
+		$query = $this->db->get_where('users', array(
+			'id' => $user_id,
+		));
+		
+		if ( $query->num_rows() == 0 ) {
+			return false;
+		} else {
+			return $query->num_rows();
+		}
+		
+	}
 }

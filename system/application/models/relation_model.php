@@ -140,14 +140,7 @@
 		/**
 		 *	获得用户的拥趸数目
 		 */
-		function get_user_fans_count( $user_id ) {
-			$query = $this->db->get_where('relation', array(
-				'to_id' => $user_id,
-				'model' => 'user',
-			));
-			
-			return $query->num_rows();
-		}
+
 		
 		
 		
@@ -286,6 +279,34 @@
 			));
 			
 			return ($query_1->num_rows() + $query_2->num_rows());
+		}
+		
+		/**
+		 *	获取用户的拥趸
+		 */
+		function get_fans( $user_id ) {
+			$query = $this->db->get_where('relation', array(
+				'to_id' => $user_id,
+				'model' => 'user',
+			));
+			$return = array();
+			foreach( $query->result_array() as $fan ) {
+				array_push( $return, $this->_get_user( $fan['from_id'] )); // 获取 谁关注你~获取来源，所以用from
+			}
+			
+			return $return;
+		}
+		
+		/**
+		 *	获取用户拥趸数目
+		 */
+		function get_fans_count( $user_id ) {
+			$query = $this->db->get_where('relation', array(
+				'to_id' => $user_id,
+				'model' => 'user',
+			));
+			
+			return $query->num_rows();
 		}
 		
 	}

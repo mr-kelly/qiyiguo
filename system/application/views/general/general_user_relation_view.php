@@ -17,8 +17,9 @@
             		// 对方是你的 拥趸fans
             		elseif ( $users_relation == 'fans' ):
             	?>
+            	您的拥趸
             	<a class="awesome blue tipsy_s" href="<?=site_url('relation/ajax_follow_user/' . $to_user_id );?>" title="点击关注您的粉丝">
-            		您的粉丝
+            		结为朋友
             	</a>
             	<?php
             		// 互相关注，朋友

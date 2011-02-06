@@ -1,6 +1,7 @@
 .kk_tabs {
 	text-align: left;
 	background: #FFF;
+	margin: 0 0 20px 0;
 }
 .kk_tabs h2 {
 	 background: url(../img/sidebar_h2_bg.png) no-repeat;

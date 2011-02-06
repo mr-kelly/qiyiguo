@@ -20,6 +20,7 @@
 			return $this->db->insert_id();
 		}
 		
+
 		
 		/**
 		 *	判断是否存在user_t_sina绑定信息
@@ -304,23 +305,23 @@
 		
 		
 		//function update_user_t_sina(
+		
+		
 		/**
 		 *	获取指定用户的新浪微博绑定数据，
 		 	没绑定，返回false
 		 */
 		function get_user_t_sina( $user_id ) {
-			$t = $this->db->get_where('user_t_sina', array(
+			$query = $this->db->get_where('user_t_sina', array(
 				'user_id' => $user_id,
 			));
-			
-			if ( $t->num_rows() == 1 ) {
-				$t = $t->result_array();
-				return $t[0];
-				
-			} else {
+			if ( $query->num_rows() == 0 ) {
 				return false;
 			}
+			
+			return $query->row_array();
 		}
+		
 		
 		function get_user_t_sina_by_t_sina_id ( $t_sina_id ) {
 			$t = $this->db->get_where('user_t_sina', array(
@@ -380,7 +381,21 @@
 			return $this->db->delete('user_t_sina');
 		}
 		
-		
+		/**
+		 *	新浪微博是通过 provice_id 获取 city_id的，
+			 	奇异果是 直接通过city : id的～
+			 	
+			 		奇异果这样结构会出现一些BUG，  比如 广东省厦门市~
+		 */
+		function get_city_id_t_sina_adapter( $province_id, $city_id ) {
+			$query = $this->db->get_where('dict_city', array(
+				'province_id' => $province_id,
+				'city_id' => $city_id,
+			));
+			
+			$city = $query->row_array();
+			return $city['id'];
+		}
 		
 		/**
 		 *	创建目录函数，用于上传头像是自动生成用户的头像图片存放文件夹

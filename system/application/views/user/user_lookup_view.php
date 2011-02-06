@@ -11,120 +11,205 @@
 		<div class="content_top">
 			<div class="content_bottom">
 				
-				<?php
-					$this->load->view('general/general_user_relation_view', array('to_user_id'=>$user['id']));
-				?>
+
             	
-            	
-				<div id="user_profile">
-					<div id="user_action">
-						<div id="user_profile_avatar">
-							<a class="lightbox" href="<?=get_user_avatar_url( $user['id'], 'big' );?>">
-								<img class="avatar" width="150" src="<?=get_user_avatar_url( $user['id'] );?>" />
-							</a>
-						</div>
+            	<div id="lookup_head">
+					<div id="user_profile_avatar">
+						<a class="sexybox" href="<?=get_user_avatar_url( $user['id'], 'big' );?>">
+							<img class="avatar" width="100" src="<?=get_user_avatar_url( $user['id'] );?>" />
+						</a>
 						
-						
-						
-						<div id="user_links">
-							<?php if ( isset( $user['renren_url'] ) ): ?>
-							<a target="_blank" href="<?=$user['renren_url'];?>">
-								<img width="16" src="<?=static_url() . 'img/websites/renren.gif' ;?>" />
-								到他人人
-							</a>
-							<?php endif; ?>
-							<?php if ( $user['website'] ): ?>
-							<a target="_blank" href="<?=$user['website'];?>">
-								<img width="16" src="<?=static_url() . 'img/websites/blog.gif' ;?>" />
-								到他博客
-							</a>
-							<?php endif; ?>
-							<?php if ( $user['t_sina_url'] ): ?>
-							<a target="_blank" href="<?=$user['t_sina_url'];?>">
-								<img width="16" src="<?=static_url() . 'img/websites/t_sina.gif' ;?>" />
-								到他微博
-							</a>
-							<?php endif; ?>
+					</div>
+					
+					<div id="user_easy_profile">
+						<h2>
+							<span class="icon icon_user tipsy_s" title="这是一个人"></span>
+							<?=get_user_name( $user['nickname'], $user['realname'] );?>
+							<span class="small grey">
+								&nbsp;&nbsp;果号:<?=$user['id'];?>
+							</span>
+						</h2>
+						<div id="user_easy_intro_div">
+									<?php
+										$ci =& get_instance();
+										$ci->load->model('dict_model');
+									?>
+									所在地:  <?=$ci->dict_model->get_province_name( $user['province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['city_id' ] );?>
+									,
+									籍贯: <?=$ci->dict_model->get_province_name( $user['hometown_province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['hometown_city_id' ] );?>
 						</div>
 					</div>
 					
+				<?php
+					// 朋友关注
+					$this->load->view('general/general_user_relation_view', array('to_user_id'=>$user['id']));
+				?>
 					
-					<div id="user_profile_detail">
-						<h2><?=$user['name'];?></h2>
+            	</div>
+            	
+            	<div id="lookup_main">
+            		
 						
-						<ul>
+					<div id="lookup_home">
+						<div id="lookup_aside"><?php // lookup页，用户详情的边栏 ?>
 						
-							<?php if ( $user['realname'] ): ?>
-							<li>真实姓名: <?=$user['realname'];?></li>
-							<?php endif; ?>
-							
-							<?php if ( $user['gender'] ): ?>
-							<li>性别: <?=$user['gender'];?></li>
-							<?php endif; ?>
-							
-							<?php if ( $user['birth'] ): ?>
-							
-							<li>
-								<?php
-									$ci =& get_instance();
-									$ci->load->library('humanize');
+							<div class="lookup_aside_widget">
+								<ul class="vertical_links sidebar_links">
+								
+									<?php if ( $user['website'] ): ?>
+									<li>
+										<a target="_blank" href="<?=$user['website'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_blog"></span>
+											个人网站
+										</a>
+									</li>
+									<?php endif; ?>
 									
-								?>
-								年龄: <?=$ci->humanize->age( $user['birth'] ) ; ?>
-							</li>
+									<?php if ( isset( $user['renren_url'] ) ): ?>
+									<li>
+										<a target="_blank" href="<?=$user['renren_url'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_renren"></span>
+											
+											到他人人网
+										</a>
+									</li>
+									<?php endif;?>
+
+									<?php if ( $user['t_sina_url'] ): ?>
+									<li>
+										<a target="_blank" href="<?=$user['t_sina_url'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_t_sina"></span>
+											到他新浪微博
+										</a>
+									</li>
+									<?php endif; ?>
+									
+									<?php if ( $user['douban_url'] ): ?>
+									<li>
+										<a target="_blank" href="<?=$user['douban_url'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_douban"></span>
+											到他的豆瓣
+										</a>
+									</li>
+									<?php endif; ?>
+								</ul>
+							</div>
 							
-							<li>生日: <?=$user['birth'];?></li>
+							<div class="lookup_aside_widget">
+								<h2>推荐好友</h2>
+							</div>
 							
-							<li>
-								<?php
-									$ci =& get_instance();
-									$ci->load->library('humanize');
-								?>
-								星座: <?=$ci->humanize->constellation( $user['birth'] );?>
-							</li>
-							<?php endif; ?>
+							<div class="lookup_aside_widget">
+								<h2>特别关系</h2>
+							</div>
 							
-							<?php if ( $user['qq'] ): ?>
-							<li>QQ: <?=$user['qq'];?></li>
-							<?php endif; ?>
+						</div>
+						
+						<div id="lookup_content">
+							<?php
+								$ci =& get_instance();
+								$ci->load->library('t_sina');
+								$weibo = $ci->t_sina->getUserWeibo( get_current_user_id() );
+								//print_r( $weibo->verify_credentials() );
+							?>
 							
-							
-							
-							<li>
-								<?php
-									$ci =& get_instance();
-									$ci->load->model('dict_model');
-								?>
-								所在地:  <?=$ci->dict_model->get_province_name( $user['province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['city_id' ] );?>
-							</li>
-							
-							
-							
-							<li>个人描述: <?=$user['description'];?></li>
+							<div id="user_profile_detail">
+								<h2><?=get_user_name($user['nickname'], $user['realname']);?><? //$user['name'];?></h2>
+								
+								<ul>
+								
+									<?php if ( $user['realname'] ): ?>
+									<li>真实姓名: <?=$user['realname'];?></li>
+									<?php endif; ?>
+									
+									<?php if ( $user['gender'] ): ?>
+									<li>性别: <?=$user['gender'];?></li>
+									<?php endif; ?>
+									
+									<?php if ( $user['birth'] ): ?>
+									
+									<li>
+										<?php
+											$ci =& get_instance();
+											$ci->load->library('humanize');
+											
+										?>
+										年龄: <?=$ci->humanize->age( $user['birth'] ) ; ?>
+									</li>
+									
+									<li>生日: <?=$user['birth'];?></li>
+									
+									<li>
+										<?php
+											$ci =& get_instance();
+											$ci->load->library('humanize');
+										?>
+										星座: <?=$ci->humanize->constellation( $user['birth'] );?>
+									</li>
+									<?php endif; ?>
+									
+									<?php if ( $user['qq'] ): ?>
+									<li>QQ: <?=$user['qq'];?></li>
+									<?php endif; ?>
+									
+									
+									
+									<li>
+										<?php
+											$ci =& get_instance();
+											$ci->load->model('dict_model');
+										?>
+										所在地:  <?=$ci->dict_model->get_province_name( $user['province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['city_id' ] );?>
+									</li>
+									
+									
+									
+									<li>个人描述: <?=$user['description'];?></li>
+					
+									
+								</ul>
+								
+							</div>				
+						
+						</div>
+						
+						<div class="clearboth"></div>
+						
+						
+					</div>
+					
+						<div class="clearboth"></div>
+						
+					</div>
+						
+						
+						
+            		
+            		<div class="clearboth"></div>
+            		
+						<div>
+							<h2>聊天</h2>
+							<ul class="chats_container">
+								
+							</ul>
+						</div>
+
+
+				</div>
+	
+
 			
-							
-						</ul>
-						
-					</div>				
-					
-					
-					<br class="clearboth" />
-				</div>
-
-
-
-				<div>
-					<h2>聊天</h2>
-					<ul class="chats_container">
-						
-					</ul>
-				</div>
-		
-				<script>
-					$(function(){
-						$('.chats_container').load('<?=site_url("chat/ajax_get_chats/user/" . $user["id"] );?>');
-					});
-				</script>
+					<script>
+						$(function(){
+							$('.chats_container').load('<?=site_url("chat/ajax_get_chats/user/" . $user["id"] );?>');
+						});
+					</script>
+				
+				
 			</div>
 		</div>
 
@@ -134,6 +219,7 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
+				<input value="告诉我，你今天心情如何？" />
 				<div class="kk_tabs user_relation_tabs">
 					<ul>
 						<?php
@@ -147,7 +233,7 @@
 						</li>
 						<li>
 							<a href="#user_fans" class="tipsy_s" title="拥趸,即是粉丝的意思,是fans的意译">
-								拥趸(<?=$ci->relation_model->get_user_fans_count( $user['id'] );?>)
+								拥趸(<?=$ci->relation_model->get_fans_count( $user['id'] );?>)
 							</a>
 						</li>
 					</ul>
@@ -159,7 +245,8 @@
 							foreach( $user_friends as $friend ):
 						?>
 							<a href="<?=site_url('user/'.$friend['id']);?>">
-								<?=$friend['realname'];?>
+								<img height="18" src="<?=get_user_avatar_url($friend['id']);?>" />
+								<?=get_user_name( $friend['nickname'], $friend['realname'] );?>
 							</a>
 						<?php
 							endforeach;
@@ -167,7 +254,17 @@
 					</div>
 					
 					<div id="user_fans" class="hidden">
-						粉丝们...  更多
+						<?php
+							$user_fans = $ci->relation_model->get_fans( $user['id'] );
+							foreach( $user_fans as $fan ):
+						?>
+						<a href="<?=site_url('user/'. $fan['id']);?>">
+							
+							<?=$fan['realname'];?>
+						</a>
+						<?php
+							endforeach;
+						?>
 					</div>
 					
 				</div>

@@ -44,6 +44,7 @@ $autoload['libraries'] = array(
 	'session_message',
 	'humanize',
 	'stream',
+	'KK_Filter',
 	);
 
 
@@ -56,7 +57,7 @@ $autoload['libraries'] = array(
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','kk',);
+$autoload['helper'] = array('url', 'kk', 'kk_acl',);
 
 
 /*

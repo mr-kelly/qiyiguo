@@ -151,26 +151,15 @@
 										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
 									
 									<?php endforeach; ?>
+									<select>
+									
 								</p>
 								
-								<p>
-									<label>常驻城市</label>
-									<select class="dict_city location_select" name="city_id">
-									<?php
-										$ci =& get_instance();
-										$cities =  $ci->dict_model->get_cities($user_province);
-										$user_city = get_current_user_profile('city_id');
-										foreach ( $cities as $city ):
-									?>
-										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
-									
-									<?php endforeach; ?>
-									</select>
-								</p>
 								
 								<p>
 									<label>籍贯</label>
 									<select class="hometown_province location_select" name="hometown_province_id">
+										<option value="">未选择</option>
 									<?php
 										$ci =& get_instance();
 										$provinces =  $ci->dict_model->get_provinces();

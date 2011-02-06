@@ -1,3 +1,54 @@
+#lookup_aside {
+	float: left;
+	width: 150px;
+	
+}
+
+#lookup_content {
+	float:right;
+	width: 460px;
+	padding: 0 0 0 10px;
+	border-left: 1px dashed #CCC;
+}
+
+
+
+/**
+ *		自定义user lookup 外网链接
+ */
+#lookup_aside .vertical_links li{
+	width: 150px;
+}
+
+	#lookup_aside .vertical_links li a {
+		text-indent: 50px;
+	}
+	
+	#lookup_aside .vertical_links li a span.icon {
+		left: 20px;
+	}
+
+
+
+
+	#user_profile_avatar {
+		float: left;
+		margin: 8px 0 0 8px;
+	}
+	#user_easy_profile {
+		margin: 8px 0 0 120px;
+	}
+		#user_easy_profile h2 {
+			display: inline-block;
+			margin: 0;
+		}
+
+
+
+
+
+
+
 
 #user_profile {
 	
@@ -13,8 +64,7 @@
 
 /* 用户资料页,详细资料*/
 #user_profile_detail {
-	float:right;
-	width: 480px;
+	width: 100%;
 }
 	#user_profile_detail ul {
 		list-style: none;

@@ -43,10 +43,14 @@ img.avatar {
 	line-height: 27px;
 	padding: 0 10px 0 0px;
 }
+
+.form_div select {
+	height: 27px;
+}
 /**
  *	input[type='text']  修复IE6,添加class
  */
-.input_text,input[type="text"], input[type="password"], textarea {
+.input_text,input[type="text"], input[type="password"] {
 	padding:5px;
 	width:160px;
 	height: 15px
@@ -294,11 +298,11 @@ div.submenu span.submenu_corner:first-child {
  *	搜索激活按钮
  */
 .search {
-	width: 80px;
+	width: 140px;
 	height: 30px;
 	position: absolute;
 	right: 5px;
-	top: 2px;
+	top: 5px;
 }
 	.search a{
 		display: block;
@@ -332,8 +336,15 @@ div.submenu span.submenu_corner:first-child {
 }
 	
 	.sidebar_widget {
-		margin: 10px 0 15px 0;
+		margin: 0px 0 15px 0;
 	}
+	
+		.sidebar_widget ul {
+			margin: 0;
+		}
+			.sidebar_widget ul li {
+				
+			}
 		.sidebar_widget h2 {
 			background: url(../img/sidebar_h2_bg.png) no-repeat;
 			height: 27px;
@@ -390,35 +401,55 @@ div.submenu span.submenu_corner:first-child {
 	}
 */
 
-	/*  */
-	.sidebar_links {
+	/* Sidebar 竖向hover式链接～ */
+	.sidebar_links, .vertical_links {
 		
 		margin: 0;
 		padding: 0;
 	}
-	.sidebar_links li {
+	.sidebar_links li, .vertical_links li  {
 		list-style: none;
 		height:30px;
 		line-height:30px;
 		width: 230px;
 		text-align: left;
+		
 	}
-	.sidebar_links li a{
+		
+	.sidebar_links li a,  .vertical_links li a{
 		height:100%;
 		width:100%;
 		display:block;
 		text-indent: 60px;
 		position: relative;
 	}
-	.sidebar_links li a:hover {
-		background: url(../img/sidebar_a_hover.png);
-		color: #333;
-
-	}
-		.sidebar_links li a span.icon {
+	
+		.sidebar_links li a:hover,  .vertical_links li a:hover {
+			
+			background: url(../img/sidebar_a_hover.png) right;
+			color: #333;
+	
+		}
+			.sidebar_links li a:hover span.hover, .vertical_links li a:hover span.hover {
+				background: #FFF url(../img/sidebar_a_hover_span.png) right;
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		
+		.sidebar_links li a span.icon,  .vertical_links li a span.icon {
 			position: absolute;
 			top: 7px;
 			left: 30px;
+		}
+		
+	.sidebar_users_list {
+		margin: 0;
+	}
+		.sidebar_users_list li {
+			list-style: none;
 		}
 	
 #content {
@@ -428,7 +459,7 @@ div.submenu span.submenu_corner:first-child {
     margin:0 0px;
     padding:0;
     background: #FFF;
-    width: 660px;
+    width: 670px;
     background: url(../img/content_bottom_bg.png) no-repeat 0px 100%;
     padding: 0 0 20px 0;
 }
@@ -437,11 +468,11 @@ div.submenu span.submenu_corner:first-child {
 	}
 
 	.content_top {
-		padding: 20px 0 0 0;
+		padding: 21px 0 0 0;
 		background: url(../img/content_top_bg.png) no-repeat;
 	}
 	.content_bottom {
-		padding: 10px 20px;
+		padding: 10px 21px;
 		background: url(../img/content_inner_bg.png) repeat-y;
 	}
 	
@@ -457,8 +488,31 @@ div.submenu span.submenu_corner:first-child {
 }
 
 
-
-
+		/**
+		 *	用户、群组 lookup页面
+		 */
+		#lookup_head {
+			width: 670px;
+			height: 120px;
+			background: url(../img/lookup_content_bg.png) no-repeat;
+			position: absolute;
+			top: 7px;
+			left: 7px;
+			color: #000;
+		}
+		
+		#lookup_main {
+			margin: 100px 0 0 0;
+		}
+			.lookup_aside_widget h2 {
+				font-size: 14px;
+				color: #090;
+				line-height: 27px;
+				border-bottom: 1px dashed #CCC;
+				margin: 20px 0px 0px 0;
+			}
+		
+		
 
 /* Aside  & its widgets */
 #aside {

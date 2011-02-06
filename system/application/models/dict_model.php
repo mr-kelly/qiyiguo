@@ -20,11 +20,16 @@
 		 *	通过省份ID， 城市id获取城市名称
 		 */
 		function get_city_name ( $city_id ) {
-			$city = $this->db->get_where('dict_city', array(
+			$city_query = $this->db->get_where('dict_city', array(
 				'id' => $city_id,
-			))->result_array();
+			));
 			
-			return $city[0]['city_name'];
+			if ( $city_query->num_rows() == 0 ) {
+				return '';
+			}
+			
+			$city = $city_query->row_array();
+			return $city['city_name'];
 		}
 		
 		
@@ -32,11 +37,17 @@
 		 *	通过省份id获取省份名称
 		 */
 		function get_province_name( $province_id ) {
-			$province = $this->db->get_where('dict_province', array(
+			$province_query = $this->db->get_where('dict_province', array(
 				'id' => $province_id,
-			))->result_array();
+			));
 			
-			return $province[0]['province_name'];
+			if ( $province_query->num_rows() == 0 ) {
+				return '';
+			}
+			
+			$province = $province_query->row_array();
+			
+			return $province['province_name'];
 		}
 		
 		

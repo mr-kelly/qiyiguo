@@ -61,3 +61,19 @@
 	.login_more .other_login_item {
 		margin: 10px 0;
 	}
+
+/**
+ *	首页登录框
+ */
+.user_login_remember_div {
+	margin: 15px 0;
+}
+	#user_login_remember {
+		width: 18px;
+		height: 18px;
+	}
+	#user_login_remember_label {
+		width: 80px;
+		line-height: 18px;
+		text-align: center;
+	}

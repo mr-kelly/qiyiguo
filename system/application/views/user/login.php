@@ -26,14 +26,14 @@
 					<h2>直接登录</h2>
 					
 					<div class="other_login_item">
-						<a href="#" class="tipsy_sw" title="使用「新浪微博」的帐号登录">
+						<a target="_parent" href="<?=site_url('user/login_by_t_sina');?>" class="tipsy_sw" title="使用「新浪微博」的帐号登录">
 							<img src="<?=static_url('img/button_t_sina_connect.png');?>" />
 						</a>
 					</div>
 					
 					
 					<div class="other_login_item">
-						<a href="#" class="tipsy_sw" title="使用「豆瓣网」帐号登录">
+						<a target="_parent" href="<?=site_url('user/login_by_douban');?>" class="tipsy_sw" title="使用「豆瓣网」帐号登录">
 							<img src="<?=static_url('img/button_douban_connect.png');?>" />
 						</a>
 					</div>
@@ -69,7 +69,7 @@
 
 							<div class="user_login_submit_div">
 								<a class="awesome large blue" href="#" id="user_login_submit">
-									<span><span>登录</span></span>
+									<span><span>开始奇异果！</span></span>
 								</a>
 								
 								<br />

@@ -47,11 +47,12 @@
 			));
 				// 如果用户不存在，可能被删了，返回空用户
 				if ( $userQ->num_rows == 0 ) {
+					
 					return array(
 						'id'=>0,
 						'user_id'=>0,
-						'realname'=>'用户不存在',
-						'nickname'=>'用户不存在',
+						'realname'=>'',
+						'nickname'=>'',
 						'description'=>'',
 						'country'=>'',
 						'website' => 'http://www.mrkelly.org',
@@ -78,7 +79,7 @@
 // 								'avatar_thumb' => '',
 // 							),
 					 
-						'name' => '用户不存在',
+						'name' => '[用户已注销]',
 						'email' => '',
 						'activated' => '',
 						'banned' => '',
@@ -135,7 +136,7 @@
 			
 
 			//unset($user['id']);
-			unset($user['password']);
+			//unset($user['password']);
 			
 			// 设置一个帐户通用名 name, 根据nickname, realname, email生成
 			if ( $user_profile['realname'] == '') {
@@ -176,6 +177,16 @@
 				$user_profile['t_sina_url'] = '';
 			}
 			
+			// 豆瓣
+			$user_douban = $this->db->get_where('user_douban', array(
+				'user_id' => $user['id'],
+			));
+			if ( $user_douban->num_rows() == 1 ) {
+				$user_douban = $user_douban->row_array();
+				$user_profile['douban_url'] = sprintf( $this->config->item('douban_url'), $user_douban['uid'] );
+			} else {
+				$user_profile['douban_url'] = '';
+			}
 			
 			
 			//return $user;

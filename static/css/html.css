@@ -126,7 +126,8 @@ select {
 }
 textarea {
 	border:1px solid #DDD;
-
+	width: 180px;
+	height: 100px;
 }
 
 form p {
@@ -157,6 +158,9 @@ form p {
 }
 .small {
 	font-size:11px;
+}
+.grey {
+	color: #AAA;
 }
 .center {
 	text-align:center;
@@ -235,5 +239,26 @@ form p {
 	background-position: 0 -2793px;
 }
 .icon_register {
-	background-position: 0 -5412px
+	background-position: 0 -5412px;
+}
+.icon_user {
+	background-position: 0 -5277px;
+}
+.icon_group {
+	background-position: 0 -5821px;
+}
+
+.icon_renren {
+	background: url(../img/websites/renren.gif) no-repeat;
+	
+}
+.icon_blog {
+	background: url(../img/websites/blog.gif) no-repeat;
+}
+
+.icon_t_sina {
+	background: url(../img/websites/t_sina.gif) no-repeat;
+}
+.icon_douban {
+	background: url(../img/websites/douban.gif) no-repeat;
 }

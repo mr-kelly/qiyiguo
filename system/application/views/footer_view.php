@@ -26,7 +26,7 @@
         				<a href="#">为什么叫“奇异果”</a>
         			</li>
         			<li>
-        				<a href="#">设计理念</a>
+        				<a href="#">设计之禅</a>
         			</li>
         		</ul>
         	</div>
@@ -52,7 +52,7 @@
         		</a>
         		
         		<span>
-			   		{elapsed_time}
+			   		{elapsed_time} version 0.34
 			    </span>
 			    
 			    <a href="<?=base_url();?>wiki/">

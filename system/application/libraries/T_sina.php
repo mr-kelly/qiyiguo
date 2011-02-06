@@ -3,7 +3,7 @@
 /**
  *	CodeIgniter T_sina 新浪微博库 by Mrkelly
  	
- 	version: 0.2
+ 	version: 0.3
  	
  	将新浪微博的Oauth验证和http验证绑定在这一个库上.
  	PHP服务器需要curl支持
@@ -48,9 +48,31 @@
 			
 		}
 
+		/**
+		 *	获取指定用户在数据库的 oauth_token   WeiboClient
+		 */
+		function getUserWeibo( $user_id ) {
+			$ci =& get_instance();
+			// 如果用户已登录~ 并且数据库已存在t_sina绑定数据 那么，从数据库获取 oauth_token
+			if ( is_logged_in() ) {
+				$ci->load->model('user_t_sina_model');
+				$user_t_sina = $ci->user_t_sina_model->get_user_t_sina( $user_id );
+				// 判断数据库是否已经存在绑定数据，没有， 跳到下一环节，在session中获取
+				if ( $user_t_sina ) {
+					return new WeiboClient( WB_AKEY, WB_SKEY, $user_t_sina['oauth_token'], $user_t_sina['oauth_token_secret'] );
+				} else {
+					echo false;
+				}
+			}
+		}
 		
+		/**
+		 	从session中获得 Weibo
+		 	3. 出错
+		 */
 		function getWeibo( $oauth_token='', $oauth_token_secret='' ) {
 			$ci =& get_instance();
+			
 			$last_key = $ci->session->userdata('last_key');
 			
 			if ( $oauth_token == '' ) {
@@ -68,6 +90,8 @@
 			
 			return $c;
 		}
+		
+
 		
 		
 		/**
@@ -228,5 +252,8 @@
 			
 			$weibo->send_comment( $last_wb['id'], $text);
 		}
+		
+		
+
 		
 	}

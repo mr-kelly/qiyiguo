@@ -35,18 +35,25 @@
 				if ($ci->group_model->is_group_admin($group['id'], get_current_user_profile('id'))):
 		?>
 				<li>
-					<a class="tipsy_e" title="群组的设置，公有、私有" href="<?=site_url('group/setting/'.$group['id']);?>">
-						<span class="icon icon_setting_group"></span>
-						友群设置
-					</a>
+					<span>
+						<a class="tipsy_e" title="群组的设置，公有、私有" href="<?=site_url('group/setting/'.$group['id']);?>">
+							<span class="hover"></span>
+							<span class="icon icon_setting_group"></span>
+							友群设置
+						</a>
+					</span>
 				</li>
 				
 				<li>
-					<a class="tipsy_e" title="管理果群成员" href="#">
-						<span class="icon icon_members"></span>
-						管理成员
-					</a>
+					<span>
+						<a class="tipsy_e" title="管理果群成员" href="<?=site_url('group/setting/' . $group['id'] . '/members' );?>">
+							<span class="hover"></span>
+							<span class="icon icon_members"></span>
+							成员管理
+						</a>
+					</span>
 				</li>
+				
 		<?php
 				endif;
 			endif;
@@ -55,15 +62,18 @@
 		
 		
 		<li>
-			
 			<a class="tipsy_e" title="由你来创建一个群组~它可以是你的朋友圈、公司、组织、兴趣小组" href="<?=site_url('group/new_group');?>">
+				<span class="hover"></span>
 				<span class="icon icon_create_group"></span>
 				创建新果群
 			</a>
 		</li>
 		
+
+		
 		<li>
 			<a class="tipsy_e" title="查看你已加入的群组" href="<?=site_url('user/joined_groups');?>">
+				<span class="hover"></span>
 				<span class="icon icon_joined_group"></span>
 				已加入的群组
 			</a>
@@ -85,7 +95,7 @@
 					<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
 					<a href="<?=site_url('user/'.$u['id']);?>">
 						
-						<?=$u['name'];?>
+						<?=$u['name'];?>(<?=$u['id'];?>)
 						<?php
 						
 						if ( $this->group_model->is_group_admin($group['id'], $u['id'])) {

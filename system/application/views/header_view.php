@@ -175,7 +175,9 @@
                 </ul>
 				
 				<div class="search">
-					<a class="sexybox_iframe" href="<?=site_url('search/iframe_search');?>">搜索</a>
+					<a class="sexybox_iframe" href="<?=site_url('search/iframe_search');?>">
+						<img src="<?=static_url('img/search_pic.png');?>" />
+					</a>
 				</div>
 				
 				<!-- User Controller -->
@@ -191,7 +193,7 @@
 								</a>
 								
 								<a href="<?=site_url('user/'. $this->tank_auth->get_user_id());?>">
-									<?=get_current_user_name();?>
+									<?=get_current_user_name();?> (<?=get_current_user_id();?>)
 								</a>
 							</span>
 						

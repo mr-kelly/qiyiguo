@@ -95,8 +95,11 @@
 			$query = $this->db->get_where('group', array(
 				'id' => $group_id
 			));
-			$arr =  $query->result_array();
-			return $arr[0];
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			} else {
+				return $query->row_array();
+			}
 		}
 		
 		

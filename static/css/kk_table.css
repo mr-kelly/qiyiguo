@@ -1,0 +1,45 @@
+.kk_table {
+	border-top: 1px solid #DDD;
+	border-left: 1px solid #DDD;
+
+	border-right: 0;
+	border-bottom: 0;
+	border-spacing: 0px 0px;
+	
+	width: 100%;
+	line-height: 22px;
+}
+
+
+
+	
+	.kk_table tr {
+		margin: 0;
+		padding: 0;
+	}
+		.kk_table tr.row2 { /** 双数行 */
+			background: #EDF3FE;
+		}
+	
+
+	.kk_table td, .kk_table th {
+		border-right: 1px solid #CCC;
+		border-bottom: 1px solid #CCC;
+		
+		border-top: 0;
+		border-left: 0;
+		
+		padding: 0;
+		margin: 0;
+		
+	}
+	
+	.kk_table th {
+		background: #E1E1E1 url(../img/th_bg.gif);
+		line-height: 25px;
+		font-size: 13px;
+		font-weight: bold;
+	}
+	.kk_table td {
+		padding: 0 5px;
+	}

@@ -7,126 +7,94 @@
 
 			<?=import_css('css/app/stream/ajax_get_stream.css');?>
 
-            
+            <?=import_css('css/app/group/group_lookup.css');?>
             
             <div id="content" class="two_columns">
 				<div class="content_top">
             		<div class="content_bottom">
-
-            			<div class="kk_tabs">
-            				<ul>
-            					<li>
-            						<a href="#group_home">
-            							首页
-            						</a>
-            					</li>
-            					<li>
-            						<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
-            							话题
-            						</a>
-            					</li>
-            					<li>
-            						<a href="<?=site_url('group/' . $group['id'] . '/stream');?>">
-            							新闻台
-            						</a>
-            					</li>
-            				</ul>
-            				
-            				
-            				<div id="group_home" class="hidden">
-            					群组首页
-            				</div>
-            				
-            				
+            		
+						<div id="lookup_head">
+						
+							<div class="lookup_avatar">
+								<img class="avatar" width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
+							</div>
+							
+							<div class="lookup_easy_profile">
+								<h2>
+									<span class="icon icon_group tipsy_s" title="这是一个果群"></span>
+									<?=$group['name'];?>
+								</h2>
+							</div>
+						
+						</div>
+            			
+            			
+            			<div id="lookup_main">
+							<div class="kk_tabs">
+								<ul>
+									<li>
+										<a href="#group_home">
+											首页
+										</a>
+									</li>
+									<li>
+										<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
+											话题
+										</a>
+									</li>
+									
+									<li>
+										<a href="<?=site_url('group/' . $group['id'] . '/event');?>">
+											活动
+										</a>
+									</li>
+									
+									<li>
+										<a href="<?=site_url('group/' . $group['id'] . '/chat');?>">
+											聊天
+										</a>
+									</li>
+									<li>
+										<a href="<?=site_url('group/' . $group['id'] . '/album');?>">
+											相簿
+										</a>
+									</li>
+									
+									<li>
+										<a href="<?=site_url('group/' . $group['id'] . '/stream');?>">
+											新闻台
+										</a>
+									</li>
+								</ul>
+								
+								
+								<div id="group_home" class="hidden">
+									
+									<div id="group_topics_div">
+										<h2>话题</h2>
+										<p>...</p>
+									</div>
+									
+									<div id="group_chat_div">
+										<h2>聊天</h2>
+										<p>...</p>
+									</div>
+									
+									<div id="group_events_div">
+										<h2>活动</h2>
+										<p>...</p>
+									</div>
+									
+									
+									
+								</div>
+								
+								
+							</div>
             			</div>
             			
             			
-						<?php if ( $this->tank_auth->is_logged_in() ) { ?>
-							<!--<iframe iframeborder="0" src="<?=site_url('group/join_group/'.$group['id'])?>"></iframe>-->
-						<?php } ?>
-						
-						<?php
-							// 点击加入后
-							// post 到join_group,
-							// 若返回错误
-							// 出现消息框，输入验证信息
-						?>
-						
-						<?php
-							
-							// 未加入
-							if ( !$ci->group_model->is_group_user($group['id'], get_current_user_profile('id')) ) {
-							
-						?>
-		
-						
-						<?php
-								// 未加入，但在审核,显示审核中		
-								if ( $ci->request_model->is_request_group( $group['id'], $this->tank_auth->get_user_id() )) {
-									echo '审核中';
-								} elseif( $group['verify'] == 'closed' ) {
-									// 未加入，但该group拒绝加入，私密group
-									echo '拒绝加入';
-									
-								} else {
-									// 未加入，不在审核, 显示加入按钮
-						?>
-									<a class="medium blue awesome join_group_btn" href="<?=site_url("group/join_group/". $group["id"]);?>">
-										<span><span>加入</span></span>
-									</a>
-									
-									
-									<script>
-										$(function(){
-											$('.join_group_btn').click(function(){
-												$.post(
-													$(this).attr('href'),
-													{
-														message: $('#group_message').val()
-													},
-													function(data) {
-														alert(data);
-														data = $.parseJSON(data);
-														
-														if ( data.status == 0 ) {
-															// 返回失败，并且data提示信息为message，那么显示输入message
-															if ( data.data == 'message') {
-																$('#join_group_box').fadeIn();	
-															}
-															//alert($('#group_message').val());
-														}
-														
-														if ( data.status == 1 ) {
-															// 成功添加请求
-															window.location = '';
-														}
-												});
-												return false;
-											});
-										});
-									</script>
-						<?php
-									
-								}
-							} else {
-								// 已经加入该group
-								echo '已加入';
-								
-								if ($ci->group_model->is_group_admin($group['id'], get_current_user_profile('id'))):
-						?>
-									,还是管理员<a href="<?=site_url('group/setting/'.$group['id']);?>">友群设置</a>
-						<?php
-								endif;
-							}
-		
-						?>
-						
-						<script>
-							$(function(){
-								$('.tabs').tabs();
-							});
-						</script>
-						
+            			<?php $this->load->view('group/general_join_group_view'); ?>
 						
 						<!-- Start Tab -->
 						<div class="tabs">

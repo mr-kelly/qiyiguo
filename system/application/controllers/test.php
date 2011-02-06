@@ -154,6 +154,10 @@ EOT;
 		}
 		
 		
+		function server() {
+			phpinfo();
+		}
+		
 		
 
 	}

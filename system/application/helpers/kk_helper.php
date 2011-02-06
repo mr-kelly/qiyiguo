@@ -155,6 +155,10 @@
 // 		return $email;
 	}
 	
+	function get_user_name( $nickname, $realname ) {
+		return sprintf('%s <span class="small">(%s)</span>', $nickname , $realname ); 
+	}
+	
 	
 	/**
 	 *	获取指定用户的头像网址, 可选指定用户id,  

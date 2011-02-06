@@ -83,7 +83,7 @@
 								
 							
 								<a class="large blue awesome" id="user_register_submit" type="submit">
-									<span><span>完成注册</span></span>
+									<span><span>开始奇异果！</span></span>
 								</a>
 							</form>
 	

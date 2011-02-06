@@ -25,7 +25,7 @@ $config['group_logo_path'] = './static/upload/groups/';
  
 $config['renren_url'] = 'http://www.renren.com/profile.do?id=%s'; // 输入人人网id,抵达人人网主页
 $config['t_sina_url'] = 'http://t.sina.com.cn/';
-
+$config['douban_url'] = 'http://www.douban.com/people/%s/';
 
 /*
 |--------------------------------------------------------------------------

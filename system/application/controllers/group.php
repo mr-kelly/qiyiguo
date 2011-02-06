@@ -27,11 +27,26 @@
 		/**
 		 *	友群的设置， 需要管理员权限
 		 */
-		function setting($group_id) {
-			$data = array(
-				'group' => $this->group_model->get_group_by_id( $group_id ),
-			);
-			kk_show_view('group/setting_view', $data);
+		function setting($group_id, $action = 'setting' ) {
+			login_redirect();
+			
+			
+			if ( $action == 'setting' ) {
+				$data = array(
+					'group' => $this->group_model->get_group_by_id( $group_id ),
+				);
+				
+				kk_show_view('group/setting_view', $data);
+				
+			} else if ( $action == 'members' ) {
+				
+				$render = array();
+				$render['group_members'] = $this->group_model->get_group_users( $group_id );
+				
+				kk_show_view('group/setting_members_view', $render);
+			
+			
+			}
 		}
 		
 		/**
@@ -121,8 +136,10 @@
 		/**
 		 *   Group 查看单项
 		 */
-		function group_lookup($group_id, $action='index') {
-		
+		function group_lookup($group_id, $action='index', $do='') {
+			
+			$this->_if_group_404( $group_id );
+			
 			$this->load->model('chat_model');
 			
 			if ( !$this->tank_auth->is_logged_in() ) {
@@ -248,7 +265,7 @@
 		 *   让当前登录用户加入友群 iframe
 		 *   $action   ->   join 加入       exit  退出友群
 		 */
-		function join_group($group_id) {
+		function ajax_join_group($group_id) {
 			if ( !$this->tank_auth->is_logged_in() ) {
 				exit('Error!! You directly enter here?');
 			}
@@ -443,6 +460,16 @@
 		
 			mkdir($path, 0777);
 		   }
+		}
+		
+		
+		/**
+		 *	用于判断当前action所需要的group对象是否存在，不存在，404页面吧
+		 */
+		function _if_group_404( $group_id ) {
+			if ( !$this->group_model->get_group_by_id( $group_id ) ) {
+				show_404();
+			}
 		}
 		
 	}
