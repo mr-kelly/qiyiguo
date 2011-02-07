@@ -46,6 +46,23 @@
         		</ul>
         	</div>
         	
+        	<div class="footer_column">
+        		<h2>实验室</h2>
+        		<ul>
+        			<li>
+        				<a href="#">什么是实验室?</a>
+        			</li>
+					
+        			<li>
+        				<a href="#">人才招募</a>
+        			</li>
+        			
+        			<li>
+        				<a href="#">更多实验项目</a>
+        			</li>
+        		</ul>
+        	</div>
+        	
         	<div id="footer_copyright">
         		<a href="http://mrkelly.cc" class="tipsy_s" title="知道吗？用「谷歌浏览器」会有最完整的网页效果哦">
         			MrKelly出品

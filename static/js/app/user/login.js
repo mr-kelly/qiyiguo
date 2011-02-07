@@ -55,19 +55,55 @@
 		return false;
 	});
 	
-	$('#user_login_form').ajaxForm({
-		dataType: 'json',
-		success: function(data){
-		
-			
-			if ( data.status == 1) {
-				session_message( data.info, 'normal');
-				window.parent.location = $redirect;
-			} else {
-				session_message( data.info, 'error');
+	
+	// Validation + AjaxForm
+	$('#user_login_form').validate({
+		messages: {
+			login: {
+				required: '请输入你的注册电邮！',
+				email: '电邮格式不对',
+			},
+			password: {
+				required: '请输入密码!'
 			}
+		},
+		
+		submitHandler: function(form) {
+			$('#user_login_form').ajaxSubmit({
+				dataType: 'json',
+				success: function(data){
+				
+					
+					if ( data.status == 1) {
+						kk_growl.success( data.info );
+						window.parent.location = $redirect;
+					} else {
+						kk_growl.error( data.info );
+						//session_message( data.info, 'error');
+					}
+				}
+			});
+		},
+		success: function(label) {
+			// 表单通过验证， 提供一个勾，代表填写正确
+			label.text('').addClass('success');
 		}
 	});
+	
+// 	$('#user_login_form').ajaxForm({
+// 		dataType: 'json',
+// 		success: function(data){
+// 		
+// 			
+// 			if ( data.status == 1) {
+// 				session_message( data.info, 'normal');
+// 				window.parent.location = $redirect;
+// 			} else {
+// 				jGrowl_Error( data.info );
+// 				//session_message( data.info, 'error');
+// 			}
+// 		}
+// 	});
 
 
 

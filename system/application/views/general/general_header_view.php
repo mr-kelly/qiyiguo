@@ -10,4 +10,7 @@
 	?>
 </head>
 <body>
-
+	<div id="loading" class="hidden">
+		<img src="<?=static_url();?>img/loading.gif" />
+		
+	</div>

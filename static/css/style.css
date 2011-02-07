@@ -43,7 +43,28 @@ img.avatar {
 	line-height: 27px;
 	padding: 0 10px 0 0px;
 }
-
+	/*
+	 *	jQuery Validate 的错误信息
+	 */
+	.form_div label.error {
+		background: url(../img/icons.png) no-repeat 0 -842px;
+		width: auto;
+		color: red;
+		text-align: center;
+		padding: 0 0 0 18px;
+		height: 16px;
+		line-height: 16px;
+		margin: 5px 0 0 5px;
+	}
+	.form_div label.success {
+		background: url(../img/icons.png) no-repeat;
+		color: #FFF;
+		width: 16px;
+		height: 16px;
+		padding: 0;
+		margin: 5px 0 0 5px;
+	}
+	
 .form_div select {
 	height: 27px;
 }
@@ -52,7 +73,7 @@ img.avatar {
  */
 .input_text,input[type="text"], input[type="password"] {
 	padding:5px;
-	width:160px;
+	width:145px;
 	height: 15px
 }
 
@@ -360,11 +381,20 @@ div.submenu span.submenu_corner:first-child {
 		.sidebar_widget .form_div label {
 			width: 50px;
 		}
+			.sidebar_widget .form_div label.error {
+				color: red;
+				width: auto;
+				margin: 5px 0 0 60px;
+			}
+			.sidebar_widget .form_div label.success {
+				width: 16px;
+				margin: 5px 0 0 5px;
+			}
 		.sidebar_widget .form_div .input_text, 
 		.sidebar_widget .form_div input[type="text"], 
 		.sidebar_widget .form_div input[type="password"], 
 		.sidebar_widget .form_div textarea {
-			width: 140px;
+			width: 125px;
 		}
 	
 	
@@ -762,6 +792,7 @@ div.submenu span.submenu_corner:first-child {
 	float:left;
 	text-align:left;
 	margin-left:40px;
+	width: 120px;
 }
 
 	.footer_column h2 {

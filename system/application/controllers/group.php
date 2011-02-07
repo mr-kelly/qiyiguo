@@ -29,7 +29,7 @@
 		 */
 		function setting($group_id, $action = 'setting' ) {
 			login_redirect();
-			
+			$this->_if_group_404();
 			
 			if ( $action == 'setting' ) {
 				$data = array(

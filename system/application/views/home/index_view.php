@@ -94,11 +94,12 @@
 								<form id="user_login_form" class="home_user_login_form" method="post" action="<?=site_url('user/login');?>">
 									<p>
 										<label>电邮</label>
-										<input id="user_login_login" title="注册时所填的Email、电子邮箱" class="tipsy_se" type="text" name="login" />
+										<input id="user_login_login" title="注册时所填的Email、电子邮箱" class="required email tipsy_se" type="text" name="login" minlength="3" />
+										
 									</p>
 									<p>
 										<label>密码</label>
-										<input id="user_login_password" title="注册时所填的密码" class="tipsy_se" type="password" name="password" />
+										<input id="user_login_password" title="注册时所填的密码" class="tipsy_se required" type="password" name="password" />
 									</p>
 									
 									<div class="user_login_remember_div center">
@@ -152,9 +153,7 @@
             			
             			<div class="sidebar_widget">
             				
-            				
-            				<h2>推荐友群</h2>
-		            		<?php $this->load->view('sidebar/sidebar_group_view'); ?>
+		            		<?php //$this->load->view('sidebar/sidebar_group_view'); ?>
 	            		</div>
 	            		
 	            		<div class="sidebar_widget">

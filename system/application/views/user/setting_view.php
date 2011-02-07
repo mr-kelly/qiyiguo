@@ -63,6 +63,11 @@
 							</a>
 						</li>
 						<li>
+							<a href="#slug_setting">
+								个人网址
+							</a>
+						</li>
+						<li>
 							<a href="<?=site_url('user/setting/avatar');?>">
 								更换头像
 							</a>
@@ -74,12 +79,12 @@
 							
 								<p>
 									<label>真实姓名</label>
-									<input name="realname" type="text" value="<?=get_current_user_profile('realname');?>" />
+									<input class="required" name="realname" type="text" value="<?=get_current_user_profile('realname');?>" />
 								</p>
 								
 								<p>
 									<label>昵称</label>
-									<input name="nickname" type="text" value="<?=get_current_user_profile('nickname');?>"  />
+									<input class="required" name="nickname" type="text" value="<?=get_current_user_profile('nickname');?>"  />
 								</p>
 								
 								<p>
@@ -186,27 +191,27 @@
 								
 								<p>
 									<label>个人网站</label>
-									<input name="website" type="text" value="<?=get_current_user_profile('website');?>"  />
+									<input class="url" name="website" type="text" value="<?=get_current_user_profile('website');?>"  />
 								</p>
 								
 								<p>
 									<label>常用电子邮箱</label>
-									<input name="email_1" type="text" value="<?=get_current_user_profile('email_1');?>"  />
+									<input class="email" name="email_1" type="text" value="<?=get_current_user_profile('email_1');?>"  />
 								</p>
 								
 								<p>
 									<label>第二电子邮箱</label>
-									<input name="email_2" type="text" value="<?=get_current_user_profile('email_2');?>"  />
+									<input class="email" name="email_2" type="text" value="<?=get_current_user_profile('email_2');?>"  />
 								</p>
 								
 								<p>
 									<label>第三电子邮箱</label>
-									<input name="email_3" type="text" value="<?=get_current_user_profile('email_3');?>"  />
+									<input class="email" name="email_3" type="text" value="<?=get_current_user_profile('email_3');?>"  />
 								</p>
 								
 								<p>
 									<label>人人网ID号</label>
-									<input name="link_renren" type="text" value="<?=get_current_user_profile('link_renren');?>"  />
+									<input class="digits" name="link_renren" type="text" value="<?=get_current_user_profile('link_renren');?>"  />
 									<a href="<?=base_url();?>wiki/获得人人网的id号">
 										如何知道自己的人人网的ID号？
 									</a>
@@ -251,6 +256,9 @@
 					
 					</div>
 					
+					<div id="slug_setting">
+						个人网址设置！
+					</div>
 					
 				</div>
 				

@@ -70,10 +70,13 @@
 												//alert(data);
 												data = $.parseJSON(data);
 												
-												session_message(data.info);
+												
 												
 												if ( data.status == 1 ) {
+													kk_growl.success( data.info );
 													window.location = data.data.group_id;
+												} else {
+													kk_growl.error( data.info );
 												}
 												
 											}

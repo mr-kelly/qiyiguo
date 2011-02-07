@@ -82,7 +82,17 @@ class User_Profiles_Model extends KK_Model {
 // 		return array_merge($user_profile, $user);
 	}
 	
-	
+	function get_user_id_by_slug( $slug ) {
+		$query = $this->db->get_where('user_profiles', array(
+			'slug' => $slug,
+		));
+		if ( $query->num_rows() == 0 ) {
+			return false;
+		} else {
+			$user_profiles = $query->row_array();
+			return $user_profiles['user_id'];
+		}
+	}
 	/**
 	 *	修改用户当前的头像～
 	 */

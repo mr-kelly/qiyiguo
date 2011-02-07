@@ -51,12 +51,12 @@
 						
 							<p>
 								<label for="user_login_login">电 邮</label>
-								<input title="输入注册时所使用的Email电子邮箱" class="input_text tipsy_se" id="user_login_login" name="login" type="text" />
+								<input title="输入注册时所使用的Email电子邮箱" class="input_text tipsy_se required email" id="user_login_login" name="login" type="text" />
 							</p>
 							
 							<p>
 								<label for="user_login_password">密 码</label>
-								<input title="输入注册时所使用的密码" class="input_text tipsy_se"  id="user_login_password" name="password" type="password" />
+								<input title="输入注册时所使用的密码" class="input_text tipsy_se required"  id="user_login_password" name="password" type="password" />
 							</p>
 		
 		

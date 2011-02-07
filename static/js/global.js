@@ -1,11 +1,26 @@
 
-
-
-
+/**
+ *	控制jGrowl的显示
+ */
+var kk_growl = {
+	error: function( $message ) {
+		// 错误显示的jGrowl ( 短暂 )
+		$.jGrowl( $message );
+	},
+	success: function ( $message ) {
+		$.jGrowl( $message );
+	},
+	session_message: function( $message ) {
+		// 用于library Session Message。  持久显示
+		$.jGrowl( $message );
+	}
+}
 
 
 
 $(function() {
+	//$.jGrowl('<img src="http://localhost:8888/kiwiguo/static/img/logo.png" />abc', { sticky: true });
+	//$.jGrowl("A message with a header", { header: 'Important' });
 	
 	// jquery Tipsy生成
 	$('.tooltip').tipsy( {   fade: true, live:true }); // gravity: $.fn.tipsy.auto ,

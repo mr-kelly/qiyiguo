@@ -46,7 +46,7 @@
 	<?=import_js('js/kk.center.js');?>
 	
 	<!-- jGrowl-->
-	<script type="text/javascript" src="<?=static_url('js/jGrowl/jquery.jgrowl_minimized.js');?>"></script>
+	<script type="text/javascript" src="<?=static_url('js/jGrowl/jquery.jgrowl.js');?>"></script>
 	<link href="<?=static_url('js/jGrowl/jquery.jgrowl.css');?>" type="text/css" rel="stylesheet" />
 	
 	
@@ -62,6 +62,9 @@
 	<?=import_js('js/fancybox/kk.fancybox-1.3.4.pack.js');?>
 	<?=import_css('js/fancybox/kk.fancybox-1.3.4.css');?>
 	
+	<? // jQuery Validation ?>
+	<?=import_js('js/kk.validate.js');?>
+	<?=import_js('js/kk.validate.messages_cn.js');?>
 	
 	<!--jQuery idTabs-->
 	<?=import_js('js/kk.idTabs.min.js');?>

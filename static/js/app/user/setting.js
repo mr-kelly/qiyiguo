@@ -4,15 +4,24 @@ $(function(){
 		return false;
 	});
 	
-	$('#user_profiles_form').ajaxForm({
-		dataType: 'json',
-		success: function(data) {
-			if ( data.status == 1 ) {
-				session_message(data.info, 'normal');
-				
-			} else {
-				session_message(data.info, 'error');
-			}
+	$('#user_profiles_form').validate({
+		submitHandler: function(form) {
+			$('#user_profiles_form').ajaxSubmit({
+				dataType: 'json',
+				success: function(data) {
+					if ( data.status == 1 ) {
+						kk_growl.success(data.info);
+						
+					} else {
+						kk_growl.error(data.info);
+					}
+				}
+			});
+		},
+		success: function(label) {
+			label.text('').addClass('success');
 		}
 	});
+	
+
 });

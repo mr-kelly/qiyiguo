@@ -15,6 +15,8 @@
 		}
 		
 		
+		
+		
 		// 头像的查看，上传处理
 		function avatar() {
 			login_redirect();
@@ -161,23 +163,45 @@
 		/**
 		 *	查看一个用户的资料~  根据权限显示
 		 */
-		function user_lookup($user_id) {
-			$this->_if_user_404( $user_id );
-			login_redirect();
+		function user_lookup( $user_id_slug ) {
+			
+			if ( is_numeric($user_id_slug) ) {
+				// 若传入数字， 判断成ID～～读取该ID的用户
+				$user_id = $user_id_slug;
+				
+				$this->_if_user_404( $user_id );
+				login_redirect();
+				
+				
+				$data['user'] = $this->user_profiles_model->_get_user($user_id);
+				
+
+				
+				
+			} else {
+				// 获得slug对应的用户
+				$user_id = $this->user_profiles_model->get_user_id_by_slug( $user_id_slug );
+				$this->_if_user_404( $user_id );
+				
+				// slug对应用户存在？ 通过ID登录吧！
+				$data['user'] = $this->user_profiles_model->_get_user( $user_id );
+				
+				
+
+			}
 			
 			
-			$data = array(
-				'user' => $this->user_profiles_model->get_profile($user_id),
-			);
 			
 			// 如果用户查看的是自己的页面~ 菜单聚焦"个人主页"
 			if ( $user_id == get_current_user_id() ) {
 				$data['current_user_home'] = 'current_menu';
 			}
-			
+
 			kk_show_view('user/user_lookup_view', $data);
+
 		}
 		
+
 		
 		/**
 		 *	登录的用户个人设置
@@ -496,9 +520,9 @@ EOT;
 							$this->config->item('use_username', 'tank_auth'));
 					$data['login_by_email'] = $this->config->item('login_by_email', 'tank_auth');
 		
-					$this->form_validation->set_rules('login', 'Login', 'trim|required|xss_clean');
-					$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-					$this->form_validation->set_rules('remember', 'Remember me', 'integer');
+					$this->form_validation->set_rules('login', '电邮', 'trim|required|xss_clean');
+					$this->form_validation->set_rules('password', '密码', 'trim|required|xss_clean');
+					$this->form_validation->set_rules('remember', '下次自动登录', 'integer');
 		
 					// Get login for counting attempts to login
 					if ($this->config->item('login_count_attempts', 'tank_auth') AND
@@ -565,7 +589,7 @@ EOT;
 				
 				// 非表单问题？
 				
-				ajaxReturn(null,'登录失败！未知原因！',0);
+				ajaxReturn(null,'登录失败！请检查你的电邮、密码是否正确。',0);
 			}
 			
 			

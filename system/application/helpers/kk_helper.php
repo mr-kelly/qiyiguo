@@ -217,7 +217,7 @@
 	
 	
 	/**
-	 *	添加当前用户个人通知 Notice~ Add 
+	 *	添加 "当前用户" 个人通知 Notice~ Add 
 	 
 	 
 	 		Get Notice 在 Notice Controlller 内,ajax控制

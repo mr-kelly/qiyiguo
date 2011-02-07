@@ -95,16 +95,25 @@
             return false;
         });
         
-		$('#user_register_form').ajaxForm({
-			dataType: 'json',
-			success: function(data){
-				
-				if ( data.status == 1) {
-					session_message( data.info, 'normal');
-					window.parent.location = $redirect;
-				} else {
-					session_message( data.info, 'error');
-				}
-			}
-		});
+        
+        $('#user_register_form').validate({
+        	submitHandler: function(form) {
+				$('#user_register_form').ajaxSubmit({
+					dataType: 'json',
+					success: function(data){
+						
+						if ( data.status == 1) {
+							kk_growl.success( data.info, 'normal');
+							window.parent.location = $redirect;
+						} else {
+							kk_growl.error( data.info, 'error');
+						}
+					}
+				});
+        	},
+        	success: function(label) {
+        		label.text('').addClass('success');
+        	}
+        });
+
     });

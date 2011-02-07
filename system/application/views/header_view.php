@@ -258,9 +258,9 @@
         		// Session Message, 有
         		if ( $ci->session_message->get() ):
         	?>
-					<div class="session_message">
-						<?=$ci->session_message->get();?>
-					</div>
+        			<script type="text/javascript">
+        				kk_growl.session_message('<?=$ci->session_message->get();?>');
+        			</script>
             
             <?php
             	else:

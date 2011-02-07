@@ -44,10 +44,14 @@ $route['default_controller'] = "home";
 $route['scaffolding_trigger'] = "";
 
 
+
+
 // Group
 $route['group/(:num)'] = 'group/group_lookup/$1';
 $route['group/(:num)/(:any)'] = 'group/group_lookup/$1/$2';
 
+// User
+$route['u/(:any)'] = 'user/user_lookup/$1';
 $route['user/(:num)'] = 'user/user_lookup/$1';
 
 /* End of file routes.php */

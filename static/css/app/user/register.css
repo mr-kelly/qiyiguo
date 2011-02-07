@@ -1,5 +1,9 @@
+	.form_div label.error {
+		margin: 5px 0 0 80px;
+	}
 #register_general {
 	float: left;
+	width: 320px;
 }
 #register_more {
 	float: right;

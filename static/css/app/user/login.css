@@ -4,6 +4,12 @@
 #login_tab h2 {
 	
 }
+.form_div label.error {
+	margin:5px 0 0 80px;
+}
+.form_div label.success {
+	margin: 5px 0 0 5px;
+}
 
 #general_login {
 	float: left;
