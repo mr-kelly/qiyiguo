@@ -103,7 +103,7 @@ pageTracker._trackPageview();
 
 <!-- 然后将以下这段代码放到网页页尾 -->
 <!-- JiaThis Button BEGIN -->
-<script src="http://www.jiathis.com/code/jia.js" type="text/javascript" charset=utf-8></script>
+<script type="text/javascript" charset="utf-8" src="http://www.jiathis.com/code/jia.js"></script>
 <!-- JiaThis Button END -->
 
 

@@ -93,6 +93,21 @@ class User_Profiles_Model extends KK_Model {
 			return $user_profiles['user_id'];
 		}
 	}
+	
+	/**
+	 *	获取用户的个人网址设置slug
+	 */
+	function get_user_slug( $user_id ) {
+		$query = $this->db->get_where('user_profiles', array(
+			'user_id' => $user_id,
+		));
+		if ( $query->num_rows() == 0 ) {
+			return false;
+		} else {
+			$user_p = $query->row_array();
+			return $user_p['slug'];
+		}
+	}
 	/**
 	 *	修改用户当前的头像～
 	 */

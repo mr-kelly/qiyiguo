@@ -109,7 +109,7 @@
                 
 					<?php if ( is_logged_in() ): ?>
 					<li class="menu_item <?=isset($current_user_home) ? $current_user_home : '' ;?>">
-						<a href="<?=site_url('user/' . get_current_user_id() );?>">
+						<a href="<?=get_user_url( get_current_user_id() );?>">
 							个人主页
 						</a>
 					</li>

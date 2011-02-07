@@ -161,6 +161,22 @@
 	
 	
 	/**
+	 *	获得用户的页面网址（个人网址slug)
+	 */
+	function get_user_url( $user_id ) {
+		$ci =& get_instance();
+		$slug = $ci->user_profiles_model->get_user_slug( $user_id );
+		
+		if ( $slug ) {
+			// 存在个人网址
+			return site_url('u/' . $slug );
+		} else {
+			// 不存在个人网址 slug == false
+			return site_url('u/' . $user_id );
+		}
+	}
+	
+	/**
 	 *	获取指定用户的头像网址, 可选指定用户id,  
 	 		$big为是否返回原始图，大头像！～
 	 */
