@@ -1,6 +1,6 @@
 <?php
 
-	require_once('douban_oauth/doubanoauth.php');
+	require_once('douban_oauth/doubanOAuth.php');
 	
 	// 将library设成 include_path
 	set_include_path(  dirname(__FILE__) );
