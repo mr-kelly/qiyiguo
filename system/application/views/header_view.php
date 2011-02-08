@@ -1,11 +1,26 @@
+<!--
+
+十分之荣幸你能查看页面的源代码
+
+	也许，你懂技术; 也许，你有激情; 也许，你有想法; 也许...
+	不论怎样，也许，你可以联系我
+	
+	
+	
+	Mr Kelly
+	
+	电邮:  chepy.v@gmail.com
+	果页:  http://qiyiguo.cc/u/mrkelly
+	
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="［奇异果］让大学生们轻松买卖二手教科书，结识学术上的朋友。" />
-    <meta name="keywords" content="教科书,二手书,同学,大学生" />
+    <meta name="description" content="［奇异果］是一个基于果群的社交网络，它帮助你发现与创造生活的每一刻。" />
+    <meta name="keywords" content="同学,大学生,陈霈霖,Mrkelly,公司,小区,学校,社交网站" />
     
     <!-- no cache headers -->
     <meta http-equiv="Pragma" content="no-cache" />
@@ -22,7 +37,12 @@
     		// 通过省份获取城市的ajax地址
     		var $get_cities_url = '<?=site_url("user/ajax_get_cities/");?>';
 	</script>
-
+	
+	<?php
+		// JS 动态变量
+	?>
+	<script type="text/javascript" src="<?=site_url('import/js_vars');?>"></script>
+	
     <?php
     	$this->load->view('import');
     ?>

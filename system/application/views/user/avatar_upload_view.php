@@ -4,7 +4,8 @@
 
 
 <div id="content">
-
+	<div class="content_top">
+		<div class="content_bottom">
 
 	
 	
@@ -90,8 +91,8 @@
 	?>
 	
 	
-	
-	
-</div>
+		</div>
+	</div>
+</div><!-- End Content -->
 
 <?php $this->load->view('footer_view'); ?>

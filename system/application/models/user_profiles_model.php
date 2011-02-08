@@ -108,6 +108,27 @@ class User_Profiles_Model extends KK_Model {
 			return $user_p['slug'];
 		}
 	}
+	
+	/**
+	 *	检查slug是否存在，  
+	 	（但要忽略指定用户的当前设置，比如目前用户已经设置slug是mrkelly， 他可以重新设置mrkelly
+	 	
+	 */
+	function is_user_slug_existed( $slug, $user_id ) {
+		// 如果$slug为空，直接返回不存在吧 (就是不设置)
+		if ( $slug == '' ) return false;
+		
+		
+		$query = $this->db->get_where('user_profiles', array(
+			'slug' => $slug,
+			'user_id !=' => $user_id,
+		));
+		if ( $query->num_rows() == 0 ) {
+			return false;  // 不存在
+		} else {
+			return true; // 存在了！
+		}
+	}
 	/**
 	 *	修改用户当前的头像～
 	 */

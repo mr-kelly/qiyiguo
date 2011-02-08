@@ -21,6 +21,9 @@
 						
 						<h2>果断注册</h2>
 						
+						<script type="text/javascript">
+							$redirect = '<?=site_url( $this->input->get("redirect") );?>';
+						</script>
 						<?=import_js('js/app/user/register.js');?>
 						<div class="form_div">
 							<form id="user_register_form" method="post" action="<?=site_url('user/register');?>">

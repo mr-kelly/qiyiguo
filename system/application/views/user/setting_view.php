@@ -83,6 +83,11 @@
 								</p>
 								
 								<p>
+									<label>性别</label>
+									<input type="radio" class="" name="gender" value="male" <?=( get_current_user_profile('gender') == 'male' ) ? 'checked="checked"' :''?> />男
+									<input type="radio" class="" name="gender" value="female" <?=( get_current_user_profile('gender') == 'female' ) ? 'checked="checked"' :''?>  />女
+								</p>
+								<p>
 									<label>昵称</label>
 									<input class="required" name="nickname" type="text" value="<?=get_current_user_profile('nickname');?>"  />
 								</p>
@@ -257,7 +262,20 @@
 					</div>
 					
 					<div id="slug_setting">
-						个人网址设置！
+						<div class="form_div">
+							<h3>
+								<?php
+									$slug = get_current_user_profile('slug');
+									if ( $slug == '' ) $slug = get_current_user_id();
+								?>
+								你当前的个人网址: <a id="slug_a" target="_blank" href="http://qiyiguo.cc/u/<?=$slug;?>">qiyiguo.cc/u/<?=$slug;?></a>
+							</h3>
+						
+							<p>
+								<label for="slug">设置个人网址:</label>
+								http://qiyiguo.cc/u/<input id="slug_input" type="text" name="slug" value="<?=get_current_user_profile('slug');?>" />
+							</p>
+						</div>
 					</div>
 					
 				</div>

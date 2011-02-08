@@ -217,6 +217,9 @@
 				// 处理提交的用户profile资料
 				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean');
+				
+				$this->form_validation->set_rules('gender', '性别', 'required|trim|xss_clean');
+				
 				//$this->form_validation->set_rules('birth', '生日', 'trim|xss_clean');
 				$this->form_validation->set_rules('birth_year', '生日年', 'trim|xss_clean');
 				$this->form_validation->set_rules('birth_month', '生日月', 'trim|xss_clean');
@@ -233,8 +236,10 @@
 				$this->form_validation->set_rules('city_id', '城市', 'required|trim|xss_clean');
 				$this->form_validation->set_rules('province_id', '省份', 'required|trim|xss_clean');
 				
-				$this->form_validation->set_rules('hometown_province_id', '籍贯省份', 'required|trim|xss_clean');
-				$this->form_validation->set_rules('hometown_city_id', '籍贯城市', 'required|trim|xss_clean');
+				$this->form_validation->set_rules('hometown_province_id', '籍贯省份', 'trim|xss_clean');
+				$this->form_validation->set_rules('hometown_city_id', '籍贯城市', 'trim|xss_clean');
+				
+				$this->form_validation->set_rules('slug', '个人网址', 'trim|xss_clean|alpha_dash'); // 不可以纯数字
 				
 				/*	不采用http新浪微博验证模式
 				$this->form_validation->set_rules('t_sina_login', '新浪微博帐号', 'trim|xss_clean');
@@ -246,6 +251,20 @@
 				if ( !$this->form_validation->run() ) {
 					ajaxReturn(null, validation_errors(), 0);
 				} else {
+					// Slug Form Validation More
+					// 个人网址设置，不可以为纯数字
+					$slug = $this->form_validation->set_value('slug');
+					if ( is_numeric( $slug ) ) {
+						ajaxReturn( null, '个人网址不可以为纯数字', 0);
+					}
+					// 保证个人网址，没有被别人设置了！
+					if ( $this->user_profiles_model->is_user_slug_existed( $slug, get_current_user_id() ) ) { // 需要填入当前用户id， 允许用户重复同样地设置slug
+						// 存在了？返回失败吧
+						ajaxReturn( null, '你填写的个人网址已经被人抢先一步了!', 0);
+					}
+				
+				
+				
 					$realname = $this->form_validation->set_value('realname');
 					$nickname = $this->form_validation->set_value('nickname');
 					
@@ -274,7 +293,12 @@
 					$this->user_profiles_model->update_user_profile( $user_id, array(
 						'realname' => $realname,
 						'nickname' => $nickname,
-						'birth' => $birth, 
+						'gender' => $this->form_validation->set_value('gender'),
+						
+						'birth' => $birth,  // 自动根据生日，获取年龄、星座
+						'age' => $this->humanize->age( $birth ),
+						'constellation' => $this->humanize->constellation( $birth ),
+						
 						'website' => $website,
 						'email_1' => $email_1,
 						'email_2' => $email_2,
@@ -286,6 +310,10 @@
 						'province_id' => $province_id,
 						'hometown_province_id' => $hometown_province_id,
 						'hometown_city_id' => $hometown_city_id,
+						
+						
+						// 个人网址 tab
+						'slug' => $slug,
 						
 					));
 					
@@ -368,7 +396,7 @@
 			}
 			
 			
-			$this->load->view('user/setting_view.php', $data);
+			kk_show_view('user/setting_view.php', $data);
 		}
 		
 		
@@ -794,6 +822,8 @@ EOT;
 						'city_id' => $this->form_validation->set_value('city_id'),
 						
 						'birth' => $birth,
+						'age' => $this->humanize->age( $birth ),
+						'constellation' => $this->humanize->constellation( $birth ),
 						
 						'description' => $douban_self['db:signature']['$t'],
 						'website' => isset( $douban_self['link'][3] ) ? $douban_self['link'][3]['@href'] : '' ,
@@ -993,7 +1023,11 @@ EOT;
 						'city_id' => $this->user_t_sina_model->get_city_id_t_sina_adapter( $user_t_sina['province'], $user_t_sina['city'] ),
 						
 						'website' => $user_t_sina['url'],
+						
 						'birth' => $birth,
+						'age' => $this->humanize->age( $birth ),
+						'constellation' => $this->humanize->constellation( $birth ),
+						
 					);
 					$this->user_profiles_model->create_user_profile( $this->tank_auth->get_user_id(), $profile_data );
 					
@@ -1020,6 +1054,9 @@ EOT;
 		 */
 		function logout() {
 			$this->tank_auth->logout();
+			
+			$render = array();
+			kk_show_view('user/logout_view', $render);
 		}
 		
 		

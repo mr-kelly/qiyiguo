@@ -168,6 +168,9 @@ form p {
 .right {
 	text-align:right;
 }
+.left {
+	text-align: left;
+}
 .float_right {
 	float:right;
 }

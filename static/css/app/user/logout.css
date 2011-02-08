@@ -1,0 +1,28 @@
+#logout_pic {
+	width: 658px;
+	height: 314px;
+	background: url(../../../img/home_pic.png) no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+	#logout_pic #logout_intro {
+		text-indent: -9999px;
+		top: 20px;
+		left: 20px;
+		position: absolute;
+		
+		width: 492px;
+		height: 230px;
+		/*
+		width: 408px;
+		height: 314px;
+		*/
+		background: url(../../../img/logout_intro.png) no-repeat;
+		/*
+		filter: Alpha(opacity=80);
+		-moz-opacity:.8;
+		opacity:0.8;
+		*/
+	}

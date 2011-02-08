@@ -29,7 +29,7 @@
 		 */
 		function setting($group_id, $action = 'setting' ) {
 			login_redirect();
-			$this->_if_group_404();
+			$this->_if_group_404( $group_id );
 			
 			if ( $action == 'setting' ) {
 				$data = array(
@@ -221,8 +221,8 @@
 			// group_category
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				//表单验证
-				$this->form_validation->set_rules('group_name', 'Group Name', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('group_privacy', 'Group Privacy', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('group_name', '果群名称', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('group_privacy', '果群公开性', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_category', 'Group Category', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_verify', '加入友群验证方式', 'trim|required|xss_clean');
 				

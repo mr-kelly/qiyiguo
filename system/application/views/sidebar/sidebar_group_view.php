@@ -108,7 +108,7 @@
 						<!--<a href="mailto:<?=$u['name'];?><<?=$u['email_1'];?>>">-->
 						<a href="<?=site_url('mail?' . 'send_to=' . $u['id'] );?>">
 							<?php // 发送邮件给指定ID用户的email ?>
-							发邮件
+							发电邮
 						</a>
 					</div>
 					

@@ -12,6 +12,7 @@
 						<tr>
 							<th>果号</th>
 							<th>用户</th>
+							<th>备注名</th>
 							<th>加入时间</th>
 							<th>活跃度</th>
 							<th>操作</th>
@@ -20,23 +21,24 @@
 					
 					<tbody>
 					
-					<?php foreach( $group_members as $user ): ?>
-						<tr>
+					
+					<?php
+						$row = 1; // 用于双行、单行
+						foreach( $group_members as $user ): 
+					?>
+						<tr <?= ( $row % 2 == 0 ) ? 'class="row2"' : '' ;?>>
 							<td><?=$user['id'];?></td>
 							<td><?=get_user_name( $user['nickname'], $user['realname'] );?></td>
-							<td>asd</td>
+							<td>备注明</td>
+							<td>...</td>
 							<td>dafsadf</td>
 							<td>驱赶 / 修改备注名</td>
 						</tr>
-					<?php endforeach; ?>
+					<?php 
+						$row++;
+						endforeach;
+					?>
 					
-						<tr class="row2">
-							<td>afsdaf</td>
-							<td>dfsdfs</td>
-							<td>dsafdsf</td>
-							<td>dafsadf</td>
-							<td>dsfsafsdf</td>
-						</tr>
 					</tbody>
 				
 				</table>

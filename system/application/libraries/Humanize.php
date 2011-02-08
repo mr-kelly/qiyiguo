@@ -71,7 +71,7 @@
 			$year = intval( $datetime['year'] );
 			
 			$age =   $now - $target ;
-			$age = round( $age / (60*60*24*365), 1);
+			$age = round( $age / (60*60*24*365), 0);
 			
 			return $age;
 		}

@@ -82,13 +82,13 @@ $(function() {
 	
 
     // 登出按钮
-    $('#logout_btn').click(function() {
-        $.post($user_logout_action,function() {
-            // 直接登出ajax，然后刷新页面
-            location.reload();
-        });
-        return false;
-    });
+//     $('#logout_btn').click(function() {
+//         $.post($user_logout_action,function() {
+//             // 直接登出ajax，然后刷新页面
+//             location.reload();
+//         });
+//         return false;
+//     });
 
     // 登入按钮
     $('#login_btn').click(function() {
@@ -107,6 +107,12 @@ $(function() {
        return false;
     });
     
+    
+    // “发话” 按钮
+    $('.add_topic_btn').click(function(){
+    	$(this).next().toggle();
+    	return false;
+    });
     
     /**
      *	绑定日期设置控件
@@ -170,7 +176,7 @@ $(function() {
     	// 刷新iframe自适应高度， 配合jquery.iframeautoHeight
     	
      	$('iframe').load(function(){
-     		$(this).height( $(this).contents().find('#iframe_div').height() + 10);
+     		$(this).height( $(this).contents().find('body').height() + 10);
      	});
 });
 

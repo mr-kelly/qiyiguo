@@ -33,7 +33,14 @@
 									// 判断用户是否属于该群组，属于，可以发文章
 									if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
 								?>
-								<a href="#">发表话题</a>
+								<a class="awesome large add_topic_btn" href="#">发话</a>
+								<div class="add_topic_div">
+								
+									<iframe class="topic_iframe" src="<?=site_url('topic/iframe_add_topic/group/' . $group['id'] );?>"></iframe>
+									
+								</div>
+								
+								
 								<?php
 									endif;  // 以上显示。，能发布友群文章时
 								?>

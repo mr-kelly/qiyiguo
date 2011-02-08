@@ -3,7 +3,7 @@
 	width: 150px;
 	
 }
-
+	
 #lookup_content {
 	float:right;
 	width: 460px;
@@ -16,6 +16,11 @@
 /**
  *		自定义user lookup 外网链接
  */
+
+#lookup_aside h2 {
+	font-size: 14px;
+}
+
 #lookup_aside .vertical_links li{
 	width: 150px;
 }

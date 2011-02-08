@@ -5,6 +5,14 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Untitled</title>
 	
+	
+	
+	<?php
+		// JS 动态变量
+	?>
+	<script type="text/javascript" src="<?=site_url('import/js_vars');?>"></script>
+	
+	
 	<?php
 		$this->load->view('import');
 	?>

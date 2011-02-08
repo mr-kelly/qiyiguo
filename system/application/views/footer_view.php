@@ -17,16 +17,16 @@
         		<h2>关于我们</h2>
         		<ul>
         			<li>
-        				<a href="#">官方部落格</a>
+        				<a href="#" class="tipsy_sw" title="奇异果也是果群的使用者！来看看我们~">官方果群</a>
         			</li>
         			<li>
-        				<a href="#">加入我们</a>
+        				<a href="<?=site_url('page/join_qiyiguo');?>">加入我们</a>
         			</li>
         			<li>
-        				<a href="#">为什么叫“奇异果”</a>
+        				<a href="<?=site_url('page/about_why_qiyiguo');?>">为什么叫“奇异果”</a>
         			</li>
         			<li>
-        				<a href="#">设计之禅</a>
+        				<a href="<?=site_url('page/about_design_qiyiguo');?>">设计之禅</a>
         			</li>
         		</ul>
         	</div>
@@ -54,7 +54,7 @@
         			</li>
 					
         			<li>
-        				<a href="#">人才招募</a>
+        				<a href="<?=site_url('page/labs_recruit');?>">人才招募</a>
         			</li>
         			
         			<li>

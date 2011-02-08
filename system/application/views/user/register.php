@@ -52,8 +52,8 @@
 								</p>
 						
 								<p>
-									<label>所在省份</label>
-									<select id="user_register_province_id" name="province_id" class="required">
+									<label>所在地</label>
+									<select id="user_register_province_id" name="province_id" class="location_select">
 									<?php
 										$ci =& get_instance();
 										$provinces =  $ci->dict_model->get_provinces();
@@ -63,11 +63,7 @@
 									
 									<?php endforeach; ?>
 									</select>
-								</p>
-								
-								<p>
-									<label>常驻城市</label>
-									<select id="user_register_city_id" name="city_id" class="required">
+									<select id="user_register_city_id" name="city_id" class="location_select required">
 									<?php
 										$ci =& get_instance();
 										$cities =  $ci->dict_model->get_cities();
@@ -78,6 +74,7 @@
 									<?php endforeach; ?>
 									</select>
 								</p>
+								
 						
 								<br />
 								
