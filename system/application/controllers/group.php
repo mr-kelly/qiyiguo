@@ -165,9 +165,11 @@
 			$group = $this->group_model->get_group_by_id($group_id);
 			
 			// 友群话题，并在里面包含latest chat
-			$topics = $this->group_model->get_group_topics($group_id);
+			$this->load->model('topic_model');
+			
+			$topics = $this->topic_model->get_topics('group', $group_id);
 			foreach ( $topics as $key=>$topic ) {
-				$topics[$key]['latest_chat'] = $this->chat_model->get_latest_chat( 'group_topic', $topics[$key]['id'] );
+				$topics[$key]['latest_chat'] = $this->chat_model->get_latest_chat( 'topic', $topics[$key]['id'] );
 			}
 			
 			

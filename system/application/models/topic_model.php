@@ -13,7 +13,7 @@
 		/**
 		 *	类论坛主题，发布小组主题内容
 		 */
-		function create_topic($model, $model_id, $user_id, $title='', $content ) {
+		function create_topic($model, $model_id, $user_id, $content, $title='' ) {
 			$data = array(
 				'title' => $title,
 				'content' => $content,
@@ -23,7 +23,9 @@
 				'created' => date('Y-m-d H:i:s'),
 			);
 			
-			return $this->db->insert('topic', $data);
+			$this->db->insert('topic', $data);
+			
+			return $this->db->insert_id();
 		}
 
 		

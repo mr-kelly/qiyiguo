@@ -5,7 +5,7 @@
 	 */
 	class Import extends KK_Controller {
 		function js_vars() {
-		
+			header("Content-type: text/javascript");
 			kk_show_view('import/js_vars_view');
 		}
 	}

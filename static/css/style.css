@@ -628,6 +628,54 @@ div.submenu span.submenu_corner:first-child {
 }
 */
 
+.topics_list {
+	margin: 0;
+	padding: 0;
+}
+
+	.topic {
+		list-style: none;
+		border-bottom:1px solid #DDD;
+		margin:10px 0;
+		padding:0 0 5px 0;
+		position: relative;
+	}
+		.topic_user {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+			.topic_user img {
+				border:1px solid #CCC;
+				padding:2px;
+			}
+			
+			
+		.topic_detail {
+			margin: 0 0 0 65px;
+		}
+		
+			.topic_date {
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+			
+		.topic_title a{
+			font-size: 14px;
+			letter-spacing: 0.1em;
+			font-weight: bold;
+		}
+		
+		.topic_panel {
+			width:525px;
+			margin: 10px 0 0 75px;
+			text-align:right;
+		}
+			
+			
+			
+			/*
 
 .group_topics_list {
 	
@@ -654,7 +702,7 @@ div.submenu span.submenu_corner:first-child {
 		margin: 0px 0 0 75px;
 		padding:0;
 		
-		*margin-top:-20px; /* IE6 */
+		*margin-top:-20px;  IE6
 	}
 		.group_topic_date {
 			float:right;
@@ -671,6 +719,9 @@ div.submenu span.submenu_corner:first-child {
 		margin: 0 0 0 75px;
 		text-align:right;
 	}
+*/
+
+
 /**
  *	单复数行换色
  */
@@ -678,40 +729,6 @@ div.submenu span.submenu_corner:first-child {
 	background:#EDF3FE;
 }
 
-/*
-.group_topic .group_topic_user {
-	float:left;
-	text-align:center;
-	width:70px;
-}
-.group_topic .group_topic_detail {
-	display:block;
-	width:590px;
-	margin: 0 0 0 75px;
-}
-	.group_topic_date {
-		float:right;
-	}
-	
-.group_topic_panel {
-	width:580px;
-	margin: 0 0 0 75px;
-	display:hidden;
-}
-	.group_topic_panel .group_topic_controller {
-		text-align:right;
-	}
-	.group_topic_chats {
-		float:right;
-		width:580px;
-		
-	}
-	
-.group_topic h2 {
-	display:inline-block;
-	margin:0;
-}
-*/
 
 
 /** Chat iFrame */
@@ -790,9 +807,20 @@ div.submenu span.submenu_corner:first-child {
 .topic_iframe {
 	width: 100%;
 	height: 300px;
-	border: 0;
+	border: 1px dashed #CCC;
+	margin: 5px 0 10px 0;
 }
 	
+	.create_topic_div {
+		margin: 0 0 0 20px;	
+	}
+		input.create_topic_title {
+			width: 400px;
+		}
+		.create_topic_content {
+			width: 480px;
+			height: 240px;
+		}
 	
 /** Footer */
 	

@@ -265,3 +265,9 @@ form p {
 .icon_douban {
 	background: url(../img/websites/douban.gif) no-repeat;
 }
+.icon_add {
+	background-position: 0 -16px;
+}
+.icon_change {
+	background-position: 0 -442px;
+}

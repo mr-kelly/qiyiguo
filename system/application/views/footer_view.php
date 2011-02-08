@@ -28,6 +28,9 @@
         			<li>
         				<a href="<?=site_url('page/about_design_qiyiguo');?>">设计之禅</a>
         			</li>
+        			<li>
+        				<a href="<?=site_url('page/invest_us');?>">投资我们</a>
+        			</li>
         		</ul>
         	</div>
         	

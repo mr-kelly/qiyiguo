@@ -29,7 +29,7 @@ $(function(){
 		
 		// 点击“最近评论”的回复，相当于按了.chat_button
 		$('.latest_chat_reply').click(function(){
-			$(this).parent().parent().parent().prevAll('.group_topic_controller').find('.chat_button').trigger('click');
+			$(this).parent().parent().parent().prevAll('.topic_controller').find('.chat_button').trigger('click');
 			
 			return false;
 		});

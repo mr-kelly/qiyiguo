@@ -27,7 +27,7 @@
 								
 		<?php foreach ( $chats as $key=>$chat ) :?>
 			
-			<li id="chat_<?=$chat['id'];?>" class="chat_item <?= ( $key % 2 == 0 ) ? 'odd' : '';?> <?= ($chat['depth']==0)?'top_chat':'';?>" style="margin-left:<?=$chat['depth'] * 10;?>px; width: <?= $chat_width - $chat['depth'] * 10;?>px; ">
+			<li id="chat_<?=$chat['id'];?>" class="chat_item <?= ( $key % 2 == 0 ) ? 'odd' : '';?> <?= ($chat['depth']==0)?'top_chat':'';?>" style="<?=( $chat['depth'] < 8 ) ? 'margin-left:' . $chat['depth'] * 10 : 'margin-left: 80px;';?>px; width: <?= ( $chat['depth'] < 8 ) ? $chat_width - $chat['depth'] * 10 : $chat_width - 80;?>px; ">
 			
 				<div class="chat_avatar">
 					<a target="_top" href="<?=site_url( 'user/' . $chat['User']['id']);?>">
