@@ -6,6 +6,16 @@
 			//exit('cannot enter test');
 			
 		}
+		
+		function test_upload_topic_pic() {
+			echo sprintf('
+				<form method="post" action="%s" enctype="multipart/form-data">
+					<input id="add_topic_pic_input" type="file" size="45" name="userfile" />
+					<input type="submit" />
+				</form>', site_url('topic/ajax_topic_upload_pic') );
+
+
+		}
 		function test_qq() {
 			$this->load->library('QQ_Connect');
 			$qq_c = $this->qq_connect->get_client();

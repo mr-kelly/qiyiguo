@@ -13,13 +13,14 @@
 		/**
 		 *	类论坛主题，发布小组主题内容
 		 */
-		function create_topic($model, $model_id, $user_id, $content, $title='' ) {
+		function create_topic($model, $model_id, $user_id, $content, $title='', $attach_img_id=null ) {
 			$data = array(
 				'title' => $title,
 				'content' => $content,
 				'model' => $model,
 				'model_id' => $model_id,
 				'user_id' => $user_id,
+				'attach_img_id' => $attach_img_id,
 				'created' => date('Y-m-d H:i:s'),
 			);
 			
@@ -51,6 +52,9 @@
 			foreach ( $topics as $k=>$v ) {
 				$topics[$k]['User'] = $this->_get_user( $topics[$k]['user_id'] );
 				
+				if ( isset( $topics[$k]['attach_img_id'] ) ) {
+					$topics[$k]['Attach_Img'] = $this->_get_attach( $topics[$k]['attach_img_id'], 'image' );
+				}
 			}
 			
 			return $topics;

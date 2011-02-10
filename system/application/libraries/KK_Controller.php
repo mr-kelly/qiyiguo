@@ -15,4 +15,17 @@
 		}
 		
 		
+		
+		
+		/**
+		 *	创建目录函数，用于上传头像是自动生成用户的头像图片存放文件夹
+		 */
+		function _createDir($path) {
+		   if (!file_exists($path)) {
+		   	
+			$this->_createDir(dirname($path));
+		
+			mkdir($path, 0777);
+		   }
+		}
 	}

@@ -67,8 +67,8 @@
         	</div>
         	
         	<div id="footer_copyright">
-        		<a href="http://mrkelly.cc" class="tipsy_s" title="知道吗？用「谷歌浏览器」会有最完整的网页效果哦">
-        			MrKelly出品
+        		<a href="<?=site_url('u/mrkelly');?>" class="tipsy_s" title="知道吗？用「谷歌浏览器」会有最完整的网页效果哦">
+        			MrKelly 出品
         		</a>
         		
         		<span>

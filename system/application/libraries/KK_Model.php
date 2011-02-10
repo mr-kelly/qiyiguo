@@ -30,6 +30,21 @@
 			return $arr[0]; //第一条
 		}
 		
+		
+		/**
+		 *	获取附件
+		 */
+		function _get_attach( $attach_id, $type='image') {
+			$query = $this->db->get_where('attach', array(
+				'id' => $attach_id,
+			));
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			} else {
+				return $query->row_array();
+			}
+		}
+		
 		/*获得用户的user profile详细, 除去密码*/
 		function _get_user( $user_id=null ) {
 			//若不填写user_id ,设置user_id为当前用户ID（若再也是空，返回空)

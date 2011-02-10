@@ -49,7 +49,9 @@
 
 </head>
 <body>
-
+	<noscript id="noscript">
+		奇异果发现您的浏览器不支持JavaScript。这将严重影响你对网站浏览！
+	</noscript>
 	
 	<div id="loading">
 		<img src="<?=static_url();?>img/loading.gif" />

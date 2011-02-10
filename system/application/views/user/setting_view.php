@@ -217,7 +217,7 @@
 								<p>
 									<label>人人网ID号</label>
 									<input class="digits" name="link_renren" type="text" value="<?=get_current_user_profile('link_renren');?>"  />
-									<a href="<?=base_url();?>wiki/获得人人网的id号">
+									<a class="sexybox_iframe" href="<?=base_url();?>wiki/获得人人网的id号">
 										如何知道自己的人人网的ID号？
 									</a>
 								</p>

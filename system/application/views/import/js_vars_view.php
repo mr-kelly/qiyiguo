@@ -2,6 +2,12 @@
 	// 全局应用的 javascript 变量
 ?>
 
+<?php
+	// Attach 图片的放置地方
+?>
+$attach_img_url = '<?=site_url("/static/upload/attach_img");?>';
+
+
 <?php	
 		if ( is_logged_in() ):
 		

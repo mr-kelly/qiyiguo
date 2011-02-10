@@ -7,9 +7,9 @@
 		<div class="content_top">
 			<div class="content_bottom">
 				<h2><?=$topic['title'];?></h2>
-				<p>
+				<div>
 					<?=$topic['content'];?>
-				</p>
+				</div>
 				
 				
 				<!-- ajax 评论 -->

@@ -2,7 +2,17 @@
 	$this->load->view('header_view'); 
 	$ci =& get_instance();
 ?>
+	<? // import_js('js/app/group/group_lookup.js');?>
+	
 	<?=import_css('css/app/group/group_lookup.css');?>
+	
+
+	<script type="text/javascript">
+		var $js_url_ajax_add_topic = '<?=site_url('topic/ajax_add_topic/group/' . $group['id'] );?>';
+	</script>
+	<?=import_js('js/app/group/group_lookup.js');?>
+	
+	
 	
 	<div id="content">
 		<div class="content_top">
@@ -52,15 +62,14 @@
 										if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
 									?>
 									<div>
-										<a class="float_right awesome large add_topic_btn" href="#">发话</a>
+										<a title="对果群发话~" class="tipsy_s float_right awesome large add_topic_btn" href="#">发话</a>
 										
 										<div class="clearboth"></div>
 									</div>
 									
-									<div class="add_topic_div hidden">
 									
-										<iframe class="topic_iframe" src="<?=site_url('topic/iframe_add_topic/group/' . $group['id'] );?>"></iframe>
-										
+									<div class="add_topic_div hidden">
+										<? // 放置 填写主题层 ?>
 									</div>
 									
 									
@@ -78,7 +87,9 @@
 									</div>
 									
 									<div class="topic_detail">
-										
+
+
+											
 										<div class="topic_topic"><? // 话题的主题: 标题和人名 ?>
 											<?php
 												$ci =& get_instance();
@@ -95,7 +106,7 @@
 											
 											<?php if ( $topic['title'] != '' ) : //标题可用？ ?>
 												<span class="topic_title">
-													<a href="<?=site_url('group/topic/' . $topic['id']);?>">
+													<a href="<?=site_url('topic/' . $topic['id']);?>">
 														<?=$topic['title'];?>
 													</a>
 												</span>
@@ -115,11 +126,27 @@
 										</div>
 										
 										<div class="topic_content">
-											<?php
-												$content = strip_tags($topic['content']);
-												echo $content;
-											?>
+
+											<div>
+												<?php
+													$content = strip_tags($topic['content']);
+												?>
+												<?=$content;?>
+											</div>
+											
+											<?php if ( isset( $topic['Attach_Img'] ) ) : ?>
+											<div class="topic_attach_img">
+												<a class="sexybox" href="<?=site_url('static/upload/attach_img/');?><?=$topic['Attach_Img']['file'];?>">
+													<img width="80" src="<?=site_url('static/upload/attach_img/');?><?=$topic['Attach_Img']['file'];?>" />
+												</a>
+												
+												
+											</div>
+											<?php endif; ?>
+											
 										</div>
+										
+
 									</div>
 									
 									
@@ -220,7 +247,9 @@
 						
 						
 					</div>
-					<?=import_js('js/app/group/group_lookup.js');?>
+					
+					
+					
 				</div>
 				
 					

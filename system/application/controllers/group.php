@@ -302,37 +302,7 @@
 			echo 'direct here?';
 		}
 		
-		/**
-		 *	小组主题
-		 */
-		function topic($topic_id = 0) {
-			if ($_SERVER['REQUEST_METHOD'] == "POST") {
-				$this->form_validation->set_rules('topic_title','Topic Title', 'trim|xss_clean');
-				$this->form_validation->set_rules('topic_content','Topic Content', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('topic_group_id','Topic Group', 'trim|required|xss_clean');
-				
-				if ( !$this->form_validation->run() ) {
-					ajaxReturn( null, validation_errors(), 0);
-				} else {
-					// 表单验证成功
-					$user_id = $this->tank_auth->get_user_id();
-					$topic_title = $this->form_validation->set_value('topic_title');
-					$topic_content = $this->form_validation->set_value('topic_content');
-					$topic_group_id = $this->form_validation->set_value('topic_group_id');
-					
-					$this->group_model->create_group_topic($topic_group_id, $user_id, $topic_title, $topic_content);
-					ajaxReturn( null, '成功发布主题!', 1);
-				}
-				
-				
-			}
-			
-			$data['topic'] = $this->group_model->get_topic_by_id($topic_id);
-			
-			$this->load->view('group/topic_view', $data);
-			
-			
-		}
+
 		
 		
 		/**

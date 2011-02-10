@@ -170,12 +170,8 @@
 				$user_id = $user_id_slug;
 				
 				$this->_if_user_404( $user_id );
-				login_redirect();
 				
 				
-				$data['user'] = $this->user_profiles_model->_get_user($user_id);
-				
-
 				
 				
 			} else {
@@ -184,12 +180,16 @@
 				$this->_if_user_404( $user_id );
 				
 				// slug对应用户存在？ 通过ID登录吧！
-				$data['user'] = $this->user_profiles_model->_get_user( $user_id );
+				
+				
 				
 				
 
 			}
 			
+			$user = $this->user_profiles_model->_get_user($user_id);
+			$data['user'] = $user;
+			$data['page_title'] = sprintf( '%s %s', $user['nickname'] , $user['realname'] );
 			
 			
 			// 如果用户查看的是自己的页面~ 菜单聚焦"个人主页"

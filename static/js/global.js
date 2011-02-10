@@ -108,24 +108,7 @@ $(function() {
     });
     
     
-    // “发话” 按钮
-    $('.add_topic_btn').click(function(){
-    	$(this).parent().next().toggle();
-    	return false;
-    });
-    
-    // topic里的添加标题按钮
-    $('.create_topic_add_title_btn').click(function(){
-    	$(this).prev().toggle();
 
-//     	$(this).toggle(function() {
-//     		$(this).text('添加标题');
-//     	},function(){
-//     		$(this).text('移除标题');
-//     	});
-    	
-    	return false;
-    });
     
     /**
      *	绑定日期设置控件

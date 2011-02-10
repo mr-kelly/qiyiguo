@@ -58,5 +58,10 @@ $route['user/(:num)'] = 'user/user_lookup/$1';
 // Page
 $route['page/(:any)'] = 'page/page_lookup/$1';
 
+
+
+// Topic
+$route['topic/(:num)'] = 'topic/topic_lookup/$1';
+
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */
