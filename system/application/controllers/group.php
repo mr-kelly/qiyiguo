@@ -194,6 +194,9 @@
 			} else if ( $action == 'members' ) {
 				// 成员列表、成员管理
 				kk_show_view('group/group_lookup_members_view', $data);
+			} else if ( $action == 'chat' ) {
+				// 聊天
+				kk_show_view('group/group_lookup_chat_view', $data);
 			}
 		}
 		

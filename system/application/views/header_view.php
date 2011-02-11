@@ -166,6 +166,7 @@
 							</span>
                         </div>
                     </li>
+                    
                     <!--
                     <li class="menu_item <?= isset($current_person) ? $current_person : '' ;?>">
                     	<a href="#">
@@ -178,21 +179,32 @@
 							<span class="submenu_item">创建群组</span>
                         </div>
                     </li>
-                    
-                    <li class="menu_item">
+                    -->
+                    <li class="menu_item <?= isset($current_event) ? $current_event : '' ;?>">
                     	<a href="#">
                     		活动
                     	</a>
                         <div class="submenu">
                             <span class="submenu_corner"></span>
                             <span class="submenu_corner"></span>
-                            <span class="submenu_item">创建群组</span>
-                            <span class="submenu_item">创建群组</span>
+                            <span class="submenu_item">查看活动</span>
+                            <span class="submenu_item">创建活动</span>
 
                         </div>
                     </li>
-                    -->
+                    
+                    <li class="menu_item <?= isset($current_friends) ? $current_friends : '' ;?>">
+                    	<a href="#">
+                    		连接
+                    	</a>
+                        <div class="submenu">
+                            <span class="submenu_corner"></span>
+                            <span class="submenu_corner"></span>
+                            <span class="submenu_item">朋友</span>
+                            <span class="submenu_item">果群</span>
 
+                        </div>
+                    </li>
                     
                 </ul>
 				

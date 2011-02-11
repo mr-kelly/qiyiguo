@@ -151,7 +151,7 @@
 			
 
 			//unset($user['id']);
-			//unset($user['password']);
+			unset($user['password']);
 			
 			// 设置一个帐户通用名 name, 根据nickname, realname, email生成
 			if ( $user_profile['realname'] == '') {

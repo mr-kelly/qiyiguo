@@ -224,7 +224,7 @@ img.avatar {
     float:left;
     height:37px;
 
-    margin:0 0 0 100px;
+    margin:0 0 0 50px;
     position:relative;
 }
 #topbar_container ul#menu li {
@@ -669,8 +669,8 @@ div.submenu span.submenu_corner:first-child {
 		.topic_content {
 		}
 			.topic_attach_img {
-				text-align: right;
-				margin: 0 20px 0 0;
+				text-align: left;
+				margin: 10px 20px 0 0;
 			}
 			
 		.topic_panel {

@@ -48,8 +48,8 @@
 <div id="content">
 	<div class="content_top">
 		<div class="content_bottom">
+			
 			<form id="user_profiles_form" method="post" action="<?=site_url('user/setting');?>">
-
 				<div class="kk_tabs">
 					<ul>
 						<li>
@@ -67,13 +67,20 @@
 								个人网址
 							</a>
 						</li>
+						
+						<li>
+							<a href="#recommend_friend_setting">
+								推荐朋友
+							</a>
+						</li>
+						
 						<li>
 							<a href="<?=site_url('user/setting/avatar');?>">
 								更换头像
 							</a>
 						</li>
 					</ul>
-					
+				
 					<div id="profile_setting"><!--资料设置-->
 						<div class="form_div">
 							
@@ -276,6 +283,80 @@
 								http://qiyiguo.cc/u/<input id="slug_input" type="text" name="slug" value="<?=get_current_user_profile('slug');?>" />
 							</p>
 						</div>
+					</div>
+					
+					<div id="recommend_friend_setting">
+						<label>输入朋友果号: </label>
+						<input type="text" name="add_recommend_id" id="add_recommend_id" />
+
+						<a id="add_recommend_btn" class="btn" href="#"><span><span>添加推荐</span></span></a>
+
+						<div>
+							<img width="80" id="add_recommend_avatar" src="<?=static_url('img/default_avatar.jpg');?>" />
+							<div>
+								<span id="add_recommend_name"></span>
+							</div>
+						</div>
+						
+						<div id="reommend_users_div">
+							
+						</div>
+						
+						<script>
+							// 读取推荐的好友到页面
+							$('#reommend_users_div').load("<?=site_url('user/ajax_get_recommends');?>");
+							
+							//添加 推荐好友的 ID输入框
+							$('#add_recommend_id').keyup(function(){
+								if ( $(this).val() != '' ) {
+									$.getJSON(
+										'<?=site_url("user/ajax_get_user");?>' + '/' + $(this).val(), 
+										function(data){
+										
+											if ( data.status == 1 ) {
+												// 放置头像
+												$avatar = data.data.avatar_thumb_url;
+												$('#add_recommend_avatar').attr('src', $avatar );
+												
+												$name = data.data.name;
+												$('#add_recommend_name').text( $name );
+												
+												
+												
+											} else {
+												// 用户不存在！ 清空调出数据
+												$('#add_recommend_name').text('');
+												$('#add_recommend_avatar').attr('src', $default_user_avatar );
+											}
+										
+									});
+								}
+							});
+							
+							$('#add_recommend_btn').click(function(){
+								// 如果还没填ID，不反应
+								if ( $('#add_recommend_id').val() == '' ) {
+									return false;
+								}
+								
+								
+								// 添加推荐好友
+								$.getJSON( 
+									'<?=site_url("user/ajax_add_recommend");?>' + '/' + $('#add_recommend_id').val(),
+									function(data){
+										if ( data.status == 1 ) {
+											// 重新读取推荐好友div
+											$('#reommend_users_div').load("<?=site_url('user/ajax_get_recommends');?>");
+											kk_growl.success('成功添加推荐用户');
+											
+										} else {
+											kk_growl.error( data.info );
+										}
+										
+								});
+								return false;
+							});
+						</script>
 					</div>
 					
 				</div>

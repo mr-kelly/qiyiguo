@@ -90,6 +90,8 @@
 				'status' => $status,
 			);
 			
+			header("Content-type: text/javascript");
+						
 			echo json_encode($arr);
 			exit();
 			
@@ -258,5 +260,16 @@
 		echo compress_html( $html );
 		//echo $html;
 		
+	}
+	
+	
+	/**
+	 *	话题~ helper函数
+	 
+	 		将topic的content转化成  200字内， 多了显示（显示更多）
+	 */
+	function kk_content_preview( $content ) {
+		$return = str_split( $content , 402 );
+		return $return[0] . '...';
 	}
 	

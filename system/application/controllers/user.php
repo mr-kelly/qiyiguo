@@ -215,8 +215,8 @@
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				// 处理提交的用户profile资料
-				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[8]');
+				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[12]');
 				
 				$this->form_validation->set_rules('gender', '性别', 'required|trim|xss_clean');
 				
@@ -1103,9 +1103,59 @@ EOT;
 		
 		
 		
+		/**
+		 *	Ajax返回指定用户的信息 返回名字，头像，ID
+		 */
+		function ajax_get_user( $user_id ) {
+			login_redirect();
+			
+			$user = $this->user_profiles_model->_get_user( $user_id );
+			if ( $user['id'] != 0 ) {
+				
+				ajaxReturn( array(
+								'id' => $user['id'],
+								'name' => $user['name'],
+								// 自动提供头像全网址
+								'avatar_thumb_url' =>  isset( $user['Avatar']) ? static_url('upload/avatars/' . $user['id'] ) . '/' . $user['Avatar']['avatar_thumb'] : static_url('img/default_avatar.jpg'),
+								), 'user here', 1 );
+				
+			} else {
+			
+				ajaxReturn( $user, '用户不存在', 0 );
+			}
+		}
+		
+		/**
+		 *	为当前用户添加推荐朋友~
+		 */
+		function ajax_add_recommend( $user_id ) {
+			$this->load->model('user_recommend_model');
+			$add_recommend = $this->user_recommend_model->add_user_recommend( get_current_user_id(), $user_id, 'friend');
+			
+			if ( $add_recommend ) {
+				ajaxReturn( null, 'add recommend', 1);
+			} else {
+				ajaxReturn( null, '无法添加推荐好友！', 0);
+			}
+		}
 		
 		
-		
+		/**
+		 *	获取当前用户的 “推荐用户”， 返回ajax页
+		 */
+		function ajax_get_recommends() {
+			login_redirect();
+			
+			$this->load->model('user_recommend_model');
+			
+			$recommend_users = $this->user_recommend_model->get_user_recommends( get_current_user_id() );
+			
+			
+			$render = array(
+				'recommend_users' => $recommend_users,
+			);
+			kk_show_view('user/ajax_get_recommends_view', $render);
+		}
 		
 		
 		

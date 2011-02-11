@@ -19,7 +19,7 @@
 				
 				<script>
 					$(function(){
-						$('.chats_container').load('<?=site_url("chat/ajax_get_chats/group_topic/" . $topic["id"] );?>');
+						$('.chats_container').load('<?=site_url("chat/ajax_get_chats/topic/" . $topic["id"] );?>');
 					});
 				</script>
 			</div>

@@ -47,6 +47,11 @@
 								</a>
 							</li>
 							<li>
+								<a class="" href="<?=site_url('group/' . $group['id'] . '/chat');?>">
+									聊天
+								</a>
+							</li>
+							<li>
 								<a href="<?=site_url('group/' . $group['id'] . '/stream');?>">
 									新闻台
 								</a>
@@ -131,7 +136,7 @@
 												<?php
 													$content = strip_tags($topic['content']);
 												?>
-												<?=$content;?>
+												<?= kk_content_preview( $content );?>
 											</div>
 											
 											<?php if ( isset( $topic['Attach_Img'] ) ) : ?>

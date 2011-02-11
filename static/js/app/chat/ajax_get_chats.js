@@ -1,5 +1,5 @@
 $(function(){
-		var $chat_form_input_tips = '给力地回复他';
+		var $chat_form_input_tips = '说点什么...';
 		$('.chat_form .chat_content').input_tips( $chat_form_input_tips );
 		
 		
@@ -19,16 +19,29 @@ $(function(){
 		
 		/** 聚焦 chat输入框时， 框变大并显示“提交”按钮。   Textarea变身 */
 		$('.chat_content').focus(function(){
-		
+			
+			// 如果有“自动刷新”，关闭
+			if ( typeof( $chat_refresh_switch ) != 'undefined' ) {
+				clearInterval( $chat_refresh_switch );
+			}
+			
+			
+			
 			$(this).attr('rows', '3');
 			$(this).nextAll('button[type=submit]').show();
 			$(this).prevAll('.chat_form_avatar').show();
 			
 		}).blur(function(){
-		
+				
+			// 如果定义了 chat刷新函数，那么令它自动刷新～
+			if ( typeof( chat_refresh ) != 'undefined' ) {
+				$chat_refresh_switch = setInterval( chat_refresh, $chat_refresh_time );
+			}
+			
+			
 			$(this).attr('rows' ,'1');
 			
-			
+
 			
 			// 延迟取消提交按钮，否则用户按不到，就不见了
 			setTimeout('$("button[type=submit]").hide();$(".chat_form_avatar").hide();', 500);

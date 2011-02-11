@@ -71,6 +71,8 @@
         			MrKelly 出品
         		</a>
         		
+        		&copy;
+        		
         		<span>
 			   		{elapsed_time} version 0.34
 			    </span>
@@ -106,8 +108,9 @@ pageTracker._trackPageview();
 
 <!-- 然后将以下这段代码放到网页页尾 -->
 <!-- JiaThis Button BEGIN -->
-<script type="text/javascript" charset="utf-8" src="http://www.jiathis.com/code/jia.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://v2.jiathis.com/code/jia.js"></script>
 <!-- JiaThis Button END -->
+
 
 
 <script>

@@ -80,19 +80,7 @@
 	<? // 简繁转换 ?>
 	<?=import_js('js/tw_cn.js');?>
 	
-	
-	
-	<?php // jQuery Corner   not for IE?>
-	<?php  if (strspn("MSIE",$_SERVER["HTTP_USER_AGENT"]) != 4 ): ?>
-	
-		<?=import_js('js/kk.corner.js');?>
-		<script>
-			$(function(){
-				$('img').corner('5px');
-			});
-		</script>
-		
-	<?php endif; ?>
+
 	
 	
 	<script>

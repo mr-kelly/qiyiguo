@@ -27,7 +27,7 @@
 						
 							<h2>奇异果的奇异之处</h2>
 							<p>
-								家 关注即朋友 拥趸 社交导航 节目 微言大义 另一半
+								家 互相心动 拥趸 社交导航 节目 微言大义 另一半
 							</p>
 							
 							
@@ -134,16 +134,6 @@
 									</a>
 								</div>
 								
-								<div class="other_login_item">
-									<xn:login-button autologoutlink="true"></xn:login-button>
-									<script type="text/javascript" src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
-									<script type="text/javascript">
-									  XN_RequireFeatures(["EXNML"], function()
-									  {
-										XN.Main.init("16356ddc758343a39400837e79f1a18e", "/xd_receiver.html");
-									  });
-								   </script>
-								</div>
 							</div>
 							
             			</div>
