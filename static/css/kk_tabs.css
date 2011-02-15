@@ -13,21 +13,24 @@
 	 margin: 0 0 0 0px;
 	 color: #009900;
 }
-.kk_tabs > ul {
+div.kk_tabs ul.tab_menu {
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	height: 30px;
 }
 
-.kk_tabs > ul li {
+div.kk_tabs ul.tab_menu li {
 	float: left;
 	width: 80px;
 	height: 30px;
 	line-height: 30px;
+	display: inline;
 	margin: 0 2px 0 0;
+	padding:0;
 	list-style: none;
 }
-.kk_tabs > ul li a {
+div.kk_tabs ul.tab_menu li a {
 	display: block;
 	width: 100%;
 	height: 30px;
@@ -54,24 +57,24 @@
 	border-bottom-right-radius: 0;
 }
 
-	.kk_tabs > ul li a:hover {
+	.kk_tabs ul.tab_menu li a:hover {
 		background: #EEE;
 		height: 29px;
 		text-decoration: none;
 		
 	}
-	.kk_tabs > ul li a.selected {
+	.kk_tabs ul.tab_menu li a.selected {
 		background: #96C63F;
 		color: #FFF;
 		border-bottom: 0;
 		font-size: 14px;
 	}
 
-.kk_tabs > div {
+.kk_tabs div.tab_div {
 	clear:left;
 	padding: 5px 10px;
 	border: 2px solid #96C63F;
-	
+	margin: 0;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;

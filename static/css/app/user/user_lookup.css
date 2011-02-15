@@ -36,6 +36,7 @@
 
 
 
+/*
 	#user_profile_avatar {
 		float: left;
 		margin: 8px 0 0 8px;
@@ -47,6 +48,7 @@
 			display: inline-block;
 			margin: 0;
 		}
+*/
 
 
 
@@ -68,6 +70,7 @@
 
 
 /* 用户资料页,详细资料*/
+/*
 #user_profile_detail {
 	width: 100%;
 }
@@ -76,12 +79,13 @@
 		margin: 0;
 		padding: 0 0 0 20px;
 	}
+*/
 	
-.user_relation_tabs ul li {
+div.user_relation_tabs ul.tab_menu li {
 	width: 113px;
 }
 
-.user_relation_tabs > div {
+.user_relation_tabs div.tab_div {
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 }

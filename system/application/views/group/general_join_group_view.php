@@ -40,29 +40,32 @@
 			 <script>
 				 $(function(){
 					 $('.join_group_btn').click(function(){
-						 $.post(
-							 $(this).attr('href'),
-							 {
-								 message: $('#group_message').val()
-							 },
-							 function(data) {
-								 alert(data);
-								 data = $.parseJSON(data);
-								 
-								 if ( data.status == 0 ) {
-									 // 返回失败，并且data提示信息为message，那么显示输入message
-									 if ( data.data == 'message') {
-										 $('#join_group_box').fadeIn();	
-									 }
-									 //alert($('#group_message').val());
-								 }
-								 
-								 if ( data.status == 1 ) {
-									 // 成功添加请求
-									 window.location = '';
-								 }
-								 
-						 });
+					 	//点击“加入”群组以后...
+					 	
+					 	
+// 						 $.post(
+// 							 $(this).attr('href'),
+// 							 {
+// 								 message: $('#group_message').val()
+// 							 },
+// 							 function(data) {
+// 								 alert(data);
+// 								 data = $.parseJSON(data);
+// 								 
+// 								 if ( data.status == 0 ) {
+// 									 // 返回失败，并且data提示信息为message，那么显示输入message
+// 									 if ( data.data == 'message') {
+// 										 $('#join_group_box').fadeIn();	
+// 									 }
+// 									 //alert($('#group_message').val());
+// 								 }
+// 								 
+// 								 if ( data.status == 1 ) {
+// 									 // 成功添加请求
+// 									 window.location = '';
+// 								 }
+// 								 
+// 						 });
 						 return false;
 					 });
 				 });
@@ -76,7 +79,7 @@
 		 
 		 if ($ci->group_model->is_group_admin($group['id'], get_current_user_profile('id'))):
  ?>
-			 ,还是管理员<a href="<?=site_url('group/setting/'.$group['id']);?>">友群设置</a>
+			 ,还是管理员<a href="<?=site_url('group/setting/'.$group['id']);?>">果群设置</a>
  <?php
 		 endif;
 	 }

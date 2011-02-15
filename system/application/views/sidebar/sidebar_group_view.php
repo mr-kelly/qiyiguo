@@ -12,13 +12,18 @@
 
 
 <?php if ( isset( $group ) ) : ?>
+<!-- 
 <div class="sidebar_widget">
 	
 	<h2><?=$group['name'];?> <span class="small">(<?=$group['id'];?>)</span></h2>
     <img width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
 </div>
+ -->
 <?php endif; ?>
 
+<div class="sidebar_widget">
+	<h2>关系果群</h2>
+</div>
 
 <div class="sidebar_widget">
 	<h2>果群面板</h2>
@@ -62,7 +67,7 @@
 		
 		
 		<li>
-			<a class="tipsy_e" title="由你来创建一个群组~它可以是你的朋友圈、公司、组织、兴趣小组" href="<?=site_url('group/new_group');?>">
+			<a class="tipsy_e sexybox_iframe" title="由你来创建一个群组~它可以是你的朋友圈、公司、组织、兴趣小组" href="<?=site_url('group/iframe_new_group');?>">
 				<span class="hover"></span>
 				<span class="icon icon_create_group"></span>
 				创建新果群

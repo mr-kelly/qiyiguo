@@ -2,7 +2,7 @@
 
 十分之荣幸你能查看页面的源代码
 
-	也许，你懂技术; 也许，你有激情; 也许，你有想法; 也许...
+	也许，你懂技术～ 也许，你有激情～ 也许，你有想法～ 也许...
 	不论怎样，也许，你可以联系我
 	
 	
@@ -17,10 +17,13 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <meta name="description" content="［奇异果］是一个基于果群的社交网络，它帮助你发现与创造生活的每一刻。" />
     <meta name="keywords" content="同学,大学生,陈霈霖,Mrkelly,公司,小区,学校,社交网站" />
+    
+    <meta name="generator" content="BBEdit 9.5 / Komodo Edit 5" />
     
     <!-- no cache headers -->
     <meta http-equiv="Pragma" content="no-cache" />
@@ -63,42 +66,8 @@
 	</div>
        
        
-       
-    <div id="navigator">
-    	<div class="nav_content">
-	    	<ul>
-	    		<li class="nav_h">个人</li>
-	    		
-	    		<li>
-	    			<a href="#">
-	    				<span class="icon icon_person"></span>
-	    				个人主页
-	    			</a>
-	    		</li>
-	    		<li>
-	    			<a href="#">
-	    				<span class="icon icon_person"></span>
-	    				我的朋友
-	    			</a>
-	    		</li>
-	    		<li>
-	    			<a href="#">
-	    				<span class="icon icon_person"></span>
-	    				我的朋友
-	    			</a>
-	    		</li>
-	    		
-	    		
-	    		<li class="nav_h">果群</li>
-	    		
-	    		<li>
-	    			<a href="#">
-	    				<span class="icon icon_joined_group"></span>
-	    				我加入的果群
-	    			</a>
-	    		</li>
-	    	</ul>
-    	</div>
+    <?php $render = array(); $this->load->view('general/navigator', $render); ?>
+
 		
 		
 		<div class="clearboth"></div>
@@ -162,7 +131,7 @@
                             <span class="submenu_corner"></span>
                             
 							<span class="submenu_item">
-								<a href="<?=site_url('group/new_group');?>">创建群组</a>
+								<a class="sexybox_iframe" href="<?=site_url('group/iframe_new_group');?>">创建群组</a>
 							</span>
                         </div>
                     </li>

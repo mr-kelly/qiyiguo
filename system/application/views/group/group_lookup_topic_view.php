@@ -18,56 +18,27 @@
 		<div class="content_top">
 			<div class="content_bottom">
 				<div id="lookup_head">
-				
-					<div class="lookup_avatar">
-						<img class="avatar" width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
-					</div>
-					
-					<div class="lookup_easy_profile">
-						<h2>
-							<span class="icon icon_group tipsy_s" title="这是一个果群"></span>
-							<?=$group['name'];?>
-						</h2>
-					</div>
-				
+					<?php $this->load->view('group/general_group_lookup_head');?>
 				</div>
 
 
 				<div id="lookup_main">
-					<div class="kk_tabs">
-						<ul>
-							<li>
-								<a href="<?=site_url('group/' . $group['id'] );?>">
-									首页
-								</a>
-							</li>
-							<li>
-								<a class="selected" href="#group_topic_tab">
-									话题
-								</a>
-							</li>
-							<li>
-								<a class="" href="<?=site_url('group/' . $group['id'] . '/chat');?>">
-									聊天
-								</a>
-							</li>
-							<li>
-								<a href="<?=site_url('group/' . $group['id'] . '/stream');?>">
-									新闻台
-								</a>
-							</li>
-						</ul>
 						
 						
-						<div id="group_topic_tab">
+
 						
-	
+						<div id="group_topic_tab" class="tab_div">
+						
+						
+
+						
+						
 									<?php
 										// 判断用户是否属于该群组，属于，可以发文章
 										if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
 									?>
 									<div>
-										<a title="对果群发话~" class="tipsy_s float_right awesome large add_topic_btn" href="#">发话</a>
+										<a title="对果群发话~" class="tipsy_s awesome large add_topic_btn" href="#">发话</a>
 										
 										<div class="clearboth"></div>
 									</div>
@@ -75,6 +46,13 @@
 									
 									<div class="add_topic_div hidden">
 										<? // 放置 填写主题层 ?>
+										<?php
+											$this->load->view('topic/ajax_add_topic_view', array(
+												'model' => 'group',
+												'model_id' => $group['id'],
+											));
+										?>
+										
 									</div>
 									
 									
@@ -83,6 +61,10 @@
 									?>
 									
 							<ul class="topics_list">
+						<?php
+							// 群组话题不为空，显示
+							if ( !empty($topics) ) : 
+						?>
 							<?php foreach ( $topics as $key=>$topic ) : ?>
 								<li class="topic">
 									<div class="topic_user">
@@ -134,9 +116,9 @@
 
 											<div>
 												<?php
-													$content = strip_tags($topic['content']);
+													//$content = strip_tags();
 												?>
-												<?= kk_content_preview( $content );?>
+												<?= kk_content_preview( $topic['content'] );?>
 											</div>
 											
 											<?php if ( isset( $topic['Attach_Img'] ) ) : ?>
@@ -245,23 +227,39 @@
 									
 								</li>
 							<?php endforeach; ?>
+						<?php
+							else: 
+								// 群组为空？显示没有
+						?>
+							<div>
+								没有话题
+							</div>
+						
+						<?php endif; ?>
+						
+						
 							</ul>
 							
 							
 						</div>
 						
-						
-					</div>
-					
-					
+				
 					
 				</div>
 				
 					
 			</div>
 		</div>
+	</div><!-- End Content-->
+	
+	
+	<div id="sidebar">
+		<div class="sidebar_top">
+			<div class="sidebar_bottom">
+				<?php $this->load->view('sidebar/sidebar_group_view'); ?>
+			</div>
+		</div>
 	</div>
-
 <?php 
 	$this->load->view('footer_view'); 
 ?>

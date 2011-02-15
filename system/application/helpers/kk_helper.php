@@ -90,7 +90,7 @@
 				'status' => $status,
 			);
 			
-			header("Content-type: text/javascript");
+			//header("Content-type: text/javascript");
 						
 			echo json_encode($arr);
 			exit();
@@ -266,10 +266,17 @@
 	/**
 	 *	话题~ helper函数
 	 
-	 		将topic的content转化成  200字内， 多了显示（显示更多）
+	 		将topic的content转化成  402字内， 多了显示（显示更多）
 	 */
 	function kk_content_preview( $content ) {
-		$return = str_split( $content , 402 );
-		return $return[0] . '...';
+	
+		$return = str_split( $content , 402 ); // 返回数组
+		
+		if ( sizeof( $return ) == 1 ) {
+			return strip_tags( $return[0] );
+		}
+		
+		// 如果切割了不同数组～ 那么，添加省略号，只取第一个
+		return strip_tags( $return[0] ) . '...';
 	}
 	

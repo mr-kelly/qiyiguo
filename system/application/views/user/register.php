@@ -15,7 +15,7 @@
 			
 
 			<div class="kk_tabs">
-				<ul>
+				<ul class="tab_menu">
 					<li>
 						<a href="#register_tab">
 							注册
@@ -24,7 +24,7 @@
 				</ul>
 				
 				
-				<div id="register_tab" class="hidden">
+				<div id="register_tab" class="hidden tab_div">
 				
 					<div id="register_general">
 						<h2>注册</h2>
@@ -94,8 +94,8 @@
 						<h3>已注册?</h3>
 						
 						<div class="other_login_item">
-							<a title="转到登录页面，进行正常登录" class="tipsy_se" href="<?=site_url('user/iframe_login');?>">
-								转到登录页面
+							<a title="转到登录页面，进行正常登录" class="btn tipsy_se" href="<?=site_url('user/iframe_login');?>">
+								<span><span>去登录</span></span>
 							</a>
 						</div>
 						

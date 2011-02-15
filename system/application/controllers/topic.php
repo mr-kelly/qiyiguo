@@ -5,6 +5,7 @@
 		function ajax_add_topic( $model, $model_id ) {
 		
 			login_redirect();
+			$this->load->library('KK_Filter');
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				$this->form_validation->set_rules('title', '标题', 'xss_clean|trim');
@@ -16,8 +17,14 @@
 				} else {
 					// Create Topic
 					$title = $this->form_validation->set_value('title');
-					$content = $this->form_validation->set_value('content');
+					
+					$content = $this->kk_filter->filter( $this->form_validation->set_value('content') );
 					$attach_img_id = $this->form_validation->set_value('attach_img_id');
+					
+					
+					// 过滤<meta>等非法标签
+					//$content = strip_tags( $content, '<p><a><span><div><b><font>');
+					
 					
 					$this->load->model('topic_model');
 					$topic_id = $this->topic_model->create_topic( $model, $model_id, 
@@ -25,7 +32,7 @@
 															$content, $title, 
 																$attach_img_id );
 					
-					ajaxReturn( null, 'Success Topic Created', 1);
+					ajaxReturn( $this->input->post('content'), 'Success Topic Created', 1);
 				
 				}
 				
@@ -97,8 +104,8 @@
 				'upload_path' => $upload_path,
 				'allowed_types' => 'gif|jpg|png',
 				'max_size' => '1024',
-				'max_width' => '2048',
-				'max_height' => '1500',
+				'max_width' => '4096',
+				'max_height' => '3000',
 				'encrypt_name' => true, // 随机名
 			);
 			

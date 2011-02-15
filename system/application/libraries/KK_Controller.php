@@ -1,4 +1,7 @@
 <?php
+	/**
+	 *  母控制器，所有控制器继承KK_Controller
+	 */
 	class KK_Controller extends Controller {
 		function __construct() {
 

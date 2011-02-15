@@ -14,14 +14,14 @@
 
             	
             	<div id="lookup_head">
-					<div id="user_profile_avatar">
+					<div class="lookup_avatar">
 						<a class="sexybox" href="<?=get_user_avatar_url( $user['id'], 'big' );?>">
 							<img class="avatar" width="100" src="<?=get_user_avatar_url( $user['id'] );?>" />
 						</a>
 						
 					</div>
 					
-					<div id="user_easy_profile">
+					<div class="lookup_easy_profile">
 						<h2>
 							<span class="icon icon_user tipsy_s" title="这是一个人"></span>
 							<?=get_user_name( $user['nickname'], $user['realname'] );?>
@@ -29,7 +29,8 @@
 								&nbsp;&nbsp;果号:<?=$user['id'];?>
 							</span>
 						</h2>
-						<div id="user_easy_intro_div">
+						
+						<div>
 									<?php
 										$ci =& get_instance();
 										$ci->load->model('dict_model');
@@ -101,6 +102,25 @@
 							
 							<div class="lookup_aside_widget">
 								<h2>推荐好友</h2>
+								
+								<? //print_r( $user_recommends ); ?>
+								
+								<div class="lookup_aside_content">
+								<?php foreach ( $user_recommends as $user_recommend ) : ?>
+									<div class="user">
+										<div>
+											<img width="50" src="<?=get_user_avatar_url( $user_recommend['id'] );?>" />
+										</div>
+										
+										<div>
+											<a href="<?=site_url('u/' . $user_recommend['id'] );?>">
+												<?=$user_recommend['name'];?>
+											</a>
+										</div>
+										
+									</div>
+								<?php endforeach; ?>
+								</div>
 							</div>
 							
 							<div class="lookup_aside_widget">
@@ -221,7 +241,7 @@
 			<div class="sidebar_bottom">
 				<input value="告诉我，你今天心情如何？" />
 				<div class="kk_tabs user_relation_tabs">
-					<ul>
+					<ul class="tab_menu">
 						<?php
 							$ci =& get_instance();
 							$ci->load->model('relation_model');
@@ -238,7 +258,7 @@
 						</li>
 					</ul>
 					
-					<div id="user_friends" class="hidden">
+					<div id="user_friends" class="hidden tab_div">
 						<?php
 							$user_friends = $ci->relation_model->get_friends( $user['id'] );
 							//print_r( $user_friends );
@@ -253,7 +273,7 @@
 						?>
 					</div>
 					
-					<div id="user_fans" class="hidden">
+					<div id="user_fans" class="hidden tab_div">
 						<?php
 							$user_fans = $ci->relation_model->get_fans( $user['id'] );
 							foreach( $user_fans as $fan ):

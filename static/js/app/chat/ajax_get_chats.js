@@ -32,8 +32,8 @@ $(function(){
 			$(this).prevAll('.chat_form_avatar').show();
 			
 		}).blur(function(){
-				
-			// 如果定义了 chat刷新函数，那么令它自动刷新～
+			
+			// 如果定义了 chat刷新函数，那么令它自动刷新～  还有发布评论后
 			if ( typeof( chat_refresh ) != 'undefined' ) {
 				$chat_refresh_switch = setInterval( chat_refresh, $chat_refresh_time );
 			}
@@ -77,6 +77,14 @@ $(function(){
 						target_message( $chat_form.find('.target_message'), '', 'none');
 						
 						$('#chat_' + $chat_id).focus();
+						
+						
+						// 发布评论后自动刷新~
+						// 如果定义了 chat刷新函数，那么令它自动刷新～
+						if ( typeof( chat_refresh ) != 'undefined' ) {
+							$chat_refresh_switch = setInterval( chat_refresh, $chat_refresh_time );
+						}
+						
 						
 						// 设置滚动条位置在发布回复刚刚的位置
 						//$chats_container.scrollTop( $chats_container_scrollTop );

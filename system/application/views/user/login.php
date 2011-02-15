@@ -12,7 +12,7 @@
 		
 		<div class="kk_tabs">
 		
-			<ul>
+			<ul class="tab_menu">
 				<li><a href="#login_tab">登录</a></li>
 				<li><a href="#login_forget_password_tab">忘记密码?</a></li>
 				<li>
@@ -20,7 +20,7 @@
 				</li>
 			</ul>
 			
-			<div id="login_tab" class="hidden">
+			<div id="login_tab" class="hidden tab_div">
 				
 				<div id="other_login" class="form_div">
 					<h2>直接登录</h2>
@@ -101,14 +101,14 @@
 			
 			
 			
-			<div id="login_forget_password_tab" class="hidden">
+			<div id="login_forget_password_tab" class="hidden tab_div">
 				<h2>忘记了注册密码?</h2>
 				<p>
 					怎么做
 				</p>
 			</div>
 			
-			<div id="login_forget_email_tab" class="hidden">
+			<div id="login_forget_email_tab" class="hidden tab_div">
 				<h2>忘记了注册邮箱?</h2>
 				<p>
 					怎么

@@ -11,29 +11,56 @@
 		 *	创建一个友群
 		 *	 $cat_id 对应的group_category_id
 		 */
-		function create_group($name, $cat_id=0, $privacy='public', $verify='request', $owner_id=0, $slug='') {
+// 		function create_group($name, $cat_id=0, $privacy='public', $verify='request', $owner_id=0, $slug='') {
+// 			
+// 			
+// 			$ci =& get_instance();
+// 			$ci->load->library('Guo_id');
+// 			
+// 			$data = array(
+// 				'id' => $ci->guo_id->generate_group_id(), // 随机生成群组的果ID
+// 			
+// 				'name' => $name,
+// 				'category_id' => $cat_id,
+// 				'privacy' => $privacy,
+// 				'owner_id' => $owner_id,  // 创始人
+// 				'slug' => $slug,
+// 				'verify' => $verify,    // 需要经过管理员验证，提交请求通过
+// 				'created' => date('Y-m-d H:i:s'),
+// 			);
+// 			$this->db->insert('group', $data);
+// 			
+// 			$group_id =  $this->db->insert_id();
+// 			
+// 			
+// 			// 将owner创始人加入群组，并设为管理员
+// 			$data = array(
+// 				'group_id' => $this->db->insert_id(),
+// 				'user_id' => $owner_id,
+// 				'user_role' => 'admin',
+// 				'created' => date('Y-m-d H:i:s'),
+// 			);
+// 			$this->db->insert('group_user',$data);
+// 			
+// 			return $group_id;
+// 		}
 		
-			
+		function create_group( $data ) {
 			$ci =& get_instance();
 			$ci->load->library('Guo_id');
 			
-			$data = array(
-				'id' => $ci->guo_id->generate_group_id(), // 随机生成群组的果ID
+			$this->db->insert('group', $data + array(
+				'id' => $ci->guo_id->generate_group_id(),
+				'created' => date('Y-md-d H:i:s'),
+			));
 			
-				'name' => $name,
-				'category_id' => $cat_id,
-				'privacy' => $privacy,
-				'owner_id' => $owner_id,  // 创始人
-				'slug' => $slug,
-				'verify' => $verify,    // 需要经过管理员验证，提交请求通过
-				'created' => date('Y-m-d H:i:s'),
-			);
-			$this->db->insert('group', $data);
+			$group_id = $this->db->insert_id(); // 获得果群ID
 			
-			$group_id =  $this->db->insert_id();
+			$owner_id = $data['owner_id'];
+			
 			// 将owner创始人加入群组，并设为管理员
 			$data = array(
-				'group_id' => $this->db->insert_id(),
+				'group_id' => $group_id,
 				'user_id' => $owner_id,
 				'user_role' => 'admin',
 				'created' => date('Y-m-d H:i:s'),
@@ -41,6 +68,7 @@
 			$this->db->insert('group_user',$data);
 			
 			return $group_id;
+			
 		}
 		
 		/**
@@ -141,7 +169,7 @@
 		
 			$query = $this->db->get('group_category');
 			
-			return $query->result();
+			return $query->result_array();
 		}
 		
 		/**

@@ -188,16 +188,21 @@
 			}
 			
 			$user = $this->user_profiles_model->_get_user($user_id);
-			$data['user'] = $user;
-			$data['page_title'] = sprintf( '%s %s', $user['nickname'] , $user['realname'] );
+			$render['user'] = $user;
+			$render['page_title'] = sprintf( '%s %s', $user['nickname'] , $user['realname'] );
 			
+			
+			// 传入该用户的"推荐朋友"
+			$this->load->model('user_recommend_model');
+			$user_recommends = $this->user_recommend_model->get_user_recommends( $user_id );
+			$render['user_recommends'] = $user_recommends;
 			
 			// 如果用户查看的是自己的页面~ 菜单聚焦"个人主页"
 			if ( $user_id == get_current_user_id() ) {
-				$data['current_user_home'] = 'current_menu';
+				$render['current_user_home'] = 'current_menu';
 			}
 
-			kk_show_view('user/user_lookup_view', $data);
+			kk_show_view('user/user_lookup_view', $render);
 
 		}
 		
@@ -673,8 +678,8 @@ EOT;
 					$this->load->library('Tank_auth');
 					
 					if ( $this->tank_auth->login_without_password( $user['email'] , $remember ) ) {
-						//echo 'logined';
-						redirect('home/welcome');
+						// 用新浪微博帐号，用户成功登录，转到“开始页”
+						redirect('home/start');
 					} else {
 						echo 'not logined';
 					}
@@ -740,7 +745,8 @@ EOT;
 					// 协助登录
 					$this->load->library('Tank_auth');
 					if ( $this->tank_auth->login_without_password( $login_user['email'] , $remember ) ) {
-						redirect('home/welcome');
+						// 豆瓣登录成功，转到开始页
+						redirect('home/start');
 					} else {
 						echo 'not logined';
 					}
@@ -1074,7 +1080,7 @@ EOT;
 					'user_groups' => $this->group_model->get_user_groups($current_user_id),
 				);
 				
-				$this->load->view('user/joined_groups_view', $data);
+				kk_show_view('user/joined_groups_view', $data);
 			}
 		}
 		

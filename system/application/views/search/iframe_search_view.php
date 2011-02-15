@@ -36,11 +36,11 @@
 
 
 <div class="kk_tabs">
-	<ul>
+	<ul class="tab_menu">
 		<li><a href="#search_main">搜索</a></li>
 	</ul>
 	
-	<div id="search_main">
+	<div id="search_main" class="tab_div">
 		
 		<form target="_parent" method="get" action="<?=site_url('search');?>">
 		

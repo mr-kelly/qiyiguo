@@ -63,5 +63,14 @@ $route['page/(:any)'] = 'page/page_lookup/$1';
 // Topic
 $route['topic/(:num)'] = 'topic/topic_lookup/$1';
 
+
+
+
+
+// 果园
+$route['orchard/'] = 'orchard/home/index';
+
+
+
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

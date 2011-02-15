@@ -4,7 +4,10 @@
 	 *	奇异果 关键字 过滤器～
 	 */
 	class KK_Filter {
+		function __construct() {
 		
+			$this->replace_chr = '***'; // 用于替换的字符串`
+		}
 		/**
 		 *	行动！ 过滤！
 		 
@@ -19,6 +22,8 @@
 									
 			$option += $default_option;
 			
+			
+			$string = $this->keywords_filter( $string );
 			
 			
 			// 这个在 先～ 否则html都被htmlspecialchars转义了
@@ -43,9 +48,24 @@
 		}
 	
 		
-	
+		
+		/**
+		 *	关键字过滤， 将指定的关键字过滤成 ***
+		 */
 		private function keywords_filter( $string ) {
 			
+			// 定义非法字符。  后面应该在数据库去读取
+			$keywords_to_filter = array(
+				'共产党',
+			);
+			
+			foreach( $keywords_to_filter as $kw ) {
+				// 替换非法字符～
+				$string = str_replace( $kw, $this->replace_chr, $string );
+			}
+			
+			
+			return $string;
 		}
 	
 	

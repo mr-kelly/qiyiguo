@@ -80,12 +80,22 @@ img.avatar {
 
 #loading,#loading_error {
 	position:fixed;
+	top: 0;
 	z-index:99999;
 	background:#FFF1A8;
-	width:10%;
+	width:100px;
 	height:20px;
 	line-height:20px;
 	margin:0 45%;
+	
+	/*IE*/
+/*
+	*margin: 0;
+	*right: 45%;
+	*position: absolute;
+	*top: expression( eval(document.compatMode && document.compatMode==’CSS1Compat’) ? documentElement.scrollTop + (documentElement.clientHeight – this.clientHeight) – 1 : document.body.scrollTop + (document.body.clientHeight – this.clientHeight) – 1);
+	
+*/
 }
 #loading_error {
 	background:#FDD;
@@ -105,7 +115,7 @@ img.avatar {
 	z-index: 99999;
 	position: absolute;
 	top: 150px;
-	
+	left: 0;
 
 	
 
@@ -478,6 +488,7 @@ div.submenu span.submenu_corner:first-child {
 		
 	.sidebar_users_list {
 		margin: 0;
+		padding: 0 0 0 20px;
 	}
 		.sidebar_users_list li {
 			list-style: none;
@@ -552,6 +563,55 @@ div.submenu span.submenu_corner:first-child {
 				border-bottom: 1px dashed #CCC;
 				margin: 20px 0px 0px 0;
 			}
+			.lookup_avatar {
+				float: left;
+				margin: 8px 0 0 8px;
+			}
+			
+			.lookup_easy_profile {
+			
+			}
+			
+				.lookup_easy_profile {
+					margin: 8px 0 0 120px;
+				}
+					.lookup_easy_profile h2 {
+						display: inline-block;
+						margin: 0;
+					}
+			
+			/**
+			 *	群组、个人查看页的菜单选择
+			 */
+			.lookup_menu {
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				bottom: 1px;
+				right: 30px;
+			}
+				.lookup_menu li {
+					list-style: none;
+					float: left;
+					height: 20px;
+					line-height: 20px;
+					width: 60px;
+					
+					text-align: center;
+				}
+				.lookup_menu li a {
+					border-left: #96C63F 1px solid;
+					border-right: #96C63F 1px solid;
+					border-top: #96C63F 1px solid;
+					display: block;
+					width: 100%;
+					height: 100%;
+					background: #FFF;
+				}
+				.lookup_menu li a.selected {
+					background: #96C63F;
+					color: #FFF;
+				}
 		
 		
 
@@ -674,7 +734,7 @@ div.submenu span.submenu_corner:first-child {
 			}
 			
 		.topic_panel {
-			width:525px;
+			width:550px;
 			margin: 10px 0 0 75px;
 			text-align:right;
 		}
@@ -850,12 +910,17 @@ div.submenu span.submenu_corner:first-child {
 #footer {
 	background: url(../img/footer_shadow.gif) no-repeat 50% 0 whiteSmoke;
 	width:100%;
-	height:100px;
+	height:150px;
 	/*border-top: #B0F581 solid 1px;*/
 	float:left;
 	margin:50px 0 0 0;
 	padding:30px 0;
 }
+
+	#footer_container {
+		width: 960px;
+		margin: 0 auto;
+	}
 	
 	
 	

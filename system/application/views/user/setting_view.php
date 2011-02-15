@@ -51,17 +51,19 @@
 			
 			<form id="user_profiles_form" method="post" action="<?=site_url('user/setting');?>">
 				<div class="kk_tabs">
-					<ul>
+					<ul class="tab_menu">
 						<li>
 							<a href="#profile_setting">
 								资料设置
 							</a>
 						</li>
+						
 						<li>
 							<a href="#privacy_setting">
 								隐私设置
 							</a>
 						</li>
+						
 						<li>
 							<a href="#slug_setting">
 								个人网址
@@ -81,7 +83,7 @@
 						</li>
 					</ul>
 				
-					<div id="profile_setting"><!--资料设置-->
+					<div id="profile_setting" class="tab_div"><!--资料设置-->
 						<div class="form_div">
 							
 								<p>
@@ -264,11 +266,11 @@
 						<div class="session_message hidden"></div>
 					</div>
 					
-					<div id="privacy_setting">
+					<div id="privacy_setting" class="tab_div">
 					
 					</div>
 					
-					<div id="slug_setting">
+					<div id="slug_setting" class="tab_div">
 						<div class="form_div">
 							<h3>
 								<?php
@@ -285,7 +287,7 @@
 						</div>
 					</div>
 					
-					<div id="recommend_friend_setting">
+					<div id="recommend_friend_setting" class="tab_div">
 						<label>输入朋友果号: </label>
 						<input type="text" name="add_recommend_id" id="add_recommend_id" />
 

@@ -14,91 +14,37 @@
             		<div class="content_bottom">
             		
 						<div id="lookup_head">
-						
-							<div class="lookup_avatar">
-								<a href="<?= get_group_logo_url( $group['id'] , 'big');?>" class="sexybox">
-									<img class="avatar" width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
-								</a>
-							</div>
-							
-							<div class="lookup_easy_profile">
-								<h2>
-									<span class="icon icon_group tipsy_s" title="这是一个果群"></span>
-									<?=$group['name'];?>
-								</h2>
-							</div>
-						
+							<?php // 群组简介 ?>
+							<?php $this->load->view('group/general_group_lookup_head');?>
 						</div>
             			
             			
             			<div id="lookup_main">
-							<div class="kk_tabs">
-								<ul>
-									<li>
-										<a href="#group_home">
-											首页
-										</a>
-									</li>
-									<li>
-										<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
-											话题
-										</a>
-									</li>
-									
-									<li>
-										<a href="<?=site_url('group/' . $group['id'] . '/event');?>">
-											活动
-										</a>
-									</li>
-									
-									<li>
-										<a href="<?=site_url('group/' . $group['id'] . '/chat');?>">
-											聊天
-										</a>
-									</li>
-									<li>
-										<a href="<?=site_url('group/' . $group['id'] . '/album');?>">
-											相簿
-										</a>
-									</li>
-									
-									<li>
-										<a href="<?=site_url('group/' . $group['id'] . '/stream');?>">
-											新闻台
-										</a>
-									</li>
-								</ul>
 								
+							<div id="group_home" class="tab_div">
 								
-								<div id="group_home" class="hidden">
-									
-									<div id="group_topics_div">
-										<h2>话题</h2>
-										<p>...</p>
-									</div>
-									
-									<div id="group_chat_div">
-										<h2>聊天</h2>
-										<p>...</p>
-									</div>
-									
-									<div id="group_events_div">
-										<h2>活动</h2>
-										<p>...</p>
-									</div>
-									
-									
-									
+								<div id="group_topics_div">
+									<h2>话题</h2>
+									<p>...</p>
+								</div>
+								
+								<div id="group_chat_div">
+									<h2>聊天</h2>
+									<p>...</p>
+								</div>
+								
+								<div id="group_events_div">
+									<h2>活动</h2>
+									<p>...</p>
 								</div>
 								
 								
+								
 							</div>
+
             			</div>
             			
-            			
-            			<?php $this->load->view('group/general_join_group_view'); ?>
-						
-						
+
 						
 					</div><!--content bottom-->
      			</div><!-- content top-->

@@ -117,10 +117,19 @@
 							</div>
 							
 							<div class="login_more_tip">
-								你也可以直接登录...
+								你也可以...
 							</div>
 							
+
+							
 							<div class="login_more">
+
+								<div class="other_login_item">
+									<a class="btn" href="#" onclick="$('#register_btn').trigger('click');return false;">
+										<span><span>注册奇异果</span></span>
+									</a>
+								</div>
+
 								<div class="other_login_item">
 									<a href="<?=site_url('user/login_by_t_sina');?>" class="tipsy_sw" title="使用「新浪微博」的帐号登录">
 										<img src="<?=static_url('img/button_t_sina_connect.png');?>" />

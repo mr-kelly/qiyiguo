@@ -61,7 +61,7 @@
 		messages: {
 			login: {
 				required: '请输入你的注册电邮！',
-				email: '电邮格式不对',
+				email: '电邮格式不对'
 			},
 			password: {
 				required: '请输入密码!'

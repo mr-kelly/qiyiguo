@@ -30,17 +30,18 @@
 		function setting($group_id, $action = 'setting' ) {
 			login_redirect();
 			$this->_if_group_404( $group_id );
+			$render = array();
+
 			
 			if ( $action == 'setting' ) {
-				$data = array(
-					'group' => $this->group_model->get_group_by_id( $group_id ),
-				);
-				
-				kk_show_view('group/setting_view', $data);
+			
+				$render['group'] = $this->group_model->get_group_by_id( $group_id );
+				$render['group_categories'] = $this->group_model->get_group_categories();
+
+				kk_show_view('group/setting_view', $render);
 				
 			} else if ( $action == 'members' ) {
 				
-				$render = array();
 				$render['group_members'] = $this->group_model->get_group_users( $group_id );
 				
 				kk_show_view('group/setting_members_view', $render);
@@ -173,7 +174,7 @@
 			}
 			
 			
-			$data = array(
+			$render = array(
 				'group' => $group,
 				'group_users' => $this->group_model->get_group_users($group_id),
 				'topics' => $topics,
@@ -184,19 +185,24 @@
 			
 			if ( $action == 'index' ) {
 				// 群组首页
-				kk_show_view('group/group_lookup_view', $data);
+				$render['current_group_home'] = true;
+				kk_show_view('group/group_lookup_view', $render);
 			} else if ( $action == 'topic' ) {
 				// 群组话题页
-				kk_show_view('group/group_lookup_topic_view', $data);
+				$render['current_group_topic'] = true;
+				kk_show_view('group/group_lookup_topic_view', $render);
 			} else if ( $action == 'stream' ) {
 				// 群组信息盒子
-				kk_show_view('group/group_lookup_stream_view', $data);
-			} else if ( $action == 'members' ) {
+				$render['current_group_stream'] = true;
+				kk_show_view('group/group_lookup_stream_view', $render);
+			} else if ( $action == 'event' ) {
 				// 成员列表、成员管理
-				kk_show_view('group/group_lookup_members_view', $data);
+				$render['current_group_event'] = true;
+				kk_show_view('group/group_lookup_event_view', $render);
 			} else if ( $action == 'chat' ) {
 				// 聊天
-				kk_show_view('group/group_lookup_chat_view', $data);
+				$render['current_group_chat'] = true;
+				kk_show_view('group/group_lookup_chat_view', $render);
 			}
 		}
 		
@@ -216,9 +222,11 @@
 		///////////    Ajax 下面
 		
 		
-		function new_group() {
-			// 若未登录，返回ajax失败
-			login_redirect();
+
+		
+		function iframe_new_group() {
+			$this->load->model('group_model');
+			
 			
 			// POST 提交，Ajax返回
 			// group_name
@@ -230,6 +238,7 @@
 				$this->form_validation->set_rules('group_privacy', '果群公开性', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_category', 'Group Category', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_verify', '加入友群验证方式', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean');
 				
 				if ( !$this->form_validation->run() ) {
 					ajaxReturn( null, validation_errors(), 0);
@@ -239,10 +248,19 @@
 					$group_privacy = $this->form_validation->set_value('group_privacy');
 					$group_category = $this->form_validation->set_value('group_category');
 					$group_verify = $this->form_validation->set_value('group_verify');
+					$group_intro = $this->form_validation->set_value('intro');
 					
 					$owner_id = $this->tank_auth->get_user_id();  // 创始人 user id
 					
-					$group_id = $this->group_model->create_group($group_name, $group_category, $group_privacy,$group_verify, $owner_id=$owner_id);
+					//$group_id = $this->group_model->create_group($group_name, $group_category, $group_privacy, $group_verify, $owner_id=$owner_id);
+					$group_id = $this->group_model->create_group(array(
+						'name' => $group_name,
+						'category_id' => $group_category,
+						'privacy' => $group_privacy,
+						'verify' => $group_verify,
+						'owner_id' => $owner_id,
+						'intro' => $group_intro,
+					));
 					
 					ajaxReturn(
 						array(
@@ -256,11 +274,10 @@
 			}
 			
 			
-			$data = array(
+			$render = array(
 				'group_categories' => $this->group_model->get_group_categories(),
-				'current_group' => 'current_menu',
 			);
-			kk_show_view('group/new_group_view', $data);
+			kk_show_view('group/iframe_new_group_view', $render);
 		}
 		
 		
