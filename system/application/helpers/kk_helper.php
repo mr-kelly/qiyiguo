@@ -270,13 +270,17 @@
 	 */
 	function kk_content_preview( $content ) {
 	
-		$return = str_split( $content , 402 ); // 返回数组
+		$return_arr = str_split( $content , 402 ); // 返回数组
 		
-		if ( sizeof( $return ) == 1 ) {
-			return strip_tags( $return[0] );
+		$return = strip_tags( $return_arr[0], '<a><img>' );
+		
+		// 如果返回内容很多，证明topic内容很多，添加省略号...
+		if ( sizeof( $return_arr ) > 1 ) {
+			$return .= '...';
 		}
 		
-		// 如果切割了不同数组～ 那么，添加省略号，只取第一个
-		return strip_tags( $return[0] ) . '...';
+		return $return;
+		
+		
 	}
 	

@@ -71,6 +71,17 @@
 			
 		}
 		
+		
+		/**
+		 *	更新群组的信息
+		 */
+		function update_group( $group_id, $data ) {
+		
+			$this->db->where('id', $group_id);
+			$this->db->update('group', $data );
+			
+		}
+		
 		/**
 		 *   新设置 友群成员，
 		 *   制定友群，令用户成为成员

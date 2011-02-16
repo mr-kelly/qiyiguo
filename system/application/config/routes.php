@@ -53,7 +53,7 @@ $route['group/(:num)/(:any)'] = 'group/group_lookup/$1/$2';
 // User
 $route['u/(:any)'] = 'user/user_lookup/$1';
 $route['user/(:num)'] = 'user/user_lookup/$1';
-
+$route['user/(:num)/(:any)'] = 'user/user_lookup/$1/$2';
 
 // Page
 $route['page/(:any)'] = 'page/page_lookup/$1';

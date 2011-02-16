@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EmbeddedEditorHidden:Mrkelly</key>
+	<false/>
+	<key>ExpandedEditorWidth:Mrkelly:displays([(0, 0), (1280, 800)])</key>
+	<integer>640</integer>
+	<key>ExpandedItems:Mrkelly</key>
+	<array>
+		<string>EA2194BC-765C-43B7-A198-1F8CCF891D0D</string>
+		<string>0861247E-1248-4C8D-863F-E537655A4EB0</string>
+		<string>78B95B4A-17FB-4485-90EE-1A753FF63BF1</string>
+		<string>2F5D4841-7F0B-4FC5-87B8-009798211E4F</string>
+		<string>19AE5687-5250-4A1A-B22A-8BFE5C8DD9C3</string>
+	</array>
+	<key>FileFilterID:Mrkelly</key>
+	<string>msng</string>
+	<key>OpenDocuments:Mrkelly</key>
+	<array/>
+	<key>ShowInvisibles:Mrkelly</key>
+	<false/>
+	<key>TextFilesOnly:Mrkelly</key>
+	<true/>
+	<key>ToolbarVisible:Mrkelly</key>
+	<true/>
+	<key>ViewSplitterPosition:Mrkelly</key>
+	<real>0.26011559367179871</real>
+	<key>WindowFrame:Mrkelly:displays([(0, 0), (1280, 800)])</key>
+	<string>rect(44,0,800,865)</string>
+</dict>
+</plist>

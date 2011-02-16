@@ -15,7 +15,7 @@
 				ajaxReturn(null, 'exist or duplicated', 0);
 			} else {
 				// 成功follow关联
-				ajaxReturn( null, 'success', 1 );
+				ajaxReturn( null, '关注了他！', 1 );
 			}
 			
 		}
@@ -37,5 +37,16 @@
 		}
 		
 		
-	
+		/**
+		 *	ajax获得用户关注按钮的html视图, 用于ajax完之后，修改页面
+		 */
+		function ajax_get_user_relation_btn( $to_user_id ) {
+			$render = array(
+				'to_user_id' => $to_user_id,
+			);
+			
+			kk_show_view('general/general_user_relation_btn_view', $render);
+		}
+		
+		
 	}

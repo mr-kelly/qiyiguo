@@ -3,8 +3,8 @@
 ?>
 
 <h2>创建自定义用户</h2>
-<div>
-	<form>
+<div class="form_div">
+	<form method="post" action="<?=site_url('orchard/user/create_user');?>">
 		<p>
 			<label>果ID</label>
 			<input type="text" name="id" />

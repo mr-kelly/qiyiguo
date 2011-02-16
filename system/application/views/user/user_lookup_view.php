@@ -5,6 +5,10 @@
 	
 <?=import_css('css/app/user/user_lookup.css');?>
 
+<script type="text/javascript">
+	$ajax_get_user_relation_btn_url = '<?=site_url("relation/ajax_get_user_relation_btn/" . $user["id"] );?>';
+</script>
+<?=import_js('js/app/user/user_lookup.js');?>
 
 
 	<div id="content">
@@ -41,10 +45,25 @@
 						</div>
 					</div>
 					
-				<?php
-					// 朋友关注
-					$this->load->view('general/general_user_relation_view', array('to_user_id'=>$user['id']));
-				?>
+					<ul class="lookup_menu">
+						<li><a href="#" class="selected">个人主页</a></li>
+						<li><a href="#">详细资料</a></li>
+					</ul>
+					
+					<div class="lookup_relation_btn">
+						<?php
+							// Javascript在 user_lookup.js
+							
+							// 朋友关注
+							$this->load->view('general/general_user_relation_btn_view', array('to_user_id'=>$user['id']));
+						?>
+						
+						
+						<script>
+							
+
+						</script>
+					</div>
 					
             	</div>
             	

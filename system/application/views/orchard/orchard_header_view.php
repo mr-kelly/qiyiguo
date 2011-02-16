@@ -24,6 +24,9 @@
 						<li>
 							<a href="<?=site_url('orchard/user/create_user');?>">创建用户</a>
 						</li>
+						<li>
+							<a href="<?=site_url('orchard/user/');?>">修改</a>
+						</li>
 						
 						<div class="clearboth"></div>
 						
@@ -38,7 +41,15 @@
 		</ul>
 	</div>
 
-	
+	<?php
+		if ( isset( $message ) ):
+	?>
+		<div id="message">
+			<?=$message;?>
+		</div>
+	<?php
+		endif;
+	?>
 	<div id="container">
 	
 	

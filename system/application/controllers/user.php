@@ -213,6 +213,7 @@
 		 */
 		function setting( $action='index') {
 			login_redirect();
+			
 			$user_id = $this->tank_auth->get_user_id();
 			
 			$this->load->model('user_t_sina_model');
@@ -235,8 +236,17 @@
 				$this->form_validation->set_rules('email_1', '电子邮箱1', 'trim|xss_clean|valid_email');
 				$this->form_validation->set_rules('email_2', '电子邮箱2', 'trim|xss_clean|valid_email');
 				$this->form_validation->set_rules('email_3', '电子邮箱3', 'trim|xss_clean|valid_email');
+				
+				$this->form_validation->set_rules('qq', 'QQ', 'trim|xss_clean|integer');
+				$this->form_validation->set_rules('msn', 'MSN', 'trim|xss_clean|valid_email');
+				$this->form_validation->set_rules('gtalk', '电子邮箱3', 'trim|xss_clean|valid_email');
+				
 				$this->form_validation->set_rules('link_renren', '人人网ID号', 'trim|xss_clean|numeric');
 				$this->form_validation->set_rules('description', '个人简介', 'trim|xss_clean');
+				
+				$this->form_validation->set_rules('love_status', '恋爱状态', 'trim|xss_clean');
+				$this->form_validation->set_rules('lover_id', '恋爱对象果号', 'trim|xss_clean');
+				
 				
 				$this->form_validation->set_rules('city_id', '城市', 'required|trim|xss_clean');
 				$this->form_validation->set_rules('province_id', '省份', 'required|trim|xss_clean');
@@ -294,6 +304,19 @@
 					$hometown_city_id = $this->form_validation->set_value('hometown_city_id');
 					
 					
+					// 恋爱对象，恋爱关系
+					$love_status = $this->form_validation->set_value('love_status');
+					$lover_id = $this->form_validation->set_value('lover_id');
+					
+					if ( $love_status != 'single' ) {
+						// 非单身，那么设置lover relation
+						if ( $lover_id != '' ) {
+							// 同时设置 Lover ID， 爱人的ID， 添加爱人关系
+							$this->load->model('relation_model');
+							$c = $this->relation_model->create_lover( get_current_user_id(), $lover_id );
+						}
+					}
+					
 					// 修改user profiles
 					$this->user_profiles_model->update_user_profile( $user_id, array(
 						'realname' => $realname,
@@ -308,8 +331,13 @@
 						'email_1' => $email_1,
 						'email_2' => $email_2,
 						'email_3' => $email_3,
+						'qq' => $this->form_validation->set_value('qq'),
+						'msn' => $this->form_validation->set_value('msn'),
+						'gtalk' => $this->form_validation->set_value('gtalk'),
+						
 						'link_renren' => $link_renren,
 						'description' => $description,
+						'love_status' => $love_status,
 						
 						'city_id' => $city_id,
 						'province_id' => $province_id,
@@ -321,6 +349,9 @@
 						'slug' => $slug,
 						
 					));
+					
+					
+
 					
 					/*  取消新浪微博http绑定功能
 					// ──────────微博帐号绑定，  表单验证要检查微博帐号是否合法～（帐号密码正确）

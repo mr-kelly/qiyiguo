@@ -18,7 +18,9 @@
 					// Create Topic
 					$title = $this->form_validation->set_value('title');
 					
-					$content = $this->kk_filter->filter( $this->form_validation->set_value('content') );
+					$content = $this->kk_filter->filter( $this->form_validation->set_value('content'),array(
+						'without_html' => false,
+					));
 					$attach_img_id = $this->form_validation->set_value('attach_img_id');
 					
 					

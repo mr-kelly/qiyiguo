@@ -26,19 +26,23 @@
 					</ul>
 					
 					<div id="setting_group_profile" class="hidden tab_div">
+					
 						<h2>果群资料设置</h2>
 						
 						<div class="form_div">
-							<form method="post" action="<?=site_url('group/setting');?>">
-								
+							<form id="group_setting_form" method="post" action="<?=site_url('group/setting/' . $group['id']);?>">
+								<p>
+									<label>群号</label>
+									<span><?=$group['id'];?></span>
+								</p>
 								<p>
 									<label>果群名称</label>
-									<input type="text" name="group_name" value="<?=$group['name'];?>" />
+									<input class="required" type="text" name="name" value="<?=$group['name'];?>" />
 								</p>
 								
 								<p>
 									<label>果群种类</label>
-									<select>
+									<select name="category_id">
 									<?php foreach( $group_categories as $cat ): ?>
 										<option value="<?=$cat['id'];?>"><?=$cat['name'];?></option>
 									<?php endforeach; ?>
@@ -47,13 +51,15 @@
 								
 								<p>
 									<label>群组性质</label>
-									<input type="radio" name="privacy" <?=$group['privacy'] == 'public'  ? 'checked="checked"' :'';?> />公开
-									<input type="radio" name="privacy" <?=$group['privacy'] == 'private'  ? 'checked="checked"' :'';?> />私密
+									<span>
+										<input type="radio" name="privacy" value="public" <?=$group['privacy'] == 'public'  ? 'checked="checked"' :'';?> />公开
+										<input type="radio" name="privacy" value="private" <?=$group['privacy'] == 'private'  ? 'checked="checked"' :'';?> />私密
+									</span>
 								</p>
 								
 								<p>
 									<label for="group_verify">加入方式</label>
-									<select id="group_verify" name="group_verify" class="tipsy_nw" title="其他人加入你果群的方式">
+									<select id="group_verify" name="verify" class="tipsy_nw" title="其他人加入你果群的方式">
 										<option value="request" <?=$group['verify']=='request' ? 'selected="selected"' : '';?>>需要管理员审核加入</option>
 										<option value="everyone" <?=$group['verify']=='everyone' ? 'selected="selected"' : '';?>>任何人都可以直接加入</option>
 										<option value="closed" <?=$group['verify']=='closed' ? 'selected="selected"' : '';?>>不允许任何人加入</option>
@@ -67,13 +73,21 @@
 									<textarea name="intro"><?=$group['intro'];?></textarea>
 								</p>
 								
+
+								<p>
+									<label>群网站</label>
+									<input class="url tipsy_w" title="如果有关于这个果群的网址，你可以在这里填写" type="text" name="website" value="<?= isset( $group['website'] ) ? $group['website'] :'' ;?>" />
+								</p>
+								
 								<p class="center">
-									<a class="btn" href="#"><span><span>确认修改</span></span></a>
+									<a id="group_setting_submit" class="btn" href="#"><span><span>确认修改</span></span></a>
 								</p>
 								
 							</form>
 						</div>
 					</div>
+					
+					
 					
 					<div id="setting_logo" class="hidden tab_div">
 						<h2>友群标志</h2>

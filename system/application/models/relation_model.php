@@ -18,9 +18,13 @@
 			if ( $data['from_id'] == $data['to_id'] ) { // 重复，失败
 				return false;
 			}
+			
+			// 避免完全重复
 			$query = $this->db->get_where('relation', array(
 				'from_id' => $data['from_id'],
 				'to_id' => $data['to_id'],
+				'model' => $data['model'],
+				'relation' => $data['relation'],
 			));
 			if ( $query->num_rows() != 0 ) {
 				return false;   // 已经存在了！
@@ -52,7 +56,7 @@
 		 
 		 		关注后如果互相关注，添加朋友关系
 		 */
-		function create_user_relation( $from_user_id, $to_user_id, $relation = '' ) {
+		function create_user_relation( $from_user_id, $to_user_id, $relation = 'friend' ) {
 			$relation_id =  $this->create_relation( array(
 				'from_id' => $from_user_id,
 				'to_id' => $to_user_id, 
@@ -86,6 +90,7 @@
 				'from_id' => $from_user_id,
 				'to_id' => $to_user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			
 			
@@ -110,6 +115,7 @@
 				'from_id' => $from_user_id,
 				'to_id' => $to_user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			if ( $follow_query->num_rows() == 1 ) {
 				$follow = true; // follow关系确定
@@ -120,6 +126,7 @@
 				'from_id' => $to_user_id,
 				'to_id' => $from_user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			if ( $fans_query->num_rows() == 1 ) {
 				$fans = true; // fans关系确定
@@ -136,6 +143,7 @@
 				return 'none';
 			}
 		}
+		
 		
 		/**
 		 *	获得用户的拥趸数目
@@ -218,7 +226,7 @@
 		
 		
 		/** 
-	     *	添加朋友
+	     *	添加朋友 (mutual)
 	     */
 		function create_friends( $from_user_id, $to_user_id ) {
 			
@@ -226,8 +234,11 @@
 				'model_id' => $from_user_id,
 				'mutual_id' => $to_user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			) );
 		}
+		
+
 		
 		/**
 		 *	解除朋友关系
@@ -237,6 +248,7 @@
 				'model_id'=> $from_user_id,
 				'mutual_id' => $to_user_id,
 				'model'=> 'user',
+				'relation' => 'friend',
 			));
 		}
 		
@@ -244,10 +256,12 @@
 			$query_1 = $this->db->get_where('relation_mutual',array(
 				'model_id' => $user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			$query_2 = $this->db->get_where('relation_mutual',array(
 				'mutual_id' => $user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			
 			$return = array();
@@ -272,10 +286,12 @@
 			$query_1 = $this->db->get_where('relation_mutual',array(
 				'model_id' => $user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			$query_2 = $this->db->get_where('relation_mutual',array(
 				'mutual_id' => $user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			
 			return ($query_1->num_rows() + $query_2->num_rows());
@@ -288,6 +304,7 @@
 			$query = $this->db->get_where('relation', array(
 				'to_id' => $user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			$return = array();
 			foreach( $query->result_array() as $fan ) {
@@ -304,9 +321,58 @@
 			$query = $this->db->get_where('relation', array(
 				'to_id' => $user_id,
 				'model' => 'user',
+				'relation' => 'friend',
 			));
 			
 			return $query->num_rows();
 		}
 		
+		
+		
+				/**
+		 *	创建恋爱关系 love relation~  如果双向恋爱关系的时候再给星星吧
+		 */
+		function create_lover( $from_user_id, $to_user_id ) {
+			//防止重复
+
+			return $this->create_relation( array(
+				'from_id' => $from_user_id,
+				'to_id' => $to_user_id,
+				'model' => 'user',
+				'relation' => 'lover',  //Lover
+			));
+			
+// array(
+// 											'from_id' => 0,
+// 											'to_id' => 0,
+// 											'model' => 'user',
+// 											//'model_id' => 0,
+// 											'relation' => '',
+// 											) ) {
+		}
+		
+		
+		
+		/**
+		 *	获得恋爱关系
+		 */
+		function get_lover( $user_id ) {
+
+			$query = $this->db->get_where('relation', array(
+				'from_id' => $user_id,
+				'model' => 'user',
+				'relation' => 'lover',
+			));
+			
+			// 用户to_id用户
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			} else {
+				$r = $query->row_array();
+			}
+			
+			return $this->_get_user( $r['to_id'] );
+			
+			
+		}
 	}

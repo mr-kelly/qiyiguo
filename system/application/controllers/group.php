@@ -9,7 +9,7 @@
 		
 		function index() {
 			$data = array(
-				'groups' => $this->group_model->get_groups(null),
+				'groups' => $this->group_model->get_groups(100),
 				'current_group' => 'current_menu',
 			);
 			kk_show_view('group/index_view', $data);
@@ -31,7 +31,30 @@
 			login_redirect();
 			$this->_if_group_404( $group_id );
 			$render = array();
-
+			
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				//表单验证
+				$this->form_validation->set_rules('name', '果群名称', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('privacy', '果群公开性', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('category_id', 'Group Category', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('verify', '加入友群验证方式', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean');
+				$this->form_validation->set_rules('website', '果群网页', 'trim|xss_clean');
+				
+				if ( !$this->form_validation->run() ) {
+					ajaxReturn( null, validation_errors(), 0);
+				} else {
+					$this->group_model->update_group( $group_id , array(
+						'name' => $this->form_validation->set_value('name'),
+						'privacy' => $this->form_validation->set_value('privacy'),
+						'category_id' => $this->form_validation->set_value('category_id'),
+						'verify' => $this->form_validation->set_value('verify'),
+						'intro' => $this->form_validation->set_value('intro'),
+						'website' => $this->form_validation->set_value('website'),
+					));
+					ajaxReturn( null, '果群修改成功', 1);
+				}
+			}
 			
 			if ( $action == 'setting' ) {
 			

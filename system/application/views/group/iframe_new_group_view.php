@@ -54,8 +54,8 @@
 				</p>
 			
 			
-				<a href="<?=current_url();?>" onclick="return false;" class="medium blue awesome" href="#" id="submit_btn">
-					<span><span>申请创建新友群</span></span>
+				<a href="<?=current_url();?>" onclick="return false;" class="btn" href="#" id="submit_btn">
+					<span><span>创建新友群</span></span>
 				</a>
 			</form>
 			<script type="text/javascript">

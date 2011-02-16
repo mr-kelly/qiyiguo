@@ -28,11 +28,15 @@ img.avatar {
  
 .form_div {
 	padding:1px 0 1px 0px;
+
 }
 .form_div p {
 	text-indent:0;
 	margin:5px 0;
 	
+}
+.form_div span { /* 零散的*/
+	line-height: 27px;
 }
 
 .form_div label {
@@ -42,6 +46,10 @@ img.avatar {
 	vertical-align: top;
 	line-height: 27px;
 	padding: 0 10px 0 0px;
+}
+
+.form_div select {
+	margin-top: 5px;
 }
 	/*
 	 *	jQuery Validate 的错误信息
@@ -65,9 +73,7 @@ img.avatar {
 		margin: 5px 0 0 5px;
 	}
 	
-.form_div select {
-	height: 27px;
-}
+
 /**
  *	input[type='text']  修复IE6,添加class
  */

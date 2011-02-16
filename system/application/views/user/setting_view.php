@@ -83,7 +83,7 @@
 						</li>
 					</ul>
 				
-					<div id="profile_setting" class="tab_div"><!--资料设置-->
+					<div id="profile_setting" class="tab_div hidden"><!--资料设置-->
 						<div class="form_div">
 							
 								<p>
@@ -93,9 +93,12 @@
 								
 								<p>
 									<label>性别</label>
-									<input type="radio" class="" name="gender" value="male" <?=( get_current_user_profile('gender') == 'male' ) ? 'checked="checked"' :''?> />男
-									<input type="radio" class="" name="gender" value="female" <?=( get_current_user_profile('gender') == 'female' ) ? 'checked="checked"' :''?>  />女
+									<span>
+										<input type="radio" class="" name="gender" value="male" <?=( get_current_user_profile('gender') == 'male' ) ? 'checked="checked"' :''?> />男
+										<input type="radio" class="" name="gender" value="female" <?=( get_current_user_profile('gender') == 'female' ) ? 'checked="checked"' :''?>  />女
+									</span>
 								</p>
+								
 								<p>
 									<label>昵称</label>
 									<input class="required" name="nickname" type="text" value="<?=get_current_user_profile('nickname');?>"  />
@@ -115,7 +118,7 @@
 										<?php
 											endforeach;
 										?>
-									</select>
+									</select>年
 									
 									<?php //月 ?>
 									<select class="birth_select" name="birth_month">
@@ -126,7 +129,7 @@
 										<?php
 											endforeach;
 										?>
-									</select>
+									</select>月
 									
 									<?php // 日 ?>
 									<select class="birth_select" name="birth_day">
@@ -137,7 +140,7 @@
 										<?php
 											endforeach;
 										?>
-									</select>
+									</select>日
 									
 									<!--
 									日期空间～～  过期不用了
@@ -224,13 +227,54 @@
 								</p>
 								
 								<p>
+									<label>QQ</label>
+									<input class="digits" name="qq" type="text" value="<?=get_current_user_profile('qq');?>" />
+								</p>
+								
+								<p>
+									<label>MSN</label>
+									<input class="email" name="msn" type="text" value="<?=get_current_user_profile('msn');?>" />
+								</p>
+								
+								<p>
+									<label>GTalk</label>
+									<input class="email" name="gtalk" type="text" value="<?=get_current_user_profile('gtalk');?>" />
+								</p>
+								
+								<p>
 									<label>人人网ID号</label>
-									<input class="digits" name="link_renren" type="text" value="<?=get_current_user_profile('link_renren');?>"  />
+									<input class="digits tipsy_w" name="link_renren" type="text" value="<?=get_current_user_profile('link_renren');?>" title="人人网个人主页网址是http://www.renren.com/profile.do?id={您的人人网ID}"  />
 									<a class="sexybox_iframe" href="<?=base_url();?>wiki/获得人人网的id号">
 										如何知道自己的人人网的ID号？
 									</a>
 								</p>
 								
+								<p>
+									<label>恋爱状态</label>
+									<select id="love_status" name="love_status">
+										<option value="single" <?=get_current_user_profile('love_status')=='single'? 'selected="selected"' :'';?>>单身</option>
+										<option value="inlove" <?=get_current_user_profile('love_status')=='inlove'? 'selected="selected"' :'';?>>恋爱中</option>
+										<option value="married" <?=get_current_user_profile('love_status')=='married'? 'selected="selected"' :'';?>>已婚</option>
+									</select>
+								</p>
+								
+								<script type="text/javascript">
+									$(function(){
+										$('#love_status').change(function(){
+											// 如果恋爱状态设置成“非单身”，那么，显示恋爱对象设置
+											if ( $(this).val() != 'single' ) {
+												$('#lover_p').show();
+											} else {
+												$('#lover_p').hide();
+											}
+										});
+									});
+								</script>
+								
+								<p id="lover_p" class="<?=get_current_user_profile('love_status')=='single'? 'hidden' :'';?>">
+									<label>恋爱对象果号</label>
+									<input id="lover_id" class="tipsy_w" type="text" name="lover_id" title="这里填入你另一半的果号" />
+								</p>
 								<p>
 									<label>个人描述</label>
 									<textarea name="description"><?=get_current_user_profile('description');?></textarea>
@@ -266,11 +310,11 @@
 						<div class="session_message hidden"></div>
 					</div>
 					
-					<div id="privacy_setting" class="tab_div">
+					<div id="privacy_setting" class="tab_div hidden">
 					
 					</div>
 					
-					<div id="slug_setting" class="tab_div">
+					<div id="slug_setting" class="tab_div hidden">
 						<div class="form_div">
 							<h3>
 								<?php
@@ -287,7 +331,7 @@
 						</div>
 					</div>
 					
-					<div id="recommend_friend_setting" class="tab_div">
+					<div id="recommend_friend_setting" class="tab_div hidden">
 						<label>输入朋友果号: </label>
 						<input type="text" name="add_recommend_id" id="add_recommend_id" />
 
