@@ -231,7 +231,7 @@
 							
 							<span class="submenu_item">
 								<a id="register_btn" class="sexybox_iframe icon icon_register" href="<?=site_url('user/iframe_register');?>" title="注册" href="<?=base_url();?>user/register">
-									注册
+									快速注册
 								</a>
 							</span>
 							

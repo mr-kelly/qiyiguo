@@ -33,43 +33,13 @@
 			 // 未加入，不在审核, 显示加入按钮
  ?>
 			 <a class="medium blue awesome join_group_btn" href="<?=site_url("group/ajax_join_group/". $group["id"]);?>">
-				 <span><span>加入</span></span>
+				 加入
+			 </a>
+			 <a href="<?=site_url('group/ajax_request_join_group/' . $group['id'] );?>" class="sexybox join_verify_btn">
+			 	加入群组验证信息
 			 </a>
 			 
-			 
-			 <script>
-				 $(function(){
-					 $('.join_group_btn').click(function(){
-					 	//点击“加入”群组以后...
-					 	
-					 	
-// 						 $.post(
-// 							 $(this).attr('href'),
-// 							 {
-// 								 message: $('#group_message').val()
-// 							 },
-// 							 function(data) {
-// 								 alert(data);
-// 								 data = $.parseJSON(data);
-// 								 
-// 								 if ( data.status == 0 ) {
-// 									 // 返回失败，并且data提示信息为message，那么显示输入message
-// 									 if ( data.data == 'message') {
-// 										 $('#join_group_box').fadeIn();	
-// 									 }
-// 									 //alert($('#group_message').val());
-// 								 }
-// 								 
-// 								 if ( data.status == 1 ) {
-// 									 // 成功添加请求
-// 									 window.location = '';
-// 								 }
-// 								 
-// 						 });
-						 return false;
-					 });
-				 });
-			 </script>
+
  <?php
 			 
 		 }
@@ -80,9 +50,30 @@
 		 if ($ci->group_model->is_group_admin($group['id'], get_current_user_profile('id'))):
  ?>
 			 ,还是管理员<a href="<?=site_url('group/setting/'.$group['id']);?>">果群设置</a>
+			 <a href="#" class="awesome">退出该群</a>
  <?php
 		 endif;
 	 }
 
  ?>
- 
+			<script>
+				$(function(){
+					$('.join_group_btn').click(function(){
+					    //点击“加入”群组以后...
+						$.getJSON( $(this).attr('href'), function(json) {
+							//alert(json);
+							if ( json.data == 'message' && json.status == 0 ) {
+							
+								// 弹出输入群组信息的窗口框
+								$('.join_verify_btn').trigger('click');
+								
+							} else if ( json.status == 1 ) {
+							
+								kk_growl.success('你已成功加入该群');
+							}
+						});
+						
+						return false;
+					});
+				});
+			</script>

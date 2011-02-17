@@ -10,54 +10,62 @@
 		function create_request_group( $group_id, $user_id, $message='') {
 		
 			// 重复,等待的，   则删除，覆盖
-			$this->db->delete('request_group', array(
-				'group_id' => $group_id,
+			$this->db->delete('request', array(
+				'model' => 'group',
+				'model_id' => $group_id,
 				'user_id' => $user_id,
 				'status' => 'waiting',
 			));
+			
 			$data = array(
-				'group_id' => $group_id,
+				'model' => 'group',
+				'model_id' => $group_id,
 				'user_id' => $user_id,
 				'message' => $message,
 				'status' => 'waiting',
 				'created' => date('Y-m-d H:i:s'),
 			);
-			return $this->db->insert('request_group', $data);
+			$this->db->insert('request', $data);
+			return $this->db->insert_id();
 		}
 		
 		
 		
 		/**
-		 *	获取当前登录user身份是admin的所有小组的request_groups!
+		 *	获取指定用户身份是admin的所有小组的request_groups!
 		 
 		 	group_user ( user_role = admin) . group_id 
 		 					==>    request_groups  . group_id
 		 
 		 */
 		function get_request_admin_groups(  $user_id ) {
+		
 			//当前user的admin小组
 			$admin_groups = $this->db->get_where('group_user', array(
 				'user_id' => $user_id,
 				'user_role' => 'admin',
 			));
+			
 			if ( $admin_groups->num_rows() != 0 ) {
 				$admin_groups = $admin_groups->result_array();
 				
 				// 透过一组group_id, 获取所有的request_group, 要在waiting状态
-				$this->db->from('request_group');
+				$this->db->from('request');
 				foreach ( $admin_groups as $request_group ) {
-					$this->db->or_where('group_id =' . $request_group['group_id'] .' AND status="waiting"' ); // waiting状态必须
+					$this->db->where('model', 'group');
+					$this->db->where('model_id =' . $request_group['group_id'] .' AND status="waiting"' ); // waiting状态必须
 				}
 				$request_groups = $this->db->get()->result_array();
 				
 				// 同时组合group, user,  使之成为关联模型
 				foreach ( $request_groups as $key=>$val ) {
-					$request_groups[$key]['Group'] = $this->_get_group( $request_groups[$key]['group_id']);
+					$request_groups[$key]['Group'] = $this->_get_group( $request_groups[$key]['model_id']);
 					$request_groups[$key]['User'] = $this->_get_user( $request_groups[$key]['user_id']);
 				}
 				
 				return $request_groups;
 			}
+			
 			return false;
 		}
 		
@@ -84,9 +92,10 @@
 				$admin_groups = $admin_groups->result_array();
 				
 				// 透过一组group_id, 获取所有的request_group, 要在waiting状态
-				$this->db->from('request_group');
+				$this->db->from('request');
 				foreach ( $admin_groups as $request_group ) {
-					$this->db->or_where('group_id =' . $request_group['group_id'] .' AND status="waiting"' ); // waiting状态必须
+					$this->db->where('model', 'group');
+					$this->db->where('model_id =' . $request_group['group_id'] .' AND status="waiting"' ); // waiting状态必须
 				}
 				$request_groups_query = $this->db->get();
 				
@@ -99,11 +108,12 @@
 		}
 		
 		/**
-		 *	判断用户是否正在等待审核，加入友群
+		 *	判断用户是否正在 "等待审核",   加入友群
 		 */
 		function is_request_group($group_id, $user_id) {
-			$query = $this->db->get_where('request_group', array(
-				'group_id' => $group_id,
+			$query = $this->db->get_where('request', array(
+				'model' => 'group',
+				'model_id' => $group_id,
 				'user_id' => $user_id,
 			));
 			if ( $query->num_rows() > 0 ) {
@@ -127,6 +137,6 @@
 		
 		function update_request_group_by_id( $id, $data ) {
 			$this->db->where('id', $id);
-			$this->db->update('request_group', $data);
+			$this->db->update('request', $data);
 		}
 	}

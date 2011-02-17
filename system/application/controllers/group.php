@@ -208,23 +208,23 @@
 			
 			if ( $action == 'index' ) {
 				// 群组首页
-				$render['current_group_home'] = true;
+				$render['current_group_lookup_home'] = true;
 				kk_show_view('group/group_lookup_view', $render);
 			} else if ( $action == 'topic' ) {
 				// 群组话题页
-				$render['current_group_topic'] = true;
+				$render['current_group_lookup_topic'] = true;
 				kk_show_view('group/group_lookup_topic_view', $render);
 			} else if ( $action == 'stream' ) {
 				// 群组信息盒子
-				$render['current_group_stream'] = true;
+				$render['current_group_lookup_stream'] = true;
 				kk_show_view('group/group_lookup_stream_view', $render);
 			} else if ( $action == 'event' ) {
 				// 成员列表、成员管理
-				$render['current_group_event'] = true;
+				$render['current_group_lookup_event'] = true;
 				kk_show_view('group/group_lookup_event_view', $render);
 			} else if ( $action == 'chat' ) {
 				// 聊天
-				$render['current_group_chat'] = true;
+				$render['current_group_lookup_chat'] = true;
 				kk_show_view('group/group_lookup_chat_view', $render);
 			}
 		}
@@ -310,11 +310,11 @@
 		 *   让当前登录用户加入友群 iframe
 		 *   $action   ->   join 加入       exit  退出友群
 		 */
-		function ajax_join_group($group_id) {
+		function ajax_join_group($group_id, $action='join') {
 			if ( !$this->tank_auth->is_logged_in() ) {
 				exit('Error!! You directly enter here?');
 			}
-			$user_id = $this->tank_auth->get_user_id();
+			$user_id = get_current_user_id();
 			$group = $this->group_model->get_group_by_id($group_id);
 			
 			// 判断group是否需要request verify
@@ -325,19 +325,19 @@
 				if ( $result ) {
 					ajaxReturn( null, '成功加入'.$group['name'], 1);
 				} else {
-					ajaxReturn(null, '加入失败，可能已加入', 0);
+					ajaxReturn(null, '加入失败，可能已加入 may joined', 0);
 				}
 				
 			} elseif ( $group['verify'] == 'request' ) {
-				// 无message, 返回0，  data为 message, 示意弹出提示框输入message!
+				// 若没填message, 返回失败0，  ajax弹出提示框，让用户输入message
 				$message = $this->input->post('message');
 				if ( $message == '' ) {
-					ajaxReturn( 'message', '请输入message', 0);
-				}
-				
-				// 若已经有$message需要验证请求，那么生成验证
-				if ( $this->request_model->create_request_group($group_id, $user_id, $message) ) {
-					ajaxReturn( null, 'success' ,1 );
+					ajaxReturn( 'message', '请输入验证信息', 0);
+				} else {				
+					// 若已经有$message需要验证请求，那么生成验证信息 request
+					if ( $this->request_model->create_request_group($group_id, $user_id, $message) ) {
+						ajaxReturn( null, '成功发送加入群的验证信息' ,1 );
+					}
 				}
 				
 			}
@@ -345,7 +345,14 @@
 			echo 'direct here?';
 		}
 		
-
+		/**
+		 *	让用户输入 “加入果群” 验证信息的iframe窗口
+		 */
+		function ajax_request_join_group( $group_id ) {
+			$render['group_id'] = $group_id;
+			kk_show_view('group/ajax_request_join_group_view', $render );
+		}
+		
 		
 		
 		/**

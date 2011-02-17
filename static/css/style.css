@@ -38,6 +38,9 @@ img.avatar {
 .form_div span { /* 零散的*/
 	line-height: 27px;
 }
+	.form_div .awesome span {
+		line-height: 14px;
+	}
 
 .form_div label {
 	width:70px;
@@ -372,6 +375,12 @@ div.submenu span.submenu_corner:first-child {
 	background: url(../img/sidebar_bottom_bg.png) no-repeat 0px 100%;
 	padding: 0 0 15px 0;
 }
+	.sidebar_widget a {
+		color: #5E5E5E;
+	}
+		.sidebar_widget a:hover {
+			color: #009BC7;
+		}
 	
 	.sidebar_widget {
 		margin: 0px 0 15px 0;

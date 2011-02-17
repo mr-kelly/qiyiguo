@@ -5,7 +5,7 @@
 	$request_group = $ci->request_model->get_request_admin_groups_num( $this->tank_auth->get_user_id() );
 	if ( $request_group != false ) {
 ?>
-           <a href="<?=site_url('request/group');?>"><?=$request_group;?>个加入友群请求</a>
+           <a href="<?=site_url('request');?>"><?=$request_group;?>个加入友群请求</a>
 <?php
 	}
 ?>

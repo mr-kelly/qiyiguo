@@ -9,7 +9,7 @@
 		/**
 		 *	当前登录用户 作为管理员的group的所有加入请求
 		 */
-		function group($request_id = null, $action = null) {
+		function index($request_id = null, $action = null) {
 			
 			if ( is_numeric($request_id) && $action !=null ) {
 				// 执行响应
@@ -21,10 +21,11 @@
 					// 执行create_group_user
 
 					// 获取request_group, 为了group_id, user_id
-					$request_group = $this->request_model->_get_request_group($request_id);
+					$request_group = $this->request_model->_get_request($request_id);
+					
 					//先判断用户是否已经加入友群，没有再加入
-					if ( !$this->group_model->is_group_user( $request_group['group_id'], $request_group['user_id'] ) ) {
-						$this->group_model->create_group_user( $request_group['group_id'], $request_group['user_id'], null );
+					if ( !$this->group_model->is_group_user( $request_group['model_id'], $request_group['user_id'] ) ) {
+						$this->group_model->create_group_user( $request_group['model_id'], $request_group['user_id'], null );
 						
 						ajaxReturn( null, 'accept', 1);
 						
@@ -63,7 +64,11 @@
 				'request_groups' => $request_groups,
 			);
 			
-			$this->load->view('request/group_view', $data);
+			kk_show_view('request/index_view', $data);
 
 		}
+		
+		
+		
+
 	}

@@ -85,7 +85,7 @@
 					&copy;
 					
 					<span>
-						<!--{elapsed_time}-->version 0.78
+						<!--{elapsed_time}-->version 0.81
 					</span>
 					
 					<a href="<?=base_url();?>wiki/">

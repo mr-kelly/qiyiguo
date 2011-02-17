@@ -126,7 +126,7 @@
 
 								<div class="other_login_item">
 									<a class="btn" href="#" onclick="$('#register_btn').trigger('click');return false;">
-										<span><span>注册奇异果</span></span>
+										<span><span>快速注册奇异果</span></span>
 									</a>
 								</div>
 

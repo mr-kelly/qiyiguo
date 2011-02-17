@@ -69,7 +69,7 @@
 
 							<div class="user_login_submit_div">
 								<a class="awesome large blue" href="#" id="user_login_submit">
-									<span><span>开始奇异果！</span></span>
+									开始奇异果!
 								</a>
 								
 								<br />

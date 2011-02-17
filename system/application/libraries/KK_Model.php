@@ -12,9 +12,10 @@
 		 *		用于关联模型
 		 */
 		 
-		function _get_request_group( $id = null ) {
-			$query = $this->db->get_where('request_group', array(
+		function _get_request( $id = null ) {
+			$query = $this->db->get_where('request', array(
 				'id'=> $id,
+//				'model' => 'group',
 			));
 			$arr = $query->result_array();
 			return $arr[0];

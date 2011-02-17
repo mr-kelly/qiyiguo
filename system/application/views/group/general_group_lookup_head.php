@@ -33,12 +33,12 @@
 				
 				<ul class="lookup_menu">
 					<li>
-						<a href="<?=site_url('group/' . $group['id']);?>" class="<?= isset($current_group_home) ? 'selected' : '' ; ?>">首页</a>
+						<a href="<?=site_url('group/' . $group['id']);?>" class="<?= isset($current_group_lookup_home) ? 'selected' : '' ; ?>">首页</a>
 					</li>
-					<li><a href="<?=site_url('group/' . $group['id'] . '/topic');?>" class="<?= isset($current_group_topic) ? 'selected' : '' ; ?>">话题</a></li>
-					<li><a href="<?=site_url('group/' . $group['id'] . '/event');?>" class="<?= isset($current_group_event) ? 'selected' : '' ; ?>">活动</a></li>
-					<li><a href="<?=site_url('group/' . $group['id'] . '/chat');?>" class="<?= isset($current_group_chat) ? 'selected' : '' ; ?>">聊天</a></li>
-					<li><a href="<?=site_url('group/' . $group['id'] . '/stream');?>" class="<?= isset($current_group_stream) ? 'selected' : '' ; ?>">新闻台</a></li>
+					<li><a href="<?=site_url('group/' . $group['id'] . '/topic');?>" class="<?= isset($current_group_lookup_topic) ? 'selected' : '' ; ?>">话题</a></li>
+					<li><a href="<?=site_url('group/' . $group['id'] . '/event');?>" class="<?= isset($current_group_lookup_event) ? 'selected' : '' ; ?>">活动</a></li>
+					<li><a href="<?=site_url('group/' . $group['id'] . '/chat');?>" class="<?= isset($current_group_lookup_chat) ? 'selected' : '' ; ?>">聊天</a></li>
+					<li><a href="<?=site_url('group/' . $group['id'] . '/stream');?>" class="<?= isset($current_group_lookup_stream) ? 'selected' : '' ; ?>">新闻台</a></li>
 				</ul>
 				
 			  </div>

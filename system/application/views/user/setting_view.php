@@ -272,8 +272,12 @@
 								</script>
 								
 								<p id="lover_p" class="<?=get_current_user_profile('love_status')=='single'? 'hidden' :'';?>">
-									<label>恋爱对象果号</label>
-									<input id="lover_id" class="tipsy_w" type="text" name="lover_id" title="这里填入你另一半的果号" />
+									<label>恋人号</label>
+									<?php
+										$ci =& get_instance(); $ci->load->model('relation_model');
+										$lover = $ci->relation_model->get_lover( get_current_user_id() );
+									?>
+									<input id="lover_id" class="tipsy_w" type="text" name="lover_id" title="这里填入你另一半的果号" value="<?=$lover['id'];?>" />
 								</p>
 								<p>
 									<label>个人描述</label>

@@ -163,7 +163,7 @@
 		/**
 		 *	查看一个用户的资料~  根据权限显示
 		 */
-		function user_lookup( $user_id_slug ) {
+		function user_lookup( $user_id_slug, $action='home' ) {
 			
 			if ( is_numeric($user_id_slug) ) {
 				// 若传入数字， 判断成ID～～读取该ID的用户
@@ -201,8 +201,15 @@
 			if ( $user_id == get_current_user_id() ) {
 				$render['current_user_home'] = 'current_menu';
 			}
-
-			kk_show_view('user/user_lookup_view', $render);
+			
+			// 哪一项页
+			if( $action == 'home' ) {
+				$render['current_user_lookup_home'] = true;
+				kk_show_view('user/user_lookup_view', $render);
+			} else {
+				$render['current_user_lookup_profile'] = true;
+				kk_show_view('user/user_lookup_profile_view', $render);
+			}
 
 		}
 		
@@ -308,13 +315,17 @@
 					$love_status = $this->form_validation->set_value('love_status');
 					$lover_id = $this->form_validation->set_value('lover_id');
 					
+					$this->load->model('relation_model');
 					if ( $love_status != 'single' ) {
+						
 						// 非单身，那么设置lover relation
 						if ( $lover_id != '' ) {
 							// 同时设置 Lover ID， 爱人的ID， 添加爱人关系
-							$this->load->model('relation_model');
 							$c = $this->relation_model->create_lover( get_current_user_id(), $lover_id );
 						}
+					} else {
+						// 单身！？删除lover relation
+						$this->relation_model->del_lover( get_current_user_id() );
 					}
 					
 					// 修改user profiles

@@ -333,7 +333,17 @@
 		 *	创建恋爱关系 love relation~  如果双向恋爱关系的时候再给星星吧
 		 */
 		function create_lover( $from_user_id, $to_user_id ) {
-			//防止重复
+			
+			// 创建之前， 先删除用户的其他恋爱关系
+			// 因为恋爱关系只可以一个， 别花心嘛
+			$this->del_lover( $from_user_id );
+// 			$this->del_relation( array(
+// 				'from_id' => $from_user_id,
+// 				//'to_id' => $to_user_id,
+// 				'model' => 'user',
+// 				'relation' => 'lover',
+// 			));
+			
 
 			return $this->create_relation( array(
 				'from_id' => $from_user_id,
@@ -351,13 +361,19 @@
 // 											) ) {
 		}
 		
-		
+		function del_lover( $from_user_id ) {
+			return $this->del_relation( array(
+				'from_id' => $from_user_id,
+				'model' => 'user',
+				'relation' => 'lover',
+			));
+		}
 		
 		/**
 		 *	获得恋爱关系
 		 */
 		function get_lover( $user_id ) {
-
+			
 			$query = $this->db->get_where('relation', array(
 				'from_id' => $user_id,
 				'model' => 'user',
