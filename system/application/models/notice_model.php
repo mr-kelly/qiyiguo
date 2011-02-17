@@ -22,16 +22,22 @@
 		}
 		
 		
-		function get_notice_count( $user_id, $type='group' ) {
+		/**
+		 *	获取指定类型的未读提醒的数量
+		 */
+		function get_unread_notice_count( $user_id, $type='group' ) {
 			
 		}
 		
 		
 		/**
-		 *	戳一下notice， 令notice变为已读
+		 *	戳一下notice， 令notice变为 已读  (update)
 		 */
-		function poke_notice( $data ) {
-			
+		function poke_notice_by_id( $notice_id ) {
+			$this->db->where('id', $notice_id );
+			return $this->db->update('notice', array(
+				'status' => 'read',
+			));
 		}
 		
 		
