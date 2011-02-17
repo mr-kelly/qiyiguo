@@ -263,6 +263,14 @@
 				
 				$this->form_validation->set_rules('slug', '个人网址', 'trim|xss_clean|alpha_dash'); // 不可以纯数字
 				
+				
+				// 教育信息 Tab
+				$this->form_validation->set_rules('school_id[]', '学校', 'xss_clean|trim');
+				
+				// 工作单位信息
+				$this->form_validation->set_rules('job_unit_id[]', '工作单位', 'xss_clean|trim');
+				
+				
 				/*	不采用http新浪微博验证模式
 				$this->form_validation->set_rules('t_sina_login', '新浪微博帐号', 'trim|xss_clean');
 				$this->form_validation->set_rules('t_sina_password', '城市', 'trim|xss_clean');
@@ -326,6 +334,29 @@
 					} else {
 						// 单身！？删除lover relation
 						$this->relation_model->del_lover( get_current_user_id() );
+					}
+					
+					
+					// 教育信息 array
+					$schools = $this->form_validation->set_value('school_id[]');
+					$this->load->model('user_education_model');
+					// 删除全部，再添加新的
+					$this->user_education_model->del_user_education( get_current_user_id() );
+					foreach( $schools as $school ) {
+						$this->user_education_model->create_education( get_current_user_id(), array(
+							'school_id' => $school,							
+						));
+					}
+					
+					// 工作单位 array
+					$job_units = $this->form_validation->set_value('job_unit_id[]');
+					$this->load->model('user_job_unit_model');
+					// 删除全部，再添加新的
+					$this->user_job_unit_model->del_user_job_units( get_current_user_id() );
+					foreach ( $job_units as $unit ) {
+						$this->user_job_unit_model->create_job_unit( get_current_user_id(), array(
+							'job_unit_id' => $unit,
+						));
 					}
 					
 					// 修改user profiles
@@ -442,6 +473,13 @@
 				$data['user_t_sina'] = $user_t_sina;
 			}
 			
+			// 获取用户的教育信息
+			$this->load->model('user_education_model');
+			$data['user_education'] = $this->user_education_model->get_user_education( get_current_user_id() );
+			
+			// 获得用户的工作单位设置信息
+			$this->load->model('user_job_unit_model');
+			$data['user_job_units'] = $this->user_job_unit_model->get_user_job_units( get_current_user_id() );
 			
 			kk_show_view('user/setting_view.php', $data);
 		}

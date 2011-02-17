@@ -57,6 +57,8 @@
 									</span>
 								</p>
 								
+
+								
 								<p>
 									<label for="group_verify">加入方式</label>
 									<select id="group_verify" name="verify" class="tipsy_nw" title="其他人加入你果群的方式">
@@ -69,15 +71,45 @@
 								</p>
 								
 								<p>
+									<label>位置</label>
+									<select class="dict_province location_select" name="province_id">
+									<?php
+										$ci =& get_instance();
+										$provinces =  $ci->dict_model->get_provinces();
+										$user_province = get_current_user_profile('province_id'); // 用户当前设置的省份
+										foreach ( $provinces as $prov ):
+									?>
+										<option value="<?=$prov['id'];?>"<?=( $user_province == $prov['id'] ) ? ' selected="selected"' : '' ; ?>><?=$prov['province_name'];?></option>
+									
+									<?php endforeach; ?>
+									</select>
+									
+									<select class="dict_city location_select" name="city_id">
+									<?php
+										$ci =& get_instance();
+										$cities =  $ci->dict_model->get_cities($user_province);
+										$user_city = get_current_user_profile('city_id');
+										foreach ( $cities as $city ):
+									?>
+										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
+									
+									<?php endforeach; ?>
+									<select>
+									
+								</p>
+								
+								<p>
+									<label>群网站</label>
+									<input class="url tipsy_w" title="如果有关于这个果群的网址，你可以在这里填写" type="text" name="website" value="<?= isset( $group['website'] ) ? $group['website'] :'' ;?>" />
+								</p>
+								
+								<p>
 									<label>果群简介</label>
 									<textarea name="intro"><?=$group['intro'];?></textarea>
 								</p>
 								
 
-								<p>
-									<label>群网站</label>
-									<input class="url tipsy_w" title="如果有关于这个果群的网址，你可以在这里填写" type="text" name="website" value="<?= isset( $group['website'] ) ? $group['website'] :'' ;?>" />
-								</p>
+
 								
 								<p class="center">
 									<a id="group_setting_submit" class="btn" href="#"><span><span>确认修改</span></span></a>

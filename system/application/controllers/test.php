@@ -169,5 +169,50 @@ EOT;
 		}
 		
 		
+		/**
+		 *	将所有学校 (cms_university, cms_provinces)转换成群组~
+		 */
+		function school_to_group() {
+		
+			// 获取学校和它所在省份
+			$schools = $this->db->query('SELECT cms_university.university, cms_provinces.province FROM cms_university,cms_provinces WHERE cms_university.province_id = cms_provinces.province_id');
+			foreach ( $schools->result_array() as $school ) {
+				$u = $school['university'];  // 新群组的名称
+				$p = $school['province'];
+				
+				$provs = $this->db->query('SELECT id FROM kk_dict_province WHERE province_name = "' . $p .'"');
+				$provs = $provs->row_array();
+				
+				$real_province_id = $provs['id']; // 新群组对应的 省份 province_ID
+				
+				$cat_id = 4;    // 新群组所属分类 - 大学
+				
+				$this->load->model('group_model');
+				
+				// 防止学校名字重复!
+				$check_school = $this->db->get_where('group', array(
+					'name' => $u,
+				));
+				if ( $check_school->num_rows() == 0 ) {
+					$this->group_model->create_group(array(
+						'name' => $u,
+						'province_id' => $real_province_id,
+						'category_id' => $cat_id,
+						'privacy' => 'public',
+						'verify' => 'everyone',
+						'owner_id' => 0,
+					));
+				} else {
+					//
+					
+					echo('duplicated school');
+				}
+				
+			}
+			
+			//print_r( $schools->result_array() );
+			
+		}
+		
 
 	}

@@ -41,6 +41,9 @@
 				$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean');
 				$this->form_validation->set_rules('website', '果群网页', 'trim|xss_clean');
 				
+				$this->form_validation->set_rules('province_id', '省份', 'trim|xss_clean');
+				$this->form_validation->set_rules('city_id', '城市', 'trim|xss_clean');
+				
 				if ( !$this->form_validation->run() ) {
 					ajaxReturn( null, validation_errors(), 0);
 				} else {
@@ -48,6 +51,10 @@
 						'name' => $this->form_validation->set_value('name'),
 						'privacy' => $this->form_validation->set_value('privacy'),
 						'category_id' => $this->form_validation->set_value('category_id'),
+						
+						'province_id' => $this->form_validation->set_value('province_id'),
+						'city_id' => $this->form_validation->set_value('city_id'),
+						
 						'verify' => $this->form_validation->set_value('verify'),
 						'intro' => $this->form_validation->set_value('intro'),
 						'website' => $this->form_validation->set_value('website'),

@@ -84,7 +84,10 @@
 		
 		/**
 		 *   新设置 友群成员，
-		 *   制定友群，令用户成为成员
+		 *   制定友群，令用户成为成员 
+		 
+		 		××× 如果群组原来是没成员的，第一个成员成为管理员
+		 		
 		 *   重复，出错，返回false
 		 */
 		function create_group_user($group_id, $user_id, $group_nickname = '') {

@@ -53,9 +53,15 @@
 				<div class="kk_tabs">
 					<ul class="tab_menu">
 						<li>
-							<a href="#profile_setting">
-								资料设置
-							</a>
+							<a href="#profile_setting">资料设置</a>
+						</li>
+						
+						<li>
+							<a href="#education_setting">学校信息</a>
+						</li>
+						
+						<li>
+							<a href="#job_setting">工作信息</a>
 						</li>
 						
 						<li>
@@ -82,8 +88,9 @@
 							</a>
 						</li>
 					</ul>
-				
-					<div id="profile_setting" class="tab_div hidden"><!--资料设置-->
+					
+					<!--资料设置-->
+					<div id="profile_setting" class="tab_div hidden">
 						<div class="form_div">
 							
 								<p>
@@ -311,11 +318,64 @@
 							
 						</div>
 						
-						<div class="session_message hidden"></div>
+					</div>
+					
+
+					
+					<div id="education_setting" class="tab_div hidden">
+						<h2>学校信息</h2>
+						<div class="form_div">
+							<?php foreach( $user_education as $school ): ?>
+							<p>
+								<label>所在学校</label>
+								<input type="text" name="school_id[]" value="<?=$school['school_id'];?>" />
+								<a class="btn" href="#" onclick="return get_school(this);"><span><span>选择学校</span></span></a>
+							</p>
+							<?php endforeach; ?>
+							
+							<script>
+								// 弹窗获取指定的学校
+								function get_school($this) {
+									var school_group_id = window.showModalDialog('<?=site_url("search/window_choose_school");?>','','center=yes;help=no;status=no;location=no');	
+									
+									$($this).prev().val( school_group_id );
+									
+									return false;
+								}
+								
+								//alert(temp);
+							</script>
+							
+							
+						</div>
+					</div>
+					
+					<div id="job_setting" class="tab_div hidden">
+						<h2>工作单位</h2>
+						<div class="form_div">
+							<?php foreach( $user_job_units as $unit ): ?>
+							<p>
+								<label>工作单位</label>
+								<input type="text" name="job_unit_id[]" value="<?=$unit['job_unit_id'];?>" ?>
+								<a class="btn" href="#" onclick="return get_job_unit(this);"><span><span>搜查工作单位</span></span></a>
+							</p>
+							<?php endforeach; ?>
+							
+							<script>
+								// 弹窗获取指定的工作单位 （Group ID )
+								function get_job_unit($this) {
+									var job_unit_id = window.showModalDialog('<?=site_url("search/window_choose_job_unit");?>', '','center=yes;help=no;status=no;location=no');
+									
+									$($this).prev().val( job_unit_id );
+									
+									return false;
+								}
+							</script>
+						</div>
 					</div>
 					
 					<div id="privacy_setting" class="tab_div hidden">
-					
+						隐私设置
 					</div>
 					
 					<div id="slug_setting" class="tab_div hidden">
