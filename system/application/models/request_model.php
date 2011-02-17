@@ -1,12 +1,9 @@
 <?php
 	class Request_Model extends KK_Model {
-		function __construct() {
-			parent::__construct();
-		}
 		
-
-		
-		
+		/**
+		 *	创建群组的 request请求 (请求加入群组）
+		 */
 		function create_request_group( $group_id, $user_id, $message='') {
 		
 			// 重复,等待的，   则删除，覆盖

@@ -1,5 +1,8 @@
 <?php
-
+	
+	/**
+	 *	话题 的数据模型
+	 */
 	class Topic_Model extends KK_Model {
 	
 		function __construct() {
@@ -49,6 +52,8 @@
 			),$limit);
 			
 			$topics = $query->result_array();
+			
+			// 绑定 附加图片
 			foreach ( $topics as $k=>$v ) {
 				$topics[$k]['User'] = $this->_get_user( $topics[$k]['user_id'] );
 				
