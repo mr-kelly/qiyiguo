@@ -528,6 +528,7 @@ div.submenu span.submenu_corner:first-child {
 		font-size: 16px;
 	}
 	#content h3 {
+		font-size: 14px;
 		margin: 10px 0 10px 0;
 	}
 	#content p {
@@ -914,10 +915,39 @@ div.submenu span.submenu_corner:first-child {
 			width: 350px;
 		}
 		.create_topic_content {
-			width: 450px;
+			width: 475px;
 			height: 120px;
 		}
-	
+
+
+/**
+ *	Event 活动、任务
+ */
+.events_list {
+	margin: 0;
+	padding: 0;
+}
+	.event {
+		width: 45%;
+		height: 100px;
+		list-style: none;
+		margin: 10px 0;
+		padding: 0 10px;
+		float: left;
+	}
+		.event h2 {
+			margin: 0;
+		}
+		.event h2 a {
+			font-size: 14px;
+		}
+		
+		.event .event_detail p {
+			text-indent: 0;
+		}
+			.event_even {
+				border-left: 1px dashed #CCC;
+			}
 /** Footer */
 	
 	

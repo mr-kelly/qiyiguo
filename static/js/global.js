@@ -1,3 +1,11 @@
+/**
+ *	判断用户是否已登录，没有转到登录页！
+ */
+function login_redirect() {
+
+}
+//alert( location.href );
+
 
 /**
  *	控制jGrowl的显示
@@ -5,10 +13,10 @@
 var kk_growl = {
 	error: function( $message ) {
 		// 错误显示的jGrowl ( 短暂 )
-		$.jGrowl( $message );
+		$.jGrowl( $message, { header: '错误' } );
 	},
 	success: function ( $message ) {
-		$.jGrowl( $message );
+		$.jGrowl( $message, { header: '成功' } );
 	},
 	session_message: function( $message ) {
 		// 用于library Session Message。  持久显示

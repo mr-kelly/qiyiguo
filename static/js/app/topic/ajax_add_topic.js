@@ -102,7 +102,7 @@ $(function(){
 	/**
 	 *	“发话”里的 转成文章 按钮
 	 */
-    $('.create_topic_add_title_btn').tipsy().click(function(){
+    $('.create_topic_add_title_btn').click(function(){
     	$('.create_topic_title').toggle();
 		
 
