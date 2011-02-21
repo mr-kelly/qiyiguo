@@ -6,6 +6,7 @@
 	<title>奇异果 果园</title>
 	<?=import_css('css/base.css');?>
 	<?=import_css('css/app/orchard/style.css');?>
+	<?=import_css('css/kk_table.css');?>
 	
 </head>
 <body>

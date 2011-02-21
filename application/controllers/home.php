@@ -1,9 +1,7 @@
 <?php
 class Home extends KK_Controller {
 
-	
-	function index()
-	{
+	function index() {
 		
 		if ( is_logged_in() ) {
 			redirect( 'home/start' );

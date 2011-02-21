@@ -42,4 +42,9 @@
 	}
 	.kk_table td {
 		padding: 0 5px;
+		
+	}
+	
+	.kk_table td img {
+		vertical-align: middle;
 	}

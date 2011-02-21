@@ -166,12 +166,12 @@
 			
 			return $topic[0];
 		}
-		function get_groups( $limit=10 ) {
+		function get_groups( $limit=10, $start=0 ) {
 			$query = $this->db->get_where('group',array(
 				'privacy'=>'public',  // 只获取公开的友群组
 			),$limit);
 			
-			return $query->result();
+			return $query->result_array();
 		}
 		
 		

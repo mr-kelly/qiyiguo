@@ -71,13 +71,14 @@
 		function static_url( $file='' ) {
 			$CI =& get_instance();
 			
-			if ( $file == '' ) {
-				// 如果static_url不带参数，返回网址后面加 '/'
-				return $CI->config->site_url( $CI->config->item('static_url') ) . '/';
+			// 如果static是http://xxxxx,那么直接返回这网址
+			if ( preg_match('#^https?://#i', $CI->config->item('static_url') ))
+			{
+				return $CI->config->item('static_url') . $file;
 			}
 			
+			
 			return $CI->config->site_url( $CI->config->item('static_url') . $file );
-			//return $CI->config->item('static_url') . $file;
 		}
 		
 	}

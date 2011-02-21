@@ -28,7 +28,7 @@
 							// 头像更改时同时提交 ajax form, 以确保用户修改资料后，未保存按修改头像资料丢失
 						?>
 							<a class="change_avatar" onclick="$('#user_profiles_form').submit();" href="<?=site_url('user/avatar_set' . '/' . $avatar['id'] );?>">
-								<img width="50" src="<?=static_url();?>upload/avatars/<?=$this->tank_auth->get_user_id();?>/<?=$avatar['avatar_thumb'];?>" />
+								<img width="50" src="<?=static_url( sprintf('upload/avatars/%u/%s', get_current_user_id(), $avatar['avatar_thumb']) );?>" />
 							</a>
 						<?php
 							endforeach;
@@ -175,7 +175,7 @@
 										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
 									
 									<?php endforeach; ?>
-									<select>
+									</select>
 									
 								</p>
 								
@@ -183,7 +183,7 @@
 								<p>
 									<label>籍贯</label>
 									<select class="hometown_province location_select" name="hometown_province_id">
-										<option value="">未选择</option>
+										
 									<?php
 										$ci =& get_instance();
 										$provinces =  $ci->dict_model->get_provinces();

@@ -43,7 +43,7 @@ $config['base_url']	= "";
 
 
 // 静态文件所在路径
-$config['static_url'] = $config['base_url'].'static/';
+$config['static_url'] = 'static/'; // 程序文件根目录
 
 
 

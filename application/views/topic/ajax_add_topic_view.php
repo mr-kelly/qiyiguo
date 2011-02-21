@@ -41,6 +41,7 @@
 					 <span><span>&nbsp;发!&nbsp;</span></span>
 				 </a>
 				 
+				 <a id="" class="icon icon_add" href="javascript:void(0);">需要添加附件?</a>
 
 				 
 				 
@@ -53,8 +54,9 @@
 		 </form>
 		 
 		 <div id="add_topic_pic_div">
-		 
+		 	
 		 	<a id="add_topic_pic_btn" class="icon icon_add" href="javascript:void(0);">添加图片</a>
+		 	
 		 	
 		 	<a id="add_topic_pic_full" class="sexybox hidden" href="#" title="查看大图">
 			 	<img width="100" id="add_topic_pic_thumb" />
