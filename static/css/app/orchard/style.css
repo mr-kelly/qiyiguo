@@ -4,6 +4,9 @@ body {
 	font-size: 13px;
 	color: #333;
 }
+.center {
+	text-align: center;
+}
 .clearboth {
 	clear: both;
 }

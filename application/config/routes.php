@@ -71,6 +71,7 @@ $route['event/(:num)'] = 'event/event_lookup/$1';
 
 // 果园
 $route['orchard/'] = 'orchard/home/index';
+$route['orchard/group/(:num)'] = 'orchard/group/group_lookup/$1';
 
 
 

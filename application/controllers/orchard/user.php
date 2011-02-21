@@ -1,8 +1,14 @@
 <?php
 
 	class User extends KK_Controller {
+		function __construct() {
+			parent::__construct();
+			
+			$this->load->model('user_profiles_model');
+		}
+		
 		function index() {
-			$render = array();
+			$render['users'] = $this->user_profiles_model->get_users( array(), 10);
 			kk_show_view('orchard/user/index_view', $render);
 		}
 		

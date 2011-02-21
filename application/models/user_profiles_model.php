@@ -32,6 +32,18 @@ class User_Profiles_Model extends KK_Model {
 		$this->db->where('user_id', $user_id);
 		$this->db->update('user_profiles', $data);
 	}
+	
+	
+	function get_users( $data=array(), $limit=10, $start=0 ) {
+		$this->db->order_by('created','desc');
+		$us = $this->db->get_where('users', $data, $limit, $start);
+		
+		$return_users = array();
+		foreach ( $us->result_array() as $u ) {
+			array_push( $return_users, $this->_get_user( $u['id'] ) );
+		}
+		return $return_users;
+	}
 	/**
 	 *	获取用户详细资料，单条记录
 	 *  $user_id
