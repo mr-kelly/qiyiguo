@@ -10,6 +10,7 @@
 	<array>
 		<string>3838FF27-E018-492B-967D-0F805E6F4BFA</string>
 		<string>704333A9-EB4C-43D0-A825-77C792334477</string>
+		<string>067EAA41-1214-4E0D-A8A5-BFB3CE04D493</string>
 	</array>
 	<key>FileFilterID:Mrkelly</key>
 	<string>msng</string>
@@ -20,8 +21,8 @@
 			<data>
 			AAAAAAHMAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
 			a0mwSCsAAAFrXdIOaW5kZXhfdmlldy5waHAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWtg
-			o8mIalZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWth
+			4smIalZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
 			b3VwAAAQAAgAAMhq2TAAAAARAAgAAMmH+dYAAAABACABa13SAWo7
 			rAFqO2gBajnFAWncnAAFq8wABavFAACRnwACAFRLS01hY2Jvb2s6
 			VXNlcnM6TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9u
@@ -35,6 +36,30 @@
 			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/orchard/group/index_view.php</string>
 			<key>RelativePath</key>
 			<string>./application/views/orchard/group/index_view.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAGSAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqL6YMa2tfdGFibGUuY3NzAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWth
+			gMl3s+FURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAA2Nz
+			cwAAEAAIAADIatkwAAAAEQAIAADJd0NhAAAAAQAYAWovpgFqLvcB
+			adycAAWrzAAFq8UAAJGfAAIAPUtLTWFjYm9vazpVc2VyczpNcmtl
+			bGx5OlNpdGVzOmtpd2lndW86c3RhdGljOmNzczpra190YWJsZS5j
+			c3MAAA4AGgAMAGsAawBfAHQAYQBiAGwAZQAuAGMAcwBzAA8AFAAJ
+			AEsASwBNAGEAYwBiAG8AbwBrABIAM1VzZXJzL01ya2VsbHkvU2l0
+			ZXMva2l3aWd1by9zdGF0aWMvY3NzL2trX3RhYmxlLmNzcwAAEwAB
+			LwAAFQACAA7//wAA
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/static/css/kk_table.css</string>
+			<key>RelativePath</key>
+			<string>./static/css/kk_table.css</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
