@@ -9,7 +9,7 @@
 		
 		function index() {
 			$data = array(
-				'groups' => $this->group_model->get_groups(100),
+				'groups' => $this->group_model->get_groups(),
 				'current_group' => 'current_menu',
 			);
 			kk_show_view('group/index_view', $data);
