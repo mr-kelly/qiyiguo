@@ -1,0 +1,18 @@
+Group Stream :  A new News Feed.   It contains:   RSS, T_sina
+
+
+
+
+
+
+1. Clean
+    语言通俗，不专业
+
+2. Pictures
+    图片能够说明一切的时间人物地点。
+
+3. Emphasis
+   时间人物地点，并不重要，重要的是为什么，发生什么。
+
+4. 主动
+   

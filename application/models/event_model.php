@@ -62,7 +62,7 @@
 		 *	删除符合条件的 事件（活动/任务)
 		 */
 		function del_event( $data ) {
-			
+			return $this->db->delete('user_event', $data);
 		}
 		
 		
@@ -81,7 +81,23 @@
 			return $this->db->insert_id();
 		}
 		
-		function 
+		
+		/**
+		 *	获取事件、活动 的参与者...
+		 */
+		function get_event_users( $event_id, $type='join' )  {
+			$event_users = $this->db->get_where('user_event', array(
+				'event_id' => $event_id,
+				'type' => $type,
+			));
+			
+			$return_users = array();
+			foreach( $event_users->result_array() as $event_user ) {
+				array_push( $return_users, $this->_get_user( $event_user['user_id'] );
+			}
+			
+			return $return_users;
+		}
 		
 		
 	}
