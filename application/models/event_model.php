@@ -64,4 +64,24 @@
 		function del_event( $data ) {
 			
 		}
+		
+		
+		
+		/**
+		 *	创建 事件、用户、参与者
+		 */
+		function create_event_user( $event_id, $user_id, $type='join' ) {
+			$this->db->insert('user_event', array(
+				'event_id' => $event_id,
+				'user_id' => $user_id,
+				'type' => $type,
+				'created' => date('Y-m-d H:i:s'),			
+			));
+			
+			return $this->db->insert_id();
+		}
+		
+		function 
+		
+		
 	}
