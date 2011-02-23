@@ -347,6 +347,20 @@
 		}
 		
 		/**
+		 *	解除用户指定群组成员关系
+		 */
+		function del_group_user($group_id, $user_id) {
+		
+			return $this->db->delete( 'group_user', array(
+				'group_id' => $group_id,
+				'user_id' => $user_id,
+			));
+			
+		}
+		
+		
+		
+		/**
 		 *	判断友群是否私有
 		 */
 		function is_group_private( $group_id ) {
@@ -387,23 +401,6 @@
 				return false;
 			}
 
-		}
-		
-		
-		
-		
-		
-		
-		/**
-		 *	解除用户指定群组成员关系
-		 */
-		function del_group_user($group_id, $user_id) {
-		
-			return $this->db->delete( 'group_user', array(
-				'group_id' => $group_id,
-				'user_id' => $user_id,
-			));
-			
 		}
 		
 

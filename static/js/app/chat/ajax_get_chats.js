@@ -69,7 +69,6 @@ $(function(){
 				dataType: 'json',
 				clearForm: true,
 				success: function(data) {
-					
 					// 成功, 读取评论数据，隐藏错误提示信息
 					if ( data.status == 1) {
 					

@@ -22,7 +22,7 @@
 <?php endif; ?>
 
 <div class="sidebar_widget">
-	<h2>关系果群</h2>
+	<h2>关系群组</h2>
 </div>
 
 <div class="sidebar_widget">
@@ -166,13 +166,24 @@
     <?php endif; ?>
     
     <?php
+    	// 提示公开群组的管理员!!! 叫他们开个内部管理的东西！
     	if ( isset( $group ) ):
-    		if ( $group['privacy'] == 'public' ):
+    		if ( is_group_admin( $group['id'], get_current_user_id() )  ):
+	    		if ( $group['privacy'] == 'public' ):
+    			
     ?>
     	<div class="sidebar_widget">
     		<h2>内部组织需要人员管理?</h2>
     	</div>
     <?php
+    			else:
+    				//提示私密群组的管理员，开个对外的东西
+    ?>
+    	<div class="sidebar_widget">
+    		<h2>需要一个对外宣传组织？</h2>
+    	</div>
+    <?php
+				endif;
     		endif;
     	endif;
     ?>

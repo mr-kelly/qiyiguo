@@ -15,6 +15,21 @@
 		}
 		
 		
+		
+		/**
+		 *	获取指定的chat～
+		 */
+		function get_chat_by_id( $chat_id ) {
+			$query = $this->db->get_where('chat', array(
+				'id' => $chat_id,
+			));
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->row_array();
+			
+		}
 		/**
 		 *	获取指定model_id的评论数目
 		 */

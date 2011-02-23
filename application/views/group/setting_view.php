@@ -109,6 +109,13 @@
 									<textarea name="intro"><?=$group['intro'];?></textarea>
 								</p>
 								
+								<p>
+									<label>统治模式</label>
+									<span>
+									<input type="checkbox" name="group_god" value="1" />
+									只有管理员有权发布话题、活动
+									</span>
+								</p>
 
 
 								

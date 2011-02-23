@@ -63,6 +63,18 @@
 					
 					$this->chat_model->create_chat($model, $model_id, $title, $content, $parent_id, $user_id);
 					
+					/**
+					 *	User Notice
+					 */
+					// 添加chat后，提醒parent用户~  先获取chat, 再获取chat的user_id.
+
+					if ( $parent_chat = $this->chat_model->get_chat_by_id( $parent_id ) ) {
+						// 如果parent_id为0， 那么向 model_id 的user提醒~
+						add_notice( $parent_chat['user_id'], '新的聊天回复', sprintf('/%s/%s/chat', $model, $model_id) );
+					} else {
+						// parent_id为0， 向 model 回复
+					}
+					
 					
 					// chat添加后，重定向,用于iframe Chat
 					//if ( isset( $_GET['redirect'] ) ){
@@ -80,7 +92,7 @@
 				
 			}
 			
-			ajaxReturn( null,  'add chat' , 0 );
+			ajaxReturn( null,  'fail add chat' , 0 );
 		}
 		
 		

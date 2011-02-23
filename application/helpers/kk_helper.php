@@ -251,8 +251,10 @@
 	 
 	 		Get Notice 在 Notice Controlller 内,ajax控制
 	 */
-	function add_notice( $content, $link ) {
-		// TODO 
+	function add_notice( $user_id, $content, $link ) {
+		$ci =& get_instance();
+		$ci->load->model('notice_model');
+		return $ci->notice_model->add_notice(  $user_id, $content, $link );
 	}
 	
 	

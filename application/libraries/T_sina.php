@@ -26,8 +26,8 @@
 	require_once('t_sina_oauth/weibooauth.php');
 	require_once('t_sina_http/weibo.class.php');
 
-	define( 'WB_AKEY', '1287733427');
-	define( 'WB_SKEY', '47793b5c239c2f171575021c3b7a84d9');
+	define( 'WB_AKEY', '3605840884');
+	define( 'WB_SKEY', 'e73a5c46c8c9cdb8eb1b756f084becc8');
 	
 	
 	

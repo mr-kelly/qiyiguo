@@ -7,7 +7,7 @@
 		}
 		
 		function index() {
-			$render = array();
+			$render['events'] = $this->event_model->get_events_custom( array() );
 			kk_show_view('event/index_view', $render);
 		}
 		
@@ -19,6 +19,77 @@
 			$render['event'] = $this->event_model->get_event_by_id( $event_id );
 			kk_show_view('event/event_lookup_view', $render);
 		}
+		
+		
+		
+		/**
+		 *	用户参加某活动、任务
+		 */
+		function ajax_join_event( $event_id, $action = 'join' ) {
+			login_redirect();
+			
+			if ( $action == 'join' ) {
+			
+				if ( $event_user_id = $this->event_model->create_event_user( $event_id, get_current_user_id(), 'join' ) ) {
+					// TODO 参加活动后，notice用户!!!
+					ajaxReturn( null, '成功参加了这该活动~', 1);
+				} else {
+					ajaxReturn( null, '貌似你已经是参加者了', 0 );
+				}
+				
+				
+				
+			} else if ( $action == 'exit' ) {
+				
+				// 退出参加某活动
+				if ( $this->event_model->del_event_user( array(
+															'event_id' => $event_id,
+															'user_id' => get_current_user_id(),
+															'type' => 'join',
+															)) ) {
+					ajaxReturn( null, '退出了这场活动', 1 );
+				} else {
+					ajaxReturn( null, '错误，无法退出这场活动', 0 );
+				}
+				
+			}
+
+		}
+		
+		/**
+		 *	用户关注、感兴趣某活动
+		 */
+		function ajax_follow_event( $event_id, $action = 'follow' ) {
+			login_redirect();
+			if ( $action == 'follow' ) {
+			
+				if ( $event_user_id = $this->event_model->create_event_user( $event_id, get_current_user_id(), 'follow' ) ) {
+					ajaxReturn( null, '你已对这个活动表示兴趣', 1 );
+				} else {
+					ajaxReturn( null, '错误:无法对其有兴趣', 0 );
+				}
+				
+			} else if ( $action == 'unfollow' ) {
+				// 删除对应事件
+				if ( $this->event_model->del_event_user( array( 
+															'event_id' => $event_id,
+															'user_id' => get_current_user_id(),
+															'type' => 'follow',
+															)) ) {
+															
+					ajaxReturn( null, '对这个活动失去了兴趣', 1 );
+				} else {
+					ajaxReturn( null, '错误:无法对其失去兴趣', 0 );
+				}
+				
+			}
+		}
+		
+		
+		
+		
+		
+		
 		/**
 		 *	Ajax 添加 友群活动
 		 */

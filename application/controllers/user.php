@@ -777,7 +777,8 @@ EOT;
 			
 			if ( $action == 'authorize' ) {
 				// 授权 。   转到新浪授权页面， 给用户进行授权， 授权成功, 返回oauth token，进行
-				redirect( $this->t_sina->getAuthorizeURL('http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback')) );
+				//redirect( $this->t_sina->getAuthorizeURL('http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback')) );
+				redirect( $this->t_sina->getAuthorizeURL( site_url('user/login_by_t_sina/callback')) );
 				
 			} else if ( $action == 'callback' ) {
 				
@@ -842,7 +843,8 @@ EOT;
 			
 			if ( $action == 'authorize' ) {
 				
-				redirect( $this->douban->get_authorize_url( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_douban/callback') ) );
+				//redirect( $this->douban->get_authorize_url( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_douban/callback') ) );
+				redirect( $this->douban->get_authorize_url( site_url('user/login_by_douban/callback') ) );
 				
 			} else if ( $action == 'callback' ) {
 				

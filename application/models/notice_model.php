@@ -12,8 +12,12 @@
 	 */
 	class Notice_Model extends KK_Model {
 	
-		function add_notice( $content, $link, $user_id ) {
+		function add_notice( $user_id, $content, $link, $type="notice" ) {
 			$this->db->insert('notice', array(
+				'user_id' => $user_id,
+				'content' => $content,
+				'link' => $link,
+				'type' => $type,
 				
 				'created' => date('Y-m-d H:i:s'),
 			));
@@ -31,13 +35,18 @@
 		
 		
 		/**
-		 *	戳一下notice， 令notice变为 已读  (update)
+		 *	戳一下notice， 令notice变为 已读  (update)  ( 更新:直接删除， 以免数据库滞留太多没用东西
 		 */
 		function poke_notice_by_id( $notice_id ) {
-			$this->db->where('id', $notice_id );
-			return $this->db->update('notice', array(
-				'status' => 'read',
+			return $this->db->delete('notice', array(
+				'id' => $notice_id,
 			));
+			
+			//$this->db->where('id', $notice_id );
+// 			return $this->db->update('notice', array(
+// 				'status' => 'read',
+// 			));
+
 		}
 		
 		
