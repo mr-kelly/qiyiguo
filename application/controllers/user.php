@@ -8,7 +8,7 @@
 		}
 		
 		function index() {
-			login_redirect();
+			//login_redirect();
 			
 			
 			echo '<img width="50" src="'.  get_user_avatar_url($this->tank_auth->get_user_id() ) . '" />';
@@ -353,25 +353,72 @@
 					
 					
 					
+
+
+					
+
+// 
+// 					// 教育信息 array , 因为set_value 在 codeigniter 2.0改变规则，只抓一个～所以。。 强制读成数组！函数自循环！
+// 					$schools = array();
+// 					function get_school_id( $ci, &$target_array ) {
+// 						$school = $ci->form_validation->set_value('school_id[]');
+// 						if ( !empty($school) ) {
+// 							array_push( $target_array, $school );
+// 							get_school_id( $ci, &$target_array);
+// 						}
+// 					}
+// 					get_school_id( $this, $schools );
+// 					
+// 					
+// 					
+// 					foreach( $schools as $school ) {
+// 						if ( !empty( $school ) ) { // 如果值为空，不创建
+// 							$this->user_education_model->create_education( get_current_user_id(), array(
+// 								'school_id' => $school,							
+// 							));
+// 						}
+// 					}
+// 					
+// 					
+// 					// 工作单位 array, 同样函数自循环读成函数
+// 					
+// 					$job_units = array();
+// 					function get_job_units_id( $ci, &$target_array ) {
+// 						$job_unit = $ci->form_validation->set_value('job_unit_id[]');
+// 						if ( !empty($job_unit) ) {
+// 							array_push( $target_array, $job_unit );
+// 							get_school_id( $ci, &$target_array);
+// 						}
+// 					}
+// 					get_job_units_id( $this, $job_units );
+// 					
+// 					
+// 					$this->load->model('user_job_unit_model');
+// 					// 删除全部，再添加新的
+// 					$this->user_job_unit_model->del_user_job_units( get_current_user_id() );
+// 
+// 					foreach ( $job_units as $unit ) {
+// 						if ( !empty( $unit ) ) {
+// 							$this->user_job_unit_model->create_job_unit( get_current_user_id(), array(
+// 								'job_unit_id' => $unit,
+// 							));
+// 						}
+// 					}
+//					
+//					在PHP 5.3 中以上嵌套函数会导致无法进入controller～ 所以修改为do...while
+
+ 					// 教育信息 array , 因为set_value 在 codeigniter 2.0改变规则，只抓一个～所以。。 强制读成数组！函数自循环！
+					$schools = array();
+					do {
+						$school = $this->form_validation->set_value('school_id[]');
+						if ( $school != '' ) {
+							$schools[] = $school;
+						}
+					} while ( $school != '' );
+					
 					$this->load->model('user_education_model');
 					// 删除全部，再添加新的
 					$this->user_education_model->del_user_education( get_current_user_id() );
-					
-
-					
-
-
-					// 教育信息 array , 因为set_value 在 codeigniter 2.0改变规则，只抓一个～所以。。 强制读成数组！函数自循环！
-					$schools = array();
-					function get_school_id( $ci, &$target_array ) {
-						$school = $ci->form_validation->set_value('school_id[]');
-						if ( !empty($school) ) {
-							array_push( $target_array, $school );
-							get_school_id( $ci, &$target_array);
-						}
-					}
-					get_school_id( $this, $schools );
-					
 					
 					
 					foreach( $schools as $school ) {
@@ -382,23 +429,19 @@
 						}
 					}
 					
-					
 					// 工作单位 array, 同样函数自循环读成函数
 					
 					$job_units = array();
-					function get_job_units_id( $ci, &$target_array ) {
-						$job_unit = $ci->form_validation->set_value('job_unit_id[]');
-						if ( !empty($job_unit) ) {
-							array_push( $target_array, $job_unit );
-							get_school_id( $ci, &$target_array);
+					do {
+						$job_unit = $this->form_validation->set_value('job_unit_id[]');
+						if ( $job_unit != '' ) {
+							$job_units[] = $job_unit;
 						}
-					}
-					get_job_units_id( $this, $job_units );
+					} while ( $job_unit != '' );
 					
-					
-					$this->load->model('user_job_unit_model');
-					// 删除全部，再添加新的
-					$this->user_job_unit_model->del_user_job_units( get_current_user_id() );
+ 					$this->load->model('user_job_unit_model');
+// 					// 删除全部，再添加新的
+ 					$this->user_job_unit_model->del_user_job_units( get_current_user_id() );
 
 					foreach ( $job_units as $unit ) {
 						if ( !empty( $unit ) ) {
@@ -407,7 +450,7 @@
 							));
 						}
 					}
-
+					
 					
 					// 修改user profiles
 					$this->user_profiles_model->update_user_profile( $user_id, array(
@@ -1202,9 +1245,8 @@ EOT;
 		 *	获取当前用户已加入的友群
 		 */
 		function joined_groups() {
-			if ( !$this->tank_auth->is_logged_in() ) {
-				redirect('user/login/user/joined_groups');
-			} else {
+			login_redirect();
+			
 				$current_user_id = $this->tank_auth->get_user_id();
 //				$user_groups = $this->group_model->get_user_groups($current_user_id);
 				
@@ -1213,7 +1255,6 @@ EOT;
 				);
 				
 				kk_show_view('user/joined_groups_view', $data);
-			}
 		}
 		
 		
