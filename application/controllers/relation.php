@@ -2,6 +2,11 @@
 
 	class Relation extends KK_Controller {
 		
+		function __construct() {
+			parent::__construct();
+			$this->load->model('relation_model');
+			
+		}
 		/**
 		 *	关注某人~ 传入对方user_id
 		 */
@@ -46,6 +51,18 @@
 			);
 			
 			kk_show_view('general/general_user_relation_btn_view', $render);
+		}
+		
+		
+		
+		
+		function ajax_add_group_relation( $from_group_id, $to_group_id ) {
+			if ( $relation_id = $this->relation_model->create_group_relation( $from_group_id, $to_group_id ) ) {
+				// 创建 群组关联关系
+				echo $relation_id;
+			} else {
+				echo 'fail';
+			}
 		}
 		
 		
