@@ -41,7 +41,7 @@ $config['douban_url'] = 'http://www.douban.com/people/%s/';
 |	http://example.com/
 |
 */
-$config['base_url']	= "";
+$config['base_url']	= "/kiwiguo/";
 
 
 // 静态文件所在路径
@@ -77,7 +77,7 @@ $config['index_page'] = "";
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
-$config['uri_protocol']	= "PATH_INFO";
+$config['uri_protocol']	= "AUTO";
 
 /*
 |--------------------------------------------------------------------------

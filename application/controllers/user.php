@@ -7,8 +7,9 @@
 			$this->load->model('group_model');
 		}
 		
+		
 		function index() {
-			login_redirect();
+			//login_redirect();
 			
 			
 			echo '<img width="50" src="'.  get_user_avatar_url($this->tank_auth->get_user_id() ) . '" />';

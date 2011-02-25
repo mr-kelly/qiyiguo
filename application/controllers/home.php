@@ -31,6 +31,7 @@ class Home extends KK_Controller {
 	}
 	
 	function test() {
+		phpinfo();
 		$this->load->model('user_profiles');
 		var_dump($this->user_profiles->get_profile());
 	}
