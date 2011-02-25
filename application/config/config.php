@@ -5,6 +5,8 @@
 // 时区
 date_default_timezone_set('Asia/Shanghai');
 
+$config['restrict_bnu'] = false; // 是否只允许bnu的内网IP登录
+
 /**
 	T_sina OAuth  新浪微博OAuth
 */
@@ -13,7 +15,7 @@ $config['t_sina_oauth_key'] = '3605840884';
 $config['t_sina_oauth_secret'] = 'e73a5c46c8c9cdb8eb1b756f084becc8';
 
 // 需设置
-$config['t_sina_callback_url'] = 'http://localhost:8888/kiwiguo/oauth/t_sina_callback';
+//$config['t_sina_callback_url'] = 'http://localhost:8888/kiwiguo/oauth/t_sina_callback';
 
 $config['upload_path'] = './static/upload/';
 $config['avatar_path'] = './static/upload/avatars/';

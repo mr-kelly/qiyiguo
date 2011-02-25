@@ -3,6 +3,7 @@
 ?>
 					<ul class="events_list">
 					<?php
+						if ( !empty( $events ) ):
 						$row = 1;
 						foreach ( $events as $event ):
 					?>
@@ -40,5 +41,11 @@
 					<?php
 						$row++;
 						endforeach;
+						
+						else:
+					?>
+						No Events
+					<?php
+						endif;
 					?>
 					</ul>

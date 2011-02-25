@@ -69,6 +69,15 @@
 					</div>
 					<a href="#" class="chat_reply icon icon_reply">回复↓</a>
 					
+					<?php
+						// 聊天层次太长了！！！ 提醒用户可以电邮他
+						if ( $chat['depth'] > 8 ):
+					?>
+					<a href="#" class="chat_email icon icon_email">电邮他</a>
+					<?php
+						endif;
+					?>
+					
 
 				</div>
 				

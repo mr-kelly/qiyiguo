@@ -1,3 +1,6 @@
+
+
+
 /**
  *	判断用户是否已登录，没有转到登录页！
  */
@@ -27,6 +30,10 @@ var kk_growl = {
 
 
 $(function() {
+
+	// PNG Fix
+	$(document).pngFix();
+	
 	//$.jGrowl('<img src="http://localhost:8888/kiwiguo/static/img/logo.png" />abc', { sticky: true });
 	//$.jGrowl("A message with a header", { header: 'Important' });
 	
@@ -179,9 +186,9 @@ $(function() {
     	
     	// 刷新iframe自适应高度， 配合jquery.iframeautoHeight
     	
-     	$('iframe').load(function(){
-     		$(this).height( $(this).contents().find('body').height() + 10);
-     	});
+//      	$('iframe').load(function(){
+//      		$(this).height( $(this).contents().find('body').height() + 10);
+//      	});
 });
 
 
@@ -224,11 +231,31 @@ $(function() {
 	 $(function(){
 		 //$('#navigator').pozFixed();
 		 
+// 		 $('#nav_btn').click(function(){
+// 			$('.nav_content').toggle();
+// 			
+// 			return false;
+// 		 });
+		 
+		 // 显示菜单~
 		 $('#nav_btn').click(function(){
-			$('.nav_content').toggle();
-			
-			return false;
+		 	$('.nav_content').show();
+		 	$('#nav_close').show();
+		 	$(this).hide();
+		 	
+		 	return false;
 		 });
+		 
+		 // 关闭导航菜单
+		 $('#nav_close').click(function(){
+		 	$('.nav_content').hide();
+		 	$('#nav_btn').show();
+		 	$(this).hide();
+		 	
+		 	return false;
+		 });
+		 
+		 
 		 
 		 //alert( document.body.clientWidth );
 		 

@@ -20,7 +20,7 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <meta name="description" content="［奇异果］是一个基于果群的社交网络，它帮助你发现与创造生活的每一刻。" />
+    <meta name="description" content="「奇异果」是一个世界上第一个群组网络，它帮助你和朋友们发现与创造生活的每一刻。你可以这这里发现、创建你的住宅小区、校园社团、朋友组织、商铺等等各种组织。" />
     <meta name="keywords" content="同学,大学生,陈霈霖,Mrkelly,公司,小区,学校,社交网站" />
     
     <meta name="generator" content="BBEdit 9.5 / Komodo Edit 5" />
@@ -72,12 +72,7 @@
 
 		
 		
-		<div class="clearboth"></div>
-		
-		
-    	<div id="nav_btn">
-    		<a href="#" class="autohide_btn" onclick="return false;">导航菜单</a>
-    	</div>
+
     	
     	
     </div>

@@ -73,6 +73,8 @@
 	<? //import_js('js/StickyScroller.min.js');?>
 	<? //import_js('js/GetSet.js');?>
 	
+	<? // jQuery png Fix for IE6 ?>
+	<?=import_js('js/kk.pngFix.pack.js');?>
 	
 	<?=import_js('js/global.js');?>
 	

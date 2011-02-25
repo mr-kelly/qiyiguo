@@ -125,17 +125,25 @@ img.avatar {
 	position: absolute;
 	top: 150px;
 	left: 0;
-
-	
-
 }
+
+	#nav_close {
+		background: url('../img/navigator_close.png')  -40px 0px;
+		height: 30px;
+		width: 30px;
+		position: absolute;
+		top: -5px;
+		right: -5px;
+	}
+	
 #navigator #nav_btn {
 	float:left;
-	width: 20px;
-	height: 80px;
-	background: #96C63F;
+	width: 37px;
+	height: 100px;
+	background: url(../img/nav_btn.png) no-repeat;/*#96C63F;*/
 	margin: -8px 0 0px 0;
 	z-index: 999;
+	text-indent: -9999px;
 	
 	/*
 	background: #000;

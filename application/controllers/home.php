@@ -3,6 +3,13 @@ class Home extends KK_Controller {
 
 	function index() {
 		
+		// 限制BNU Only
+		if ( $this->config->item('restrict_bnu') ) {
+			if ( ! isset( $_GET['ilovemrkelly'] ) ) {
+				exit('bnu only');
+			}
+		}
+		
 		if ( is_logged_in() ) {
 			redirect( 'home/start' );
 		}
