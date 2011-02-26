@@ -185,6 +185,7 @@
 			
 			$this->load->model('chat_model');
 			$this->load->model('topic_model');
+			$this->load->model('relation_model');
 			
 			//if ( !$this->tank_auth->is_logged_in() ) {
 			//	redirect('user/login?redirect=/group/'. $group_id);
@@ -221,6 +222,8 @@
 				
 				'action' => $action,
 				'current_group' => 'current_menu',
+				
+				'relation_groups' => $this->relation_model->get_relation_groups( $group_id ), //获取关系群组
 			);
 			
 			if ( $action == 'index' ) {
@@ -368,7 +371,9 @@
 		 *   $action   ->   join 加入       exit  退出友群
 		 */
 		function ajax_join_group($group_id, $action='join') {
-			login_redirect();
+			if ( ! is_logged_in() ) {
+				ajaxReturn( 'login_redirect', '尚未登录', 0 );
+			}
 			
 			if ( !$this->tank_auth->is_logged_in() ) {
 				exit('Error!! You directly enter here?');

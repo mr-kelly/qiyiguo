@@ -46,8 +46,15 @@
 			return $this->db->delete('relation', $data );
 		}
 		
-		function get_relation( $data ) {
-		
+		function get_relations( $data ) {
+			$query = $this->db->get_where('relation', $data);
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			} else {
+			
+				return $query->result_array();
+			
+			}
 		}
 		
 		
@@ -414,5 +421,28 @@
 			));
 			
 			
+		}
+		
+		/**
+		 *	获取指定群组关联的群组s
+		 */
+		function get_relation_groups( $group_id ) {
+			$relations = $this->get_relations( array(
+				'from_id' => $group_id,
+				'model' => 'group',
+				'relation' => 'related',
+			));
+			
+			if ( !empty( $relations ) ) {
+				$groups = array();
+				foreach ( $relations as $relation ) {
+					$groups[] = $this->_get_group( $relation['to_id'] );
+				}
+				
+				return $groups;
+			} else {
+				// 如果没有群组关系，返回false
+				return false;
+			}
 		}
 	}

@@ -19,7 +19,7 @@
 				 <textarea rows="1" class="no_scroll chat_content input_text" style="width:250px;" type="text" name="chat_content"></textarea>
 				 <input type="hidden" name="chat_parent_id" value="0" />
 				 
-				 <button type="submit" class="hidden awesome small blue">回复</button>
+				 <button type="submit" class="hidden awesome small blue" title="按下Ctrl+Enter快捷键回复">回复</button>
 				 
 				 <div class="red target_message"></div>
 				 
@@ -93,7 +93,7 @@
 						 <input type="hidden" name="chat_parent_id" value="<?=$chat['id'];?>" />
 						 <input type="hidden" class="chat_id" value="<?=$chat['id'];?>" />
 						 
-						 <button type="submit" class="hidden awesome small blue">回复</button>
+						 <button type="submit" class="hidden awesome small blue" title="按下Ctrl+Enter快捷键回复">回复</button>
 						 
 						 <div class="red target_message"></div>
 						 

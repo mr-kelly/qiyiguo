@@ -404,7 +404,7 @@ div.submenu span.submenu_corner:first-child {
 			background: url(../img/sidebar_h2_bg.png) no-repeat;
 			height: 27px;
 			line-height: 27px;
-			font-size: 14px;
+			font-size: 15px;
 			width: 225px;
 			padding: 0 0 0 10px;
 			margin: 0 0 10px 0px;
@@ -521,7 +521,19 @@ div.submenu span.submenu_corner:first-child {
 			.sidebar_user_control {
 				float: right;
 			}
-	
+			
+	.sidebar_groups_list {
+		margin: 0;
+		padding: 0;
+	}
+		.sidebar_groups_list li {
+			margin: 0 0 10px 0;
+			padding: 0;
+			list-style: none;
+			text-align: center;
+			float: left;
+			width: 75px;
+		}
 #content {
     overflow:hidden;
     position: relative;

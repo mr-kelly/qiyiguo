@@ -130,6 +130,14 @@
 			return $this->_request_access_douban_session('http://api.douban.com/people/' . $douban_access_token['douban_user_id']);
 		}
 		
+		/**
+		 *	从Session获取豆瓣Client
+		 */
+		function get_client( $url, $params=array(), $method="GET") {
+			return $this->_request_access_douban_session( $url, $params=array(), $method);
+		}
+		
+		
 		
 		/**
 		 *	从 CodeIgniter的session获取豆瓣access token~

@@ -93,7 +93,7 @@
             <div id="topbar_container">
                 <div id="logo">
                     <a href="<?=base_url();?>">
-                        <img src="<?=static_url('img/logo.png');?>" height="35" />
+                        <img class="tipsy_n" title="奇异果是一个帮助你和你的朋友们发现和创造生活的地方。" src="<?=static_url('img/logo.png');?>" height="35" />
                     </a>
                 </div>
                 
@@ -224,7 +224,7 @@
 							</span>
 							
 							<span class="submenu_item">
-								<a title="哗啦啦~ 将奇异果通过微博、QQ介绍给你朋友吧" href="#" class="tipsy_n icon icon_present">
+								<a title="哗啦啦~ 将奇异果通过微博、QQ介绍给你朋友吧" href="<?=site_url('invite');?>" class="tipsy_n icon icon_present">
 									邀请朋友
 								</a>
 							</span>

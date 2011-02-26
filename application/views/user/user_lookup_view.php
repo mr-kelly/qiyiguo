@@ -93,7 +93,7 @@
 								<?php foreach ( $user_recommends as $user_recommend ) : ?>
 									<div class="user">
 										<div>
-											<img width="50" src="<?=get_user_avatar_url( $user_recommend['id'] );?>" />
+											<img width="30" src="<?=get_user_avatar_url( $user_recommend['id'] );?>" />
 										</div>
 										
 										<div>

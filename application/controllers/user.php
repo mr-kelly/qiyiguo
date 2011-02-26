@@ -602,107 +602,108 @@ EOT;
 			
 		}
 		
-		/**
-		 *	用户用t_sina新浪微博帐号登录, ajax
-		 */
-		function login_with_t_sina() {
 		
-			// TODO 判断，普通用户是否用该帐号绑定过。绑定过，不能登录！
-			
-			
-			$this->load->model('user_t_sina_model');
-			$this->load->library('t_sina');
-			
-			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-				if ( $this->tank_auth->is_logged_in() ) {
-					// 登录过了，转到登录页
-					redirect( $this->input->get('redirect') );
-				} else {
-					// 未登录，用新浪微博帐号登录
-					
-					$this->form_validation->set_rules('login','帐号', 'trim|required|xss_clean');
-					$this->form_validation->set_rules('password','密码', 'trim|required|xss_clean');
-					$this->form_validation->set_rules('remember', 'Remember me', 'integer');
-					
-					if ( $this->form_validation->run() ) {
-						// 表单验证通过，登录新浪微博用户
-						$login = $this->form_validation->set_value('login');
-						$password = $this->form_validation->set_value('password');
-						$remember = $this->form_validation->set_value('remember');
-					
-						// 用户是第一次登录(不存在user_t_sina记录) ?  验证微博帐号合法性, 然后添加user_t_sina记录
-						if ( !$this->user_t_sina_model->is_user_t_sina( $login ) ) {
-							$this->load->library('t_sina');
-							// 验证微博用户合法性， 帐号密码是否通过
-							if ( $this->t_sina->checkUser($login, $password) ) {
-								// 通过，创建帐户
-								$this->user_t_sina_model->create_user_t_sina( $login, $password );
-								//exit('create it!');
-							} else {
-								// 不合法，提示微博帐号错误
-								ajaxReturn( null, '新浪微博帐号或密码错误！', 0);
-							}
-							
-							
-							// 创建用户后登录
-							$this->user_t_sina_model->t_sina_login($login, $password, $remember);
-							
-							ajaxReturn( null, '第一次用该新浪微博帐号登录成功！', 1);
-							
-						} else {
-						
-							// 非第一次登录，是否普通帐号绑定微博
-								// 该微博帐号已被普通帐号绑定？？被绑定了不能进行登录！
-							if ( $this->user_t_sina_model->is_bind_user_t_sina( $login ) == 'user' ) {
-								ajaxReturn( null, '该微博帐号已经被绑定过了！', 0);
-							}
-							
-							// 微博登录帐号？那么登录吧~ t_sina_login
-							//echo('existed');
-							
-							// 验证微博帐号合法性
-							if ( $this->t_sina->checkUser($login, $password) ) {
-								
-								if ( !$this->user_t_sina_model->checkPassword($login, $password ) ) {
-									// 合法，但数据库密码帐号不匹配,可能微博密码修改了，一切以微博帐号为主  (http auth)
-									// 那么，修改user_t_sina和users两个表的密码
-									
-									
-									$this->user_t_sina_model->changePassword($login, $password);
-									
-									// 修改密码后，登录
-									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
-									
-									ajaxReturn( null,  '数据库密码不匹配，可能微博密码修改了', 0);
-									
-								} else {
-									// 合法，登录
-									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
-									
-									ajaxReturn( null, '成功登录！', 1);
-									
-									
-									
-								}	
-							} else {
-								// 不合法,那么应该微博密码错误
-								echo 'errror password';
-							}
-							
-							
-							
-						}
-						
-						
-					} else {
-						// 表单验证错误, 可能该填的没填
-						ajaxReturn(null, validation_errors(), 0);
-					}
-				}
-			}
-		}
-		
-		
+// 		/**
+// 		 *	用户用t_sina新浪微博帐号登录, ajax
+// 		 */
+// 		function login_with_t_sina() {
+// 		
+// 			// TODO 判断，普通用户是否用该帐号绑定过。绑定过，不能登录！
+// 			
+// 			
+// 			$this->load->model('user_t_sina_model');
+// 			$this->load->library('t_sina');
+// 			
+// 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+// 				if ( $this->tank_auth->is_logged_in() ) {
+// 					// 登录过了，转到登录页
+// 					redirect( $this->input->get('redirect') );
+// 				} else {
+// 					// 未登录，用新浪微博帐号登录
+// 					
+// 					$this->form_validation->set_rules('login','帐号', 'trim|required|xss_clean');
+// 					$this->form_validation->set_rules('password','密码', 'trim|required|xss_clean');
+// 					$this->form_validation->set_rules('remember', 'Remember me', 'integer');
+// 					
+// 					if ( $this->form_validation->run() ) {
+// 						// 表单验证通过，登录新浪微博用户
+// 						$login = $this->form_validation->set_value('login');
+// 						$password = $this->form_validation->set_value('password');
+// 						$remember = $this->form_validation->set_value('remember');
+// 					
+// 						// 用户是第一次登录(不存在user_t_sina记录) ?  验证微博帐号合法性, 然后添加user_t_sina记录
+// 						if ( !$this->user_t_sina_model->is_user_t_sina( $login ) ) {
+// 							$this->load->library('t_sina');
+// 							// 验证微博用户合法性， 帐号密码是否通过
+// 							if ( $this->t_sina->checkUser($login, $password) ) {
+// 								// 通过，创建帐户
+// 								$this->user_t_sina_model->create_user_t_sina( $login, $password );
+// 								//exit('create it!');
+// 							} else {
+// 								// 不合法，提示微博帐号错误
+// 								ajaxReturn( null, '新浪微博帐号或密码错误！', 0);
+// 							}
+// 							
+// 							
+// 							// 创建用户后登录
+// 							$this->user_t_sina_model->t_sina_login($login, $password, $remember);
+// 							
+// 							ajaxReturn( null, '第一次用该新浪微博帐号登录成功！', 1);
+// 							
+// 						} else {
+// 						
+// 							// 非第一次登录，是否普通帐号绑定微博
+// 								// 该微博帐号已被普通帐号绑定？？被绑定了不能进行登录！
+// 							if ( $this->user_t_sina_model->is_bind_user_t_sina( $login ) == 'user' ) {
+// 								ajaxReturn( null, '该微博帐号已经被绑定过了！', 0);
+// 							}
+// 							
+// 							// 微博登录帐号？那么登录吧~ t_sina_login
+// 							//echo('existed');
+// 							
+// 							// 验证微博帐号合法性
+// 							if ( $this->t_sina->checkUser($login, $password) ) {
+// 								
+// 								if ( !$this->user_t_sina_model->checkPassword($login, $password ) ) {
+// 									// 合法，但数据库密码帐号不匹配,可能微博密码修改了，一切以微博帐号为主  (http auth)
+// 									// 那么，修改user_t_sina和users两个表的密码
+// 									
+// 									
+// 									$this->user_t_sina_model->changePassword($login, $password);
+// 									
+// 									// 修改密码后，登录
+// 									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
+// 									
+// 									ajaxReturn( null,  '数据库密码不匹配，可能微博密码修改了', 0);
+// 									
+// 								} else {
+// 									// 合法，登录
+// 									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
+// 									
+// 									ajaxReturn( null, '成功登录！', 1);
+// 									
+// 									
+// 									
+// 								}	
+// 							} else {
+// 								// 不合法,那么应该微博密码错误
+// 								echo 'errror password';
+// 							}
+// 							
+// 							
+// 							
+// 						}
+// 						
+// 						
+// 					} else {
+// 						// 表单验证错误, 可能该填的没填
+// 						ajaxReturn(null, validation_errors(), 0);
+// 					}
+// 				}
+// 			}
+// 		}
+// 		
+// 		
 		/**
 		 *	Ajax，用户登入
 		 *  设置redirect_ 两个参数，可以登录后跳转

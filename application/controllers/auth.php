@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Auth extends Controller
+class Auth extends KK_Controller
 {
 	function __construct()
 	{

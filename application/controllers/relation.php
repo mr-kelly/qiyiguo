@@ -56,12 +56,25 @@
 		
 		
 		
+		function ajax_choose_group_relation( $from_group_id ) {
+		
+			$render['from_group_id'] = $from_group_id;
+			
+			kk_show_view('relation/ajax_choose_group_relation_view',$render);// 
+// 			if ( $relation_id = $this->relation_model->create_group_relation( $from_group_id, $to_group_id ) ) {
+// 				// 创建 群组关联关系
+// 				echo $relation_id;
+// 			} else {
+// 				echo 'fail';
+// 			}
+		}
+		
 		function ajax_add_group_relation( $from_group_id, $to_group_id ) {
 			if ( $relation_id = $this->relation_model->create_group_relation( $from_group_id, $to_group_id ) ) {
 				// 创建 群组关联关系
-				echo $relation_id;
+				ajaxReturn( $relation_id, '成功创建', 1);
 			} else {
-				echo 'fail';
+				ajaxReturn( null, '不能创建群组关系', 0 );
 			}
 		}
 		

@@ -21,9 +21,57 @@
  -->
 <?php endif; ?>
 
+<?php if ( !empty( $relation_groups ) ) :?>
 <div class="sidebar_widget">
 	<h2>关系群组</h2>
+	
+	
+		
+		<ul class="sidebar_groups_list">
+			<?php foreach( $relation_groups as $relation_group ) : ?>
+			<li class="group">
+			
+				<a href="<?=site_url('group/' . $relation_group['id']);?>">
+					<img src="<?=get_group_logo_url( $relation_group['id'] );?>" width="40" />
+				</a>
+				
+				<div class="group_name">
+					<a class="tipsy_s" href="<?=site_url('group/' . $relation_group['id']);?>" title="<?=$relation_group['id'];?>">
+						<?= $relation_group['name']; ?>
+					</a>
+				</div>
+			
+			</li>
+			<?php endforeach; ?>
+			<div class="clearboth"></div>
+		</ul>
+		
+	
+
+	
+	<div class="clearboth"></div>
+	
 </div>
+<?php endif; ?>
+
+
+	<?php
+		if ( isset( $group ) ) : 
+			// 需要群组管理员
+			if ( is_group_admin( $group['id'], get_current_user_id() ) ):
+	?>
+	<div>
+		<a class="sexybox btn float_right" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
+			<span><span>&gt;&gt;添加关系群</span></span>
+		</a>
+		
+		<div class="clearboth"></div>
+		
+	</div>
+	<?php
+			endif;
+		endif; 
+	?>
 
 <div class="sidebar_widget">
 	<h2>群控制</h2>
@@ -133,7 +181,7 @@
 
     <?php if ( isset( $group_users ) ) :?>
 	<div class="sidebar_widget">
-		<h2>群成员<?= isset($group_users) ? ' <span class="small">('.count($group_users).')</span>' :'';?></h2>
+		<h2>成员<?= isset($group_users) ? ' <span class="small">('.count($group_users).')</span>' :'';?></h2>
 		<ul class="sidebar_users_list">
 			<?php	
 				foreach ($group_users as $u) {

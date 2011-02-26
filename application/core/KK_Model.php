@@ -22,8 +22,7 @@
 				'id' => $group_id,
 			));
 			
-			$arr = $query->result_array();
-			return $arr[0]; //第一条
+			return $query->row_array();
 		}
 		
 		
