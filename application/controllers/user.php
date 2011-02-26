@@ -64,7 +64,7 @@
 				$upload_data = $this->upload->data();
 				$data['upload_data'] = $upload_data;
 				// 上传头像文件的网址
-				$data['avatar_url'] = static_url() . 'upload/avatars/' . $this->tank_auth->get_user_id() .'/' . $upload_data['file_name'];
+				$data['avatar_url'] = static_url( 'upload/avatars/' . $this->tank_auth->get_user_id() .'/' . $upload_data['file_name']);
 				
 				// 直接调整图像的大小 resize, 不创建备份
 				
@@ -821,7 +821,7 @@ EOT;
 			if ( $action == 'authorize' ) {
 				// 授权 。   转到新浪授权页面， 给用户进行授权， 授权成功, 返回oauth token，进行
 				//redirect( $this->t_sina->getAuthorizeURL('http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback')) );
-				redirect( $this->t_sina->getAuthorizeURL( site_url('user/login_by_t_sina/callback')) );
+				redirect( $this->t_sina->getAuthorizeURL( site_url('user/login_by_t_sina/callback?redirect=' . $this->input->get('redirect')  )) );
 				
 			} else if ( $action == 'callback' ) {
 				
@@ -852,8 +852,9 @@ EOT;
 					$this->load->library('Tank_auth');
 					
 					if ( $this->tank_auth->login_without_password( $user['email'] , $remember ) ) {
-						// 用新浪微博帐号，用户成功登录，转到“开始页”
-						redirect('home/start');
+						// 用新浪微博帐号，用户成功登录，转到redirect或“开始页”
+						redirect( $this->input->get('redirect') );
+						//redirect('home/start');
 					} else {
 						echo 'not logined';
 					}
@@ -862,7 +863,7 @@ EOT;
 					
 				} else {
 					// 第一次登录， 未绑定，转到微博绑定页
-					redirect( 'user/register_by_t_sina');
+					redirect( 'user/register_by_t_sina?redirect=' . $this->input->get('redirect') );
 				}
 				
 			} else if ( $action == 'test' ) {
@@ -887,7 +888,7 @@ EOT;
 			if ( $action == 'authorize' ) {
 				
 				//redirect( $this->douban->get_authorize_url( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_douban/callback') ) );
-				redirect( $this->douban->get_authorize_url( site_url('user/login_by_douban/callback') ) );
+				redirect( $this->douban->get_authorize_url( site_url('user/login_by_douban/callback?redirect=' . $this->input->get('redirect')   ) ) );
 				
 			} else if ( $action == 'callback' ) {
 				
@@ -908,7 +909,7 @@ EOT;
 																))) {
 					// 第一次登录，转到regsiter_by_douban
 					//exit( 'first douban' );
-					redirect( 'user/register_by_douban' );
+					redirect( 'user/register_by_douban?redirect=' . $this->input->get('redirect') );
 					
 				} else {
 					// 非第一次登录， 通过豆瓣绑定帐户，直接登录
@@ -921,7 +922,8 @@ EOT;
 					$this->load->library('Tank_auth');
 					if ( $this->tank_auth->login_without_password( $login_user['email'] , $remember ) ) {
 						// 豆瓣登录成功，转到开始页
-						redirect('home/start');
+						redirect( $this->input->get('redirect') );
+						//redirect('home/start');
 					} else {
 						echo 'not logined';
 					}
@@ -1012,7 +1014,7 @@ EOT;
 					
 					$this->user_profiles_model->create_user_profile( $current_user_id, $profile_data );
 						
-					exit( 'created douban' );
+					redirect( $this->input->get('redirect') );
 					
 					
 				}
@@ -1224,6 +1226,9 @@ EOT;
 						'oauth_token_secret' => $t_sina_token['oauth_token_secret'],
 					) );
 					
+					
+					// 通过新浪微博注册成功！！redirect!
+					redirect( $this->input->get('redirect') );
 				}
 			}
 			

@@ -26,7 +26,7 @@
 </div>
 
 <div class="sidebar_widget">
-	<h2>果群面板</h2>
+	<h2>群控制</h2>
 	<ul class="sidebar_menu sidebar_links">
 		
 		<?php 
@@ -133,30 +133,32 @@
 
     <?php if ( isset( $group_users ) ) :?>
 	<div class="sidebar_widget">
-		<h2>友群成员<?= isset($group_users) ? ' <span class="small">('.count($group_users).')</span>' :'';?></h2>
+		<h2>群成员<?= isset($group_users) ? ' <span class="small">('.count($group_users).')</span>' :'';?></h2>
 		<ul class="sidebar_users_list">
 			<?php	
 				foreach ($group_users as $u) {
 			?>
 				<li>
 					<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
-					<a href="<?=site_url('user/'.$u['id']);?>">
+					<a class="tipsy_e" href="<?=site_url('user/'.$u['id']);?>" title="<?=$u['id'];?>">
 						
-						<?=$u['name'];?>(<?=$u['id'];?>)
-						<?php
-						
-						if ( $this->group_model->is_group_admin($group['id'], $u['id'])) {
-							// 若是管理员
-							echo '(管理员)';
-						}            					
-						?>
+						<?=$u['name'];?> <!--(<?=$u['id'];?>)-->
+
 					</a>
-					<div>
-						<!--<a href="mailto:<?=$u['name'];?><<?=$u['email_1'];?>>">-->
-						<a href="<?=site_url('mail?' . 'send_to=' . $u['id'] );?>">
-							<?php // 发送邮件给指定ID用户的email ?>
-							发电邮
-						</a>
+					
+					
+					<div class="sidebar_user_control">
+						<?php
+							// 若是管理员
+							if ( $this->group_model->is_group_admin($group['id'], $u['id'])) :
+						?>
+						<a class="tipsy_e icon icon_admin" href="javascript:void(0);" title="管理员"></a>
+						<?php
+							endif;            					
+						?>
+						
+						<?php // 发送邮件给指定ID用户的email ?>
+						<a class="tipsy_e icon icon_email" href="<?=site_url('mail?' . 'send_to=' . $u['id'] );?>" title="向<?=$u['name'];?>发送电邮"></a>
 					</div>
 					
 				</li>

@@ -24,7 +24,7 @@
 									,
 									籍贯: <?=$ci->dict_model->get_province_name( $user['hometown_province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['hometown_city_id' ] );?>
 									
-									<a href="#">发电邮</a>
+									<a class="tipsy_s icon icon_email" href="<?=site_url('mail?' . 'send_to=' . $user['id'] );?>" title="向<?=$user['name'];?>发送电邮">发电邮</a>
 						</div>
 					</div>
 					

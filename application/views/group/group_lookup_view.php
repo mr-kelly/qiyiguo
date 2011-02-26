@@ -10,6 +10,8 @@
 
             <?=import_css('css/app/group/group_lookup.css');?>
             
+            <?=import_js('js/app/group/group_lookup.js');?>
+            
             <div id="content" class="two_columns">
 				<div class="content_top">
             		<div class="content_bottom">
@@ -22,28 +24,39 @@
 					
             			
             			<div id="lookup_main">
-								
-							<div id="group_home" class="tab_div">
-								
-								<div id="group_topics_div">
-									<h2>话题</h2>
-									<p>...</p>
-								</div>
-								
-								<div id="group_chat_div">
-									<h2>聊天</h2>
-									<p>...</p>
-								</div>
-								
+							<div id="lookup_aside">
+
 								<div id="group_events_div">
 									<h2>活动</h2>
 									<p>...</p>
 								</div>
-								
-								
-								
 							</div>
+							
+							<div id="lookup_content">
+								
+								<div id="group_topics_div">
+									<h2>话题</h2>
+									<?php $this->load->view('topic/general_topics_list', array(
+										'chat_width' => 350, // 聊天窗口寬度~因為group_home右邊比較窄
+									)); ?>
+									<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">更多话题</a>
+								</div>
+								
+								<!--
+								<div id="group_chat_div">
+									<h2>聊天</h2>
+									<p>...</p>
+								</div>
+								-->
+								
 
+							</div>
+							
+							<!--<div id="group_home" class="tab_div">
+								
+							</div>-->
+							<div class="clearboth"></div>
+							
             			</div>
             			
 

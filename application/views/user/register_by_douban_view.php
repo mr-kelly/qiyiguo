@@ -11,7 +11,7 @@
 					print_r( $douban_self );
 				?>
 			<div class="form_div">
-				<form method="post" action="<?=site_url('user/register_by_douban');?>">
+				<form method="post" action="<?=site_url('user/register_by_douban');?>?redirect=<?=$this->input->get('redirect');?>">
 
 					<p>
 						<a target="_blank" href="http://t.sina.com.cn/<?=$douban_self['id'];?>">
@@ -32,7 +32,7 @@
 					
 					<p>
 						<label>备用密码</label>
-						<input type="text" name="password" />
+						<input type="password" name="password" />
 					</p>
 					
 					<p>

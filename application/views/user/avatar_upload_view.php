@@ -13,7 +13,9 @@
 		if ( isset($upload_data) ):
 			// 用户按了上传并且文件上传成功, 显示图片裁剪界面
 	?>
-			<link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>js/jquery.imgareaselect/css/imgareaselect-animated.css" /> 
+			<!--<link rel="stylesheet" type="text/css" media="all" href="<?=static_url();?>" /> -->
+			
+			<?=import_css('js/jquery.imgareaselect/css/imgareaselect-animated.css');?>
 			<?=import_js('js/jquery.imgareaselect/scripts/jquery.imgareaselect.pack.js');?>
 		
 		

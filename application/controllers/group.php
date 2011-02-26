@@ -226,7 +226,10 @@
 			if ( $action == 'index' ) {
 				// 群组首页
 				$render['current_group_lookup_home'] = true;
+				// 獲取一些topics
+				$render['topics'] = $this->topic_model->get_topics('group', $group_id, 5);
 				kk_show_view('group/group_lookup_view', $render);
+				
 			} else if ( $action == 'topic' ) {
 			
 				// 群组话题页

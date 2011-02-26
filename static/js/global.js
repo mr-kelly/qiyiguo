@@ -89,9 +89,9 @@ $(function() {
 			$('.menu_item').removeClass('current_menu');
 			$(this).parent().addClass('current_menu');
 			
-			// 渐变效果
+			// 滑动效果
 			$('.submenu').hide();
-			$(this).next().fadeIn();
+			$(this).next().slideDown();
 		}
 	});
 	

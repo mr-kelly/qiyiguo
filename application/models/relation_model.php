@@ -3,6 +3,7 @@
 		function __construct() {
 			parent::__construct();
 		}
+
 		
 		function create_relation( $data = array(
 											'from_id' => 0,
@@ -388,6 +389,29 @@
 			}
 			
 			return $this->_get_user( $r['to_id'] );
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		/**
+		 *	创建关联群组 、  （群组关系）~  单向关系~~~  
+		 *
+		 *
+		 */
+		function create_group_relation( $from_group_id, $to_group_id ) {
+			return $this->create_relation( array(
+				'model' => 'group',
+				'relation' => 'related',
+				
+				'from_id' => $from_group_id,
+				'to_id' => $to_group_id,
+				
+			));
 			
 			
 		}

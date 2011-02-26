@@ -2,8 +2,12 @@
 
 十分之荣幸你能查看页面的源代码
 
-	也许，你懂技术～ 也许，你有激情～ 也许，你有想法～ 也许...
-	不论怎样，也许，你可以联系我
+	你是否懂技术？
+	你是否有改变生活的创意？
+	你是否有改变世界的理想？
+
+	
+	也许，你应该活出你的未来。
 	
 	
 	
@@ -212,9 +216,9 @@
 								</a>
 							</span>
 							<span class="submenu_item">
-								<a id="logout_btn" href="<?=base_url();?>user/logout" class="icon icon_logout">登出</a>
+								<a id="logout_btn" href="<?=base_url();?>user/logout?redirect=" class="icon icon_logout">登出</a>
 								<script>
-									var $user_logout_action = '<?=base_url();?>user/logout';
+									var $user_logout_action = '<?=base_url();?>user/logout?redirect=';
 									var $user_home = '<?=base_url();?>';
 								</script>
 							</span>
@@ -228,13 +232,17 @@
 						else:
 					?>
 							<span class="submenu_item">
-								<a id="login_btn" class="sexybox_iframe icon icon_login" href="<?=site_url('user/iframe_login');?>?redirect=<?=$this->input->get('redirect');?>">
+								<?php 
+									// Redirect-> 如果设置GET redirect,那么就display redirect~  没有，将redirect设为当前页面 
+									// 这样，可以令跳转的登录窗口生效
+								?>
+								<a id="login_btn" class="sexybox_iframe icon icon_login" href="<?=site_url('user/iframe_login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
 									登录
 								</a>
 							</span>
 							
 							<span class="submenu_item">
-								<a id="register_btn" class="sexybox_iframe icon icon_register" href="<?=site_url('user/iframe_register');?>" title="注册" href="<?=base_url();?>user/register">
+								<a id="register_btn" class="sexybox_iframe icon icon_register" href="<?=site_url('user/iframe_register');?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>" title="注册">
 									快速注册
 								</a>
 							</span>
