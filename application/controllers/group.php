@@ -217,7 +217,8 @@
 			
 			$render = array(
 				'group' => $group,
-				'group_users' => $this->group_model->get_group_users($group_id),
+				'group_users' => $this->group_model->get_group_users($group_id, 10),
+				'group_users_count' => $this->group_model->get_group_users_count( $group_id ),
 				//'topics' => $topics,
 				
 				'action' => $action,

@@ -30,13 +30,14 @@
 		<ul class="sidebar_groups_list">
 			<?php foreach( $relation_groups as $relation_group ) : ?>
 			<li class="group">
-			
-				<a href="<?=site_url('group/' . $relation_group['id']);?>">
-					<img src="<?=get_group_logo_url( $relation_group['id'] );?>" width="40" />
-				</a>
+				<div class="group_logo">
+					<a href="<?=site_url('group/' . $relation_group['id']);?>">
+						<img src="<?=get_group_logo_url( $relation_group['id'] );?>" width="40" />
+					</a>
+				</div>
 				
 				<div class="group_name">
-					<a class="tipsy_s" href="<?=site_url('group/' . $relation_group['id']);?>" title="<?=$relation_group['id'];?>">
+					<a class="tipsy_s" href="<?=site_url('group/' . $relation_group['id']);?>" title="<?=$relation_group['id'];?> <?=$relation_group['intro'];?>">
 						<?= $relation_group['name']; ?>
 					</a>
 				</div>
@@ -181,7 +182,7 @@
 
     <?php if ( isset( $group_users ) ) :?>
 	<div class="sidebar_widget">
-		<h2>成员<?= isset($group_users) ? ' <span class="small">('.count($group_users).')</span>' :'';?></h2>
+		<h2>成员<?= isset($group_users_count) ? ' <span class="small">('. $group_users_count .')</span>' :'';?></h2>
 		<ul class="sidebar_users_list">
 			<?php	
 				foreach ($group_users as $u) {
@@ -230,7 +231,7 @@
     				//提示私密群组的管理员，开个对外的东西
     ?>
     	<div class="sidebar_widget">
-    		<h2>需要一个对外宣传组织？</h2>
+    		<h2>需要对外宣传组织？</h2>
     	</div>
     <?php
 				endif;

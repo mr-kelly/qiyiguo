@@ -1343,6 +1343,34 @@ EOT;
 		}
 		
 		
+		/**
+		 *	为当前用户添加心情
+		 */
+		function ajax_add_mood() {
+			if ( ! is_logged_in() ) {
+				ajaxReturn( 'login_redirect', '未登录', 0 );
+			}
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				$this->form_validation->set_rules('mood_text', '心情', 'requried|xss_clean|trim');
+				
+				if ( ! $this->form_validation->run() ) {
+					ajaxReturn( null, validation_errors(), 0 );
+				} else {
+					
+					$this->load->model('user_mood_model');
+					$mood_text = $this->form_validation->set_value( 'mood_text' );
+					if ( $mood_id = $this->user_mood_model->add_mood( get_current_user_id(), $mood_text ) ) {
+						ajaxReturn( 'mood added', '添加成功！', 1 );
+					} else {
+						
+						ajaxReturn( 'mood add error', '无法添加心情', 0 );
+					
+					}
+				
+				}
+			}
+		}
+		
 		
 		
 		

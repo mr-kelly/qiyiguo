@@ -26,6 +26,10 @@
 									
 									<a class="tipsy_s icon icon_email" href="<?=site_url('mail?' . 'send_to=' . $user['id'] );?>" title="向<?=$user['name'];?>发送电邮">发电邮</a>
 						</div>
+						
+						<div>
+							心情: <?=$user['mood'];?>
+						</div>
 					</div>
 					
 					<ul class="lookup_menu">

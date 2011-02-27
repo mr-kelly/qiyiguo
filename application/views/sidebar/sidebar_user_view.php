@@ -1,7 +1,11 @@
-			
+				<?php if ( get_current_user_id() == $user['id'] ): ?>
 				<div class="sidebar_widget">
-					<input value="今天心情怎样？" />
+					<form method="post" action="<?=site_url('user/ajax_add_mood');?>">
+						<input name="mood_text" value="今天心情怎样？" />
+						<input type="submit" />
+					</form>
 				</div>
+				<?php endif; ?>
 				
 				<div class="sidebar_widget">
 					<div class="kk_tabs user_relation_tabs">

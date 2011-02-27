@@ -55,7 +55,7 @@
 			
 			
 				<a href="<?=current_url();?>" onclick="return false;" class="btn" href="#" id="submit_btn">
-					<span><span>创建新友群</span></span>
+					<span><span>创建新群</span></span>
 				</a>
 			</form>
 			<script type="text/javascript">

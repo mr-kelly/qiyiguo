@@ -532,8 +532,14 @@ div.submenu span.submenu_corner:first-child {
 			list-style: none;
 			text-align: center;
 			float: left;
-			width: 75px;
+			width: 110px;
+			min-height: 60px;
 		}
+		
+			.sidebar_groups_list li div.group_name a {
+				overflow: hidden;
+			}
+			
 #content {
     overflow:hidden;
     position: relative;

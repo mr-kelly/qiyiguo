@@ -169,6 +169,10 @@
 		function get_groups( $data=array(), $limit=10, $start=0 ) {
 			$query = $this->db->get_where('group', $data, $limit);
 			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
 			return $query->result_array();
 		}
 		
@@ -219,10 +223,11 @@
 		/** 
 		 *	获指定ID 友群的所有用户, 返回profile组
 		 */
-		function get_group_users($group_id) {
+		function get_group_users( $group_id, $limit=10, $start=0 ) {
 			$query = $this->db->get_where('group_user', array(
 				'group_id' => $group_id,
-			));
+			), $limit, $start );
+			
 			if ( $query->num_rows() != 0 ) {
 				
 				$group_users = $query->result();
@@ -231,7 +236,7 @@
 				
 				// 通过遍历用户id，获得用户资料，组成新数组
 				foreach ( $group_users as $group_user ) {
-					array_push( $users_arr, $this->_get_user( $group_user->user_id ) );
+					$users_arr[] = $this->_get_user( $group_user->user_id );
 				}
 				
 				return $users_arr;
@@ -263,7 +268,7 @@
 				
 			} else {
 				// 该组没有成员！
-				return array();
+				return false;
 			}
 		}
 		
@@ -317,7 +322,17 @@
 			}
 			
 			return $stream;
+		}
+		
+		function search_groups( $data ) {
+			$this->db->or_like( $data );
+			$query = $this->db->get('group');
 			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->result_array();
 			
 		}
 		
