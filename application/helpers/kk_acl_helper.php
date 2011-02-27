@@ -64,4 +64,18 @@
 // 	 	$ci->load->model('event_model');
 // 	 	return $ci->event_model->is_event_user;
 // 	 }
+
+
+
+
+	/**
+	 *	判断当前用户是否是 网站系统管理员！
+	 */
+	function is_site_admin() {
+		if ( get_current_user_profile('role') == 'admin' ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	

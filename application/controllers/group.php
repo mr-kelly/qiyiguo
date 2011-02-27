@@ -185,6 +185,7 @@
 			
 			$this->load->model('chat_model');
 			$this->load->model('topic_model');
+			$this->load->model('relation_model');
 			
 			//if ( !$this->tank_auth->is_logged_in() ) {
 			//	redirect('user/login?redirect=/group/'. $group_id);
@@ -216,17 +217,23 @@
 			
 			$render = array(
 				'group' => $group,
-				'group_users' => $this->group_model->get_group_users($group_id),
+				'group_users' => $this->group_model->get_group_users($group_id, 10),
+				'group_users_count' => $this->group_model->get_group_users_count( $group_id ),
 				//'topics' => $topics,
 				
 				'action' => $action,
 				'current_group' => 'current_menu',
+				
+				'relation_groups' => $this->relation_model->get_relation_groups( $group_id ), //获取关系群组
 			);
 			
 			if ( $action == 'index' ) {
 				// 群组首页
 				$render['current_group_lookup_home'] = true;
+				// 獲取一些topics
+				$render['topics'] = $this->topic_model->get_topics('group', $group_id, 5);
 				kk_show_view('group/group_lookup_view', $render);
+				
 			} else if ( $action == 'topic' ) {
 			
 				// 群组话题页
@@ -365,7 +372,9 @@
 		 *   $action   ->   join 加入       exit  退出友群
 		 */
 		function ajax_join_group($group_id, $action='join') {
-			login_redirect();
+			if ( ! is_logged_in() ) {
+				ajaxReturn( 'login_redirect', '尚未登录', 0 );
+			}
 			
 			if ( !$this->tank_auth->is_logged_in() ) {
 				exit('Error!! You directly enter here?');

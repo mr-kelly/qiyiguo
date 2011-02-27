@@ -22,8 +22,7 @@
 				'id' => $group_id,
 			));
 			
-			$arr = $query->result_array();
-			return $arr[0]; //第一条
+			return $query->row_array();
 		}
 		
 		
@@ -93,7 +92,7 @@
 // 								'modified' => '',
 // 								'avatar_thumb' => '',
 // 							),
-					 
+					 	'mood' => false,
 						'name' => '[用户已注销]',
 						'email' => '',
 						'activated' => '',
@@ -161,11 +160,16 @@
 					$user_profile['name'] = $user_profile['nickname'];
 				}
 			} else {
-				$user_profile['name'] = $user_profile['realname'].' '.$user_profile['nickname'];
+				// Kelly 陈霈霖   （昵称+真名)
+				$user_profile['name'] = $user_profile['nickname'] .' '. $user_profile['realname'];
 			}
 			
-			
-			
+			/**
+			 *	用户的心情 (mood)
+			 */
+			$this->load->model('user_mood_model');
+			$last_mood = $this->user_mood_model->get_user_last_mood( $user_id );
+			$user['mood'] = $last_mood['text'];
 			
 			/** 
 			 * 第三方网站链接

@@ -40,6 +40,16 @@
 				<a href="<?=site_url('orchard/group');?>">果群</a>
 			</li>
 		</ul>
+		
+		<div id="dashboard">
+			<?php
+				$profile = get_current_user_profile();
+			?>
+			<a target="_blank" href="<?=site_url('user/' . $profile['id']);?>">
+				<?=$profile['name'];?>
+			</a>
+			
+		</div>
 	</div>
 
 	<?php

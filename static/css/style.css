@@ -404,7 +404,7 @@ div.submenu span.submenu_corner:first-child {
 			background: url(../img/sidebar_h2_bg.png) no-repeat;
 			height: 27px;
 			line-height: 27px;
-			font-size: 14px;
+			font-size: 15px;
 			width: 225px;
 			padding: 0 0 0 10px;
 			margin: 0 0 10px 0px;
@@ -511,12 +511,35 @@ div.submenu span.submenu_corner:first-child {
 		
 	.sidebar_users_list {
 		margin: 0;
-		padding: 0 0 0 20px;
+		padding: 0 10px 0 20px;
 	}
 		.sidebar_users_list li {
 			list-style: none;
+			margin: 0 0 10px 0;
 		}
-	
+		
+			.sidebar_user_control {
+				float: right;
+			}
+			
+	.sidebar_groups_list {
+		margin: 0;
+		padding: 0;
+	}
+		.sidebar_groups_list li {
+			margin: 0 0 10px 0;
+			padding: 0;
+			list-style: none;
+			text-align: center;
+			float: left;
+			width: 110px;
+			min-height: 60px;
+		}
+		
+			.sidebar_groups_list li div.group_name a {
+				overflow: hidden;
+			}
+			
 #content {
     overflow:hidden;
     position: relative;
@@ -637,7 +660,41 @@ div.submenu span.submenu_corner:first-child {
 					color: #FFF;
 				}
 		
-		
+				#lookup_aside {
+					float: left;
+					width: 150px;
+					
+				}
+					
+				#lookup_content {
+					float:right;
+					width: 460px;
+					padding: 0 0 0 10px;
+					border-left: 1px dashed #CCC;
+				}
+				
+				
+				
+				/**
+				 *		自定义user lookup 外网链接
+				 */
+				
+				#lookup_aside h2 {
+					font-size: 14px;
+				}
+				
+				#lookup_aside .vertical_links li{
+					width: 150px;
+				}
+				
+					#lookup_aside .vertical_links li a {
+						text-indent: 50px;
+					}
+					
+					#lookup_aside .vertical_links li a span.icon {
+						left: 20px;
+					}
+
 
 /* Aside  & its widgets */
 #aside {
@@ -758,7 +815,7 @@ div.submenu span.submenu_corner:first-child {
 			}
 			
 		.topic_panel {
-			width:550px;
+			/*width:550px;   評論，評論按鈕*/
 			margin: 10px 0 0 75px;
 			text-align:right;
 		}
@@ -864,7 +921,10 @@ div.submenu span.submenu_corner:first-child {
 	.chat_content {
 		font-size:13px;
 	}
-
+	
+	.chat_detail {
+		min-height: 60px;
+	}
 	.chat_detail .chat_date {
 		font-size:10px;
 		color:#999;

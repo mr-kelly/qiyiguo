@@ -50,19 +50,19 @@
 					// 收信人Emails数组, 发给XXXX
 					$mail_to_user_list = array();
 					foreach ( $mail_send_to as $user ) {
-						array_push( $mail_to_user_list , array( $user['email_1'] , $user['name'] ) );
+						array_push( $mail_to_user_list , array( $user['email'] , $user['name'] ) );
 					}
 					
 					// 寄信人,回复人Emails数组, // 回复人, 加上自己, 让对方可以回复自己
 					$mail_from_user_list = $mail_to_user_list;
 					array_push( $mail_from_user_list, array(
-							get_current_user_profile('email_1'),
+							get_current_user_profile('email'),
 							get_current_user_profile('name'),
 						));
 					// 发Mails
 					$this->kk_mailer->send_mail( array(
 						'to' => $mail_to_user_list,
-						'from' => get_current_user_profile('email_1'),
+						'from' => get_current_user_profile('email'),
 						'from_name' => get_current_user_profile('name'),
 						'reply_to' => $mail_from_user_list,
 						

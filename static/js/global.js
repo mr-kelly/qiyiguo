@@ -16,10 +16,10 @@ function login_redirect() {
 var kk_growl = {
 	error: function( $message ) {
 		// 错误显示的jGrowl ( 短暂 )
-		$.jGrowl( $message, { header: '错误' } );
+		$.jGrowl( $message, { header: '<a class="icon icon_error"></a>' } );
 	},
 	success: function ( $message ) {
-		$.jGrowl( $message, { header: '成功' } );
+		$.jGrowl( $message, { header: '<a class="icon icon_yes"></a>' } );
 	},
 	session_message: function( $message ) {
 		// 用于library Session Message。  持久显示
@@ -89,9 +89,9 @@ $(function() {
 			$('.menu_item').removeClass('current_menu');
 			$(this).parent().addClass('current_menu');
 			
-			// 渐变效果
+			// 滑动效果
 			$('.submenu').hide();
-			$(this).next().fadeIn();
+			$(this).next().slideDown();
 		}
 	});
 	

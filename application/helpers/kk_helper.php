@@ -129,12 +129,19 @@
 	 */
 	if ( !function_exists('get_current_user_profile')) {
 	
-		function get_current_user_profile( $which = 'id' ) {
+		function get_current_user_profile( $which=null ) {
 			$KK =& get_instance();
 			$current_user_id = $KK->tank_auth->get_user_id();
 			
 			// 通过user_profiles Model 取得当前用户资料全数组
 			$arr = $KK->user_profiles_model->get_profile($current_user_id);
+			
+			// 如果不传递参数，返回整个profile
+			if ( empty( $which ) ) {
+				return $arr;
+			}
+			
+			
 			//return $arr[$which];
 			if ( isset( $arr[$which] ) ) {
 				return $arr[$which];
@@ -144,6 +151,7 @@
 		}
 		
 	}
+	
 	
 	
 	/**
@@ -285,4 +293,8 @@
 		
 		
 	}
+	
+	
+	
+	
 	

@@ -37,7 +37,12 @@
 		 *   is_title 是否需要标题title
 		 */
 		function add($model, $model_id=0) {
-			login_redirect();
+			
+			// 未登录，提示登录~
+			if ( !is_logged_in() ) {
+				ajaxReturn( 'login_redirect', '未登录,你不能回复 <a href="#" onclick="$(\'#login_btn\').trigger(\'click\');return false;">登录</a>', 0);
+			}
+			
 			
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				// if ( $is_title ) {
@@ -83,7 +88,7 @@
 					
 					ajaxReturn( 
 						array( 
-							'get_chats_url'=> site_url('chat/ajax_get_chats/' . $model.'/'.$model_id ) 
+							'get_chats_url'=> site_url('chat/ajax_get_chats/' . $model.'/'.$model_id .   sprintf( '?ajax=%s&chat_width=%s', rand(), $this->input->get('chat_width'))  ) // 特別處理，令刷新讀取後，依然是想要的width
 						), 
 						'succes create', 1
 					);

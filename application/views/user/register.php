@@ -94,20 +94,20 @@
 						<h3>已注册?</h3>
 						
 						<div class="other_login_item">
-							<a title="转到登录页面，进行正常登录" class="btn tipsy_se" href="<?=site_url('user/iframe_login');?>">
+							<a title="转到登录页面，进行正常登录" class="btn tipsy_se" href="<?=site_url('user/iframe_login');?>?redirect=<?=$this->input->get('redirect');?>">
 								<span><span>去登录</span></span>
 							</a>
 						</div>
 						
 						<div class="other_login_item">
-							<a href="#" class="tipsy_se" title="使用「新浪微博」的帐号登录">
+							<a target="_parent" href="<?=site_url('user/login_by_t_sina?redirect=' . $this->input->get("redirect") );?>" class="tipsy_se" title="使用「新浪微博」的帐号登录">
 								<img src="<?=static_url('img/button_t_sina_connect.png');?>" />
 							</a>
 						</div>
 						
 						
 						<div class="other_login_item">
-							<a href="#" class="tipsy_se" title="使用「豆瓣网」帐号登录">
+							<a target="_parent" href="<?=site_url('user/login_by_t_douban?redirect=' . $this->input->get("redirect") );?>" class="tipsy_se" title="使用「豆瓣网」帐号登录">
 								<img src="<?=static_url('img/button_douban_connect.png');?>" />
 							</a>
 						</div>

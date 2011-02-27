@@ -71,8 +71,7 @@ $(function(){
 				success: function(data) {
 					// 成功, 读取评论数据，隐藏错误提示信息
 					if ( data.status == 1) {
-					
-						$chats_container.show().load( data.data.get_chats_url + '?ajax=' + Math.random() ); // Ajax Random解决 IE Ajax缓存问题
+						$chats_container.show().load( data.data.get_chats_url); // Ajax Random解决 IE Ajax缓存问题
 						target_message( $chat_form.find('.target_message'), '', 'none');
 						
 						$('#chat_' + $chat_id).focus();

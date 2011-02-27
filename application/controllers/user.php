@@ -65,7 +65,7 @@
 				$upload_data = $this->upload->data();
 				$data['upload_data'] = $upload_data;
 				// 上传头像文件的网址
-				$data['avatar_url'] = static_url() . 'upload/avatars/' . $this->tank_auth->get_user_id() .'/' . $upload_data['file_name'];
+				$data['avatar_url'] = static_url( 'upload/avatars/' . $this->tank_auth->get_user_id() .'/' . $upload_data['file_name']);
 				
 				// 直接调整图像的大小 resize, 不创建备份
 				
@@ -603,107 +603,108 @@ EOT;
 			
 		}
 		
-		/**
-		 *	用户用t_sina新浪微博帐号登录, ajax
-		 */
-		function login_with_t_sina() {
 		
-			// TODO 判断，普通用户是否用该帐号绑定过。绑定过，不能登录！
-			
-			
-			$this->load->model('user_t_sina_model');
-			$this->load->library('t_sina');
-			
-			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-				if ( $this->tank_auth->is_logged_in() ) {
-					// 登录过了，转到登录页
-					redirect( $this->input->get('redirect') );
-				} else {
-					// 未登录，用新浪微博帐号登录
-					
-					$this->form_validation->set_rules('login','帐号', 'trim|required|xss_clean');
-					$this->form_validation->set_rules('password','密码', 'trim|required|xss_clean');
-					$this->form_validation->set_rules('remember', 'Remember me', 'integer');
-					
-					if ( $this->form_validation->run() ) {
-						// 表单验证通过，登录新浪微博用户
-						$login = $this->form_validation->set_value('login');
-						$password = $this->form_validation->set_value('password');
-						$remember = $this->form_validation->set_value('remember');
-					
-						// 用户是第一次登录(不存在user_t_sina记录) ?  验证微博帐号合法性, 然后添加user_t_sina记录
-						if ( !$this->user_t_sina_model->is_user_t_sina( $login ) ) {
-							$this->load->library('t_sina');
-							// 验证微博用户合法性， 帐号密码是否通过
-							if ( $this->t_sina->checkUser($login, $password) ) {
-								// 通过，创建帐户
-								$this->user_t_sina_model->create_user_t_sina( $login, $password );
-								//exit('create it!');
-							} else {
-								// 不合法，提示微博帐号错误
-								ajaxReturn( null, '新浪微博帐号或密码错误！', 0);
-							}
-							
-							
-							// 创建用户后登录
-							$this->user_t_sina_model->t_sina_login($login, $password, $remember);
-							
-							ajaxReturn( null, '第一次用该新浪微博帐号登录成功！', 1);
-							
-						} else {
-						
-							// 非第一次登录，是否普通帐号绑定微博
-								// 该微博帐号已被普通帐号绑定？？被绑定了不能进行登录！
-							if ( $this->user_t_sina_model->is_bind_user_t_sina( $login ) == 'user' ) {
-								ajaxReturn( null, '该微博帐号已经被绑定过了！', 0);
-							}
-							
-							// 微博登录帐号？那么登录吧~ t_sina_login
-							//echo('existed');
-							
-							// 验证微博帐号合法性
-							if ( $this->t_sina->checkUser($login, $password) ) {
-								
-								if ( !$this->user_t_sina_model->checkPassword($login, $password ) ) {
-									// 合法，但数据库密码帐号不匹配,可能微博密码修改了，一切以微博帐号为主  (http auth)
-									// 那么，修改user_t_sina和users两个表的密码
-									
-									
-									$this->user_t_sina_model->changePassword($login, $password);
-									
-									// 修改密码后，登录
-									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
-									
-									ajaxReturn( null,  '数据库密码不匹配，可能微博密码修改了', 0);
-									
-								} else {
-									// 合法，登录
-									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
-									
-									ajaxReturn( null, '成功登录！', 1);
-									
-									
-									
-								}	
-							} else {
-								// 不合法,那么应该微博密码错误
-								echo 'errror password';
-							}
-							
-							
-							
-						}
-						
-						
-					} else {
-						// 表单验证错误, 可能该填的没填
-						ajaxReturn(null, validation_errors(), 0);
-					}
-				}
-			}
-		}
-		
-		
+// 		/**
+// 		 *	用户用t_sina新浪微博帐号登录, ajax
+// 		 */
+// 		function login_with_t_sina() {
+// 		
+// 			// TODO 判断，普通用户是否用该帐号绑定过。绑定过，不能登录！
+// 			
+// 			
+// 			$this->load->model('user_t_sina_model');
+// 			$this->load->library('t_sina');
+// 			
+// 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+// 				if ( $this->tank_auth->is_logged_in() ) {
+// 					// 登录过了，转到登录页
+// 					redirect( $this->input->get('redirect') );
+// 				} else {
+// 					// 未登录，用新浪微博帐号登录
+// 					
+// 					$this->form_validation->set_rules('login','帐号', 'trim|required|xss_clean');
+// 					$this->form_validation->set_rules('password','密码', 'trim|required|xss_clean');
+// 					$this->form_validation->set_rules('remember', 'Remember me', 'integer');
+// 					
+// 					if ( $this->form_validation->run() ) {
+// 						// 表单验证通过，登录新浪微博用户
+// 						$login = $this->form_validation->set_value('login');
+// 						$password = $this->form_validation->set_value('password');
+// 						$remember = $this->form_validation->set_value('remember');
+// 					
+// 						// 用户是第一次登录(不存在user_t_sina记录) ?  验证微博帐号合法性, 然后添加user_t_sina记录
+// 						if ( !$this->user_t_sina_model->is_user_t_sina( $login ) ) {
+// 							$this->load->library('t_sina');
+// 							// 验证微博用户合法性， 帐号密码是否通过
+// 							if ( $this->t_sina->checkUser($login, $password) ) {
+// 								// 通过，创建帐户
+// 								$this->user_t_sina_model->create_user_t_sina( $login, $password );
+// 								//exit('create it!');
+// 							} else {
+// 								// 不合法，提示微博帐号错误
+// 								ajaxReturn( null, '新浪微博帐号或密码错误！', 0);
+// 							}
+// 							
+// 							
+// 							// 创建用户后登录
+// 							$this->user_t_sina_model->t_sina_login($login, $password, $remember);
+// 							
+// 							ajaxReturn( null, '第一次用该新浪微博帐号登录成功！', 1);
+// 							
+// 						} else {
+// 						
+// 							// 非第一次登录，是否普通帐号绑定微博
+// 								// 该微博帐号已被普通帐号绑定？？被绑定了不能进行登录！
+// 							if ( $this->user_t_sina_model->is_bind_user_t_sina( $login ) == 'user' ) {
+// 								ajaxReturn( null, '该微博帐号已经被绑定过了！', 0);
+// 							}
+// 							
+// 							// 微博登录帐号？那么登录吧~ t_sina_login
+// 							//echo('existed');
+// 							
+// 							// 验证微博帐号合法性
+// 							if ( $this->t_sina->checkUser($login, $password) ) {
+// 								
+// 								if ( !$this->user_t_sina_model->checkPassword($login, $password ) ) {
+// 									// 合法，但数据库密码帐号不匹配,可能微博密码修改了，一切以微博帐号为主  (http auth)
+// 									// 那么，修改user_t_sina和users两个表的密码
+// 									
+// 									
+// 									$this->user_t_sina_model->changePassword($login, $password);
+// 									
+// 									// 修改密码后，登录
+// 									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
+// 									
+// 									ajaxReturn( null,  '数据库密码不匹配，可能微博密码修改了', 0);
+// 									
+// 								} else {
+// 									// 合法，登录
+// 									$this->user_t_sina_model->t_sina_login($login, $password, $remember);
+// 									
+// 									ajaxReturn( null, '成功登录！', 1);
+// 									
+// 									
+// 									
+// 								}	
+// 							} else {
+// 								// 不合法,那么应该微博密码错误
+// 								echo 'errror password';
+// 							}
+// 							
+// 							
+// 							
+// 						}
+// 						
+// 						
+// 					} else {
+// 						// 表单验证错误, 可能该填的没填
+// 						ajaxReturn(null, validation_errors(), 0);
+// 					}
+// 				}
+// 			}
+// 		}
+// 		
+// 		
 		/**
 		 *	Ajax，用户登入
 		 *  设置redirect_ 两个参数，可以登录后跳转
@@ -822,7 +823,7 @@ EOT;
 			if ( $action == 'authorize' ) {
 				// 授权 。   转到新浪授权页面， 给用户进行授权， 授权成功, 返回oauth token，进行
 				//redirect( $this->t_sina->getAuthorizeURL('http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback')) );
-				redirect( $this->t_sina->getAuthorizeURL( site_url('user/login_by_t_sina/callback')) );
+				redirect( $this->t_sina->getAuthorizeURL( site_url('user/login_by_t_sina/callback?redirect=' . $this->input->get('redirect')  )) );
 				
 			} else if ( $action == 'callback' ) {
 				
@@ -853,8 +854,9 @@ EOT;
 					$this->load->library('Tank_auth');
 					
 					if ( $this->tank_auth->login_without_password( $user['email'] , $remember ) ) {
-						// 用新浪微博帐号，用户成功登录，转到“开始页”
-						redirect('home/start');
+						// 用新浪微博帐号，用户成功登录，转到redirect或“开始页”
+						redirect( $this->input->get('redirect') );
+						//redirect('home/start');
 					} else {
 						echo 'not logined';
 					}
@@ -863,7 +865,7 @@ EOT;
 					
 				} else {
 					// 第一次登录， 未绑定，转到微博绑定页
-					redirect( 'user/register_by_t_sina');
+					redirect( 'user/register_by_t_sina?redirect=' . $this->input->get('redirect') );
 				}
 				
 			} else if ( $action == 'test' ) {
@@ -888,7 +890,7 @@ EOT;
 			if ( $action == 'authorize' ) {
 				
 				//redirect( $this->douban->get_authorize_url( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_douban/callback') ) );
-				redirect( $this->douban->get_authorize_url( site_url('user/login_by_douban/callback') ) );
+				redirect( $this->douban->get_authorize_url( site_url('user/login_by_douban/callback?redirect=' . $this->input->get('redirect')   ) ) );
 				
 			} else if ( $action == 'callback' ) {
 				
@@ -909,7 +911,7 @@ EOT;
 																))) {
 					// 第一次登录，转到regsiter_by_douban
 					//exit( 'first douban' );
-					redirect( 'user/register_by_douban' );
+					redirect( 'user/register_by_douban?redirect=' . $this->input->get('redirect') );
 					
 				} else {
 					// 非第一次登录， 通过豆瓣绑定帐户，直接登录
@@ -922,7 +924,8 @@ EOT;
 					$this->load->library('Tank_auth');
 					if ( $this->tank_auth->login_without_password( $login_user['email'] , $remember ) ) {
 						// 豆瓣登录成功，转到开始页
-						redirect('home/start');
+						redirect( $this->input->get('redirect') );
+						//redirect('home/start');
 					} else {
 						echo 'not logined';
 					}
@@ -1013,7 +1016,7 @@ EOT;
 					
 					$this->user_profiles_model->create_user_profile( $current_user_id, $profile_data );
 						
-					exit( 'created douban' );
+					redirect( $this->input->get('redirect') );
 					
 					
 				}
@@ -1225,6 +1228,9 @@ EOT;
 						'oauth_token_secret' => $t_sina_token['oauth_token_secret'],
 					) );
 					
+					
+					// 通过新浪微博注册成功！！redirect!
+					redirect( $this->input->get('redirect') );
 				}
 			}
 			
@@ -1337,6 +1343,34 @@ EOT;
 			kk_show_view('user/ajax_get_recommends_view', $render);
 		}
 		
+		
+		/**
+		 *	为当前用户添加心情
+		 */
+		function ajax_add_mood() {
+			if ( ! is_logged_in() ) {
+				ajaxReturn( 'login_redirect', '未登录', 0 );
+			}
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				$this->form_validation->set_rules('mood_text', '心情', 'requried|xss_clean|trim');
+				
+				if ( ! $this->form_validation->run() ) {
+					ajaxReturn( null, validation_errors(), 0 );
+				} else {
+					
+					$this->load->model('user_mood_model');
+					$mood_text = $this->form_validation->set_value( 'mood_text' );
+					if ( $mood_id = $this->user_mood_model->add_mood( get_current_user_id(), $mood_text ) ) {
+						ajaxReturn( 'mood added', '添加成功！', 1 );
+					} else {
+						
+						ajaxReturn( 'mood add error', '无法添加心情', 0 );
+					
+					}
+				
+				}
+			}
+		}
 		
 		
 		

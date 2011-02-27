@@ -60,6 +60,7 @@ b {
     font-weight: bold;
     font-size: 13px;
 }
+/*
 h1 {
     display:block;
     padding:0;
@@ -82,6 +83,7 @@ h3 {
     font-size:16px;
     clear:left;
 }
+*/
 p {
     text-indent:2em;
     margin:0;
@@ -279,4 +281,16 @@ form p {
 }
 .icon_change {
 	background-position: 0 -442px;
+}
+.icon_email {
+	background-position: 0 -2508px;
+}
+.icon_admin {
+	background-position: 0 -5463px;
+}
+.icon_error {
+	background-position: 0 -858px;
+}
+.icon_yes {
+	background-position: 0 -909px;
 }

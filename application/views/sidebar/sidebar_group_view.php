@@ -21,12 +21,61 @@
  -->
 <?php endif; ?>
 
+<?php if ( !empty( $relation_groups ) ) :?>
 <div class="sidebar_widget">
 	<h2>关系群组</h2>
+	
+	
+		
+		<ul class="sidebar_groups_list">
+			<?php foreach( $relation_groups as $relation_group ) : ?>
+			<li class="group">
+				<div class="group_logo">
+					<a href="<?=site_url('group/' . $relation_group['id']);?>">
+						<img src="<?=get_group_logo_url( $relation_group['id'] );?>" width="40" />
+					</a>
+				</div>
+				
+				<div class="group_name">
+					<a class="tipsy_s" href="<?=site_url('group/' . $relation_group['id']);?>" title="<?=$relation_group['id'];?> <?=$relation_group['intro'];?>">
+						<?= $relation_group['name']; ?>
+					</a>
+				</div>
+			
+			</li>
+			<?php endforeach; ?>
+			<div class="clearboth"></div>
+		</ul>
+		
+	
+
+	
+	<div class="clearboth"></div>
+	
 </div>
+<?php endif; ?>
+
+
+	<?php
+		if ( isset( $group ) ) : 
+			// 需要群组管理员
+			if ( is_group_admin( $group['id'], get_current_user_id() ) ):
+	?>
+	<div>
+		<a class="sexybox btn float_right" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
+			<span><span>&gt;&gt;添加关系群</span></span>
+		</a>
+		
+		<div class="clearboth"></div>
+		
+	</div>
+	<?php
+			endif;
+		endif; 
+	?>
 
 <div class="sidebar_widget">
-	<h2>果群面板</h2>
+	<h2>群控制</h2>
 	<ul class="sidebar_menu sidebar_links">
 		
 		<?php 
@@ -133,30 +182,32 @@
 
     <?php if ( isset( $group_users ) ) :?>
 	<div class="sidebar_widget">
-		<h2>友群成员<?= isset($group_users) ? ' <span class="small">('.count($group_users).')</span>' :'';?></h2>
+		<h2>成员<?= isset($group_users_count) ? ' <span class="small">('. $group_users_count .')</span>' :'';?></h2>
 		<ul class="sidebar_users_list">
 			<?php	
 				foreach ($group_users as $u) {
 			?>
 				<li>
 					<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
-					<a href="<?=site_url('user/'.$u['id']);?>">
+					<a class="tipsy_e" href="<?=site_url('user/'.$u['id']);?>" title="<?=$u['id'];?>">
 						
-						<?=$u['name'];?>(<?=$u['id'];?>)
-						<?php
-						
-						if ( $this->group_model->is_group_admin($group['id'], $u['id'])) {
-							// 若是管理员
-							echo '(管理员)';
-						}            					
-						?>
+						<?=$u['name'];?> <!--(<?=$u['id'];?>)-->
+
 					</a>
-					<div>
-						<!--<a href="mailto:<?=$u['name'];?><<?=$u['email_1'];?>>">-->
-						<a href="<?=site_url('mail?' . 'send_to=' . $u['id'] );?>">
-							<?php // 发送邮件给指定ID用户的email ?>
-							发电邮
-						</a>
+					
+					
+					<div class="sidebar_user_control">
+						<?php
+							// 若是管理员
+							if ( $this->group_model->is_group_admin($group['id'], $u['id'])) :
+						?>
+						<a class="tipsy_e icon icon_admin" href="javascript:void(0);" title="管理员"></a>
+						<?php
+							endif;            					
+						?>
+						
+						<?php // 发送邮件给指定ID用户的email ?>
+						<a class="tipsy_e icon icon_email" href="<?=site_url('mail?' . 'send_to=' . $u['id'] );?>" title="向<?=$u['name'];?>发送电邮"></a>
 					</div>
 					
 				</li>
@@ -180,7 +231,7 @@
     				//提示私密群组的管理员，开个对外的东西
     ?>
     	<div class="sidebar_widget">
-    		<h2>需要一个对外宣传组织？</h2>
+    		<h2>需要对外宣传组织？</h2>
     	</div>
     <?php
 				endif;

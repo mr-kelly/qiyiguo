@@ -256,6 +256,7 @@
 								<p>
 									<label>恋爱状态</label>
 									<select id="love_status" name="love_status">
+										<option value="" <?= get_current_user_profile('love_status') == '' ? 'selected="selected"' :'';?>>未知</option>
 										<option value="single" <?=get_current_user_profile('love_status')=='single'? 'selected="selected"' :'';?>>单身</option>
 										<option value="inlove" <?=get_current_user_profile('love_status')=='inlove'? 'selected="selected"' :'';?>>恋爱中</option>
 										<option value="married" <?=get_current_user_profile('love_status')=='married'? 'selected="selected"' :'';?>>已婚</option>
@@ -266,7 +267,7 @@
 									$(function(){
 										$('#love_status').change(function(){
 											// 如果恋爱状态设置成“非单身”，那么，显示恋爱对象设置
-											if ( $(this).val() != 'single' ) {
+											if ( $(this).val() == 'inlove' || $(this).val() == 'married' ) {
 												$('#lover_p').show();
 											} else {
 												$('#lover_p').hide();
@@ -275,7 +276,10 @@
 									});
 								</script>
 								
-								<p id="lover_p" class="<?=get_current_user_profile('love_status')=='single'? 'hidden' :'';?>">
+								<?php
+									$current_user_love_status = get_current_user_profile('love_status');
+								?>
+								<p id="lover_p" class="<?=$current_user_love_status == 'single' ? 'hidden' :'';?><?= empty($current_user_love_status) ? 'hidden' :'';?>">
 									<label>恋人号</label>
 									<?php
 										$ci =& get_instance(); $ci->load->model('relation_model');

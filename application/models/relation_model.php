@@ -3,6 +3,7 @@
 		function __construct() {
 			parent::__construct();
 		}
+
 		
 		function create_relation( $data = array(
 											'from_id' => 0,
@@ -45,8 +46,15 @@
 			return $this->db->delete('relation', $data );
 		}
 		
-		function get_relation( $data ) {
-		
+		function get_relations( $data ) {
+			$query = $this->db->get_where('relation', $data);
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			} else {
+			
+				return $query->result_array();
+			
+			}
 		}
 		
 		
@@ -390,5 +398,51 @@
 			return $this->_get_user( $r['to_id'] );
 			
 			
+		}
+		
+		
+		
+		
+		
+		
+		/**
+		 *	创建关联群组 、  （群组关系）~  单向关系~~~  
+		 *
+		 *
+		 */
+		function create_group_relation( $from_group_id, $to_group_id ) {
+			return $this->create_relation( array(
+				'model' => 'group',
+				'relation' => 'related',
+				
+				'from_id' => $from_group_id,
+				'to_id' => $to_group_id,
+				
+			));
+			
+			
+		}
+		
+		/**
+		 *	获取指定群组关联的群组s
+		 */
+		function get_relation_groups( $group_id ) {
+			$relations = $this->get_relations( array(
+				'from_id' => $group_id,
+				'model' => 'group',
+				'relation' => 'related',
+			));
+			
+			if ( !empty( $relations ) ) {
+				$groups = array();
+				foreach ( $relations as $relation ) {
+					$groups[] = $this->_get_group( $relation['to_id'] );
+				}
+				
+				return $groups;
+			} else {
+				// 如果没有群组关系，返回false
+				return false;
+			}
 		}
 	}

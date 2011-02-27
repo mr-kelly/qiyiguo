@@ -6,6 +6,17 @@
 			//exit('cannot enter test');
 			
 		}
+		function test_douban() {
+			$this->load->library('Douban');
+			$self = $this->douban->get_self();
+			
+			//$friends = $this->douban->get_client( 'http://api.douban.com/people/' . $self['db:uid']['$t'] . '/friends' );
+			
+			//print_r( $friends );
+			
+			$d = $this->douban->get_client( 'http://api.douban.com/doumails',array(), 'POST');
+			print_r( $d );
+		}
 		
 		function test_upload_topic_pic() {
 			echo sprintf('

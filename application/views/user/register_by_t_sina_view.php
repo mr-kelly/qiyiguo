@@ -9,7 +9,7 @@
 			
 			
 			<div class="form_div">
-				<form method="post" action="<?=site_url('user/register_by_t_sina');?>">
+				<form method="post" action="<?=site_url('user/register_by_t_sina');?>?redirect=<?=$this->input->get('redirect');?>">
 				<?php
 					$ci =& get_instance();
 					$ci->load->library('t_sina');
