@@ -32,7 +32,11 @@
 							<td>备注明</td>
 							<td>...</td>
 							<td>dafsadf</td>
-							<td>驱赶 / 修改备注名</td>
+							<td>
+								<a href="<?=site_url('group/set_group_admin/' . $group['id'] );?>">
+									提升为管理员
+								</a>
+								/ 驱赶 / 修改备注名</td>
 						</tr>
 					<?php 
 						$row++;
@@ -42,7 +46,16 @@
 					</tbody>
 				
 				</table>
-				<?=print_r( $group_members );?>
+				<? //print_r( $group_members );?>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="sidebar">
+		<div class="sidebar_top">
+			<div class="sidebar_bottom">
+				
 			</div>
 		</div>
 	</div>

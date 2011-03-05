@@ -170,6 +170,7 @@
 			$this->load->model('user_mood_model');
 			$last_mood = $this->user_mood_model->get_user_last_mood( $user_id );
 			$user['mood'] = $last_mood['text'];
+			$user['mood_created'] = $last_mood['created'];
 			
 			/** 
 			 * 第三方网站链接

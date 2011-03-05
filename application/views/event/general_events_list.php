@@ -15,8 +15,17 @@
 							</h2>
 							
 							<div class="event_detail">
-								<p class="event_time">
-									<?=$event['start'];?>
+								<div class="event_time small grey">
+									<?php
+										// 只显示日期，不显示时间...
+										if ( !isset( $dateonly ) ) : 
+									?>
+										<?=$event['start'];?>
+									<?php
+										else:  // 显示日期
+											echo sprintf( '%d年%d月%d日', $ci->humanize->get_year($event['start']), $ci->humanize->get_month($event['start']), $ci->humanize->get_day($event['start']) );
+									?>
+									<?php endif; ?>
 									
 									<?php 
 										// 如果同一天，不显示到什么时间
@@ -28,15 +37,15 @@
 									?>
 									- <?=$event['end'];?>
 									<?php endif; ?>
-								</p>
+								</div>
 								
-								<p class="event_location">
+								<div class="event_location">
 								
-								</p>
+								</div>
 								
 							</div>
 							
-							<p><?=$event['content'];?></p>
+							<div class="event_content"><?=$event['content'];?></div>
 						</li>
 					<?php
 						$row++;

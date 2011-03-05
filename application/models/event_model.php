@@ -18,7 +18,9 @@
 				
 		 */
 		function create_event( $data ) {
-			$this->db->insert('event', $data);
+			$this->db->insert('event', $data + array(
+				'created' => date('Y-m-d H:i:s'),
+			));
 			return $this->db->insert_id();
 		}
 		
@@ -48,11 +50,12 @@
 		 * 获取 事件集（活动集，任务集）
 		 */
 		function get_events( $model, $model_id, $limit=100, $start=0 ) {
-		
+			 $this->db->order_by('start', 'desc');
+			 
 			 $query = $this->db->get_where('event', array(
 			 	'model' => $model,
 			 	'model_id' => $model_id,
-			 ));
+			 ), $limit, $start );
 			 
 			 if ( $query->num_rows() == 0 ) {
 			 	 return false;

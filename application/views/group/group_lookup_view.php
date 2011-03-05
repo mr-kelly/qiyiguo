@@ -24,11 +24,65 @@
 					
             			
             			<div id="lookup_main">
+            			
+							<?php
+								// 判断用户是否属于该群组，属于，可以发文章
+								if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
+							?>
+								<div class="add_btn_div">
+									<a onclick="$('.add_topic_div').toggle();$('.add_event_div').hide();return false;" title="对果群发话~" class="tipsy_s kk_btn add_topic_btn" href="#">
+										发话▼
+									</a>
+									
+									<a onclick="$('.add_event_div').toggle();$('.add_topic_div').hide();return false;" href="#" title="对果群发话~" class="add_event_btn tipsy_s kk_btn">
+										<span><span>新活动▼</span></span>
+									</a>
+									
+									<div class="clearboth"></div>
+								</div>
+								
+								
+								<div class="add_event_btn_div">								
+
+								</div>
+								
+								<? // 放置 填写主题层 ?>
+								<?php
+									$this->load->view('topic/ajax_add_topic_view', array(
+										'model' => 'group',
+										'model_id' => $group['id'],
+										'hidden' => true,
+									));
+								?>
+								
+								<? // 发布活动、人物层 ?>
+								<div class="add_event_btn_div">
+									<?php
+										$this->load->view('event/ajax_add_event_view', array(
+											'model' => 'group',
+											'model_id' => $group['id'],
+											'hidden' => true,
+										));
+									?>
+								</div>
+							
+							
+							<?php
+								endif;  // 以上显示。，能发布友群文章时
+							?>
+					
+					
 							<div id="lookup_aside">
 
 								<div id="group_events_div">
 									<h2>活动</h2>
-									<p>...</p>
+									<?php $this->load->view('event/general_events_list', array( 'dateonly' => true, ) ); ?>
+									
+									<div>
+										<a href="<?=site_url('group/' . $group['id'] . '/event' );?>">
+											&gt;更多活动
+										</a>
+									</div>
 								</div>
 							</div>
 							
@@ -39,7 +93,9 @@
 									<?php $this->load->view('topic/general_topics_list', array(
 										'chat_width' => 350, // 聊天窗口寬度~因為group_home右邊比較窄
 									)); ?>
-									<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">更多话题</a>
+									<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
+										&gt;更多话题
+									</a>
 								</div>
 								
 								<!--

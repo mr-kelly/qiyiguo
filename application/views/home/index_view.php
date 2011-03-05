@@ -10,7 +10,7 @@
 
 						<div id="home_pic">
 							<div id="home_intro" class="hidden">
-								奇异果介绍
+								奇异果介绍 - 世界上第一个群组网络、生活网络，并且它是原产于中国制造。
 							</div>
 							
 						</div>
@@ -31,20 +31,32 @@
 							</p>
 							
 							
-							<div class="home_block">
-								<h2>活跃群组</h2>
-								<ul>
-									<li>某个</li>
+							<div>
+								<h2>这些组织在奇异果...</h2>
+								<ul class="groups_show">
+								<?php foreach ( $random_groups as $random_group ) : ?>
+									<li>
+										<div class="group_logo">
+											<a href="<?=site_url('group/' . $random_group['id']);?>">
+												<img class="avatar" src="<?=get_group_logo_url( $random_group['id'] );?>" width="40" />
+											</a>
+										</div>
+										
+										<div class="group_name">
+											
+											<a class="tipsy_n" title="<?=$random_group['intro'];?>" href="<?=site_url('group/' . $random_group['id'] );?>">
+												<?=$random_group['name'];?>
+											</a>
+										</div>
+									</li>
+								<?php endforeach; ?>
 								</ul>
-							</div>
-							
-							
-							<div class="home_block">
-								<h2 class="tipsy_s" title="这些都是奇异果的用户哦~">他们在奇异果...</h2>
-								<ul>
 								
-								</ul>
+								<div class="clearboth"></div>
+								
 							</div>
+							
+							
 							
 							<div class="home_block">
 								<h2 class="tipsy_w" title="消息盒子整合了用户、果群的各种信息">消息盒子</h2>
@@ -63,7 +75,7 @@
 
 						</div>
 						
-						<div style="height:500px;"></div>
+						<div style="height:900px;"></div>
 					</div>
         		</div>
             </div>
@@ -76,6 +88,10 @@
             		<div class="sidebar_bottom">
             		
 						<?php $this->load->view('sidebar/sidebar_homepage');?>
+						
+						
+						<?php //$this->load->view('sidebar/sidebar_ad_pic');?>
+						
 						
             		</div> <!-- sidebar_bottom -->
             	</div>	<!-- sidebar top-->

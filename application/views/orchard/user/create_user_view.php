@@ -20,6 +20,14 @@
 			<input type="password" name="password">
 		</p>
 		
+		<p>
+			<label>用户角色</label>
+			<select name="role">
+				<option value=" ">普通用户</option>
+				<option value="editor">管理者</option>
+				<option value="admin">最高管理员</option>
+			</select>
+		</p>
 		
 		
 		<p>

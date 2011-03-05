@@ -30,7 +30,7 @@
 						<li class="nav_h">果群</li>
 						
 						<li>
-							<a href="<?=site_url('user/joined_groups');?>">
+							<a href="<?=site_url('user/my_groups');?>">
 								<span class="icon icon_joined_group"></span>
 								我加入的果群
 							</a>

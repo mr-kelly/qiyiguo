@@ -45,7 +45,8 @@
 		
 		
 		function get_topics( $model, $model_id, $limit=10, $start=0 ) {
-			$this->db->order_by('created DESC');
+			$this->db->order_by('created', 'desc');
+			
 			$query = $this->db->get_where('topic', array(
 				'model' => $model,
 				'model_id' => $model_id,

@@ -4,7 +4,8 @@
 ?>
 var $static_url = '<?=static_url();?>';
 
-
+<?php // ajax获取城市 ?>
+var $get_cities_url = '<?=site_url("user/ajax_get_cities/");?>';
 
 <?php
 	// Attach 图片的放置地方

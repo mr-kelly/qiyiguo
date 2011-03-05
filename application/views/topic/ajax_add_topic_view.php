@@ -14,7 +14,7 @@
 	
 
 						
-						
+<div class="add_topic_div <?=isset( $hidden ) ? 'hidden' :'';?>">				
 						
 	<div class="form_div">
 		 <form class="topic_add_form" method="post" action="<?=site_url('topic/ajax_add_topic/' . $model . '/' . $model_id );?>">
@@ -69,7 +69,8 @@
 		 
 
 	 </div>
-
+	 
+</div>
 <?php
 	//$this->load->view('general/general_footer_view');
 ?>

@@ -1,9 +1,14 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>404 Page Not Found</title>
+<?php
+	$ci =& get_instance();
+	$ci->load->view('header_view', array(
+		'page_title' => '奇异果表示找不到页面... (404)',
+	));
+?>
+
+
 
 <style type="text/css">
+/*
 
 body {
 background-color:	#fff;
@@ -25,12 +30,19 @@ font-size:			14px;
 color:				#990000;
 margin: 			0 0 4px 0;
 }
+*/
 </style>
-</head>
-<body>
+
 	<div id="content">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<div class="content_top">
+			<div class="content_bottom">
+			
+				<h1><?php echo $heading; ?></h1>
+				<?php echo $message; ?>
+				
+			</div>
+		</div>
 	</div>
-</body>
-</html>
+
+
+<?php $ci->load->view('footer_view'); ?>

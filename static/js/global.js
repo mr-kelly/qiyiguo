@@ -28,6 +28,23 @@ var kk_growl = {
 }
 
 
+/**
+ *	顶部搜索框...
+ */
+$search_input_tips_text = '搜索 / 群号 / 果号';
+$(function(){
+	$('.search_input').input_tips( $search_input_tips_text );
+});
+
+function search_submit_check( $this ) {
+	
+	if ( $($this).find('.search_input').val() == $search_input_tips_text
+				 || $($this).find('.search_input').val() == '' ) {
+				 
+		return false;
+	}
+	
+}
 
 $(function() {
 
@@ -154,7 +171,7 @@ $(function() {
     				data = $.parseJSON(data);
     				
     				// 改变城市列表下拉菜单~
-    				select_cities = '';
+    				select_cities = '<option value="">不设置</option>';
     				$.each(data.data, function(key, value){
     					//alert(value.city_name);
     					select_cities += '<option value="' + value.id + '">' + value.city_name + '</option>';
@@ -171,7 +188,7 @@ $(function() {
     				data = $.parseJSON(data);
     				
     				// 改变城市列表下拉菜单~
-    				select_cities = '';
+    				select_cities = '<option value="">不设置</option>';
     				$.each(data.data, function(key, value){
     					//alert(value.city_name);
     					select_cities += '<option value="' + value.id + '">' + value.city_name + '</option>';

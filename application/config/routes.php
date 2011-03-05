@@ -47,6 +47,7 @@ $route['scaffolding_trigger'] = "";
 
 
 // Group
+$route['g/(:any)'] = 'group/group_lookup/$1';
 $route['group/(:num)'] = 'group/group_lookup/$1';
 $route['group/(:num)/(:any)'] = 'group/group_lookup/$1/$2';
 

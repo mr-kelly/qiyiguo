@@ -12,8 +12,8 @@
 		
 			<div class="sidebar_widget">
 				<h2>更改你的头像</h2>
+
 				
-				<a href="<?=site_url('user/avatar');?>">上传头像</a>
 				<?php
 					// 头像更改设置
 					if ( $user_avatars != null ):
@@ -38,6 +38,13 @@
 				<?php
 					endif;
 				?>	
+				
+				
+				
+				<div>
+					<a href="<?=site_url('user/avatar');?>">上传头像</a>
+				</div>
+				
 			</div>
 			
 			

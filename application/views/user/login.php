@@ -68,7 +68,7 @@
 							
 
 							<div class="user_login_submit_div">
-								<a class="awesome large blue" href="#" id="user_login_submit">
+								<a class="kk_btn" href="#" id="user_login_submit">
 									开始奇异果!
 								</a>
 								

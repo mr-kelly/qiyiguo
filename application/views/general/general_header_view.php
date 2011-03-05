@@ -12,6 +12,8 @@
 	?>
 	<script type="text/javascript" src="<?=site_url('import/js_vars');?>"></script>
 	
+	<?=import_js('js/lib/lib.js');?>
+	<?=import_js('js/global.js');?>
 	
 	<?php
 		$this->load->view('import');

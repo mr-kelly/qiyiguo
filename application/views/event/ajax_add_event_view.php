@@ -1,17 +1,17 @@
 
-
-    <?php if ( isset( $group ) ) : ?>
-		<a href="#" id="create_event_button" class="btn">
-			<span><span>创建活动▼</span></span>
-		</a>
+		<script>
+			$(function(){
+				
+			});
+		</script>
 		
-		<div id="create_event_div" class="form_div hidden">
+		<div class="add_event_div form_div <?= isset( $hidden ) ? 'hidden' : '';?>">
 			
 			<?php
 				//$datetime = getdate();
 			?>
 			
-			<form action="<?=site_url('event/ajax_create_event/group/' . $group['id']);?>" id="create_event_form" method="post">
+			<form action="<?=site_url('event/ajax_create_event/' . $model . '/' . $model_id);?>" id="create_event_form" method="post">
 				<? // 发表活动的群组 ?>
 				
 				<!--<input type="hidden" name="event_group_id" value="<?=$group['id'];?>" />-->
@@ -162,16 +162,17 @@
 				<input type="submit" />
 			</form>
 			
-		</div>
-		
-    <?php endif; ?>
+			
+		</div><!-- END add_event_div -->
             	
 	<script>
-		$(function(){
-			$('#create_event_button').click(function(){
-				$('#create_event_div').toggle();
-				return false;
-			});
-		});
+		//$(function(){
+// 			$('.add_event_btn').click(function(){
+// 				$('.add_event_div').toggle();
+// 				return false;
+// 			});
+		//});
 	
 	</script>
+	
+<!--</div>-->

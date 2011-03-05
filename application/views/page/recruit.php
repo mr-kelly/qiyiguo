@@ -7,7 +7,7 @@
 		<div class="content_top">
 			<div class="content_bottom">
 				<h1>活出你的未来 - 在奇异果</h2>
-				
+				<p>试试说出这样的一句话？ “我，来自奇异果”，他蕴含了什么?</p>
 				<h2>数据挖掘工程师</h2>
 				<p>aaa</p>
 				<ul>

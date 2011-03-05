@@ -25,10 +25,17 @@
 		
 		
 		/**
-		 *	友群的设置， 需要管理员权限
+		 *	友群的设置， 需要管理员权限  
 		 */
 		function setting($group_id, $action = 'setting' ) {
 			login_redirect();
+			
+			// 管理员only
+			if ( ! is_group_admin ( $group_id, get_current_user_id() ) ) {
+				exit( 'group_admin only!' );
+			}
+			
+			
 			$this->_if_group_404( $group_id );
 			$render = array();
 			
@@ -72,9 +79,12 @@
 				}
 			}
 			
+			
+			$render['group'] = $this->group_model->get_group_by_id( $group_id );
+			
 			if ( $action == 'setting' ) {
 			
-				$render['group'] = $this->group_model->get_group_by_id( $group_id );
+				
 				$render['group_categories'] = $this->group_model->get_group_categories();
 
 				kk_show_view('group/setting_view', $render);
@@ -179,14 +189,35 @@
 		/**
 		 *   Group 查看单项
 		 */
-		function group_lookup($group_id, $action='index', $do='') {
-			
-			$this->_if_group_404( $group_id );
+		function group_lookup($group_id_slug, $action='index', $do='') {
 			
 			$this->load->model('chat_model');
 			$this->load->model('topic_model');
 			$this->load->model('relation_model');
+			$this->load->model('event_model');
 			
+			if ( is_numeric($group_id_slug) ) {
+				// 若传入数字， 判断成ID～～读取该ID的用户
+				$group_id = $group_id_slug;
+				
+				$this->_if_group_404( $group_id );
+				
+				
+				
+				
+			} else {
+				// 获得slug对应的用户
+				$group_id = $this->group_model->get_group_id_by_slug( $group_id_slug );
+				$this->_if_group_404( $group_id );
+				
+				// slug对应群组存在？ 通过ID登录吧！
+				
+			}
+			
+
+			
+			// 提升一人气
+			up_group_page_view( $group_id );
 			//if ( !$this->tank_auth->is_logged_in() ) {
 			//	redirect('user/login?redirect=/group/'. $group_id);
 			//}
@@ -202,7 +233,8 @@
 			if ( $this->group_model->is_group_private($group_id) && !$this->group_model->is_group_user( $group_id, $current_user_id ) ) {
 				$render['group'] = $group;
 				kk_show_view('group/group_forbidden_view', $render);
-				exit();
+				
+				return;
 			}
 			
 			
@@ -224,14 +256,21 @@
 				'action' => $action,
 				'current_group' => 'current_menu',
 				
-				'relation_groups' => $this->relation_model->get_relation_groups( $group_id ), //获取关系群组
+// 				'hide_header' => true,
+// 				'hide_footer' => true,
+
+				'relation_groups' => $this->relation_model->get_relation_groups( $group_id, 6 ), //获取关系群组,限制6个
 			);
 			
 			if ( $action == 'index' ) {
 				// 群组首页
 				$render['current_group_lookup_home'] = true;
 				// 獲取一些topics
-				$render['topics'] = $this->topic_model->get_topics('group', $group_id, 5);
+				$render['topics'] = $this->topic_model->get_topics('group', $group_id, 10);
+				$render['events'] = $this->event_model->get_events('group', $group_id, 12);
+				
+				$render['page_title'] = $group['name'];
+				
 				kk_show_view('group/group_lookup_view', $render);
 				
 			} else if ( $action == 'topic' ) {
@@ -245,11 +284,17 @@
 				
 				$render['topics'] = $topics;
 				$render['current_group_lookup_topic'] = true;
+				
+				$render['page_title'] = $group['name'] . ' 话题';
+				
 				kk_show_view('group/group_lookup_topic_view', $render);
 				
 			} else if ( $action == 'stream' ) {
 				// 群组信息盒子
 				$render['current_group_lookup_stream'] = true;
+				
+				$render['page_title'] = $group['name'] . ' 信息';
+				
 				kk_show_view('group/group_lookup_stream_view', $render);
 			} else if ( $action == 'event' ) {
 			
@@ -259,17 +304,42 @@
 				
 				$render['events'] = $events;
 				$render['current_group_lookup_event'] = true;
+				
+				$render['page_title'] = $group['name'] . ' 活动';
+				
 				kk_show_view('group/group_lookup_event_view', $render);
 				
 			} else if ( $action == 'chat' ) {
 				// 聊天
 				$render['current_group_lookup_chat'] = true;
+				
+				$render['page_title'] = $group['name'] . ' 群聊';
+				
 				kk_show_view('group/group_lookup_chat_view', $render);
+			} elseif ( $action == 'intro' ) {
+				// 群组简介
+				$render['current_group_lookup_intro'] = true;
+				
+				$render['page_title'] = $group['name'] . ' 介绍';
+				
+				kk_show_view('group/group_lookup_intro_view', $render);
 			}
 		}
 		
-
 		
+		
+		
+		/**
+		 *  Controller Action
+		 *  当前登录用户邀请其他用户加入群组
+		 */
+		function group_invite( $group_id ) {
+			
+			$render['group'] = $this->group_model->_get_group( $group_id );
+			$render['current_group'] = 'current_menu';
+			
+			kk_show_view( 'group/group_invite_view' , $render );
+		}
 		
 		
 		///////////    Ajax 下面
@@ -290,6 +360,10 @@
 				$this->form_validation->set_rules('group_name', '果群名称', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_privacy', '果群公开性', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_category', 'Group Category', 'trim|required|xss_clean');
+				
+				$this->form_validation->set_rules('group_province_id', '群组省份', 'trim|xss_clean');
+				$this->form_validation->set_rules('group_city_id', '群组城市', 'trim|xss_clean');
+				
 				$this->form_validation->set_rules('group_verify', '加入友群验证方式', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean');
 				
@@ -318,6 +392,8 @@
 						'verify' => $group_verify,
 						'owner_id' => $owner_id,
 						'intro' => $group_intro,
+						'province_id' => $this->form_validation->set_value('group_province_id'),
+						'city_id' => $this->form_validation->set_value('group_city_id'),
 					));
 					
 					ajaxReturn(
@@ -465,6 +541,24 @@
 			
 		}
 		
+		/**
+		 *	设置某人为 群组的管理员
+		 */
+		function ajax_set_group_admin( $group_id, $user_id ) {
+			if ( is_group_admin( $group_id, get_current_user_id() ) ) {
+				// 判断当前用户是否是那个群组的管理员~否则不能操作
+				if ( $return_data = $this->group_model->set_group_admin( $group_id, $user_id ) ) {
+					// 成功提升某人为群组管理员
+					ajaxReturn( $return_data, '提升管理员成功!', 1);
+				} else {
+					ajaxReturn( '提升不到', '不能提升其为管理员, 原因不明', 0 );
+				}
+			} else {
+				ajaxReturn( 'no admin no action', '你不是管理员，不能提升管理员', 0 );
+			}
+		}
+		
+
 		
 
 		/**

@@ -27,7 +27,7 @@
     <meta name="description" content="「奇异果」是一个世界上第一个群组网络，它帮助你和朋友们发现与创造生活的每一刻。你可以这这里发现、创建你的住宅小区、校园社团、朋友组织、商铺等等各种组织。" />
     <meta name="keywords" content="同学,大学生,陈霈霖,Mrkelly,公司,小区,学校,社交网站" />
     
-    <meta name="generator" content="BBEdit 9.5 / Komodo Edit 5" />
+    <meta name="generator" content="BBEdit 9.5" />
     
     <!-- no cache headers -->
 <!-- 
@@ -44,7 +44,7 @@
 
 	<script>
     		// 通过省份获取城市的ajax地址
-    		var $get_cities_url = '<?=site_url("user/ajax_get_cities/");?>';
+    		
 	</script>
 	
 	<?php
@@ -81,23 +81,23 @@
     	
     </div>
     
-    
-    <div id="header">
-        <div id="topbar">
+    <?php if ( !isset( $hide_header ) ) : ?>
+    <div id="kk_header">
+        <div id="kk_topbar">
             <!-- 
 
             <span class="topbar_corner"></span>
             <span class="topbar_corner"></span>
  -->
             
-            <div id="topbar_container">
+            <div id="kk_topbar_container">
                 <div id="logo">
                     <a href="<?=base_url();?>">
                         <img class="tipsy_n" title="奇异果是一个帮助你和你的朋友们发现和创造生活的地方。" src="<?=static_url('img/logo.png');?>" height="35" />
                     </a>
                 </div>
                 
-                <ul id="menu">
+                <ul id="kk_menu">
                 
 					<?php if ( is_logged_in() ): ?>
 					<li class="menu_item <?=isset($current_user_home) ? $current_user_home : '' ;?>">
@@ -105,10 +105,13 @@
 							个人主页
 						</a>
                         <div class="submenu">
-                            <span class="submenu_corner"></span>
-                            <span class="submenu_corner"></span>
+                            <span class="submenu_corner_left"></span>
+                            <span class="submenu_corner_right"></span>
 							<span class="submenu_item">
 								<a href="<?=site_url('home/start');?>">开始页</a>
+							</span>
+							<span class="submenu_item">
+								<a href="<?=get_user_url( get_current_user_id() );?>">我的页面</a>
 							</span>
                         </div>
 					</li>
@@ -135,12 +138,17 @@
                     		果群
                     	</a>
                         <div class="submenu">
-                            <span class="submenu_corner"></span>
-                            <span class="submenu_corner"></span>
+                            <span class="submenu_corner_left"></span>
+                            <span class="submenu_corner_right"></span>
                             
+							<span class="submenu_item">
+								<a href="<?=site_url('user/my_groups');?>">我的群组</a>
+							</span>
+							
 							<span class="submenu_item">
 								<a class="sexybox_iframe" href="<?=site_url('group/iframe_new_group');?>">创建群组</a>
 							</span>
+							
                         </div>
                     </li>
                     
@@ -162,14 +170,31 @@
                     		活动
                     	</a>
                         <div class="submenu">
-                            <span class="submenu_corner"></span>
-                            <span class="submenu_corner"></span>
+                            <span class="submenu_corner_left"></span>
+                            <span class="submenu_corner_right"></span>
                             <span class="submenu_item">查看活动</span>
                             <span class="submenu_item">创建活动</span>
 
                         </div>
                     </li>
                     
+                    <li class="menu_item <?= isset($current_event) ? $current_event : '' ;?>">
+                    	<a href="<?=site_url('explore');?>">
+                    		探索
+                    	</a>
+<!-- 
+                        <div class="submenu">
+                            <span class="submenu_corner_left"></span>
+                            <span class="submenu_corner_right"></span>
+                            <span class="submenu_item"></span>
+                            <span class="submenu_item"></span>
+
+                        </div>
+ -->
+                    </li>
+                    
+                    
+                    <!--
                     <li class="menu_item <?= isset($current_friends) ? $current_friends : '' ;?>">
                     	<a href="<?=site_url('link');?>">
                     		连接
@@ -182,14 +207,58 @@
 
                         </div>
                     </li>
+                    -->
                     
                 </ul>
 				
 				<div class="search">
+					<form onsubmit="return search_submit_check( this )" class="search_form" target="_blank" method="get" action="<?=site_url('search');?>">
+					
+						<input class="search_input" type="text" name="q" />
+						
+						<button title="搜索" class="tipsy_n search_btn" type="submit">搜索</button>
+						
+					</form>
+					
+					<script>
+				//		$(function(){
+							
+			//				$('.search_input').input_tips( $search_input_tips_text );
+// 							
+// 							$('.search_form').submit(function(){
+// 
+// 								
+// 							});
+							
+							
+					//	});
+					
+
+					</script>
+					<!-- 
+
 					<a class="sexybox_iframe" href="<?=site_url('search/iframe_search');?>">
 						<img src="<?=static_url('img/search_pic.png');?>" />
 					</a>
+ -->
 				</div>
+				
+				<?php if ( is_logged_in() ) :?>
+				<div id="user_display">
+					<span class="submenu_item submenu_user">
+						
+						<a class="sexybox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>" title="<?=get_current_user_name();?>">
+							<img width="18" src="<?=get_user_avatar_url();?>" />
+						</a>
+						
+						<a href="<?= get_user_url( get_current_user_id() );?>">
+							<?=get_current_user_name();?> (<?=get_current_user_id();?>)
+						</a>
+					</span>
+				
+				
+				</div>
+				<?php endif; ?>
 				
 				<!-- User Controller -->
 				<div id="user_controller">
@@ -198,15 +267,7 @@
 						// 判断登录状态
 						if ($this->tank_auth->is_logged_in()) :
 					?>
-							<span class="submenu_item submenu_user">
-								<a class="sexybox" href="<?=get_user_avatar_url($this->tank_auth->get_user_id(), $big=true);?>" title="<?=get_current_user_name();?>">
-									<img width="18" src="<?=get_user_avatar_url();?>" />
-								</a>
-								
-								<a href="<?=site_url('user/'. $this->tank_auth->get_user_id());?>">
-									<?=get_current_user_name();?> (<?=get_current_user_id();?>)
-								</a>
-							</span>
+
 						
 
 							
@@ -262,11 +323,13 @@
 
         </div>
     </div>
+    <?php endif; ?>
+    
     
     <!--Wrapper Start-->
-    <div id="wrapper">
+    <div id="kk_wrapper">
     	<!--Container Start-->
-        <div id="container">
+        <div id="kk_container">
         	
         	<?php
         		$ci =& get_instance();

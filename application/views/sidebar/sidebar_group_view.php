@@ -19,60 +19,88 @@
     <img width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
 </div>
  -->
-<?php endif; ?>
+
+
+
+<div class="sidebar_widget align_center">
+
+	<?php
+		// 加入群组按钮
+		$this->load->view('group/general_join_group_view'); 
+	?>
+
+
+</div>
+
+<?php
+	// 查看的群组的状态、按钮
+	endif;
+?>
+
+
+<div class="sidebar_widget">
 
 <?php if ( !empty( $relation_groups ) ) :?>
-<div class="sidebar_widget">
-	<h2>关系群组</h2>
+	<h2>关系群</h2>
 	
 	
 		
-		<ul class="sidebar_groups_list">
+		<ul class="groups_show">
 			<?php foreach( $relation_groups as $relation_group ) : ?>
 			<li class="group">
 				<div class="group_logo">
 					<a href="<?=site_url('group/' . $relation_group['id']);?>">
-						<img src="<?=get_group_logo_url( $relation_group['id'] );?>" width="40" />
+						<img class="avatar" src="<?=get_group_logo_url( $relation_group['id'] );?>" width="40" />
 					</a>
 				</div>
 				
 				<div class="group_name">
-					<a class="tipsy_s" href="<?=site_url('group/' . $relation_group['id']);?>" title="<?=$relation_group['id'];?> <?=$relation_group['intro'];?>">
+					<a class="tipsy_s" href="<?=get_group_url( $relation_group['id'] );?>" title="<?=$relation_group['id'];?> <?=$relation_group['intro'];?>">
 						<?= $relation_group['name']; ?>
 					</a>
 				</div>
 			
 			</li>
 			<?php endforeach; ?>
+			
 			<div class="clearboth"></div>
-		</ul>
+		</ul><!-- END Groups List-->
 		
-	
+		<?php if ( count( $relation_groups ) == 6 ) : ?>
+			<a href="#">&gt;更多关系群组</a>
+		<?php endif; ?>
+		
+<?php endif; ?>
+		
+
+		
+		<?php
+			if ( isset( $group ) ) : 
+				// 需要群组管理员
+				if ( is_group_admin( $group['id'], get_current_user_id() ) ):
+		?>
+		<div>
+			<a class="sexybox btn float_right" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
+				<span><span>&gt;添加关系群</span></span>
+			</a>
+			
+			<div class="clearboth"></div>
+			
+		</div>
+		<?php
+				endif;
+			endif; 
+		?>
 
 	
 	<div class="clearboth"></div>
-	
+
+
 </div>
-<?php endif; ?>
 
 
-	<?php
-		if ( isset( $group ) ) : 
-			// 需要群组管理员
-			if ( is_group_admin( $group['id'], get_current_user_id() ) ):
-	?>
-	<div>
-		<a class="sexybox btn float_right" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
-			<span><span>&gt;&gt;添加关系群</span></span>
-		</a>
-		
-		<div class="clearboth"></div>
-		
-	</div>
-	<?php
-			endif;
-		endif; 
-	?>
+
+
 
 <div class="sidebar_widget">
 	<h2>群控制</h2>
@@ -113,7 +141,7 @@
 						<a href="<?=site_url('group/ajax_cancel_group_admin/' . $group['id']);?>" class="tipsy_e cancel_group_admin_btn" title="取消该群的管理员身份">
 							<span class="hover"></span>
 							<span class="icon icon_setting_group"></span>
-							取消管理员身份
+							放弃管理员身份
 						</a>
 					</span>
 				</li>
@@ -183,16 +211,19 @@
     <?php if ( isset( $group_users ) ) :?>
 	<div class="sidebar_widget">
 		<h2>成员<?= isset($group_users_count) ? ' <span class="small">('. $group_users_count .')</span>' :'';?></h2>
+		
+		<?php if ( !empty( $group_users ) ) :?>
 		<ul class="sidebar_users_list">
 			<?php	
 				foreach ($group_users as $u) {
 			?>
 				<li>
-					<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
-					<a class="tipsy_e" href="<?=site_url('user/'.$u['id']);?>" title="<?=$u['id'];?>">
-						
+					<a class="sexybox" href="<?=get_user_avatar_url(  $u['id'], 'big' );?>" title="<?=$u['name'];?>">
+						<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
+					</a>
+					
+					<a class="tipsy_e" href="<?=get_user_url( $u['id'] );?>" title="<?=$u['id'];?>">
 						<?=$u['name'];?> <!--(<?=$u['id'];?>)-->
-
 					</a>
 					
 					
@@ -213,6 +244,13 @@
 				</li>
 			<?php } ?>
 		</ul>
+		<?php
+			else: // 没有成员？
+		?>
+		还没有成员.
+		<?php endif; ?>
+		
+		
 	</div>
     <?php endif; ?>
     

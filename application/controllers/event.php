@@ -176,4 +176,12 @@
 // 			
 		}
 		
+		/**
+		 *	ajax 获取按钮
+		 */
+		function ajax_get_event_join_btn( $event_id ) {
+			$render['event'] = $this->event_model->get_event_by_id( $event_id );
+			kk_show_view('event/general_event_join_btn', $render);
+		}
+		
 	}

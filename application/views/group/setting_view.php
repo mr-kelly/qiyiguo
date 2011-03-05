@@ -95,7 +95,7 @@
 										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
 									
 									<?php endforeach; ?>
-									<select>
+									</select>
 									
 								</p>
 								

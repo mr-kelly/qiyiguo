@@ -2,7 +2,7 @@
 	$this->load->view('header_view');
 ?>
 	<?php $ci =& get_instance(); ?>
-	<?=import_css('css/app/group/group_lookup.css');?>
+	<? //import_css('css/app/group/group_lookup.css');?>
 	
 	
 	<div id="content">
@@ -17,9 +17,17 @@
 				
 				<div id="lookup_main">
 					<div>
-					<?php
-						$this->load->view('event/ajax_add_event_view');
-					?>
+						<a onclick="$('.add_event_div').toggle();return false;" href="#" title="对果群发话~" class="add_event_btn tipsy_s kk_btn">
+							<span><span>新活动▼</span></span>
+						</a>
+						
+						<?php
+							$this->load->view('event/ajax_add_event_view', array(
+								'model' => 'group',
+								'model_id' => $group['id'],
+								'hidden' => true,
+							));
+						?>
 					</div>
 					
 					<?php

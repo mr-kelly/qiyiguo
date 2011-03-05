@@ -103,12 +103,10 @@ $(function(){
 	 *	“发话”里的 转成文章 按钮
 	 */
     $('.create_topic_add_title_btn').click(function(){
+    
     	$('.create_topic_title').toggle();
-		
-
-
-		
     	return false;
+    	
     }).toggle(function(){
     	// 按了添加标题后，令编辑器可视化编辑 （需要导入KindEditor)
     	KE.create('content_editor');
