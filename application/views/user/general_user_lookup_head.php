@@ -21,17 +21,31 @@
 										$ci->load->model('dict_model');
 									?>
 									
-									<span class="icon icon_building">
-										 <b>常住:</b> <?=$ci->dict_model->get_province_name( $user['province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['city_id' ] );?>
+									<span class="icon icon_building tipsy_s" title="常居地">
+										 <!-- <b>常住:</b> --> <?=$ci->dict_model->get_province_name( $user['province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['city_id' ] );?>
 									</span>
 									
 									
-									<span class="icon icon_house">
-										<b>籍贯:</b> <?=$ci->dict_model->get_province_name( $user['hometown_province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['hometown_city_id' ] );?>
+									<span class="icon icon_house tipsy_s" title="籍贯">
+										<!-- <b>籍贯:</b> --> <?=$ci->dict_model->get_province_name( $user['hometown_province_id' ] );?> <?=$ci->dict_model->get_city_name( $user['hometown_city_id' ] );?>
+									</span>
+									
+									<span class="icon tipsy_s" title="星座">
+										<!-- <b>星座:</b> --> <?=$user['constellation'];?>
+									</span>
+									
+									<span class="icon tipsy_s" title="年龄">
+										<!-- <b>年龄:</b> --> <?=$user['age'];?>岁
 									</span>
 									
 									
 									
+						</div>
+						<div>
+							<span class="icon">
+								
+								<?= kk_content_preview( $user['description'] );?>
+							</span>
 						</div>
 						
 						<div class="user_mood">

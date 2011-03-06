@@ -175,7 +175,7 @@ img.avatar {
 	}
 	
 #navigator .nav_content {
-	display: none;
+	/*display: none;*/
 	float: left;
 	width: 105px;
 	/*
@@ -237,6 +237,10 @@ img.avatar {
 		position: relative;
 		text-align: left;
 		text-indent: 23px;
+		
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 		
 		.nav_content ul li a:hover {
@@ -245,11 +249,15 @@ img.avatar {
 			color: #333;
 		}
 		
-			.nav_content ul li a .icon {
+			.nav_content ul li a .icon, .nav_content ul li a .group_logo {
 				position: absolute;
 				top: 5px;
 				left: 5px;
+				width: 16px;
 			}
+				.nav_content ul li a .group_logo img {
+					float: left;
+				}
 	
 #kk_header {
     height:70px;
@@ -968,8 +976,26 @@ div.submenu span.submenu_corner:first-child {
 			text-align:right;
 		}
 			
+.topics_show {
+	margin: 0;
+	padding: 0;
+	
+}
+
+	.topics_show li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 			
 			
+.events_show {
+	margin: 0;
+	padding: 0;
+}
+	.events_show li {
+		list-style: none;
+	}
 			/*
 
 .group_topics_list {

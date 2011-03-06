@@ -31,6 +31,18 @@
 		$ci->log_model->create_log($url, $message);
 	}
 	
+	/**
+	 *	获取当前用户的
+	 */
+	function get_user_option( $key ) {
+		$ci =& get_instance();
+		$ci->load->model('user_option_model');
+		$option_value = $ci->user_option_model->get_user_option( get_current_user_id(), $key );
+		
+		return $option_value;
+	}
+	
+	
 	
 	/**
 	 *	获取用户关系 - mutual, follow, fans, none
@@ -295,9 +307,9 @@
 	 
 	 		将topic的content转化成  402字内， 多了显示（显示更多）
 	 */
-	function kk_content_preview( $content ) {
+	function kk_content_preview( $content, $limit= 402 ) {
 	
-		$return_arr = str_split( $content , 402 ); // 返回数组
+		$return_arr = str_split( $content , $limit ); // 返回数组
 		
 		$return = strip_tags( $return_arr[0], '<a><img>' );
 		

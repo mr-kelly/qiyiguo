@@ -37,6 +37,8 @@
 			
 			// 排序
 			$query_sql .= 'ORDER BY created DESC';
+			// 限制
+			$query_sql .= sprintf( ' LIMIT %d,%d', $start, $limit );
 			
 			return $this->db->query( $query_sql )->result_array() ;
 			
@@ -94,6 +96,21 @@
 			
 //			return $this->db->get('topic', $limit, $start)->result_array();
 			
+			
+		}
+		
+		
+		/**
+		 *	获取指定用户发布、参与、感兴趣的活动
+		 */
+		function get_user_events( $user_id ) {
+			
+		}
+		
+		/**
+		 *	获取用户最新发布/评论的话题
+		 */
+		function get_user_topics( $user_id ) {
 			
 		}
 	

@@ -168,6 +168,7 @@
 			
 			$this->load->model('relation_model');
 			$this->load->model('user_recommend_model');
+			$this->load->model('stream_model');
 			
 			if ( is_numeric($user_id_slug) ) {
 				// 若传入数字， 判断成ID～～读取该ID的用户
@@ -224,13 +225,15 @@
 				$render['current_user_lookup_home'] = true;
 				
 				// 首页读取stream
-				$this->load->library('T_sina');
-				$weibo = $this->t_sina->getUserWeibo( $user_id );
-				if ( !empty( $weibo ) ) {
-					if ( $this->t_sina->is_logined( $weibo ) ) {
-						$render['stream'] = $weibo->user_timeline();
-					}
-				}
+// 				$this->load->library('T_sina');
+// 				$weibo = $this->t_sina->getUserWeibo( $user_id );
+// 				if ( !empty( $weibo ) ) {
+// 					if ( $this->t_sina->is_logined( $weibo ) ) {
+// 						$render['stream'] = $weibo->user_timeline();
+// 					}
+// 				}
+				$render['user_events'] = $this->stream_model->get_user_events( $user['id'] );
+				$render['user_topics'] = $this->stream_model->get_user_topics( $user['id'] );
 				
 				kk_show_view('user/user_lookup_view', $render);
 			} else if ( $action == 'profile') {
@@ -584,9 +587,10 @@
 			
 			
 			
-			$data = array(
-				'user_avatars' => $this->user_avatars_model->get_user_avatars( $user_id ),
-			);
+			$data['user_avatars'] = $this->user_avatars_model->get_user_avatars( $user_id );
+			$data['current_user_profile'] = get_current_user_profile();
+			
+
 			
 			// 读取用户新浪微博的绑定资料
 			$user_t_sina = $this->user_t_sina_model->get_user_t_sina( get_current_user_profile('id') );
@@ -1411,7 +1415,28 @@ EOT;
 			
 		}
 		
-		
+		/**
+		 *	调整 （ 重新创建、添加、修改） 当前用户的option～
+		 */	
+		function ajax_user_option( $key, $value ) {
+			if ( !is_logged_in() ) {
+				ajaxReturn( null, '未登录', 0 );
+			}
+			
+			$this->load->model('user_option_model');
+			
+			$current_user_id = get_current_user_id();
+			
+			if ( $this->user_option_model->user_option(
+										$current_user_id,
+										$key,
+										$value )) {
+				
+				ajaxReturn( null, 'option修改成功', 1);
+			} else {
+				ajaxReturn( null, 'option修改失败', 0 );
+			}
+		}
 		
 		
 		/**

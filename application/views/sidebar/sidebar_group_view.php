@@ -67,7 +67,7 @@
 		</ul><!-- END Groups List-->
 		
 		<?php if ( count( $relation_groups ) == 6 ) : ?>
-			<a href="#">&gt;更多关系群组</a>
+			<a href="<?=site_url('group/' . $group['id'] . '/relations');?>">&gt;更多关系群组</a>
 		<?php endif; ?>
 		
 <?php endif; ?>

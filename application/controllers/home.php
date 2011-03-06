@@ -49,10 +49,10 @@ class Home extends KK_Controller {
 		$render['user_inner_index'] = $this->kk_inner_index->get_inner_index( get_current_user_profile() );
 		
 		// 获取用户关注群组的topics
-		$render['user_groups_topics'] = $this->stream_model->get_user_groups_topics( get_current_user_id(), 20, 0 );
+		$render['user_groups_topics'] = $this->stream_model->get_user_groups_topics( get_current_user_id(), 10, 0 );
 		
 		// 获取用户关注群组的events...
-		$render['user_groups_events'] = $this->stream_model->get_user_groups_events( get_current_user_id(), 20, 0 );
+		$render['user_groups_events'] = $this->stream_model->get_user_groups_events( get_current_user_id(), 10, 0 );
 		
 		
 		$render['user_groups'] = $this->group_model->get_user_groups( get_current_user_id() );

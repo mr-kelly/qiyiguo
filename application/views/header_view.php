@@ -71,9 +71,9 @@
 		有加载出错
 	</div>
        
-       
+    <?php if ( is_logged_in() ) : // 登录才显示导航菜单?>
     <?php $render = array(); $this->load->view('general/navigator', $render); ?>
-
+	<?php endif; ?>
 		
 		
 
@@ -172,8 +172,24 @@
                         <div class="submenu">
                             <span class="submenu_corner_left"></span>
                             <span class="submenu_corner_right"></span>
-                            <span class="submenu_item">查看活动</span>
-                            <span class="submenu_item">创建活动</span>
+<!-- 
+                            <span class="submenu_item">
+                            	<a href="<?=site_url('event');?>">
+                            		我的
+                            	</a>
+                            </span>
+ -->
+                             <span class="submenu_item">
+                            	<a href="<?=site_url('event/my_event');?>">
+                            		查看活动
+                            	</a>
+                            </span>
+                            <span class="submenu_item">
+                            	<a href="<?=site_url('event/my_missions');?>">
+                            		我的任务
+                            	</a>
+                            </span>
+
 
                         </div>
                     </li>
@@ -252,7 +268,11 @@
 						</a>
 						
 						<a href="<?= get_user_url( get_current_user_id() );?>">
+							<?php
+								$user_profile = get_current_user_profile();
+							?>
 							<?=get_current_user_name();?> (<?=get_current_user_id();?>)
+							: <?= $user_profile['mood']; ?>
 						</a>
 					</span>
 				

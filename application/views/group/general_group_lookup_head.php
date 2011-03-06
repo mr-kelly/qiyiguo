@@ -47,7 +47,7 @@
 							  endif;
 					  ?>
 					  
-					  <span class="kk_btn_blue">
+					  <span class="kk_btn_blue tipsy_s" title="<?=$group['page_view'];?>人看过">
 						  人气: <?=$group['page_view'];?>
 					  </span>
 					  
@@ -72,9 +72,9 @@
 					  // 如果有果群简介
 					  if ( isset( $group['intro'] ) ):
 				  ?>
-				  <p>
+				  <div>
 					  <?=$group['intro'];?>
-				  </p>
+				  </div>
 				  <?php
 					  endif;
 				  ?>
@@ -92,6 +92,12 @@
 					<li class="<?= isset($current_group_lookup_intro) ? '' : 'hidden' ; ?>">
 						<a href="<?=site_url('group/' . $group['id'] . '/intro');?>" class="<?= isset($current_group_lookup_intro) ? 'selected' : '' ; ?>">
 							介绍
+						</a>
+					</li>
+					
+					<li class="<?= isset($current_group_lookup_relations) ? '' : 'hidden' ; ?>">
+						<a href="<?=site_url('group/' . $group['id'] . '/relations');?>" class="<?= isset($current_group_lookup_relations) ? 'selected' : '' ; ?>">
+							关系群组
 						</a>
 					</li>
 					<!--<li><a href="<?=site_url('group/' . $group['id'] . '/chat');?>" class="<?= isset($current_group_lookup_chat) ? 'selected' : '' ; ?>">聊天</a></li>-->

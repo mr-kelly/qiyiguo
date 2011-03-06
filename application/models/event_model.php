@@ -92,6 +92,20 @@
 			}
 		}
 		
+		/**
+		 *	从公开群组获取最新的活动...
+		 */
+		function get_fresh_events( $limit=10, $start=0) {
+			$sql = sprintf('SELECT * FROM kk_event 
+								WHERE model_id = 
+									( SELECT kk_group.id FROM kk_group WHERE kk_event.model_id = kk_group.id AND kk_group.privacy = "public" )
+									LIMIT %d,%d', $start, $limit ); // kk_topic.model_id = kk_group.id AND
+									
+			$query = $this->db->query( $sql );
+			
+			return $query->result_array();
+		}
+		
 		
 		/**
 		 *	删除符合条件的 事件（活动/任务)

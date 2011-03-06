@@ -90,7 +90,7 @@
 				kk_show_view('group/setting_view', $render);
 				
 			} else if ( $action == 'members' ) {
-				
+				$render['group_id'] = $group_id;
 				$render['group_members'] = $this->group_model->get_group_users( $group_id );
 				
 				kk_show_view('group/setting_members_view', $render);
@@ -323,6 +323,15 @@
 				$render['page_title'] = $group['name'] . ' 介绍';
 				
 				kk_show_view('group/group_lookup_intro_view', $render);
+			} elseif ( $action == 'relations' ) {
+				// 关系群组
+				
+				$render['current_group_lookup_relations'] = true;
+				
+				$render['page_title'] = $group['name'] . ' 关系群组';
+				
+				kk_show_view('group/group_lookup_relations_view', $render );
+				
 			}
 		}
 		
@@ -341,6 +350,20 @@
 			kk_show_view( 'group/group_invite_view' , $render );
 		}
 		
+		
+		/**
+		 *	设置某人成某群组的管理员，前提当然是你是管理员
+		 */
+// 		function ajax_set_group_admin( $group_id, $user_id ) {
+// 			
+// 			if ( $this->group_model->set_group_admin( $group_id, $user_id ) ) {
+// 				// 设置成管理员了
+// 				ajaxReturn( null, '设置他为管理员了', 1 );
+// 			} else {
+// 				ajaxReturn( null, '无法设置成管理员', 0 );
+// 			
+// 			}
+// 		}
 		
 		///////////    Ajax 下面
 		

@@ -37,11 +37,35 @@
 		function get_topic_by_id( $topic_id) {
 			$topic = $this->db->get_where('topic', array(
 				'id'=>$topic_id,
-			))->result_array();
+			));
 			
-			return $topic[0];
+			if ( $topic->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $topic->row_array();
 		}
 		
+		
+		/**
+		 *	从公开群组获取最新的话题...  (来自公开群组！)
+		 *			判断话题所属群组是否私密群组
+		 */
+		function get_fresh_topics( $limit=10 , $start=0) {
+			$sql = sprintf('SELECT * FROM kk_topic 
+								WHERE model_id = 
+									( SELECT kk_group.id FROM kk_group WHERE kk_topic.model_id = kk_group.id AND kk_group.privacy = "public" )
+									LIMIT %d,%d', $start, $limit ); // kk_topic.model_id = kk_group.id AND
+			//获得公开群组
+			$query = $this->db->query( $sql );
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->result_array();
+			
+		}
 		
 		
 		function get_topics( $model, $model_id, $limit=10, $start=0 ) {
@@ -65,9 +89,11 @@
 			
 			return $topics;
 		}
-
+		
 		function del_topic( $topic_id ) {
-			
+			return $this->db->del('topic', array(
+				'id' => $topic_id,
+			));	
 		}
 
 		

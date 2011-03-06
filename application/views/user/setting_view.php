@@ -91,6 +91,7 @@
 					
 					</ul>
 					
+					
 					<!--资料设置-->
 					<div id="profile_setting" class="tab_div hidden">
 						<div class="form_div">
@@ -518,9 +519,9 @@
 				
 			</form>
 			
-			<div class="center">
-				<a class="awesome medium blue" id="submit_user_profiles_form" href="#">
-					确认
+			<div class="align_center">
+				<a class="kk_btn" id="submit_user_profiles_form" href="#">
+					确认修改
 				</a>
 			</div>
 			

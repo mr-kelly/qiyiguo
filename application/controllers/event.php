@@ -26,7 +26,9 @@
 		 *	用户参加某活动、任务
 		 */
 		function ajax_join_event( $event_id, $action = 'join' ) {
-			login_redirect();
+			if ( !is_logged_in() ) {
+				ajaxReturn( null, '未登录', 0 );
+			}
 			
 			if ( $action == 'join' ) {
 			
@@ -60,7 +62,10 @@
 		 *	用户关注、感兴趣某活动
 		 */
 		function ajax_follow_event( $event_id, $action = 'follow' ) {
-			login_redirect();
+			if ( !is_logged_in() ) {
+				ajaxReturn( null, '未登录', 0 );
+			}
+			
 			if ( $action == 'follow' ) {
 			
 				if ( $event_user_id = $this->event_model->create_event_user( $event_id, get_current_user_id(), 'follow' ) ) {

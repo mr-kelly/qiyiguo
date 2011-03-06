@@ -33,8 +33,13 @@
 				<script>
 					$(function(){
 						$('.join_event_btn').click(function(){
-							$.get( $(this).attr('href'), function(json){
-								$('.join_event_div').load( '<?=site_url("event/ajax_get_event_join_btn/" . $event["id"] );?>');
+							$.getJSON( $(this).attr('href'), function(json){
+								if ( json.status == 1 ) {
+									$('.join_event_div').load( '<?=site_url("event/ajax_get_event_join_btn/" . $event["id"] );?>');
+									kk_growl.success( json.info );
+								} else {
+									kk_growl.error( json.info );
+								}
 							});
 							
 							return false;

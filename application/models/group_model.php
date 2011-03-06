@@ -386,7 +386,26 @@
 			
 		}
 		
+		/**
+		 *	获取一些新鲜果群... ( 新建的群，并且用户数大于10 ）？
+		 */
+		function get_fresh_groups( $user_num = 10 ) {
+			$sql = sprintf( 'SELECT * FROM kk_group WHERE 
+								( SELECT count( * ) FROM kk_group_user 
+									WHERE group_id = kk_group.id ) > %d
+									ORDER BY created DESC', 
+									$user_num);
+			
+			$query = $this->db->query( $sql );
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->result_array();
+		}
 		
+
 		
 		
 		/** 
@@ -498,6 +517,30 @@
 		 */
 		function set_group_admin( $group_id, $user_id ) {
 			// 先判断 该用户是不是已经是群组成员~~  只能提升当前群组成员的人
+			$query = $this->db->get_where('group_user', array(
+				'group_id' => $group_id, 
+				'user_id' => $user_id,
+			));
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			$group_user = $query->row_array();
+			
+			// 不是管理员，设置成管理员
+			if ( $group_user['user_role'] != 'admin' ) {
+				$this->db->where(array(
+					'group_id' => $group_id,
+					'user_id' => $user_id,
+				));
+				return $this->db->update('group_user', array(
+					'user_role' => 'admin',
+				));
+			} else {
+				// 是管理员，失败
+				return false;
+			}
+			
 		}
 		
 		function search_groups( $data ) {

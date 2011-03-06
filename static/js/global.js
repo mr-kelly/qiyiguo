@@ -256,6 +256,9 @@ $(function() {
 		 
 		 // 显示菜单~
 		 $('#nav_btn').click(function(){
+		 	
+		 	$.getJSON( $(this).attr('href') );
+		 	
 		 	$('.nav_content').show();
 		 	$('#nav_close').show();
 		 	$(this).hide();
@@ -265,6 +268,9 @@ $(function() {
 		 
 		 // 关闭导航菜单
 		 $('#nav_close').click(function(){
+		 	
+		 	$.getJSON( $(this).attr('href') );
+		 	
 		 	$('.nav_content').hide();
 		 	$('#nav_btn').show();
 		 	$(this).hide();
@@ -291,3 +297,38 @@ $(function() {
 //             range: 100,
 //             margin: 100
 //         });
+
+
+
+/**
+ *	用户的心情改变
+ */
+$(function(){
+	$mood_text_tips = '今天心情怎样？';
+	$('.mood_text').input_tips( $mood_text_tips );
+	
+	
+
+});
+
+
+function mood_form() {
+	$('.mood_form').ajaxSubmit({
+		dataType: 'json',
+		beforeSubmit: function() {
+			if ( $('.mood_text').val() == $mood_text_tips ) {
+				return false;
+			}
+		},
+		success: function(json) {
+			if ( json.status == 1 ) {
+				kk_growl.success('心情改变了');
+				setInterval( 'location.reload()', 1000 );
+			} else {
+				kk_growl.error('心情改变错误.未知');
+			}
+		}
+	});
+	
+	return false;
+}
