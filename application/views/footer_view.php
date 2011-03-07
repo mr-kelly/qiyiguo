@@ -33,7 +33,9 @@
 					<h2>关于我们</h2>
 					<ul>
 						<li>
-							<a href="#" class="tipsy_sw" title="奇异果也是果群的使用者！来看看我们~">官方果群</a>
+							<a href="<?=site_url('g/qiyiguo');?>" class="tipsy_sw" title="我们的团队也是奇异果的使用者！来看看我们~">
+								官方果群
+							</a>
 						</li>
 						<li>
 							<a href="<?=site_url('page/recruit');?>">加入我们</a>

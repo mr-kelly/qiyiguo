@@ -12,6 +12,8 @@
             
             <?=import_js('js/app/group/group_lookup.js');?>
             
+
+            
             <div id="content" class="two_columns">
 				<div class="content_top">
             		<div class="content_bottom">
@@ -30,12 +32,12 @@
 								if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
 							?>
 								<div class="add_btn_div">
-									<a onclick="$('.add_topic_div').toggle();$('.add_event_div').hide();return false;" title="对果群发话~" class="tipsy_s kk_btn add_topic_btn" href="#">
+									<a onclick="$('.add_topic_div').toggle();$('.add_event_div').hide();return false;" title="向果群发话" class="tipsy_s kk_btn add_topic_btn" href="#">
 										发话▼
 									</a>
 									
-									<a onclick="$('.add_event_div').toggle();$('.add_topic_div').hide();return false;" href="#" title="对果群发话~" class="add_event_btn tipsy_s kk_btn">
-										<span><span>新活动▼</span></span>
+									<a onclick="$('.add_event_div').toggle();$('.add_topic_div').hide();return false;" href="#" title="创建一个新<?= $group['privacy'] == 'public' ? '活动' : '任务';?>" class="add_event_btn tipsy_s kk_btn">
+										<span><span>新<?= $group['privacy'] == 'public' ? '活动' : '任务';?>▼</span></span>
 									</a>
 									
 									<div class="clearboth"></div>
@@ -75,27 +77,36 @@
 							<div id="lookup_aside">
 
 								<div id="group_events_div">
-									<h2>活动</h2>
+									<h2><?= $group['privacy'] == 'public' ? '活动' : '任务';?></h2>
 									<?php $this->load->view('event/general_events_list', array( 'dateonly' => true, ) ); ?>
 									
+									<?php if ( count( $events ) >= 10 ) : ?>
 									<div>
 										<a href="<?=site_url('group/' . $group['id'] . '/event' );?>">
 											&gt;更多活动
 										</a>
 									</div>
+									<?php endif; ?>
+									
+									
 								</div>
 							</div>
 							
 							<div id="lookup_content">
 								
 								<div id="group_topics_div">
-									<h2>话题</h2>
+									<h2><?= $group['privacy'] == 'public' ? '话题' : '议论';?></h2>
 									<?php $this->load->view('topic/general_topics_list', array(
 										'chat_width' => 350, // 聊天窗口寬度~因為group_home右邊比較窄
 									)); ?>
-									<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
-										&gt;更多话题
-									</a>
+									
+									<?php if ( count( $topics ) >= 10  ) : ?>
+									<div>
+										<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
+											&gt;更多话题
+										</a>
+									</div>
+									<?php endif; ?>
 								</div>
 								
 								<!--

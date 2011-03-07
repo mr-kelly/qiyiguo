@@ -1,5 +1,21 @@
 	.start_block {
 		float: left;
-		width: 310px;
-		height: 275px;
+		width: 300px;
+		/*height: 320px;*/
+		margin: 0 25px 0 0px;
 	}
+	
+	
+	#inner_index_bar { /** 进度条 */
+		width: 600px;
+		height: 30px;
+		border: 1px dashed #CCC;
+		margin: 0 0 0 25px;
+		background: #F1F1F1;
+	}
+		.inner_index_line {
+			height: 30px;
+			width: 6px;
+			background: url(../../../img/inner_index_line.png) repeat-x;/* #8BC45B;*/
+			float: left;
+		}

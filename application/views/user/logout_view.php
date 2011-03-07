@@ -28,6 +28,10 @@
 				<?php
 					$this->load->view('sidebar/sidebar_homepage');
 				?>
+				
+				<?php
+					$this->load->view('sidebar/sidebar_ad_pic');
+				?>
 			</div>
 		</div>
 	</div>

@@ -181,12 +181,12 @@
  -->
                              <span class="submenu_item">
                             	<a href="<?=site_url('event/my_event');?>">
-                            		查看活动
+                            		浏览活动
                             	</a>
                             </span>
                             <span class="submenu_item">
                             	<a href="<?=site_url('event/my_missions');?>">
-                            		我的任务
+                            		我的活动/任务
                             	</a>
                             </span>
 
@@ -297,7 +297,9 @@
 								</a>
 							</span>
 							<span class="submenu_item">
-								<a id="logout_btn" href="<?=base_url();?>user/logout?redirect=" class="icon icon_logout">登出</a>
+								<a id="logout_btn" href="<?=base_url();?>user/logout?redirect=" class="icon icon_logout">
+									退出
+								</a>
 								<script>
 									var $user_logout_action = '<?=base_url();?>user/logout?redirect=';
 									var $user_home = '<?=base_url();?>';

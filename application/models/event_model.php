@@ -185,10 +185,18 @@
 		 *	获取事件、活动 的参与者...
 		 */
 		function get_event_users( $event_id, $type='join' )  {
-			$event_users = $this->db->get_where('user_event', array(
-				'event_id' => $event_id,
-				'type' => $type,
-			));
+			
+			$sql = sprintf( 'SELECT * FROM kk_event_user WHERE event_id=%d', $event_id );
+			if ( $type ) {
+				$sql .= sprintf( ' AND type="%s"', $type );
+			}
+			
+			$event_users= $this->db->query( $sql );
+			
+// 			$event_users = $this->db->get_where('user_event', array(
+// 				'event_id' => $event_id,
+// 				'type' => $type,
+// 			));
 			
 			$return_users = array();
 			foreach( $event_users->result_array() as $event_user ) {
@@ -198,5 +206,19 @@
 			return $return_users;
 		}
 		
+		
+		/**
+		 *	获取事件、活动、任务参与人数..数量
+		 */
+		function get_event_users_count( $event_id, $type='join' ) {
+			$sql = sprintf( 'SELECT * FROM kk_event_user WHERE event_id=%d', $event_id );
+			if ( $type ) {
+				$sql .= sprintf( ' AND type="%s"', $type );
+			}
+			
+			$event_users= $this->db->query( $sql );
+			
+			return $event_users->num_rows();
+		}
 		
 	}

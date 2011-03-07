@@ -23,7 +23,7 @@ var kk_growl = {
 	},
 	session_message: function( $message ) {
 		// 用于library Session Message。  持久显示
-		$.jGrowl( $message );
+		$.jGrowl( $message, { sticky: true } );
 	}
 }
 
@@ -316,7 +316,9 @@ function mood_form() {
 	$('.mood_form').ajaxSubmit({
 		dataType: 'json',
 		beforeSubmit: function() {
-			if ( $('.mood_text').val() == $mood_text_tips ) {
+			if ( $('.mood_text').val() == $mood_text_tips
+					||　$('.mood_text').val() == ''　) {
+					
 				return false;
 			}
 		},

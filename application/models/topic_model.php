@@ -16,7 +16,7 @@
 		/**
 		 *	类论坛主题，发布小组主题内容
 		 */
-		function create_topic($model, $model_id, $user_id, $content, $title='', $attach_img_id=null ) {
+		function create_topic($model, $model_id, $user_id, $content, $title='', $attach_img_id=null, $attach_file_id=null ) {
 			$data = array(
 				'title' => $title,
 				'content' => $content,
@@ -24,6 +24,8 @@
 				'model_id' => $model_id,
 				'user_id' => $user_id,
 				'attach_img_id' => $attach_img_id,
+				'attach_file_id' => $attach_file_id,
+				
 				'created' => date('Y-m-d H:i:s'),
 			);
 			

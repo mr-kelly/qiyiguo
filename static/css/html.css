@@ -105,6 +105,7 @@ a:hover {
     text-decoration: underline;
  
 }
+
 img {
     border:0;
     vertical-align: top;
@@ -191,7 +192,6 @@ form p {
 }
 .red {
 	color:red;
-	font-size:12px;
 }
 .no_scroll {
 	overflow:hidden;
@@ -308,6 +308,14 @@ form p {
 	background-position: 0 -5874px;
 }
 
+/**
+ *	巨蟹座
+ */
+.icon_juxie {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -220px;
+	
+}
 
 
 .kk_btn {

@@ -55,7 +55,7 @@ class Home extends KK_Controller {
 		$render['user_groups_events'] = $this->stream_model->get_user_groups_events( get_current_user_id(), 10, 0 );
 		
 		
-		$render['user_groups'] = $this->group_model->get_user_groups( get_current_user_id() );
+		$render['user_groups'] = $this->group_model->get_user_groups( get_current_user_id(), 1000 );
 		$render['user_groups_count'] = $this->group_model->get_user_groups_count( get_current_user_id() );
 		
 		$render['user_admin_groups'] = $this->group_model->get_user_admin_groups( get_current_user_id() , 1000);

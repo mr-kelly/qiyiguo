@@ -58,6 +58,14 @@
 			}
 		}
 		
+		/**
+		 *	获取关系的数量
+		 */
+		function get_relations_count( $data ) {
+			$query = $this->db->get_where('relation', $data );
+			
+			return $query->num_rows();
+		}
 		
 		
 		/**
@@ -514,5 +522,18 @@
 				// 如果没有群组关系，返回false
 				return false;
 			}
+		}
+		
+		/**
+		 *	获取指定群组的关联群组数量~~
+		 */
+		function get_relation_groups_count( $group_id ) {
+			return $this->get_relations_count( array(
+				'from_id' => $group_id,
+				'model' => 'group',
+				'relation' => 'related',
+			));
+			
+			
 		}
 	}

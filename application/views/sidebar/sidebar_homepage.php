@@ -75,7 +75,22 @@
             			?>
             			
             			<div class="sidebar_widget">
-            				
+            				<h2>快速进入</h2>
+            				<div class="form_div">
+            					<form method="get" action="<?=site_url('search');?>">
+            						<p class="align_center">
+            							输入群号/朋友的G号
+            						</p>
+            						<p class="align_center">
+            							<input class="tipsy_s" title="输入群号、朋友果号～" type="text" name="q" />
+            						</p>
+            						<p class="align_center">
+            							<a href="#" class="kk_btn">
+            								找群/找人
+            							</a>
+            						</p>
+            					</form>
+            				</div>
 		            		<?php //$this->load->view('sidebar/sidebar_group_view'); ?>
 	            		</div>
 	            		

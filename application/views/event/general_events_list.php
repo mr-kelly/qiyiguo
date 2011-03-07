@@ -53,7 +53,9 @@
 						
 						else:
 					?>
-						No Events
+						<div class="align_center grey">
+							<b>还没有创建活动</b>
+						</div>
 					<?php
 						endif;
 					?>

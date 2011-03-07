@@ -22,7 +22,9 @@
 							endforeach;
 						else:
 					?>
-						没有加入任何群组
+						<div class="align_center">
+							<b>没有加入任何群组</b>
+						</div>
 					<?php
 						endif;
 					?>
@@ -30,8 +32,9 @@
 					
 					<div class="clearboth"></div>
 					
-					<a href="<?=site_url('user/user_groups/' . $user['id'] ); ?>">&gt;加入了<?=$user_groups_count;?>个群组</a>
-					
+					<div class="align_right">
+						<a href="<?=site_url('user/user_groups/' . $user['id'] ); ?>">&gt;加入了<?=$user_groups_count;?>个群组</a>
+					</div>
 				</div>
 				
 				
@@ -98,29 +101,45 @@
 						<div id="user_friends" class="hidden tab_div">
 							<?php
 								$user_friends = $ci->relation_model->get_friends( $user['id'] );
-								//print_r( $user_friends );
-								foreach( $user_friends as $friend ):
+								
+								if ( !empty( $user_friends ) ) :
+									foreach( $user_friends as $friend ):
 							?>
 								<a href="<?=site_url('user/'.$friend['id']);?>">
 									<img height="18" src="<?=get_user_avatar_url($friend['id']);?>" />
 									<?=get_user_name( $friend['nickname'], $friend['realname'] );?>
 								</a>
 							<?php
-								endforeach;
+									endforeach;
+								else:
+							?>
+								<div class="align_center grey">
+									<b>还没有朋友</b>
+								</div>
+							<?php
+								endif;
 							?>
 						</div>
 						
 						<div id="user_fans" class="hidden tab_div">
 							<?php
 								$user_fans = $ci->relation_model->get_fans( $user['id'] );
-								foreach( $user_fans as $fan ):
+								if ( !empty( $user_fans) ) :
+									foreach( $user_fans as $fan ):
 							?>
 							<a href="<?=site_url('user/'. $fan['id']);?>">
 								
 								<?=$fan['realname'];?>
 							</a>
 							<?php
-								endforeach;
+									endforeach;
+								else:
+							?>
+								<div class="align_center grey">
+									<b>还没有粉丝...快叫朋友收藏你吧</b>
+								</div>
+							<?php
+								endif;
 							?>
 						</div>
 						

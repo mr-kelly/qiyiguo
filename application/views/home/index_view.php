@@ -24,7 +24,10 @@
 							//echo $ci->douban->get_access_token( 'f6f948f992d489d6e4ebdaecb87d9d82' );
 						?>
 
-						
+							<h2>在以下学校开放</h2>
+							<p>
+								· 北京师范大学珠海分校  · 北京师范大学香港浸会大学联合国际学院 UIC
+							</p>
 							<h2>奇异果的奇异之处</h2>
 							<p>
 								看微博 连接 新发现 创造生活
@@ -33,6 +36,7 @@
 							
 							<div>
 								<h2>这些组织在奇异果...</h2>
+								<?php if ( !empty( $random_groups ) ) :?>
 								<ul class="groups_show">
 								<?php foreach ( $random_groups as $random_group ) : ?>
 									<li>
@@ -51,6 +55,13 @@
 									</li>
 								<?php endforeach; ?>
 								</ul>
+								<?php endif; ?>
+								
+								<div class="align_right" style="margin-right: 30px;">
+									<a href="<?=site_url('group');?>">
+										&gt;&gt;查看更多
+									</a>
+								</div>
 								
 								<div class="clearboth"></div>
 								

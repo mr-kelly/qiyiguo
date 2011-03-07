@@ -17,16 +17,18 @@
 				
 				<div>
 					<h2 class="group_intro">
-						<?=$group['name'];?>
+						<?=$group['name'];?> 
 					</h2>
 					
-					<div class="group_intro">
+					<div class="group_intro grey">
 						<?=$group['intro'];?>
+						
+						(<?=$group_users_count;?>个成员)
 					</div>
 				</div>
 				
 				<div>
-					「<?=$group['name'];?>」的成员，才能进入查看
+					「<?=$group['name'];?>」成员才能进入查看
 				</div>
 				
 				<div>
@@ -43,7 +45,9 @@
 <div id="sidebar">
 	<div class="sidebar_top">
 		<div class="sidebar_bottom">
-			
+			<?php
+				$this->load->view('sidebar/sidebar_ad_pic');
+			?>
 		</div>
 	</div>
 </div>

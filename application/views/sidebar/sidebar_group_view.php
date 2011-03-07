@@ -66,8 +66,13 @@
 			<div class="clearboth"></div>
 		</ul><!-- END Groups List-->
 		
+		
 		<?php if ( count( $relation_groups ) == 6 ) : ?>
-			<a href="<?=site_url('group/' . $group['id'] . '/relations');?>">&gt;更多关系群组</a>
+		<div class="align_right">
+			<a href="<?=site_url('group/' . $group['id'] . '/relations');?>">
+				&gt;全部<?=$relation_groups_count;?>个关系群
+			</a>
+		</div>
 		<?php endif; ?>
 		
 <?php endif; ?>
@@ -79,8 +84,8 @@
 				// 需要群组管理员
 				if ( is_group_admin( $group['id'], get_current_user_id() ) ):
 		?>
-		<div>
-			<a class="sexybox btn float_right" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
+		<div class="align_center">
+			<a title="添加关系群(友情链接群)" class="tipsy_n sexybox kk_btn" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
 				<span><span>&gt;添加关系群</span></span>
 			</a>
 			
@@ -180,6 +185,25 @@
 				
 		<?php
 				endif;
+		?>
+			
+				<?php
+					// 判断是否群的 拥有者, 是， 显示消灭群
+					if ( is_group_owner( $group['id'], get_current_user_id() ) ) :
+				?>
+				<li>
+					<a href="<?=site_url('group/destroy/' . $group['id'] );?>" class="tipsy_e" title="你是群的创始人，毁灭这个群吧？">
+						<span class="hover"></span>
+						<span class="icon icon_create_group"></span>
+						毁灭该群
+					</a>
+				</li>
+				<?php
+					endif;
+				?>
+		
+		
+		<?php
 			endif;
 		?>
 		
@@ -194,14 +218,7 @@
 		</li>
 		
 
-		
-		<li>
-			<a class="tipsy_e" title="查看你已加入的群组" href="<?=site_url('user/joined_groups');?>">
-				<span class="hover"></span>
-				<span class="icon icon_joined_group"></span>
-				已加入的群组
-			</a>
-		</li>
+
 	</ul>
 
 </div>
@@ -232,7 +249,7 @@
 							// 若是管理员
 							if ( $this->group_model->is_group_admin($group['id'], $u['id'])) :
 						?>
-						<a class="tipsy_e icon icon_admin" href="javascript:void(0);" title="管理员"></a>
+						<a class="tipsy_e icon icon_admin" href="javascript:void(0);" title="管理者"></a>
 						<?php
 							endif;            					
 						?>
@@ -250,6 +267,11 @@
 		还没有成员.
 		<?php endif; ?>
 		
+		<div class="align_right">
+			<a href="<?=site_url('group/' . $group['id'] . '/members' );?>">
+				&gt;查看成员列表
+			</a>
+		</div>
 		
 	</div>
     <?php endif; ?>

@@ -45,6 +45,6 @@
 		
 	}
 	
-	.kk_table td img {
+	.kk_table td img, .kk_table td .icon {
 		vertical-align: middle;
 	}

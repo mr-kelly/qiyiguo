@@ -41,20 +41,34 @@
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				//表单验证
-				$this->form_validation->set_rules('name', '果群名称', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('name', '果群名称', 'trim|required|xss_clean|htmlspecialchars');
 				$this->form_validation->set_rules('privacy', '果群公开性', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('category_id', 'Group Category', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('category_id', '群类别', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('verify', '加入友群验证方式', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean');
+				$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean|htmlspecialchars');
 				$this->form_validation->set_rules('website', '果群网页', 'trim|xss_clean');
 				
 				$this->form_validation->set_rules('province_id', '省份', 'trim|xss_clean');
 				$this->form_validation->set_rules('city_id', '城市', 'trim|xss_clean');
 				
+				$this->form_validation->set_rules('slug', '群网址', 'trim|xss_clean|alpha_dash');
+				
 				if ( !$this->form_validation->run() ) {
 					ajaxReturn( null, validation_errors(), 0);
 				} else {
-				
+					// Slug Form Validation More
+					// 群网址设置，不可以为纯数字
+					$slug = $this->form_validation->set_value('slug');
+					if ( is_numeric( $slug ) ) {
+						ajaxReturn( null, '群网址不可以为纯数字', 0);
+					}
+					// 保证群网址，没有被别人设置了！
+					if ( $this->group_model->is_group_slug_existed( $slug, $group_id ) ) { // 需要填入当前用户id， 允许用户重复同样地设置slug
+						// 存在了？返回失败吧
+						ajaxReturn( null, '你填写的群网址已经被人抢先一步了!', 0);
+					}
+					
+					
 					$group_privacy = $this->form_validation->set_value('privacy');
 					$group_verify = $this->form_validation->set_value('verify');
 					
@@ -74,8 +88,13 @@
 						'verify' => $group_verify,
 						'intro' => $this->form_validation->set_value('intro'),
 						'website' => $this->form_validation->set_value('website'),
+						
+						'slug' => $slug,
 					));
-					ajaxReturn( null, '果群修改成功', 1);
+					ajaxReturn( array(
+									'group_url' => get_group_url( $group_id ),
+									), 
+									'果群修改成功', 1);
 				}
 			}
 			
@@ -196,6 +215,8 @@
 			$this->load->model('relation_model');
 			$this->load->model('event_model');
 			
+			$start = $this->input->get('start');
+			
 			if ( is_numeric($group_id_slug) ) {
 				// 若传入数字， 判断成ID～～读取该ID的用户
 				$group_id = $group_id_slug;
@@ -232,6 +253,8 @@
 			// 那么，转到禁止进入页面 )  ~ 提示不能进入，或者让用户输入验证信息
 			if ( $this->group_model->is_group_private($group_id) && !$this->group_model->is_group_user( $group_id, $current_user_id ) ) {
 				$render['group'] = $group;
+				$render['group_users_count'] = $this->group_model->get_group_users_count( $group_id );
+				
 				kk_show_view('group/group_forbidden_view', $render);
 				
 				return;
@@ -249,6 +272,7 @@
 			
 			$render = array(
 				'group' => $group,
+				'group_id' => $group_id,
 				'group_users' => $this->group_model->get_group_users($group_id, 10),
 				'group_users_count' => $this->group_model->get_group_users_count( $group_id ),
 				//'topics' => $topics,
@@ -260,6 +284,7 @@
 // 				'hide_footer' => true,
 
 				'relation_groups' => $this->relation_model->get_relation_groups( $group_id, 6 ), //获取关系群组,限制6个
+				'relation_groups_count' => $this->relation_model->get_relation_groups_count( $group_id ),
 			);
 			
 			if ( $action == 'index' ) {
@@ -267,7 +292,7 @@
 				$render['current_group_lookup_home'] = true;
 				// 獲取一些topics
 				$render['topics'] = $this->topic_model->get_topics('group', $group_id, 10);
-				$render['events'] = $this->event_model->get_events('group', $group_id, 12);
+				$render['events'] = $this->event_model->get_events('group', $group_id, 11);
 				
 				$render['page_title'] = $group['name'];
 				
@@ -323,6 +348,7 @@
 				$render['page_title'] = $group['name'] . ' 介绍';
 				
 				kk_show_view('group/group_lookup_intro_view', $render);
+				
 			} elseif ( $action == 'relations' ) {
 				// 关系群组
 				
@@ -330,8 +356,17 @@
 				
 				$render['page_title'] = $group['name'] . ' 关系群组';
 				
+				$render['relation_lookup_groups'] = $this->relation_model->get_relation_groups( $group_id, 50, $start );
+				
+				
 				kk_show_view('group/group_lookup_relations_view', $render );
 				
+			} elseif( $action == 'members' ) {
+				$render['current_group_lookup_members'] = true;
+				$render['page_title'] = $group['name'] . ' 成员列表';
+				$render['group_members'] = $this->group_model->get_group_users( $group_id, 50, $start );
+				
+				kk_show_view('group/group_lookup_members_view', $render);
 			}
 		}
 		
@@ -419,6 +454,10 @@
 						'city_id' => $this->form_validation->set_value('group_city_id'),
 					));
 					
+					$this->session_message->set(
+												sprintf( 'Hi.你已创建了群「%s」。<br />点击「邀请入群」，邀请你的朋友们加入吧。', $group_name )
+											);
+					
 					ajaxReturn(
 						array(
 							'group_name' => $group_name,
@@ -426,6 +465,8 @@
 						),
 						'成功创建友群！', 1);
 				}
+				
+				
 				
 				ajaxReturn( null, $this->input->post('group_category'), 0);
 			}
@@ -581,7 +622,13 @@
 			}
 		}
 		
-
+		
+		/**
+		 *	ajax获取某群的网址
+		 */
+		function ajax_get_group_url( $group_id ) {
+			ajaxReturn( get_group_url( $group_id ), '群网址..', 1 );
+		}
 		
 
 		/**

@@ -181,8 +181,8 @@
 						else: 
 							// 群组为空？显示没有
 					?>
-						<div>
-							没有话题
+						<div class="align_center grey">
+							<b>还没有发布话题呢</b>
 						</div>
 					
 					<?php endif; ?>

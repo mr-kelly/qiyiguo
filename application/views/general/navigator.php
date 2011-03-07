@@ -50,7 +50,8 @@
 								$ci->load->model('group_model');
 								$current_user_admin_groups = $ci->group_model->get_user_admin_groups( get_current_user_id() ) ;
 								
-								foreach( $current_user_admin_groups as $group ):
+								if ( !empty( $current_user_admin_groups ) ) :
+									foreach( $current_user_admin_groups as $group ):
 						?>
 							<li>
 								<a class="tipsy_w" title="<?=$group['name'];?>" href="<?=get_group_url( $group['id'] );?>">
@@ -61,13 +62,14 @@
 								</a>
 							</li>
 						<?php
-								endforeach;
+									endforeach;
+								endif;
 							endif;
 						?>
 						<li>
 							<a href="<?=site_url('user/my_groups');?>">
 								<span class="icon icon_joined_group"></span>
-								我加入的果群
+								我的果群
 							</a>
 						</li>
 					</ul>

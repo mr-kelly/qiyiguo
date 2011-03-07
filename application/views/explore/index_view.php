@@ -4,7 +4,7 @@
 	<div id="content">
 		<div class="content_top">
 			<div class="content_bottom">
-				<h1>探索</h1>
+				<h1>探索奇异果</h1>
 				
 				<div>
 					<h2>推荐果群</h2>
@@ -15,7 +15,10 @@
 				<div>
 					<h2>新鲜果群</h2><!--最新的5个人以上的群..-->
 					<ul class="groups_show">
-					<?php foreach( $fresh_groups as $group ) : ?>
+					<?php
+						if ( !empty( $fresh_groups ) ): 
+							foreach( $fresh_groups as $group ) :
+					?>
 						<li>
 							<div>
 								<img src="<?=get_group_logo_url( $group['id'] );?>" width="40" />
@@ -24,7 +27,10 @@
 								<?=$group['name'];?>
 							</div>
 						</li>
-					<?php endforeach; ?>
+					<?php
+							endforeach;
+						endif;
+					?>
 					</ul>
 					
 					<div class="clearboth"></div>

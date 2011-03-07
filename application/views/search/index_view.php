@@ -26,7 +26,7 @@
 				<?php if ( ! empty( $search_groups ) ) :?>
 				<div>
 					<h2>搜到的果群</h2>
-					<ul class="sidebar_groups_list">
+					<ul class="groups_show">
 					<?php foreach( $search_groups as $search_group ) : ?>
 						<li>
 							<div>

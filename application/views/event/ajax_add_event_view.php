@@ -1,8 +1,36 @@
 
 		<script>
-			$(function(){
+			function event_add_form_submit() {
+				// 绑定
+				$('.add_event_form').validate({
+					submitHandler: function(form) {
+		
+						
+						
+						$('.add_event_form').ajaxSubmit({
+							dataType: 'json',
+							success: function(data) {
+								if ( data.status == 1 ) {
+									kk_growl.success(data.info);
+									
+									
+									// 成功提交后刷新
+									location.reload();
+								} else {
+									kk_growl.error(data.info);
+								}
+							}
+						});
+					},
+					success: function(label) {
+						label.text('').addClass('success');
+					}
+				});
 				
-			});
+				$('.add_event_form').submit();
+				
+				return false;
+			}
 		</script>
 		
 		<div class="add_event_div form_div <?= isset( $hidden ) ? 'hidden' : '';?>">
@@ -11,7 +39,7 @@
 				//$datetime = getdate();
 			?>
 			
-			<form action="<?=site_url('event/ajax_create_event/' . $model . '/' . $model_id);?>" id="create_event_form" method="post">
+			<form action="<?=site_url('event/ajax_create_event/' . $model . '/' . $model_id);?>" class="add_event_form" method="post">
 				<? // 发表活动的群组 ?>
 				
 				<!--<input type="hidden" name="event_group_id" value="<?=$group['id'];?>" />-->
@@ -148,18 +176,19 @@
 				
 				<p>
 					<label>活动名称:</label>
-					<input type="text" name="create_event_name" />				
+					<input type="text" name="create_event_name" class="required" />				
 				</p>
 				
 				<p>
 					<label>活动内容:</label>
-					<textarea class="input_textarea" name="create_event_content"></textarea>
+					<textarea class="input_textarea required" name="create_event_content"></textarea>
 				</p>
 				
 
-				<a class="awesome small" href="#">创建</a>
+				<a onclick="return event_add_form_submit();" class="btn" href="#">
+					<span><span>创建</span></span>
+				</a>
 				
-				<input type="submit" />
 			</form>
 			
 			

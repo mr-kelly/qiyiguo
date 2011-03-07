@@ -638,6 +638,35 @@
 		}
 		
 		/**
+		 *	判断用户是否是群的创始人、（拥有者owner)
+		 */
+		function is_group_owner( $group_id, $user_id ) {
+			$group = $this->get_group_by_id( $group_id );
+			
+			if ( !$group ) { return false; }
+			
+			// 判断，返回
+			return $group['owner_id'] == $user_id;
+		}
+		
+		
+		/**
+		 *	判断slug是否已被使用。。。 $group_id，排除这个群在以外
+		 */
+		function is_group_slug_existed( $slug, $group_id ) {
+			$query = $this->db->get_where('group', array(
+				'slug' => $slug,
+				'id !=' => $group_id,
+			));
+			
+			if ( $query->num_rows() == 0) {
+				return false; // 不存在，没被使用
+			} else {
+				return true; // 存在了
+			}
+		}
+		
+		/**
 		 *	 提升某群组的查看量
 		 */
 		function up_group_page_view( $group_id ) {

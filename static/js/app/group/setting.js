@@ -1,31 +1,41 @@
 $(function(){
 	$('#group_setting_submit').click(function(){
 		$('#group_setting_form').submit();
+		
+		return false;
 	});
 	
-	
+    	// 绑定
+
 	$('#group_setting_form').validate({
 			submitHandler: function(form) {
-
-				
-				
 				$('#group_setting_form').ajaxSubmit({
 					dataType: 'json',
-					success: function(data) {
-						if ( data.status == 1 ) {
-							kk_growl.success(data.info);
+					success: function(json) {
+						if ( json.status == 1 ) {
+							kk_growl.success(json.info);
+							
+							// 将页面显示的网址更改成修改后的网址..
+							
+							$('.group_url').attr('href', json.data.group_url )
+											.text(json.data.group_url );
+					
+							
 							
 							
 						} else {
-							kk_growl.error(data.info);
+							kk_growl.error(json.info);
 						}
 					}
 				});
 			},
 			success: function(label) {
 				label.text('').addClass('success');
+			},
+			error: function() {
+				alert('error');
 			}
-		});
+	});
 
 
 });

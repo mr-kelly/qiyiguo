@@ -17,6 +17,11 @@
 		 */
 		function event_lookup( $event_id ) {
 			$render['event'] = $this->event_model->get_event_by_id( $event_id );
+			$render['event_users'] = $this->event_model->get_event_users( $event_id );
+			$render['event_join_users_count'] = $this->event_model->get_event_users_count( $event_id, 'join');
+			// 关注人数（ 参与+感兴趣）
+			$render['event_users_count'] = $this->event_model->get_event_users_count( $event_id, false);
+			
 			kk_show_view('event/event_lookup_view', $render);
 		}
 		

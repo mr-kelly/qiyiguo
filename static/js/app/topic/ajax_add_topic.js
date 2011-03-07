@@ -128,19 +128,26 @@ $(function(){
 		 */
 		 
 		 $(function(){
+		 	
 			 $('#add_topic_pic_btn').click(function(){
 				 $('#add_topic_pic_input').trigger('click');
 				 
 				 return false;
 			 });
-			 
+			
+			// 添加附件按钮
+			$('#add_topic_file_btn').click(function(){
+				$('#add_topic_file_input').trigger('click');
+				
+				return false;
+			});
 			 
 			 
 		  });
 		  
 		  
 		 // 话题图片上传控制
-		 function ajax_upload() {
+		 function ajax_pic_upload() {
 			 $.ajaxFileUpload({
 				 url: $topic_upload_pic_url, // '<?=site_url("topic/ajax_topic_upload_pic");?>',
 				 fileElementId: 'add_topic_pic_input',
@@ -158,7 +165,7 @@ $(function(){
 						 $('#add_topic_pic_btn').hide();
 						 
 						 // 设置topic表单~  以绑定topic与attach联系
-						 $('#add_topic_attach_id').val( data.data.attach_id );
+						 $('#add_topic_attach_img_id').val( data.data.attach_id );
 						 
 					 } else{
 					   kk_growl.error('上传失败！?');
@@ -168,6 +175,62 @@ $(function(){
 				error: function( data, status, e ) {
 				  alert(e);
 				  kk_growl.error( '无法上传～原因未知' );
+				  
+				  // 清空文件传输框
+				  //$('#add_topic_pic_input').val('');
+				  
+				  
+				}
+				
+			 });
+		 }
+		 
+		 // 话题附件上传控制
+		 function ajax_file_upload() {
+			 $.ajaxFileUpload({
+				 url: $topic_upload_file_url, // '<?=site_url("topic/ajax_topic_upload_pic");?>',
+				 fileElementId: 'add_topic_file_input',
+				 dataType: 'json',
+				 success: function (json, status){//上传成功
+				 
+					 if(json.status == 1){
+						 kk_growl.success( '附件上传成功！' );
+						 
+						 // 设置表单，绑定topic与文件attach_file关系，以便发布
+						 $('#add_topic_attach_file_id').val( json.data.attach_id );
+						 $('#add_topic_file_display').text( json.data.file_name ).addClass('icon');
+						 
+						 // 判断上传文件的后缀名，添加相应的class以显示图标
+						 if  ( json.data.file_ext == '.doc' ) {
+						 	$('#add_topic_file_display').addClass('icon_doc');
+						 } else if ( json.data.file_ext == '.xls' ) {
+						 	$('#add_topic_file_display').addClass('icon_xls');
+						 } else if ( json.data.file_ext == '.zip' ) {
+						 	$('#add_topic_file_display').addClass('icon_zip');
+						 } else if ( json.data.file_ext == '.rar' ) {
+						 	$('#add_topic_file_display').addClass('icon_rar');
+						 } else if ( json.data.file_ext == '.ppt' ) {
+						 	$('#add_topic_file_display').addClass('icon_ppt');
+						 }
+						 
+						 // 原图、缩略图
+// 						 $('#add_topic_pic_full').removeClass('hidden').fancybox().tipsy().attr('href', $attach_img_url + data.data.file );
+// 						 $('#add_topic_pic_thumb').attr( 'src', $attach_img_url + data.data.file_thumb );
+// 						 
+// 						 // 因为只能上传一张图片，所以上传一张之后，“上传图片”按键消失吧
+// 						 $('#add_topic_pic_btn').hide();
+// 						 
+// 						 // 设置topic表单~  以绑定topic与attach联系
+// 						 $('#add_topic_attach_id').val( data.data.attach_id );
+						 
+					 } else{
+					   kk_growl.error('上传失败！?不能超过1MB哦');
+					 }
+				},
+			   
+				error: function( data, status, e ) {
+				  alert(e);
+				  kk_growl.error( '无法上传～ 可能是文件太大了？如果超过1MB，请使用果邮群发给群成员。' );
 				  
 				  // 清空文件传输框
 				  //$('#add_topic_pic_input').val('');

@@ -610,7 +610,7 @@ div.submenu span.submenu_corner:first-child {
 				top: 0;
 			}
 		
-		.sidebar_links li a span.icon,  .vertical_links li a span.icon {
+		.sidebar_links li a span.icon,  .vertical_links li a span.icon, .sidebar_links li a img.group_logo {
 			position: absolute;
 			top: 7px;
 			left: 30px;
@@ -649,18 +649,23 @@ div.submenu span.submenu_corner:first-child {
 				overflow: hidden;
 			}
 			
-.sidebar_profile .profile_img {
-	float: left;
+.sidebar_profile {
+	margin: 10px 0 0 0;
+	border-bottom: dashed 1px #CCC;
+	height: 65px;
 }
-	.sidebar_profile h3 {
-		margin: 0 0 0 60px;
+	.sidebar_profile .profile_img {
+		float: left;
 	}
-		.sidebar_profile h3 a {
-			font-size: 14px;
+		.sidebar_profile h3 {
+			margin: 0 0 0 60px;
 		}
-	.sidebar_profile .profile_detail {
-		margin: 0 0 0 60px;
-	}
+			.sidebar_profile h3 a {
+				font-size: 14px;
+			}
+		.sidebar_profile .profile_detail {
+			margin: 0 0 0 60px;
+		}
 			
 #content {
     overflow:hidden;
@@ -761,6 +766,7 @@ div.submenu span.submenu_corner:first-child {
 			
 			}
 			
+			
 				.lookup_easy_profile {
 					margin: 8px 0 0 120px;
 				}
@@ -768,14 +774,18 @@ div.submenu span.submenu_corner:first-child {
 						display: inline-block;
 						margin: 0;
 					}
+					
+					.lookup_easy_profile .profile_detail {
+						margin: 2px 0;
+					}
 				
 				/**
 				 *	lookup页面的按钮、  关注、管理员、朋友
 				 */
 				.lookup_btn {
 					position: absolute;
-					top: 5px;
-					right: 20px;
+					top: 2px;
+					right: 3px;
 					text-align: right;
 				}
 				
@@ -876,32 +886,36 @@ div.submenu span.submenu_corner:first-child {
 	#create_event_div {
 		margin: 5px 0;
 	}
-	#create_event_form .event_date {
-		width:76px;
-		padding: 5px;
-	}
-		#create_event_form select.event_time {
-			width:45px;
-			font-size:9px;
+		.add_event_form .event_date {
+			width:76px;
+			padding: 5px;
 		}
+			.add_event_form select.event_time {
+				width:45px;
+				font-size:9px;
+			}
 
 /** Group. index */
 
-.groups_list {
+.sidebar_groups_list {
 	margin:0;
 	padding:0;
 
 }
-.groups_list li {
+.sidebar_groups_list li {
+	list-style: none;
+/*
 	list-style:none;
 	width:160px;
-	height:120px;
+	height:120px;*/
+	
 	/*
 	border-bottom: 1px dotted #CCC;
 	*/
-	float:left;
-	text-align:center;
-	padding: 5px 0;
+/*	float:left;*/
+/*	text-align:center;*/
+/*	padding: 5px 0;*/
+
 }
 
 
@@ -984,8 +998,13 @@ div.submenu span.submenu_corner:first-child {
 
 	.topics_show li {
 		list-style: none;
-		margin: 0;
+		margin: 5px 0;
 		padding: 0;
+		border-bottom: dashed 1px #CCC;
+		line-height: 26px;
+		height: 26px;
+		
+		text-indent: 5px;
 	}
 			
 			
@@ -995,6 +1014,12 @@ div.submenu span.submenu_corner:first-child {
 }
 	.events_show li {
 		list-style: none;
+		height: 26px;
+		line-height: 26px;
+		margin: 5px 0;
+		border-bottom: dashed 1px #CCC;
+		
+		text-indent: 5px;
 	}
 			/*
 

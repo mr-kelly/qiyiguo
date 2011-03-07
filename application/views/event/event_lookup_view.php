@@ -26,6 +26,10 @@
 					<p>
 						<?=$event['content'];?>
 					</p>
+					<p>
+						参加人数: <?= $event_join_users_count; ?>
+						关注人数: <?= $event_users_count; ?>
+					</p>
 				</div>
 				
 				<?php //print_r( $event ); ?>

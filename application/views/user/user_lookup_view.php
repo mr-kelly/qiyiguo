@@ -88,9 +88,37 @@
 											到他的QQ空间
 										</a>
 									</li>
+									<li>
+										<a target="_blank" href="<?=$user['qq'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_qq"></span>
+											QQ聊天
+										</a>
+									</li>
 									<?php
 										endif;
 									?>
+									
+									<? if ( !empty( $user['msn'] ) ) : ?>
+									<li>
+										<a target="_blank" href="#<?=$user['msn'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_msn"></span>
+											MSN聊天
+										</a>
+									</li>
+									<?php endif; ?>
+									
+									<? if ( !empty( $user['gtalk'] ) ) : ?>
+									<li>
+										<a target="_blank" href="#<?=$user['gtalk'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_gtalk"></span>
+											Gtalk聊天
+										</a>
+									</li>
+									<?php endif; ?>
+									
 								</ul>
 							</div>
 							

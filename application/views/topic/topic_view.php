@@ -43,32 +43,21 @@
 						$group = $ci->group_model->get_group_by_id( $topic['model_id'] );
 						$group_members_count = $ci->group_model->get_group_users_count( $topic['model_id'] );
 				?>
-				<div class="sidebar_profile">
-					
-					<div class="profile_img">
-						<img width="50" src="<?=get_group_logo_url( $topic['model_id'] );?>" />
-					</div>
-					
-					
-						<h3>
-							<a href="<?=site_url('group/' . $group['id'] );?>">
-								<?=$group['name'];?>
-							</a>
-						</h3>
-						
-						<div class="profile_detail">
-							
-							<div>
-								广东?
-								<?=$group_members_count;?>名成员
-							</div>
-						</div>
-					
-					<div class="clearboth"></div>
-					
-				</div>
-				<a href="<?=$_SERVER['HTTP_REFERER'];?>">返回上一页</a>
+				
+					<?php
+						$this->load->view('sidebar/sidebar_group_profile', array(
+							'group'=> $group,
+							'group_members_count' => $group_members_count,
+						));
+					?>
+				
 				<?php endif; ?>
+				
+				<?php
+					$this->load->view('sidebar/sidebar_user_profile', array(
+						'user' => kk_get_user( $topic['user_id'] ),
+					));
+				?>
 			</div>
 		</div>	
 	</div>

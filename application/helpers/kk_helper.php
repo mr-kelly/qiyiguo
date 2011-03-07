@@ -374,9 +374,56 @@
 			
 		} else {
 			return false;
-		}	}
+		}
+		
+	}
 	
 	
 	
+	/**
+	 *	获取星座， 打印图标 class  :    icon_juxie...
+	 */
+	function kk_constellation_icon( $constellation ) {
+		switch( $constellation ) {
+			case '巨蟹座':
+				return 'icon_juxie';
+				break;
+		}
+	}
+	
+	/**
+	 *	获得指定群组~
+	 */
+	function kk_get_group( $group_id ) {
+		$ci =& get_instance();
+		$ci->load->model('group_model');
+		return $ci->group_model->get_group_by_id( $group_id );
+	}
+	
+	/**
+	 *	快捷获取指定用户
+	 */
+	function kk_get_user( $user_id ) {
+		$ci =& get_instance();
+		$ci->load->model('user_profiles_model');
+		return $ci->user_profiles_model->_get_user( $user_id );
+	}
+	
+	/**
+	 *	通过城市ID，获取城市名称
+	 */
+	function kk_get_city_name( $city_id ) {
+		$ci =& get_instance();
+		$ci->load->model('dict_model');
+		return $ci->dict_model->get_city_name( $city_id );
+	}
 	
 	
+	/**
+	 *	通过省份的ID，获取省份名称
+	 */
+	function kk_get_province_name( $province_id ) {
+		$ci =& get_instance();
+		$ci->load->model('dict_model');
+		return $ci->dict_model->get_province_name( $province_id );
+	}

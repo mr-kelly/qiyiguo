@@ -45,9 +45,14 @@ var $current_user_avatar_url = '<?=static_url("upload/avatars/") . get_current_u
 
 
 
+<?php
+	//获得指定群的网址的 ajax控制器
+?>
+var $ajax_get_group_url_url = '<?= site_url( "group/ajax_get_group_url" );?>';
 
 <?php
 	
 ?>
 
 var $topic_upload_pic_url = '<?=site_url("topic/ajax_topic_upload_pic");?>';
+var $topic_upload_file_url = '<?=site_url("topic/ajax_topic_upload_file");?>';
