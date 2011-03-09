@@ -14,7 +14,7 @@
 					$ci =& get_instance();
 					$ci->load->library('t_sina');
 					$user_t_sina = $ci->t_sina->getSelf();
-					print_r( $user_t_sina );
+					//print_r( $user_t_sina );
 				?>
 					<p>
 						<a target="_blank" href="http://t.sina.com.cn/<?=$user_t_sina['id'];?>">

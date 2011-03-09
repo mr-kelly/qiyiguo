@@ -56,10 +56,12 @@ background-color: transparent;
 
 
 
+/*
 b {
     font-weight: bold;
     font-size: 13px;
 }
+*/
 /*
 h1 {
     display:block;
@@ -103,18 +105,21 @@ a:hover {
     text-decoration: underline;
  
 }
+
 img {
     border:0;
     vertical-align: top;
 }
 
+/*
 input { 
-	border: 1px solid #D1D8E8; 
+	
 	padding:1px 0 1px 3px; 
-	/*
+
 	outline:none;
-	*/
+
 }
+*/
 
 button {
 	vertical-align: top;
@@ -170,13 +175,13 @@ form p {
 .grey {
 	color: #AAA;
 }
-.center {
+.align_center {
 	text-align:center;
 }
-.right {
+.align_right {
 	text-align:right;
 }
-.left {
+.align_left {
 	text-align: left;
 }
 .float_right {
@@ -187,7 +192,6 @@ form p {
 }
 .red {
 	color:red;
-	font-size:12px;
 }
 .no_scroll {
 	overflow:hidden;
@@ -293,4 +297,52 @@ form p {
 }
 .icon_yes {
 	background-position: 0 -909px;
+}
+.icon_house {
+	background-position: 0 -5840px;
+}
+.icon_building {
+	background-position: 0 -5856px;
+}
+.icon_mood {
+	background-position: 0 -5874px;
+}
+
+/**
+ *	巨蟹座
+ */
+.icon_juxie {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -220px;
+	
+}
+
+
+.kk_btn {
+	width:80px;
+	height: 24px;
+	background: url(../img/kk_btn.png) no-repeat;
+	display: inline-block;
+	line-height: 24px;
+	text-align: center;
+}
+	a.kk_btn {
+		color: #FFF;
+	}
+
+.kk_btn_orange, .kk_btn_blue {
+	width: 70px;
+	height: 24px;
+	
+	display: inline-block;
+	text-align: center;
+	line-height: 24px;
+	color: #444;
+}
+
+.kk_btn_orange {
+	background: url(../img/kk_btn_orange.png) no-repeat;
+}
+.kk_btn_blue {
+	background: url(../img/kk_btn_blue.png) no-repeat;
 }

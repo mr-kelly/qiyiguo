@@ -24,7 +24,21 @@
 
 				<div id="lookup_main">
 						
-						
+						<?php if ( is_group_admin( $group['id'], get_current_user_id() ) ) :?>
+						<a onclick="$('.add_topic_div').toggle();return false;" title="对果群发话~" class="tipsy_s kk_btn add_topic_btn" href="#">
+							发话▼
+						</a>
+						<div>
+							<? // 放置 填写主题层 ?>
+							<?php
+								$this->load->view('topic/ajax_add_topic_view', array(
+									'model' => 'group',
+									'model_id' => $group['id'],
+									'hidden' => true,
+								));
+							?>
+						</div>
+						<?php endif; ?>
 
 						<?php $this->load->view('topic/general_topics_list'); ?>
 	

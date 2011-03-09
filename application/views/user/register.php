@@ -79,7 +79,7 @@
 								<br />
 								
 							
-								<a class="large blue awesome" id="user_register_submit" type="submit">
+								<a class="kk_btn" id="user_register_submit" type="submit" href="#">
 									<span><span>开始奇异果！</span></span>
 								</a>
 							</form>

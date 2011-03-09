@@ -3,7 +3,7 @@
 require_once('phpass-0.1/PasswordHash.php');
 
 define('PHPASS_HASH_STRENGTH', 8);
-define('PHPASS_HASH_PORTABLE', FALSE);
+define('PHPASS_HASH_PORTABLE', TRUE); // ？
 
 define('STATUS_ACTIVATED', '1');
 define('STATUS_NOT_ACTIVATED', '0');
@@ -204,8 +204,11 @@ class Tank_auth
 	 * @param	string
 	 * @param	bool
 	 * @return	array
+	 
+	 * @param   custom_id   是否自定义用户ID～
+	 * @param   role        是否定义用户网站角色。。默认为空..
 	 */
-	function create_user($username, $email, $password, $email_activation)
+	function create_user($username, $email, $password, $email_activation, $custom_id = false, $role='')  // Custom ID... 是否自定义ID～
 	{
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
@@ -222,8 +225,17 @@ class Tank_auth
 			
 			$ci =& get_instance();
 			$ci->load->library('Guo_id'); // 读取生成果号ID的库
+			if ( ! $custom_id  ) {
+				// 随机生成一个 "果ID"， 五位数以上
+				$new_user_id = $ci->guo_id->generate_user_id();
+			} else {
+				// 自定义ID！
+				$new_user_id = $custom_id;
+			}
+			
 			$data = array(
-				'id' => $ci->guo_id->generate_user_id(),  // 随机生成一个 "果ID"， 五位数以上
+				'id' => $new_user_id,  
+				'role' => $role,
 				
 				'username'	=> $username,
 				'password'	=> $hashed_password,

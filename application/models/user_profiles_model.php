@@ -34,8 +34,14 @@ class User_Profiles_Model extends KK_Model {
 	}
 	
 	
-	function get_users( $data=array(), $limit=10, $start=0 ) {
-		$this->db->order_by('created','desc');
+	function get_users( $data=array(), $limit=10, $start=0, $random=false ) {
+			
+		if ( $random ) {	// 是否随机...
+			$this->db->order_by('id', 'random');
+		} else { // 不随机，按照创建时间排序
+			$this->db->order_by('created','desc');
+		}
+		
 		$us = $this->db->get_where('users', $data, $limit, $start);
 		
 		$return_users = array();
@@ -180,6 +186,19 @@ class User_Profiles_Model extends KK_Model {
 		} else {
 			return $query->num_rows();
 		}
+		
+	}
+	
+	/**
+	 *	提升某用户的查看量
+	 */
+	function up_user_page_view( $user_id ) {
+		$user = $this->_get_user( $user_id );
+		
+		$this->db->where('user_id', $user_id );
+		$this->db->update('user_profiles', array(
+			'page_view' => $user['page_view'] + 1,
+		));
 		
 	}
 }

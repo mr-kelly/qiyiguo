@@ -1,4 +1,4 @@
-<ul class="sidebar_groups_list">
+<ul class="groups_show">
 <?php if ( !empty( $search_groups ) ) : ?>
 
 	<?php foreach ( $search_groups as $search_group ) :?>

@@ -12,8 +12,8 @@
 		
 			<div class="sidebar_widget">
 				<h2>更改你的头像</h2>
+
 				
-				<a href="<?=site_url('user/avatar');?>">上传头像</a>
 				<?php
 					// 头像更改设置
 					if ( $user_avatars != null ):
@@ -38,6 +38,13 @@
 				<?php
 					endif;
 				?>	
+				
+				
+				
+				<div>
+					<a href="<?=site_url('user/avatar');?>">上传头像</a>
+				</div>
+				
 			</div>
 			
 			
@@ -55,7 +62,7 @@
 						<li>
 							<a href="#profile_setting">资料设置</a>
 						</li>
-						
+						<!--
 						<li>
 							<a href="#education_setting">学校信息</a>
 						</li>
@@ -63,7 +70,7 @@
 						<li>
 							<a href="#job_setting">工作信息</a>
 						</li>
-						
+						-->
 						<li>
 							<a href="#privacy_setting">
 								隐私设置
@@ -84,26 +91,27 @@
 					
 					</ul>
 					
+					
 					<!--资料设置-->
 					<div id="profile_setting" class="tab_div hidden">
 						<div class="form_div">
 							
 								<p>
 									<label>真实姓名</label>
-									<input class="required" name="realname" type="text" value="<?=get_current_user_profile('realname');?>" />
+									<input class="required" name="realname" type="text" value="<?= $current_user_profile['realname'];?>" />
 								</p>
 								
 								<p>
 									<label>性别</label>
 									<span>
-										<input type="radio" class="" name="gender" value="male" <?=( get_current_user_profile('gender') == 'male' ) ? 'checked="checked"' :''?> />男
-										<input type="radio" class="" name="gender" value="female" <?=( get_current_user_profile('gender') == 'female' ) ? 'checked="checked"' :''?>  />女
+										<input type="radio" class="" name="gender" value="male" <?=( $current_user_profile['gender'] == 'male' ) ? 'checked="checked"' :''?> />男
+										<input type="radio" class="" name="gender" value="female" <?=( $current_user_profile['gender'] == 'female' ) ? 'checked="checked"' :''?>  />女
 									</span>
 								</p>
 								
 								<p>
 									<label>昵称</label>
-									<input class="required" name="nickname" type="text" value="<?=get_current_user_profile('nickname');?>"  />
+									<input class="required" name="nickname" type="text" value="<?= $current_user_profile['nickname'];?>"  />
 								</p>
 								
 								<p>
@@ -116,7 +124,7 @@
 											// 用于年份选择，默认1990
 											foreach( range(1890,intval(date('Y'))) as $year ) :
 										?>
-										<option <?=( $year == get_current_user_profile('birth_year') ) ? 'selected="selected"' : '';?>><?=$year;?></option>
+										<option <?=( $year == $current_user_profile['birth_year'] ) ? 'selected="selected"' : '';?>><?=$year;?></option>
 										<?php
 											endforeach;
 										?>
@@ -127,7 +135,7 @@
 										<?php
 											foreach( range(1,12) as $month ) :
 										?>
-										<option <?=( $month == get_current_user_profile('birth_month') ) ? 'selected="selected"' : '';?>><?=$month;?></option>
+										<option <?=( $month == $current_user_profile['birth_month'] ) ? 'selected="selected"' : '';?>><?=$month;?></option>
 										<?php
 											endforeach;
 										?>
@@ -138,7 +146,7 @@
 										<?php
 											foreach( range(1,31) as $day ) :
 										?>
-										<option <?=( $day == get_current_user_profile('birth_day') ) ? 'selected="selected"' : '';?>><?=$day;?></option>
+										<option <?=( $day == $current_user_profile['birth_day'] ) ? 'selected="selected"' : '';?>><?=$day;?></option>
 										<?php
 											endforeach;
 										?>
@@ -157,7 +165,7 @@
 									<?php
 										$ci =& get_instance();
 										$provinces =  $ci->dict_model->get_provinces();
-										$user_province = get_current_user_profile('province_id'); // 用户当前设置的省份
+										$user_province = $current_user_profile['province_id']; // 用户当前设置的省份
 										foreach ( $provinces as $prov ):
 									?>
 										<option value="<?=$prov['id'];?>"<?=( $user_province == $prov['id'] ) ? ' selected="selected"' : '' ; ?>><?=$prov['province_name'];?></option>
@@ -169,7 +177,7 @@
 									<?php
 										$ci =& get_instance();
 										$cities =  $ci->dict_model->get_cities($user_province);
-										$user_city = get_current_user_profile('city_id');
+										$user_city = $current_user_profile['city_id'];
 										foreach ( $cities as $city ):
 									?>
 										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
@@ -187,7 +195,7 @@
 									<?php
 										$ci =& get_instance();
 										$provinces =  $ci->dict_model->get_provinces();
-										$user_province = get_current_user_profile('hometown_province_id'); // 用户当前设置的省份 - 籍贯！
+										$user_province = $current_user_profile['hometown_province_id']; // 用户当前设置的省份 - 籍贯！
 										foreach ( $provinces as $prov ):
 									?>
 										<option value="<?=$prov['id'];?>"<?=( $user_province == $prov['id'] ) ? ' selected="selected"' : '' ; ?>><?=$prov['province_name'];?></option>
@@ -199,7 +207,7 @@
 									<?php
 										$ci =& get_instance();
 										$cities =  $ci->dict_model->get_cities($user_province); 
-										$user_city = get_current_user_profile('hometown_city_id'); // 籍贯！
+										$user_city = $current_user_profile['hometown_city_id']; // 籍贯！
 										foreach ( $cities as $city ):
 									?>
 										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
@@ -210,7 +218,7 @@
 								
 								<p>
 									<label>个人网站</label>
-									<input class="url" name="website" type="text" value="<?=get_current_user_profile('website');?>"  />
+									<input class="url" name="website" type="text" value="<?= $current_user_profile['website'] ;?>"  />
 								</p>
 								
 								<!--
@@ -231,23 +239,23 @@
 								-->
 								
 								<p>
-									<label>QQ</label>
-									<input class="digits" name="qq" type="text" value="<?=get_current_user_profile('qq');?>" />
+									<label>QQ号</label>
+									<input class="digits" name="qq" type="text" value="<?= $current_user_profile['qq'];?>" />
 								</p>
 								
 								<p>
-									<label>MSN</label>
-									<input class="email" name="msn" type="text" value="<?=get_current_user_profile('msn');?>" />
+									<label>MSN聊天</label>
+									<input class="email" name="msn" type="text" value="<?= $current_user_profile['msn'];?>" />
 								</p>
 								
 								<p>
-									<label>GTalk</label>
-									<input class="email" name="gtalk" type="text" value="<?=get_current_user_profile('gtalk');?>" />
+									<label>GTalk聊天</label>
+									<input class="email" name="gtalk" type="text" value="<?= $current_user_profile['gtalk'];?>" />
 								</p>
 								
 								<p>
 									<label>人人网ID号</label>
-									<input class="digits tipsy_w" name="link_renren" type="text" value="<?=get_current_user_profile('link_renren');?>" title="人人网个人主页网址是http://www.renren.com/profile.do?id={您的人人网ID}"  />
+									<input class="digits tipsy_w" name="link_renren" type="text" value="<?= $current_user_profile['link_renren'];?>" title="人人网个人主页网址是http://www.renren.com/profile.do?id={您的人人网ID}"  />
 									<a class="sexybox_iframe" href="<?=base_url();?>wiki/获得人人网的id号">
 										如何知道自己的人人网的ID号？
 									</a>
@@ -256,10 +264,10 @@
 								<p>
 									<label>恋爱状态</label>
 									<select id="love_status" name="love_status">
-										<option value="" <?= get_current_user_profile('love_status') == '' ? 'selected="selected"' :'';?>>未知</option>
-										<option value="single" <?=get_current_user_profile('love_status')=='single'? 'selected="selected"' :'';?>>单身</option>
-										<option value="inlove" <?=get_current_user_profile('love_status')=='inlove'? 'selected="selected"' :'';?>>恋爱中</option>
-										<option value="married" <?=get_current_user_profile('love_status')=='married'? 'selected="selected"' :'';?>>已婚</option>
+										<option value="" <?= $current_user_profile['love_status'] == '' ? 'selected="selected"' :'';?>>未知</option>
+										<option value="single" <?= $current_user_profile['love_status'] =='single'? 'selected="selected"' :'';?>>单身</option>
+										<option value="inlove" <?= $current_user_profile['love_status'] =='inlove'? 'selected="selected"' :'';?>>恋爱中</option>
+										<option value="married" <?= $current_user_profile['love_status'] =='married'? 'selected="selected"' :'';?>>已婚</option>
 									</select>
 								</p>
 								
@@ -277,7 +285,7 @@
 								</script>
 								
 								<?php
-									$current_user_love_status = get_current_user_profile('love_status');
+									$current_user_love_status = $current_user_profile['love_status'];
 								?>
 								<p id="lover_p" class="<?=$current_user_love_status == 'single' ? 'hidden' :'';?><?= empty($current_user_love_status) ? 'hidden' :'';?>">
 									<label>恋人号</label>
@@ -289,7 +297,7 @@
 								</p>
 								<p>
 									<label>个人描述</label>
-									<textarea name="description"><?=get_current_user_profile('description');?></textarea>
+									<textarea name="description"><?= $current_user_profile['description'];?></textarea>
 								</p>
 								
 
@@ -420,7 +428,7 @@
 						<div class="form_div">
 							<h3>
 								<?php
-									$slug = get_current_user_profile('slug');
+									$slug = $current_user_profile['slug'];
 									if ( $slug == '' ) $slug = get_current_user_id();
 								?>
 								你当前的个人网址: <a id="slug_a" target="_blank" href="http://qiyiguo.cc/u/<?=$slug;?>">qiyiguo.cc/u/<?=$slug;?></a>
@@ -428,7 +436,7 @@
 						
 							<p>
 								<label for="slug">设置个人网址:</label>
-								http://qiyiguo.cc/u/<input id="slug_input" type="text" name="slug" value="<?=get_current_user_profile('slug');?>" />
+								http://qiyiguo.cc/u/<input id="slug_input" type="text" name="slug" value="<?= $current_user_profile['slug'];?>" />
 							</p>
 						</div>
 					</div>
@@ -511,9 +519,9 @@
 				
 			</form>
 			
-			<div class="center">
-				<a class="awesome medium blue" id="submit_user_profiles_form" href="#">
-					确认
+			<div class="align_center">
+				<a class="kk_btn" id="submit_user_profiles_form" href="#">
+					确认修改
 				</a>
 			</div>
 			

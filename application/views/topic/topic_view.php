@@ -36,9 +36,28 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
-				<?php if ( $topic['model'] == 'group' ): ?>
-					<a href="<?=site_url('group/' . $topic['model_id']);?>">返回群组</a>
+				<?php 
+					if ( $topic['model'] == 'group' ):
+						$ci =& get_instance();
+						$ci->load->model('group_model');
+						$group = $ci->group_model->get_group_by_id( $topic['model_id'] );
+						$group_members_count = $ci->group_model->get_group_users_count( $topic['model_id'] );
+				?>
+				
+					<?php
+						$this->load->view('sidebar/sidebar_group_profile', array(
+							'group'=> $group,
+							'group_members_count' => $group_members_count,
+						));
+					?>
+				
 				<?php endif; ?>
+				
+				<?php
+					$this->load->view('sidebar/sidebar_user_profile', array(
+						'user' => kk_get_user( $topic['user_id'] ),
+					));
+				?>
 			</div>
 		</div>	
 	</div>

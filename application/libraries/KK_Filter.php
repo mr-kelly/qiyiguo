@@ -7,13 +7,23 @@
 		function __construct() {
 		
 			$this->replace_chr = '***'; // 用于替换的字符串`
+			
+			
+			// 定义非法字符。  后面应该在数据库去读取
+			$this->keywords_to_filter = array(
+				'共产党',
+				'操你',
+			);
 		}
 		/**
 		 *	行动！ 过滤！
 		 
 		 	这个默认配置， 允许<a>标签存在
+		 		
+		 		TODO 如果设置了user_id, 记录该用户....!随时封杀呢
+		 		
 		 */
-		function filter( $string, $option = array() ) {
+		function filter( $string, $option = array(), $user_id=null ) {
 			
 			$default_option = array( 
 									'without_html' => true, 
@@ -53,13 +63,9 @@
 		 *	关键字过滤， 将指定的关键字过滤成 ***
 		 */
 		private function keywords_filter( $string ) {
+
 			
-			// 定义非法字符。  后面应该在数据库去读取
-			$keywords_to_filter = array(
-				'共产党',
-			);
-			
-			foreach( $keywords_to_filter as $kw ) {
+			foreach( $this->keywords_to_filter as $kw ) {
 				// 替换非法字符～
 				$string = str_replace( $kw, $this->replace_chr, $string );
 			}

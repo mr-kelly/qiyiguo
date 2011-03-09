@@ -17,6 +17,11 @@
 		 */
 		function event_lookup( $event_id ) {
 			$render['event'] = $this->event_model->get_event_by_id( $event_id );
+			$render['event_users'] = $this->event_model->get_event_users( $event_id );
+			$render['event_join_users_count'] = $this->event_model->get_event_users_count( $event_id, 'join');
+			// 关注人数（ 参与+感兴趣）
+			$render['event_users_count'] = $this->event_model->get_event_users_count( $event_id, false);
+			
 			kk_show_view('event/event_lookup_view', $render);
 		}
 		
@@ -26,7 +31,9 @@
 		 *	用户参加某活动、任务
 		 */
 		function ajax_join_event( $event_id, $action = 'join' ) {
-			login_redirect();
+			if ( !is_logged_in() ) {
+				ajaxReturn( null, '未登录', 0 );
+			}
 			
 			if ( $action == 'join' ) {
 			
@@ -60,7 +67,10 @@
 		 *	用户关注、感兴趣某活动
 		 */
 		function ajax_follow_event( $event_id, $action = 'follow' ) {
-			login_redirect();
+			if ( !is_logged_in() ) {
+				ajaxReturn( null, '未登录', 0 );
+			}
+			
 			if ( $action == 'follow' ) {
 			
 				if ( $event_user_id = $this->event_model->create_event_user( $event_id, get_current_user_id(), 'follow' ) ) {
@@ -174,6 +184,14 @@
 // 				
 // 			}
 // 			
+		}
+		
+		/**
+		 *	ajax 获取按钮
+		 */
+		function ajax_get_event_join_btn( $event_id ) {
+			$render['event'] = $this->event_model->get_event_by_id( $event_id );
+			kk_show_view('event/general_event_join_btn', $render);
 		}
 		
 	}

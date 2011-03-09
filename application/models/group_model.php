@@ -159,14 +159,38 @@
 		}
 		
 		
+		/**
+		 *	通过传入群组的slug,获得对应的ID
+		 */
+		function get_group_id_by_slug( $slug ) {
+			$group = $this->db->get_where('group', array(
+				'slug' => $slug,
+			));
+			
+			if ( $group->num_rows() == 0 ) {
+				return false;
+			}
+			
+			$group = $group->row_array();
+			return $group['id'];
+		}
+		
 		function get_topic_by_id( $topic_id) {
 			$topic = $this->db->get_where('group_topic', array(
 				'id'=>$topic_id,
-			))->result_array();
+			));
 			
-			return $topic[0];
+			if ( $topic->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $topic->row_array();
 		}
-		function get_groups( $data=array(), $limit=10, $start=0 ) {
+		
+		function get_groups( $data=array(), $limit=10, $start=0, $random=false ) {
+			
+			if ( $random ) $this->db->order_by( 'id', 'random' );
+			
 			$query = $this->db->get_where('group', $data, $limit);
 			
 			if ( $query->num_rows() == 0 ) {
@@ -205,20 +229,184 @@
 		/**
 		 *	获取指定用户所加入的群组groups具体数据
 		 */
-		function get_user_groups($user_id) {
+		function get_user_groups($user_id, $limit=6, $start=0, $random=false , $option=null) {
+			
+// 			$query = $this->db->get_where('group_user', array(
+// 				'user_id' => $user_id,
+// 				
+// 			));
+// 			$user_groups = $query->result_array();
+			
+			$user_groups_sql = sprintf('SELECT * FROM kk_group_user WHERE user_id = %d', $user_id);
+			
+			if ( isset( $option['role'] ) ) {
+				// 是否查询指定用户角色.... admin? member?
+				$user_groups_sql .= sprintf( ' AND user_role = "%s"', $option['role'] );
+			}
+			
+			
+			$user_groups = $this->db->query( $user_groups_sql )->result_array();
+			
+			if ( empty( $user_groups ) ) { // 根本没有加入任何群组。。返回0
+				return false;
+			}
+			// 上面获得的是用户所加入的友群的ID号，下面来获得友群group 具体数据
+// 			$return_groups = array();
+// 			foreach( $user_groups as $user_group ) {
+// 									// 数据库多查询...
+// 				$return_groups[] = $this->_get_group( $user_group['group_id'] ); 
+// 			}
+// 			
+// 			return $return_groups;
+			
+			//$this->db->from('group');		// 单查询
+			
+			
+			$groups_sql =  'SELECT * FROM kk_group WHERE ';
+			foreach( $user_groups as $key=>$ug ) {
+				if ( $key == 0 ) {
+					// 首项不加or
+					$groups_sql .= sprintf( ' id = %d ', $ug['group_id'] );
+				} else {
+					$groups_sql .= sprintf( ' OR id = %d ', $ug['group_id'] );
+				}
+			}
+			if ( $random ) $groups_sql .= ' ORDER BY rand()';
+			$groups_sql .= sprintf( ' LIMIT %d,%d ', $start, $limit );
+			
+			
+			 
+			return $this->db->query( $groups_sql )->result_array();
+			
+// 			if ( $random ) $this->db->order_by('id', 'random');
+// 			foreach ( $user_groups as $ug ) {
+// 				$this->db->or_where('id' , $ug['group_id']);
+// 			}
+// 			return $this->db->get('group', $limit, $start )->result_array();
+// 			
+		}
+		
+		
+		/**
+		 *	获得用户加入的群组数目
+		 */
+		function get_user_groups_count( $user_id ) {
 			$query = $this->db->get_where('group_user', array(
 				'user_id' => $user_id,
 			));
-			$user_groups = $query->result();
 			
-			// 上面获得的是用户所加入的友群的ID号，下面来获得友群group 具体数据
-			$this->db->from('group');
-			foreach ( $user_groups as $ug ) {
-				$this->db->or_where('id =' . $ug->group_id);
+			return $query->num_rows();
+		}
+		/**
+		 *	获取用户为管理员的群组~
+		 */
+		function get_user_admin_groups( $user_id, $limit=6, $start=0 ) {
+			$admin_group_user = $this->db->get_where('group_user', array(
+				'user_id' => $user_id,
+				'user_role' => 'admin', //管理员~
+			), $limit, $start);
+			
+			if ( $admin_group_user->num_rows() == 0 ) { //没的话..
+				return false;
 			}
-			return $this->db->get()->result();
+			
+			
+			foreach ( $admin_group_user->result_array() as $group_user ) {
+				$this->db->or_where('id', $group_user['group_id'] );
+			}
+			return $this->db->get('group', $limit, $start )->result_array();
 			
 		}
+		
+		/**
+		 *	获取用户管理的群组的数量
+		 */
+		function get_user_admin_groups_count( $user_id ) {
+			$admin_groups = $this->db->get_where('group_user', array(
+				'user_id' => $user_id,
+				'user_role' => 'admin',
+			));
+			
+			return $admin_groups->num_rows();
+		}
+		
+		
+		/**
+		 *	获取两个用户的共同群组~  共群
+		 */
+		function get_users_common_groups( $user_1_id , $user_2_id , $limit=6, $start=0, $random=false) {
+		
+			if ( $user_1_id == $user_2_id ) return false; // 对比同一个人，返回false
+			
+			// 获得用户一群.. 对比用户二群...
+			$user_1_groups = $this->db->get_where('group_user', array(
+				'user_id' => $user_1_id,
+			))->result_array();
+			
+			$user_2_groups = $this->db->get_where('group_user', array(
+				'user_id' => $user_2_id,
+			))->result_array();
+			
+			// 他们当中有一个为空， 没有加入任何群组，返回false
+			if ( empty( $user_1_groups ) || empty( $user_2_groups ) ) {
+				return false;
+			}
+			
+//			print_r ( $user_1_groups );
+			
+			$common_groups_id = array();
+			foreach ( $user_1_groups as $user_1_group ) {
+				foreach( $user_2_groups as $user_2_group ) {
+					
+					// 判断是否ID共群~ 如果ID重复、相同，往commont_groups添加ID...
+					if ( $user_1_group['group_id'] == $user_2_group['group_id'] ) {
+						$common_groups_id[] = $user_1_group['group_id'];
+					}
+					
+				}
+			}
+			
+			// 将共同群组的详细资料写入.. // 多查询
+// 			$common_groups = array();
+// 			foreach( $common_groups_id as $common_group_id ) {
+// 				$common_groups[] = $this->_get_group( $common_group_id );
+// 			}
+// 
+// 			return $common_groups; 
+			
+			// 将共同群组的详细资料写入.. // 单查询
+			//$this->db->from('group');
+			if ( $random ) $this->db->order_by('id', 'random');
+			foreach( $common_groups_id as $common_group_id ) {
+				$this->db->or_where( 'id', $common_group_id );
+			}
+			
+			return $this->db->get('group', $limit, $start )->result_array();
+			
+			
+		}
+		
+		/**
+		 *	获取一些新鲜果群... ( 新建的群，并且用户数大于10 ）？
+		 */
+		function get_fresh_groups( $user_num = 10 ) {
+			$sql = sprintf( 'SELECT * FROM kk_group WHERE 
+								( SELECT count( * ) FROM kk_group_user 
+									WHERE group_id = kk_group.id ) > %d
+									ORDER BY created DESC', 
+									$user_num);
+			
+			$query = $this->db->query( $sql );
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->result_array();
+		}
+		
+
+		
 		
 		/** 
 		 *	获指定ID 友群的所有用户, 返回profile组
@@ -324,6 +512,37 @@
 			return $stream;
 		}
 		
+		/**
+		 *	设置某用户成 某群组的 管理员
+		 */
+		function set_group_admin( $group_id, $user_id ) {
+			// 先判断 该用户是不是已经是群组成员~~  只能提升当前群组成员的人
+			$query = $this->db->get_where('group_user', array(
+				'group_id' => $group_id, 
+				'user_id' => $user_id,
+			));
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			$group_user = $query->row_array();
+			
+			// 不是管理员，设置成管理员
+			if ( $group_user['user_role'] != 'admin' ) {
+				$this->db->where(array(
+					'group_id' => $group_id,
+					'user_id' => $user_id,
+				));
+				return $this->db->update('group_user', array(
+					'user_role' => 'admin',
+				));
+			} else {
+				// 是管理员，失败
+				return false;
+			}
+			
+		}
+		
 		function search_groups( $data ) {
 			$this->db->or_like( $data );
 			$query = $this->db->get('group');
@@ -416,6 +635,47 @@
 				return false;
 			}
 
+		}
+		
+		/**
+		 *	判断用户是否是群的创始人、（拥有者owner)
+		 */
+		function is_group_owner( $group_id, $user_id ) {
+			$group = $this->get_group_by_id( $group_id );
+			
+			if ( !$group ) { return false; }
+			
+			// 判断，返回
+			return $group['owner_id'] == $user_id;
+		}
+		
+		
+		/**
+		 *	判断slug是否已被使用。。。 $group_id，排除这个群在以外
+		 */
+		function is_group_slug_existed( $slug, $group_id ) {
+			$query = $this->db->get_where('group', array(
+				'slug' => $slug,
+				'id !=' => $group_id,
+			));
+			
+			if ( $query->num_rows() == 0) {
+				return false; // 不存在，没被使用
+			} else {
+				return true; // 存在了
+			}
+		}
+		
+		/**
+		 *	 提升某群组的查看量
+		 */
+		function up_group_page_view( $group_id ) {
+			$group = $this->get_group_by_id( $group_id );
+			
+			$this->db->where('id', $group['id'] );
+			return $this->db->update('group', array(
+				'page_view' => $group['page_view'] + 1,
+			));
 		}
 		
 

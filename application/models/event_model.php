@@ -18,7 +18,9 @@
 				
 		 */
 		function create_event( $data ) {
-			$this->db->insert('event', $data);
+			$this->db->insert('event', $data + array(
+				'created' => date('Y-m-d H:i:s'),
+			));
 			return $this->db->insert_id();
 		}
 		
@@ -48,11 +50,12 @@
 		 * 获取 事件集（活动集，任务集）
 		 */
 		function get_events( $model, $model_id, $limit=100, $start=0 ) {
-		
+			 $this->db->order_by('start', 'desc');
+			 
 			 $query = $this->db->get_where('event', array(
 			 	'model' => $model,
 			 	'model_id' => $model_id,
-			 ));
+			 ), $limit, $start );
 			 
 			 if ( $query->num_rows() == 0 ) {
 			 	 return false;
@@ -87,6 +90,20 @@
 				return $event;
 				
 			}
+		}
+		
+		/**
+		 *	从公开群组获取最新的活动...
+		 */
+		function get_fresh_events( $limit=10, $start=0) {
+			$sql = sprintf('SELECT * FROM kk_event 
+								WHERE model_id = 
+									( SELECT kk_group.id FROM kk_group WHERE kk_event.model_id = kk_group.id AND kk_group.privacy = "public" )
+									LIMIT %d,%d', $start, $limit ); // kk_topic.model_id = kk_group.id AND
+									
+			$query = $this->db->query( $sql );
+			
+			return $query->result_array();
 		}
 		
 		
@@ -168,10 +185,18 @@
 		 *	获取事件、活动 的参与者...
 		 */
 		function get_event_users( $event_id, $type='join' )  {
-			$event_users = $this->db->get_where('user_event', array(
-				'event_id' => $event_id,
-				'type' => $type,
-			));
+			
+			$sql = sprintf( 'SELECT * FROM kk_event_user WHERE event_id=%d', $event_id );
+			if ( $type ) {
+				$sql .= sprintf( ' AND type="%s"', $type );
+			}
+			
+			$event_users= $this->db->query( $sql );
+			
+// 			$event_users = $this->db->get_where('user_event', array(
+// 				'event_id' => $event_id,
+// 				'type' => $type,
+// 			));
 			
 			$return_users = array();
 			foreach( $event_users->result_array() as $event_user ) {
@@ -181,5 +206,19 @@
 			return $return_users;
 		}
 		
+		
+		/**
+		 *	获取事件、活动、任务参与人数..数量
+		 */
+		function get_event_users_count( $event_id, $type='join' ) {
+			$sql = sprintf( 'SELECT * FROM kk_event_user WHERE event_id=%d', $event_id );
+			if ( $type ) {
+				$sql .= sprintf( ' AND type="%s"', $type );
+			}
+			
+			$event_users= $this->db->query( $sql );
+			
+			return $event_users->num_rows();
+		}
 		
 	}

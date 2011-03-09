@@ -12,9 +12,9 @@
 	 */
 	class Guo_id {
 		
-		function __construct() {
-			$this->generate_min = 100000; // 随机生成的最小数
-			$this->generate_max = 1000000000;  // 随机生成的最大数   现在是6-9位数
+		function __construct() {	
+			$this->generate_min = 10000; // 随机生成的最小数
+			$this->generate_max = 1000000;  // 随机生成的最大数   现在是6-9位数
 			
 			$this->ci =& get_instance(); // 获得codeigniter~
 		}

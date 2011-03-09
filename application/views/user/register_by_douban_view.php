@@ -8,7 +8,7 @@
 			<h2>绑定电邮</h2>
 			
 				<?php
-					print_r( $douban_self );
+					//print_r( $douban_self );
 				?>
 			<div class="form_div">
 				<form method="post" action="<?=site_url('user/register_by_douban');?>?redirect=<?=$this->input->get('redirect');?>">

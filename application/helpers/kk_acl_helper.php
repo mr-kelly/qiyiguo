@@ -39,7 +39,14 @@
 		return $ci->group_model->is_group_admin( $group_id, $user_id );
 	}
 	
-	
+	/**
+	 *	判断用户是否是群组的创始人
+	 */
+	function is_group_owner( $group_id, $user_id ) {
+		$ci =& get_instance();
+		$ci->load->model('group_model');
+		return $ci->group_model->is_group_owner( $group_id, $user_id );
+	}
 	
 	/**
 	 *	活动、任务 Event

@@ -7,11 +7,16 @@
 		//$ci->load->plugin('compress_html');
 		//$ci->load->plugin('spaceless');
 		
-		$html = $ci->load->view($view, $data, true);
 
-		// 输出压缩过的html
-		echo compress_html( $html );
-		//echo $html;
+		if ( $ci->config->item('kk_site_status') == 'development' ) {
+			// 系统处于debug状态，那么正常输出？
+			$html = $ci->load->view($view, $data, false);
+		} else {
+			$html = $ci->load->view($view, $data, true);
+			// 输出压缩过的html
+			echo compress_html( $html );
+		}
+		
 		
 	}
 	

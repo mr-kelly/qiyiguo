@@ -3,6 +3,53 @@
 	class Search extends KK_Controller {
 		
 		/**
+		 *	主搜索页
+		 */
+		function index() {
+		
+			$this->load->model('group_model');
+			
+			// 搜索字符串
+			$q = $this->input->get('q');
+			
+			if ( !empty ( $q ) ) {	
+				// 查询字符串为空。。什么也不做！
+				
+				if ( is_numeric( $q ) ) { //纯数字？ 找指定ID的群或用户吧
+				
+					if ( $specific_group = $this->group_model->get_group_by_id ( $q ) ) {
+						// 找到组
+						$render['search_groups'][] = $specific_group;
+					}
+					
+					
+					if ( $specific_user = $this->user_profiles_model->_get_user( $q ) ) {
+						// 找到用户
+						if ( $specific_user['id'] != 0 ) {  // 未非「已注销」的用户
+							$render['search_users'][] = $specific_user;
+						}
+					}
+					
+				} else {
+					// 非纯数字，那么字符串搜索...
+					$render['search_groups'] = $this->group_model->search_groups( array(
+						'name' => $q,
+					));
+					
+					// 搜用户~
+					//$render['search_users'] = $this-
+				}
+			}
+			
+			
+			$render['q'] = $q;
+			$render['footer_ad'] = true;
+			
+			kk_show_view('search/index_view', $render);
+			
+		}
+		
+		/**
 		 *	iframe 搜索页
 		 */
 		function iframe_search() {

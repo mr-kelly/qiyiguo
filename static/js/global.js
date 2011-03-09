@@ -23,11 +23,28 @@ var kk_growl = {
 	},
 	session_message: function( $message ) {
 		// 用于library Session Message。  持久显示
-		$.jGrowl( $message );
+		$.jGrowl( $message, { sticky: true } );
 	}
 }
 
 
+/**
+ *	顶部搜索框...
+ */
+$search_input_tips_text = '搜索 / 群号 / 果号';
+$(function(){
+	$('.search_input').input_tips( $search_input_tips_text );
+});
+
+function search_submit_check( $this ) {
+	
+	if ( $($this).find('.search_input').val() == $search_input_tips_text
+				 || $($this).find('.search_input').val() == '' ) {
+				 
+		return false;
+	}
+	
+}
 
 $(function() {
 
@@ -154,7 +171,7 @@ $(function() {
     				data = $.parseJSON(data);
     				
     				// 改变城市列表下拉菜单~
-    				select_cities = '';
+    				select_cities = '<option value="">不设置</option>';
     				$.each(data.data, function(key, value){
     					//alert(value.city_name);
     					select_cities += '<option value="' + value.id + '">' + value.city_name + '</option>';
@@ -171,7 +188,7 @@ $(function() {
     				data = $.parseJSON(data);
     				
     				// 改变城市列表下拉菜单~
-    				select_cities = '';
+    				select_cities = '<option value="">不设置</option>';
     				$.each(data.data, function(key, value){
     					//alert(value.city_name);
     					select_cities += '<option value="' + value.id + '">' + value.city_name + '</option>';
@@ -239,6 +256,9 @@ $(function() {
 		 
 		 // 显示菜单~
 		 $('#nav_btn').click(function(){
+		 	
+		 	$.getJSON( $(this).attr('href') );
+		 	
 		 	$('.nav_content').show();
 		 	$('#nav_close').show();
 		 	$(this).hide();
@@ -248,6 +268,9 @@ $(function() {
 		 
 		 // 关闭导航菜单
 		 $('#nav_close').click(function(){
+		 	
+		 	$.getJSON( $(this).attr('href') );
+		 	
 		 	$('.nav_content').hide();
 		 	$('#nav_btn').show();
 		 	$(this).hide();
@@ -274,3 +297,40 @@ $(function() {
 //             range: 100,
 //             margin: 100
 //         });
+
+
+
+/**
+ *	用户的心情改变
+ */
+$(function(){
+	$mood_text_tips = '今天心情怎样？';
+	$('.mood_text').input_tips( $mood_text_tips );
+	
+	
+
+});
+
+
+function mood_form() {
+	$('.mood_form').ajaxSubmit({
+		dataType: 'json',
+		beforeSubmit: function() {
+			if ( $('.mood_text').val() == $mood_text_tips
+					||　$('.mood_text').val() == ''　) {
+					
+				return false;
+			}
+		},
+		success: function(json) {
+			if ( json.status == 1 ) {
+				kk_growl.success('心情改变了');
+				setInterval( 'location.reload()', 1000 );
+			} else {
+				kk_growl.error('心情改变错误.未知');
+			}
+		}
+	});
+	
+	return false;
+}

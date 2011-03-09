@@ -31,6 +31,18 @@
 		$ci->log_model->create_log($url, $message);
 	}
 	
+	/**
+	 *	获取当前用户的
+	 */
+	function get_user_option( $key ) {
+		$ci =& get_instance();
+		$ci->load->model('user_option_model');
+		$option_value = $ci->user_option_model->get_user_option( get_current_user_id(), $key );
+		
+		return $option_value;
+	}
+	
+	
 	
 	/**
 	 *	获取用户关系 - mutual, follow, fans, none
@@ -198,6 +210,23 @@
 	}
 	
 	/**
+	 *	获取群组的链接
+	 */
+	function get_group_url( $group_id ) {
+		$ci =& get_instance();
+		$group = $ci->group_model->_get_group( $group_id ) ;
+		
+		$group_slug = $group['slug'];
+		
+		if ( $group_slug ) {
+			// 群组存在自定义网址
+			return site_url( 'g/' . $group_slug );
+		} else {
+			// 群组没有设置自定义网址，  传递ID网址
+			return site_url( 'g/' . $group_id );
+		}
+	}
+	/**
 	 *	获取指定用户的头像网址, 可选指定用户id,  
 	 		$big为是否返回原始图，大头像！～
 	 */
@@ -278,9 +307,9 @@
 	 
 	 		将topic的content转化成  402字内， 多了显示（显示更多）
 	 */
-	function kk_content_preview( $content ) {
+	function kk_content_preview( $content, $limit= 402 ) {
 	
-		$return_arr = str_split( $content , 402 ); // 返回数组
+		$return_arr = str_split( $content , $limit ); // 返回数组
 		
 		$return = strip_tags( $return_arr[0], '<a><img>' );
 		
@@ -291,10 +320,110 @@
 		
 		return $return;
 		
-		
 	}
 	
 	
 	
 	
 	
+	
+	
+	/**
+	 *
+	 *	Page View 页面浏览量~
+	 *
+	 */
+	
+	
+	
+	/**
+	 *	为某群组提升一个“人气” （查看量）   一个session只能up一次人气！
+	 		session... up_group.. 未设置，那么提升人气， 反之亦然
+	 */
+	function up_group_page_view( $group_id ) {
+		$ci =& get_instance();
+		
+		if ( ! $ci->session->userdata( 'up_group_' . $group_id ) ) {
+			// 提升人气！	
+			$ci->load->model('group_model');
+			
+			// 设置session，告诉它已经up过人气了！
+			$ci->session->set_userdata( 'up_group_' . $group_id, true );
+			return $ci->group_model->up_group_page_view( $group_id );
+			
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 *	为某用户提升一个“人气” （查看量）
+	 		session...  up_user 未设置，那么，提升人气
+	 */
+	function up_user_page_view( $user_id ) {
+		$ci =& get_instance();
+		
+		if ( ! $ci->session->userdata( 'up_user_' . $user_id ) ) {
+			
+			// 提升人气！ 未设置session参数!
+			$ci->load->model('user_profiles_model');
+			
+			// 设置session~~ 每个user对应一个up_session, 只能提升一次
+			$ci->session->set_userdata( 'up_user_' . $user_id , true );
+			return $ci->user_profiles_model->up_user_page_view( $user_id );
+			
+		} else {
+			return false;
+		}
+		
+	}
+	
+	
+	
+	/**
+	 *	获取星座， 打印图标 class  :    icon_juxie...
+	 */
+	function kk_constellation_icon( $constellation ) {
+		switch( $constellation ) {
+			case '巨蟹座':
+				return 'icon_juxie';
+				break;
+		}
+	}
+	
+	/**
+	 *	获得指定群组~
+	 */
+	function kk_get_group( $group_id ) {
+		$ci =& get_instance();
+		$ci->load->model('group_model');
+		return $ci->group_model->get_group_by_id( $group_id );
+	}
+	
+	/**
+	 *	快捷获取指定用户
+	 */
+	function kk_get_user( $user_id ) {
+		$ci =& get_instance();
+		$ci->load->model('user_profiles_model');
+		return $ci->user_profiles_model->_get_user( $user_id );
+	}
+	
+	/**
+	 *	通过城市ID，获取城市名称
+	 */
+	function kk_get_city_name( $city_id ) {
+		$ci =& get_instance();
+		$ci->load->model('dict_model');
+		return $ci->dict_model->get_city_name( $city_id );
+	}
+	
+	
+	/**
+	 *	通过省份的ID，获取省份名称
+	 */
+	function kk_get_province_name( $province_id ) {
+		$ci =& get_instance();
+		$ci->load->model('dict_model');
+		return $ci->dict_model->get_province_name( $province_id );
+	}

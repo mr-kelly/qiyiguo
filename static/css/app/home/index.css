@@ -32,19 +32,21 @@
 	top: 330px;
 }
 		#home_show h2 {
-			background: url(../../../img/sidebar_h2_bg.png) no-repeat;
+			/*background: url(../../../img/sidebar_h2_bg.png) no-repeat;*/
 			height: 27px;
 			line-height: 27px;
 			font-size: 14px;
-			width: 225px;
+			/*width: 225px;*/
+			width: 90%;
 			padding: 0 0 0 10px;
 			margin: 0 0 10px 0px;
 			color: #009900;
-			
+			border-bottom: dashed 1px #CCC;
 		}
 	.home_block {
 		float: left;
 		width: 310px;
+		height: 275px;
 	}
 
 .login_more_tip {  /* 文字 “你也可以..."*/
@@ -77,3 +79,27 @@
 		line-height: 18px;
 		text-align: center;
 	}
+	
+	
+	
+	
+/**
+ *	随机群组显示...
+ */
+.sidebar_groups_list li {
+	width: 95px;
+}
+
+
+.home_users_list {
+	margin: 0;
+	padding: 0 0 0 2px;
+}
+.home_users_list li {
+	float: left;
+	list-style: none;
+	margin: 0px 0px;
+	padding: 0;
+	height: 36px;
+	width: 36px;
+}

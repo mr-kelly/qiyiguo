@@ -10,14 +10,32 @@
     </div>
     <!--Wrapper End-->
     
-    
-        <div id="footer">
-        	<div id="footer_container">
+    <?php if ( isset( $footer_ad ) ) : ?>
+	<div id="footer_ad">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-9928587148743461";
+		/* 468x60, 创建于 10-12-3 */
+		google_ad_slot = "0195707447";
+		google_ad_width = 468;
+		google_ad_height = 60;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+	<?php endif; ?>
+	
+    	<?php if ( !isset( $hide_footer ) ) : ?>
+        <div id="kk_footer">
+        	<div id="kk_footer_container">
 				<div class="footer_column">
 					<h2>关于我们</h2>
 					<ul>
 						<li>
-							<a href="#" class="tipsy_sw" title="奇异果也是果群的使用者！来看看我们~">官方果群</a>
+							<a href="<?=site_url('g/qiyiguo');?>" class="tipsy_sw" title="我们的团队也是奇异果的使用者！来看看我们~">
+								官方果群
+							</a>
 						</li>
 						<li>
 							<a href="<?=site_url('page/recruit');?>">加入我们</a>
@@ -45,6 +63,12 @@
 						</li>
 						<li>
 							<a href="#">新浪微博</a>
+						</li>
+						<li>
+							<a href="#">免责条款</a>
+						</li>
+						<li>
+							<a href="#">隐私条款</a>
 						</li>
 					</ul>
 				</div>
@@ -78,14 +102,30 @@
 				</div>
 				
 				<div id="footer_copyright">
+					<!--<img src="<?=static_url('img/kk_logo.png');?>" />-->
+<!-- 
 					<a href="<?=site_url('u/mrkelly');?>" class="tipsy_s" title="知道吗？用「谷歌浏览器」会有最完整的网页效果哦">
 						MrKelly 出品
 					</a>
+ -->
+ 					<a href="<?=site_url('g/qiyiguo');?>">
+ 						奇异果.嘻嘻
+ 					</a>
 					
 					&copy;
 					
 					<span>
-						<!--{elapsed_time}-->version 0.84
+						version 0.84
+					</span>
+					
+					<span>
+						<?php
+							$ci =& get_instance();
+							$ci->load->library('benchmark');
+							echo $ci->benchmark->elapsed_time();
+							echo ' ';
+							echo $ci->benchmark->memory_usage();
+						?>
 					</span>
 					
 					<a href="<?=base_url();?>wiki/">
@@ -97,8 +137,9 @@
         
         
         </div>
-    
-<? // {// Google analysts 统计} ?>
+    	<?php endif; ?>
+<? // {// Google analysts 统计} 
+/*
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -108,11 +149,22 @@ try {
 var pageTracker = _gat._getTracker("UA-2467823-3");
 pageTracker._trackPageview();
 } catch(err) {}</script>
-
-
-
-        
-
+*/
+?>
+<?php /*
+<!-- Piwik --> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://192.168.7.103:8888/kiwiguo/piwik/" : "http://192.168.7.103:8888/kiwiguo/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://192.168.7.103:8888/kiwiguo/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Tag -->
+*/?>
         
 </body>
 </html>

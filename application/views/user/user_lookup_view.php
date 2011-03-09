@@ -29,7 +29,17 @@
 						
 							<div class="lookup_aside_widget">
 								<ul class="vertical_links sidebar_links">
-								
+									
+									<li>
+										<a class="tipsy_s" href="<?=site_url('mail?' . 'send_to=' . $user['id'] );?>" title="向<?=$user['name'];?>发送电邮">
+											<span class="hover"></span>
+											<span class="icon icon_email"></span>
+											发电邮
+										</a>
+										
+										
+									</li>
+									
 									<?php if ( $user['website'] ): ?>
 									<li>
 										<a target="_blank" href="<?=$user['website'];?>">
@@ -78,9 +88,37 @@
 											到他的QQ空间
 										</a>
 									</li>
+									<li>
+										<a target="_blank" href="<?=$user['qq'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_qq"></span>
+											QQ聊天
+										</a>
+									</li>
 									<?php
 										endif;
 									?>
+									
+									<? if ( !empty( $user['msn'] ) ) : ?>
+									<li>
+										<a target="_blank" href="#<?=$user['msn'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_msn"></span>
+											MSN聊天
+										</a>
+									</li>
+									<?php endif; ?>
+									
+									<? if ( !empty( $user['gtalk'] ) ) : ?>
+									<li>
+										<a target="_blank" href="#<?=$user['gtalk'];?>">
+											<span class="hover"></span>
+											<span class="icon icon_gtalk"></span>
+											Gtalk聊天
+										</a>
+									</li>
+									<?php endif; ?>
+									
 								</ul>
 							</div>
 							
@@ -134,7 +172,10 @@
 									endforeach;
 								endif;
 							?>
-							</ul>			
+							</ul>
+							
+							<h2>公开群组的话题</h2>
+							<h2>参与公开群组的活动</h2>
 						
 						</div>
 						

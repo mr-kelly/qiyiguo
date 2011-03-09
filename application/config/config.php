@@ -5,6 +5,8 @@
 // 时区
 date_default_timezone_set('Asia/Shanghai');
 
+$config['kk_site_status'] = 'development'; // 开发状态？ development/production
+
 $config['restrict_bnu'] = false; // 是否只允许bnu的内网IP登录
 
 /**

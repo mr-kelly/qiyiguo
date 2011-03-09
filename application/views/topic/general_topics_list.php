@@ -3,32 +3,7 @@
 ?>
 		
 				<div class="topis_container">
-					<?php
-						// 判断用户是否属于该群组，属于，可以发文章
-						if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
-					?>
-					<div>
-						<a title="对果群发话~" class="tipsy_s awesome large red add_topic_btn" href="#">发话▼</a>
-						
-						<div class="clearboth"></div>
-					</div>
-					
-					
-					<div class="add_topic_div hidden">
-						<? // 放置 填写主题层 ?>
-						<?php
-							$this->load->view('topic/ajax_add_topic_view', array(
-								'model' => 'group',
-								'model_id' => $group['id'],
-							));
-						?>
-						
-					</div>
-					
-					
-					<?php
-						endif;  // 以上显示。，能发布友群文章时
-					?>
+
 					
 					
 					
@@ -206,8 +181,8 @@
 						else: 
 							// 群组为空？显示没有
 					?>
-						<div>
-							没有话题
+						<div class="align_center grey">
+							<b>还没有发布话题呢</b>
 						</div>
 					
 					<?php endif; ?>

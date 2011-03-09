@@ -46,8 +46,9 @@
 			return $this->db->delete('relation', $data );
 		}
 		
-		function get_relations( $data ) {
-			$query = $this->db->get_where('relation', $data);
+		function get_relations( $data , $limit=10 ) {
+			$query = $this->db->get_where('relation', $data, $limit );
+			
 			if ( $query->num_rows() == 0 ) {
 				return false;
 			} else {
@@ -57,6 +58,14 @@
 			}
 		}
 		
+		/**
+		 *	获取关系的数量
+		 */
+		function get_relations_count( $data ) {
+			$query = $this->db->get_where('relation', $data );
+			
+			return $query->num_rows();
+		}
 		
 		
 		/**
@@ -336,6 +345,75 @@
 		}
 		
 		
+		/**
+		 *	获得两个用户之间的共同朋友~
+		 */
+		function get_users_common_friends( $user_1_id, $user_2_id ) {
+		
+			//先分别获得两人的好友列表... 第一人
+			$user_1_query_1 = $this->db->get_where('relation_mutual',array(
+				'model_id' => $user_1_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			))->result_array();
+			
+			// 将朋友的ID添加到一个数组里~ 组成一个朋友ID列表
+			$user_1_friends_id = array();  // user_1的朋友列表..
+			
+			foreach( $user_1_query_1 as $u_1_q_1 ) {
+				$user_1_friends_id[] = $u_1_q_1['mutual_id'];
+			}
+			
+			$user_1_query_2 = $this->db->get_where('relation_mutual',array(
+				'mutual_id' => $user_1_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			))->result_array();
+			
+			foreach( $user_1_query_2 as $u_1_q_2 ) {
+				$user_1_friends_id[] = $u_1_q_2['model_id'];
+			}
+			
+			// User_1 结束，获得数组 $user_1_friends[] 为 user 1的朋友ID列表
+			
+			
+			// 获取第二人的好友列表.... 第二人...
+			$user_2_query_1 = $this->db->get_where('relation_mutual', array(
+				'model_id' => $user_2_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			))->result_array();
+			
+			$user_2_query_2 = $this->db->get_where('relation_mutual',array(
+				'mutual_id' => $user_2_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			))->result_array();
+			
+			$user_2_friends_id = array(); // user_2的朋友列表
+			foreach( $user_2_query_1 as $u_2_q_1 ) {
+				$user_2_friends_id[] = $u_2_q_1['mutual_id'];
+			}
+			foreach( $user_2_query_2 as $u_2_q_2 ) {
+				$user_2_friends_id[] = $u_2_q_2['model_id'];
+			}
+			
+			$common_friends = array();
+			foreach ( $user_1_friends_id as $u_1_id ) {
+				foreach( $user_2_friends_id as $u_2_id ) {
+					if ( $u_1_id == $u_2_id ) {
+						// 哦！ 发现一个共同好友！
+						$common_friends[] = $this->_get_user($u_1_id);
+					}
+				}
+			}
+			
+			
+			return $common_friends;
+			
+		}
+		
+		
 		
 				/**
 		 *	创建恋爱关系 love relation~  如果双向恋爱关系的时候再给星星吧
@@ -426,12 +504,12 @@
 		/**
 		 *	获取指定群组关联的群组s
 		 */
-		function get_relation_groups( $group_id ) {
+		function get_relation_groups( $group_id, $limit=9 ) {
 			$relations = $this->get_relations( array(
 				'from_id' => $group_id,
 				'model' => 'group',
 				'relation' => 'related',
-			));
+			), $limit);
 			
 			if ( !empty( $relations ) ) {
 				$groups = array();
@@ -444,5 +522,18 @@
 				// 如果没有群组关系，返回false
 				return false;
 			}
+		}
+		
+		/**
+		 *	获取指定群组的关联群组数量~~
+		 */
+		function get_relation_groups_count( $group_id ) {
+			return $this->get_relations_count( array(
+				'from_id' => $group_id,
+				'model' => 'group',
+				'relation' => 'related',
+			));
+			
+			
 		}
 	}

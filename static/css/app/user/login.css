@@ -47,3 +47,20 @@
 		margin: 30px 0 10px 30px;
 		
 	}
+	
+	
+	
+/**
+ *	  Login View
+ */
+ 
+#login_left {
+	float: left;
+	margin: 0 0 0 20px;
+}
+#login_right {
+	float: right;
+	width: 300px;
+	
+	padding: 0 0 0 10px;
+}

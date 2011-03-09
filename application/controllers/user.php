@@ -167,6 +167,10 @@
 		function user_lookup( $user_id_slug, $action='home' ) {
 			login_redirect();
 			
+			$this->load->model('relation_model');
+			$this->load->model('user_recommend_model');
+			$this->load->model('stream_model');
+			
 			if ( is_numeric($user_id_slug) ) {
 				// 若传入数字， 判断成ID～～读取该ID的用户
 				$user_id = $user_id_slug;
@@ -189,15 +193,28 @@
 
 			}
 			
+			up_user_page_view( $user_id );
+			
 			$user = $this->user_profiles_model->_get_user($user_id);
 			$render['user'] = $user;
 			$render['page_title'] = sprintf( '%s %s', $user['nickname'] , $user['realname'] );
 			
 			
 			// 传入该用户的"推荐朋友"
-			$this->load->model('user_recommend_model');
+			
 			$user_recommends = $this->user_recommend_model->get_user_recommends( $user_id );
 			$render['user_recommends'] = $user_recommends;
+			
+			// 获取当前登录用户和查看用户的共群,  当前用户就是查看用户。不显示
+			$render['users_common_groups'] = $this->group_model->get_users_common_groups( get_current_user_id(), $user_id , 6, 0, true);
+
+			
+			// 获取该用户的群.. 6个吧...
+			$render['user_groups'] = $this->group_model->get_user_groups( $user_id , 6, 0, true);
+			$render['user_groups_count'] = $this->group_model->get_user_groups_count( $user_id );
+			
+			// 获取共同好友
+			//$render['users_common_friends'] = $this->relation_model->get_users_common_friends( get_current_user_id(), $user_id , 10, 0, true);
 			
 			// 如果用户查看的是自己的页面~ 菜单聚焦"个人主页"
 			if ( $user_id == get_current_user_id() ) {
@@ -209,11 +226,15 @@
 				$render['current_user_lookup_home'] = true;
 				
 				// 首页读取stream
-				$this->load->library('T_sina');
-				$weibo = $this->t_sina->getUserWeibo( get_current_user_id() );
-				if ( $this->t_sina->is_logined( $weibo ) ) {
-					$render['stream'] = $weibo->user_timeline();
-				}
+// 				$this->load->library('T_sina');
+// 				$weibo = $this->t_sina->getUserWeibo( $user_id );
+// 				if ( !empty( $weibo ) ) {
+// 					if ( $this->t_sina->is_logined( $weibo ) ) {
+// 						$render['stream'] = $weibo->user_timeline();
+// 					}
+// 				}
+				$render['user_events'] = $this->stream_model->get_user_events( $user['id'] );
+				$render['user_topics'] = $this->stream_model->get_user_topics( $user['id'] );
 				
 				kk_show_view('user/user_lookup_view', $render);
 			} else if ( $action == 'profile') {
@@ -225,8 +246,23 @@
 			}
 
 		}
-		
 
+
+		
+		/**
+		 *	获取当前用户加入的群组列表...
+		 */
+		function user_groups( $user_id ) {
+			login_redirect();
+			$start = $this->input->get( 'start' );
+			
+			$render['user'] = $this->group_model->_get_user( $user_id );
+			$render['user_groups'] = $this->group_model->get_user_groups( $user_id, 50, $start, false );
+			
+			kk_show_view('user/user_groups_view', $render);
+		}
+		
+		
 		
 		/**
 		 *	登录的用户个人设置
@@ -241,8 +277,8 @@
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				// 处理提交的用户profile资料
-				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[8]');
-				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[12]');
+				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[14]');
+				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[16]');
 				
 				$this->form_validation->set_rules('gender', '性别', 'required|trim|xss_clean');
 				
@@ -552,9 +588,10 @@
 			
 			
 			
-			$data = array(
-				'user_avatars' => $this->user_avatars_model->get_user_avatars( $user_id ),
-			);
+			$data['user_avatars'] = $this->user_avatars_model->get_user_avatars( $user_id );
+			$data['current_user_profile'] = get_current_user_profile();
+			
+
 			
 			// 读取用户新浪微博的绑定资料
 			$user_t_sina = $this->user_t_sina_model->get_user_t_sina( get_current_user_profile('id') );
@@ -1251,17 +1288,20 @@ EOT;
 		/**
 		 *	获取当前用户已加入的友群
 		 */
-		function joined_groups() {
+		function my_groups() {
 			login_redirect();
+			
+			$start = $this->input->get('start');
 			
 				$current_user_id = $this->tank_auth->get_user_id();
 //				$user_groups = $this->group_model->get_user_groups($current_user_id);
 				
-				$data = array(
-					'user_groups' => $this->group_model->get_user_groups($current_user_id),
-				);
+				$render['user_admin_groups'] = $this->group_model->get_user_admin_groups( get_current_user_id(), 100 );
 				
-				kk_show_view('user/joined_groups_view', $data);
+				$render['user_groups'] = $this->group_model->get_user_groups($current_user_id, 50, $start, false, array( 'role'=>'member',) );
+				$render['current_group'] = 'current_menu';
+				
+				kk_show_view('user/my_groups_view', $render);
 		}
 		
 		
@@ -1269,6 +1309,7 @@ EOT;
 		 *	AJAX的登录页面  iframe
 		 */
 		function iframe_login() {
+
 			kk_show_view('user/login');
 		}
 		
@@ -1345,12 +1386,13 @@ EOT;
 		
 		
 		/**
-		 *	为当前用户添加心情
+		 *	为当前用户添加心情, ajax视图
 		 */
 		function ajax_add_mood() {
 			if ( ! is_logged_in() ) {
 				ajaxReturn( 'login_redirect', '未登录', 0 );
 			}
+			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				$this->form_validation->set_rules('mood_text', '心情', 'requried|xss_clean|trim');
 				
@@ -1370,9 +1412,33 @@ EOT;
 				
 				}
 			}
+			
+			kk_show_view('user/ajax_add_mood_view');
+			
 		}
 		
-		
+		/**
+		 *	调整 （ 重新创建、添加、修改） 当前用户的option～
+		 */	
+		function ajax_user_option( $key, $value ) {
+			if ( !is_logged_in() ) {
+				ajaxReturn( null, '未登录', 0 );
+			}
+			
+			$this->load->model('user_option_model');
+			
+			$current_user_id = get_current_user_id();
+			
+			if ( $this->user_option_model->user_option(
+										$current_user_id,
+										$key,
+										$value )) {
+				
+				ajaxReturn( null, 'option修改成功', 1);
+			} else {
+				ajaxReturn( null, 'option修改失败', 0 );
+			}
+		}
 		
 		
 		/**
