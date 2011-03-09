@@ -276,8 +276,8 @@
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				// 处理提交的用户profile资料
-				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[8]');
-				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[12]');
+				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[14]');
+				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[16]');
 				
 				$this->form_validation->set_rules('gender', '性别', 'required|trim|xss_clean');
 				
@@ -1308,6 +1308,7 @@ EOT;
 		 *	AJAX的登录页面  iframe
 		 */
 		function iframe_login() {
+
 			kk_show_view('user/login');
 		}
 		

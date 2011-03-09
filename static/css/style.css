@@ -629,7 +629,16 @@ div.submenu span.submenu_corner:first-child {
 				float: right;
 			}
 			
-			
+	
+	.users_show {
+		margin: 0;
+		padding: 0;
+	}
+		.users_show li {
+			list-style: none;
+			text-align: center;
+			float: left;
+		}
 	.groups_show {
 		margin: 0;
 		padding: 0;

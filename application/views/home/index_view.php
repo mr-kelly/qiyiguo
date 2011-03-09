@@ -23,18 +23,27 @@
 							//$douban_url =  $ci->douban->get_authorize_url( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_douban') );
 							//echo $ci->douban->get_access_token( 'f6f948f992d489d6e4ebdaecb87d9d82' );
 						?>
-
-							<h2>在以下学校开放</h2>
-							<p>
-								· 北京师范大学珠海分校  · 北京师范大学香港浸会大学联合国际学院 UIC
-							</p>
-							<h2>奇异果的奇异之处</h2>
-							<p>
-								看微博 连接 新发现 创造生活
-							</p>
+							<h2>奇异果目前仅向以下学校开放</h2>
+							<div class="align_center">
+								<img src="<?=static_url('img/bnu_uic.png');?>" />
+							</div>
 							
-							
+							<h2>奇异果·的奇异效用</h2>
 							<div>
+								<a class="tipsy_w" title="开始寻找或创建社团群吧" href="<?=site_url('group');?>">
+									<img src="<?=static_url('img/home_howto.png');?>" />
+								</a>
+								<!--看微博 连接 新发现 创造生活-->
+							</div>
+
+				
+							
+							
+
+							
+							
+							
+							<div style="margin: 20px 0 0 0;">
 								<h2>这些组织在奇异果...</h2>
 								<?php if ( !empty( $random_groups ) ) :?>
 								<ul class="groups_show">
@@ -86,7 +95,7 @@
 
 						</div>
 						
-						<div style="height:900px;"></div>
+						<div style="height:1200px;"></div>
 					</div>
         		</div>
             </div>

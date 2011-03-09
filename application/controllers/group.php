@@ -406,6 +406,11 @@
 
 		
 		function iframe_new_group() {
+		
+			if ( !is_logged_in() ) {
+				redirect('user/iframe_login');
+			}
+			
 			$this->load->model('group_model');
 			
 			

@@ -53,10 +53,13 @@
 				<?php if ( ! empty ( $search_users ) ) :?>
 				<div>
 					<h2>搜到的人</h2>
-					<ul>
-					<?php foreach( $search_users as $search_user ) : ?>
+					<ul class="users_show">
+					<?php foreach( $search_users as $user ) : ?>
 						<li>
-							<?= $search_user['name'];?>
+							<div>
+								<img width="40" src="<?=get_user_avatar_url( $user['id'] ); ?>" />
+							</div>
+							<?= $user['name'];?>
 						</li>
 					<?php endforeach; ?>
 					</ul>

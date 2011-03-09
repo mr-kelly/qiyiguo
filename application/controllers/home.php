@@ -8,10 +8,12 @@ class Home extends KK_Controller {
 		// 限制BNU Only
 		if ( $this->config->item('restrict_bnu') ) {
 			if ( ! isset( $_GET['ilovemrkelly'] ) ) {
-				exit('bnu only');
+				kk_show_view('home/bnu_only');
+				return;
 			}
 		}
 		
+		// 登錄了的人轉到開始頁...
 		if ( is_logged_in() ) {
 			redirect( 'home/start' );
 		}

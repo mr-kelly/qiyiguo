@@ -81,6 +81,31 @@
 			<key>AliasData</key>
 			<data>
 			AAAAAAG2AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO6IOc3RhcnRfdmlldy5waHAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAK
+			zMl3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABGhv
+			bWUAEAAIAADIatkwAAAAEQAIAADJd0N4AAAAAQAcAWo7ogFqO2gB
+			ajnFAWncnAAFq8wABavFAACRnwACAEtLS01hY2Jvb2s6VXNlcnM6
+			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
+			OmhvbWU6c3RhcnRfdmlldy5waHAAAA4AHgAOAHMAdABhAHIAdABf
+			AHYAaQBlAHcALgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8A
+			awASAEFVc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGlj
+			YXRpb24vdmlld3MvaG9tZS9zdGFydF92aWV3LnBocAAAEwABLwAA
+			FQACAA7//wAA
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/home/start_view.php</string>
+			<key>RelativePath</key>
+			<string>./application/views/home/start_view.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAG2AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
 			a0mwSCsAAAFqO6IOaW5kZXhfdmlldy5waHAAAAAAAAAAAAAAAAAA
 			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX3k
 			f8l3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABGhv
@@ -114,6 +139,6 @@
 	<key>ViewSplitterPosition:Mrkelly</key>
 	<real>0.3430493175983429</real>
 	<key>WindowFrame:Mrkelly:displays([(0, 0), (1280, 800)])</key>
-	<string>rect(44,25,800,917)</string>
+	<string>rect(44,8,800,900)</string>
 </dict>
 </plist>

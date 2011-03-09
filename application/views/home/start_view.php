@@ -28,6 +28,46 @@
 					</div>
 				</div>
 				
+				<div class="">
+					<h2>你管理的群 (<?=$user_admin_groups_count;?>)</h2>
+					<ul class="groups_show">
+					<?php
+						if ( !empty( $user_admin_groups ) ) :
+						foreach( $user_admin_groups as $group ) :
+							$group_url = get_group_url( $group['id'] );
+					?>
+						<li>
+							<div>
+								<a href="<?=$group_url;?>">
+									<img width="40" src="<?= get_group_logo_url( $group['id'] );?>" />
+								</a>
+							</div>
+							<div>
+								<a href="<?=$group_url;?>">
+									<?= $group['name'];?>
+								</a>
+							</div>
+						</li>
+					<?php
+						endforeach;
+						else: // 没管理的群？ 提示创建
+					?>
+						<div class="grey align_center">
+							没有管理的群...
+							<a class="sexybox_iframe" href="<?=site_url( 'group/iframe_new_group' );?>">
+								&gt;创建一个
+							</a>
+						</div>
+						
+					<?php
+						endif;
+					?>
+					</ul>
+				</div><!--END 管理群-->
+					
+				
+				
+				
 				<div id="start_show">
 					
 					<div class="start_block">
@@ -150,43 +190,6 @@
 					</div>
 					
 					<div class="clearboth"></div>
-					
-					<div class="">
-						<h2>你管理的群 (<?=$user_admin_groups_count;?>)</h2>
-						<ul class="groups_show">
-						<?php
-							if ( !empty( $user_admin_groups ) ) :
-							foreach( $user_admin_groups as $group ) :
-								$group_url = get_group_url( $group['id'] );
-						?>
-							<li>
-								<div>
-									<a href="<?=$group_url;?>">
-										<img width="40" src="<?= get_group_logo_url( $group['id'] );?>" />
-									</a>
-								</div>
-								<div>
-									<a href="<?=$group_url;?>">
-										<?= $group['name'];?>
-									</a>
-								</div>
-							</li>
-						<?php
-							endforeach;
-							else: // 没管理的群？ 提示创建
-						?>
-							<div class="grey align_center">
-								没有管理的群...
-								<a class="sexybox_iframe" href="<?=site_url( 'group/iframe_new_group' );?>">
-									&gt;创建一个
-								</a>
-							</div>
-							
-						<?php
-							endif;
-						?>
-						</ul>
-					</div>
 					
 				</div>
 				
