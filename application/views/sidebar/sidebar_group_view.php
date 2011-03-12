@@ -43,29 +43,14 @@
 <?php if ( !empty( $relation_groups ) ) :?>
 	<h2>关系群</h2>
 	
-	
+		<?php
+			$this->load->view('group/general_groups_show', array(
+				'groups' => $relation_groups,
+			));
+		?><!-- END Groups List-->
 		
-		<ul class="groups_show">
-			<?php foreach( $relation_groups as $relation_group ) : ?>
-			<li class="group">
-				<div class="group_logo">
-					<a href="<?=site_url('group/' . $relation_group['id']);?>">
-						<img class="avatar" src="<?=get_group_logo_url( $relation_group['id'] );?>" width="40" />
-					</a>
-				</div>
-				
-				<div class="group_name">
-					<a class="tipsy_s" href="<?=get_group_url( $relation_group['id'] );?>" title="<?=$relation_group['id'];?> <?=$relation_group['intro'];?>">
-						<?= $relation_group['name']; ?>
-					</a>
-				</div>
-			
-			</li>
-			<?php endforeach; ?>
-			
-			<div class="clearboth"></div>
-		</ul><!-- END Groups List-->
 		
+		<div class="clearboth"></div>
 		
 		<?php if ( count( $relation_groups ) == 6 ) : ?>
 		<div class="align_right">
@@ -86,7 +71,7 @@
 		?>
 		<div class="align_center">
 			<a title="添加关系群(友情链接群)" class="tipsy_n sexybox kk_btn" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
-				<span><span>&gt;添加关系群</span></span>
+				<span><span>&gt;添加友情群</span></span>
 			</a>
 			
 			<div class="clearboth"></div>
@@ -145,7 +130,7 @@
 					<span>
 						<a href="<?=site_url('group/ajax_cancel_group_admin/' . $group['id']);?>" class="tipsy_e cancel_group_admin_btn" title="取消该群的管理员身份">
 							<span class="hover"></span>
-							<span class="icon icon_setting_group"></span>
+							<span class="icon icon_quit_group_admin"></span>
 							放弃管理员身份
 						</a>
 					</span>
@@ -155,7 +140,7 @@
 					<span>
 						<a href="<?=site_url('group/setting/' . $group['id'] . '/advanced');?>">
 							<span class="hover"></span>
-							<span class="icon icon_setting_group"></span>
+							<span class="icon icon_setting_group_advanced"></span>
 							高级功能
 						</a>
 					</span>
@@ -235,15 +220,7 @@
 				foreach ($group_users as $u) {
 			?>
 				<li>
-					<a class="sexybox" href="<?=get_user_avatar_url(  $u['id'], 'big' );?>" title="<?=$u['name'];?>">
-						<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
-					</a>
-					
-					<a class="tipsy_e" href="<?=get_user_url( $u['id'] );?>" title="<?=$u['id'];?>">
-						<?=$u['name'];?> <!--(<?=$u['id'];?>)-->
-					</a>
-					
-					
+				
 					<div class="sidebar_user_control">
 						<?php
 							// 若是管理员
@@ -257,6 +234,17 @@
 						<?php // 发送邮件给指定ID用户的email ?>
 						<a class="tipsy_e icon icon_email" href="<?=site_url('mail?' . 'send_to=' . $u['id'] );?>" title="向<?=$u['name'];?>发送电邮"></a>
 					</div>
+					
+					
+					<a class="sexybox" href="<?=get_user_avatar_url(  $u['id'], 'big' );?>" title="<?=$u['name'];?>">
+						<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
+					</a>
+					
+					<a class="tipsy_e" href="<?=get_user_url( $u['id'] );?>" title="<?=$u['id'];?>">
+						<?=$u['name'];?> <!--(<?=$u['id'];?>)-->
+					</a>
+					
+
 					
 				</li>
 			<?php } ?>

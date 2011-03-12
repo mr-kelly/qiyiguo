@@ -26,3 +26,9 @@
 		opacity:0.8;
 		*/
 	}
+		#logout_intro a {
+			position: absolute;
+			bottom: 50px;
+			left: 100px;
+			text-indent: 0;
+		}

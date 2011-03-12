@@ -9,7 +9,11 @@
 		<div class="content_top">
 			<div class="content_bottom">
 				
-				<div class="tipsy_s" title="内涵指数是系统根据你所填写的个人资料给予你的一个内涵评分。">
+				<?php
+					// 内涵指数小于60， 提示去提升内涵指数吧
+					if ( $user_inner_index < 60 ) :
+				?>
+				<div class="tipsy_s" title="内涵指数是系统根据你所填写的个人资料给予你的一个内涵评分，将会根据你个人的内涵信息进行评分。">
 					<div id="inner_index_bar">
 						<?php foreach ( range(1, $user_inner_index) as $num )  : ?>
 						<div class="inner_index_line"></div>
@@ -27,44 +31,50 @@
 						</a>
 					</div>
 				</div>
+				<?php endif; ?>
 				
-				<div class="">
+				<?php if ( !empty( $random_groups) ) : ?>
+				<div class="clearboth">
+					<h2>你知道这些组织吗?</h2>
+					<?php
+						$this->load->view('group/general_groups_show', array(
+							'groups' => $random_groups,
+						));
+					?>
+				</div>
+				<?php endif; ?>
+				
+				<?php if ( !empty( $user_admin_groups ) ) : ?>
+				
+				<div class="clearboth">
 					<h2>你管理的群 (<?=$user_admin_groups_count;?>)</h2>
-					<ul class="groups_show">
 					<?php
-						if ( !empty( $user_admin_groups ) ) :
-						foreach( $user_admin_groups as $group ) :
-							$group_url = get_group_url( $group['id'] );
+						$this->load->view('group/general_groups_show', array(
+							'groups' => $user_admin_groups,
+						));
 					?>
-						<li>
-							<div>
-								<a href="<?=$group_url;?>">
-									<img width="40" src="<?= get_group_logo_url( $group['id'] );?>" />
-								</a>
-							</div>
-							<div>
-								<a href="<?=$group_url;?>">
-									<?= $group['name'];?>
-								</a>
-							</div>
-						</li>
-					<?php
-						endforeach;
-						else: // 没管理的群？ 提示创建
-					?>
-						<div class="grey align_center">
-							没有管理的群...
-							<a class="sexybox_iframe" href="<?=site_url( 'group/iframe_new_group' );?>">
-								&gt;创建一个
-							</a>
-						</div>
-						
-					<?php
-						endif;
-					?>
-					</ul>
 				</div><!--END 管理群-->
+				
+				<?php
+					else:
+				?>
+				
+					<div class="grey align_center clearboth">
+						没有管理的群...
+						<a class="sexybox_iframe" href="<?=site_url( 'group/iframe_new_group' );?>">
+							&gt;创建一个
+						</a>
+					</div>
 					
+					
+				<?php
+					endif;
+				?>
+
+					
+					
+				<div class="clearboth"></div>
+				
 				
 				
 				
@@ -80,14 +90,6 @@
 								$topic_user = kk_get_user( $topic['user_id'] );
 						?>
 							<li>
-								<a href="<?=site_url('topic/' . $topic['id'] );?>">
-									<?php if ( $topic['title'] != '' ) : ?>
-										<?= $topic['title'];?>
-									<?php else: ?>
-										<?= kk_content_preview( $topic['content'], 42 );?>
-									<?php endif; ?>
-								</a>
-								
 								<div class="float_right">
 									<span class="tipsy_s" title="组织者:<?= $topic_user['name'];?>">
 										<a href="<?= get_user_url( $topic_user['id'] );?>">
@@ -102,6 +104,15 @@
 									</span>
 
 								</div>
+								
+								<a href="<?=site_url('topic/' . $topic['id'] );?>">
+									<?php if ( $topic['title'] != '' ) : ?>
+										<?= $topic['title'];?>
+									<?php else: ?>
+										<?= kk_content_preview( $topic['content'], 42 );?>
+									<?php endif; ?>
+								</a>
+								
 							</li>
 						<?php
 							endforeach;
@@ -142,11 +153,6 @@
 								$event_user = kk_get_user( $event['user_id'] );
 						?>
 							<li>
-
-								<a href="<?=site_url('event/' . $event['id'] );?>">
-									<?= $event['name'];?>
-								</a>
-								
 								<div class="float_right">
 									<span class="tipsy_s" title="作者:<?= $event_user['name'];?>">
 										<a href="<?= get_user_url( $event_user['id'] );?>">
@@ -161,6 +167,12 @@
 									</span>
 
 								</div>
+								
+								<a href="<?=site_url('event/' . $event['id'] );?>">
+									<?= $event['name'];?>
+								</a>
+								
+
 							</li>
 						<?php
 							endforeach;
@@ -206,12 +218,7 @@
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
 				
-				<div class="sidebar_widget align_center">
-					<form onsubmit="return mood_form();" class="mood_form" method="post" action="<?=site_url('user/ajax_add_mood');?>">
-						<input class="mood_text" name="mood_text" value="今天心情怎样？" />
-						<input type="submit" />
-					</form>
-				</div>
+
 				
 				<div class="sidebar_widget">
 					<h2>个人资料</h2>
@@ -221,6 +228,16 @@
 						));
 					?>
 				</div>
+				
+				<div class="sidebar_widget align_center">
+					<form onsubmit="return mood_form();" class="mood_form" method="post" action="<?=site_url('user/ajax_add_mood');?>">
+						<input class="mood_text" name="mood_text" value="今天心情怎样？" />
+						<button type="submit" class="kk_btn">
+							改变心情
+						</button>
+					</form>
+				</div>
+				
 				
 <!-- 
 				<div class="sidebar_widget">

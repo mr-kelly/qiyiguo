@@ -65,6 +65,18 @@
 			 
 		}
 		
+		/**
+		 *	获取指定活动的数量
+		 */
+		function get_events_count( $model, $model_id ) {
+			$query = $this->db->get_where('event', array(
+				'model' => $model,
+				'model_id' => $model_id,
+			));
+			
+			return $query->num_rows();
+		}
+		
 		
 		/**
 		 *	根据ID指定获取事件（活动/任务）

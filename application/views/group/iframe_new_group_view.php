@@ -13,6 +13,13 @@
 
 		<div id="new_group_tab" class="form_div tab_div">
 			
+			<div class="grey" style="float: right; height: 150px; width:200px;border-left: 1px dashed #CCC;padding: 0 0 0 20px;">
+				作为群的创始人、管理者，你同意并遵守
+				<a target="_blank" href="<?=site_url('page/group_admin_rule');?>">
+					《果群管理者条款》
+				</a>
+			</div>
+			
 			<form id="new_group_form" method="post" action="<?=site_url('group/iframe_new_group');?>">
 				<p>
 					<label for="group_name">果群名称</label>
@@ -162,6 +169,8 @@
 // 								});
 			</script>
 		</div>
+		
+
 	</div>				
 <?php
 	$this->load->view('general/general_footer_view');

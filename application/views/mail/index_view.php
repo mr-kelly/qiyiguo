@@ -6,6 +6,11 @@
 <div id="content">
 	<div class="content_top">
 		<div class="content_bottom">
+			<h1>果邮</h1>
+			<div>
+				无需知道对方的电邮地址，就可以向对方发送电子邮件。
+			</div>
+			
 			<div class="form_div">
 				<form method="post" action="<?=site_url('mail');?>">
 					<p>
@@ -14,7 +19,7 @@
 						<?php foreach ( $send_to as $user ): ?>
 						<span class="mail_user">
 							<a href="<?=site_url('user/' . $user['id']);?>">
-								<?=$user['name'] . '&lt;' . $user['email'] . '&gt;';?>
+								<?=$user['name'] ;?><!--<?= $user['email'];?> '&lt;'  . '&gt;'-->
 							</a>
 						</span>	
 						<?php endforeach; ?>

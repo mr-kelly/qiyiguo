@@ -34,6 +34,12 @@
 					// 非纯数字，那么字符串搜索...
 					$render['search_groups'] = $this->group_model->search_groups( array(
 						'name' => $q,
+						'intro' => $q,
+					));
+					
+					$render['search_users'] = $this->user_profiles_model->search_users( array(
+						'realname' => $q,
+						'nickname' => $q,
 					));
 					
 					// 搜用户~

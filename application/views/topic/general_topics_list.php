@@ -1,7 +1,7 @@
 <?php
 	$ci =& get_instance();
 ?>
-		
+
 				<div class="topis_container">
 
 					
@@ -77,6 +77,15 @@
 											
 										</div>
 										<?php endif; ?>
+										
+										<?php if ( isset( $topic['Attach_File'] ) ) : ?>
+										<div class="topic_attach_file">
+											<span class="icon">
+												<?=$topic['Attach_File']['file_name'];?>
+											</span>
+										</div>
+										<?php endif; ?>
+										
 										
 									</div>
 									
@@ -192,7 +201,7 @@
 						
 						
 					
-									
+						
 							
 								
 				</div><!-- END Topics Container -->

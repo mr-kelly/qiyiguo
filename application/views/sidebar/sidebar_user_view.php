@@ -3,32 +3,11 @@
 
 				<div class="sidebar_widget">
 					<h2>他的群</h2>
-					<ul class="groups_show">
 					<?php
-						if ( !empty( $user_groups ) ):
-							foreach( $user_groups as $user_group ) :
+						$this->load->view('group/general_groups_show', array(
+							'groups' => $user_groups,
+						));
 					?>
-						<li>
-							<div>
-								<img width="40" src="<?=get_group_logo_url( $user_group['id'] );?>" />
-							</div>
-							<div>
-								<a href="<?=get_group_url( $user_group['id'] );?>">
-									<?=$user_group['name'];?>
-								</a>
-							</div>
-						</li>
-					<?php
-							endforeach;
-						else:
-					?>
-						<div class="align_center">
-							<b>没有加入任何群组</b>
-						</div>
-					<?php
-						endif;
-					?>
-					</ul>
 					
 					<div class="clearboth"></div>
 					
@@ -43,22 +22,13 @@
 				<?php if ( $users_common_groups ): ?>
 				<div class="sidebar_widget">
 					<h2>共同群组</h2>
-					<ul class="groups_show">
-					<?php foreach ( $users_common_groups as $uc_group ) : ?>
-						<li>
-							<div>
-								<img width="30" src="<?=get_group_logo_url( $uc_group['id'] );?>" />
-							</div>
-							<div>
-								<a href="<?=get_group_url($uc_group['id']);?>">
-									<?=$uc_group['name'];?>
-								</a>
-							</div>
-						</li>
-					<?php endforeach; ?>
-					</ul>
-					
+					<?php
+						$this->load->view('group/general_groups_show', array(
+							'groups' => $user_groups,
+						));
+					?>
 					<div class="clearboth"></div>
+					
 				</div>
 				<?php endif;?>
 				
@@ -92,8 +62,8 @@
 								</a>
 							</li>
 							<li>
-								<a href="#user_fans" class="tipsy_s" title="拥趸,即是粉丝的意思,是fans的意译">
-									拥趸(<?=$ci->relation_model->get_fans_count( $user['id'] );?>)
+								<a href="#user_fans" class="tipsy_s" title="拥趸">
+									粉丝(<?=$ci->relation_model->get_fans_count( $user['id'] );?>)
 								</a>
 							</li>
 						</ul>

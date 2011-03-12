@@ -47,6 +47,14 @@
     		
 	</script>
 	
+					   <script>
+						   //var $user_logout_action = '<?=base_url();?>user/logout?redirect=';
+						   //var $user_home = '<?=base_url();?>';
+					   </script>
+					   
+
+	
+					   
 	<?php
 		// JS 动态变量
 	?>
@@ -56,6 +64,27 @@
     	$this->load->view('import');
     ?>
 
+
+
+	<?php
+		// 用户提醒, 不用了
+
+		if ( is_logged_in() ) :
+			$ci =& get_instance();
+			$ci->load->model('notice_model');
+			$user_notices = $ci->notice_model->get_notices( get_current_user_id() );
+			foreach( $user_notices as $notice ) :
+	?>
+		<script>
+			$(function(){
+				//kk_growl.notice( '<a href="<?=site_url($notice["link"]);?>">&gt;&gt;去看看</a>', '<?=$notice["content"];?>');
+			});
+		</script>
+	<?php
+			endforeach;
+		endif;
+	?>
+	
 </head>
 <body>
 	<noscript id="noscript">
@@ -91,16 +120,16 @@
  -->
             
             <div id="kk_topbar_container">
-                <div id="logo">
-                    <a href="<?=base_url();?>">
-                        <img class="tipsy_n" title="奇异果是一个帮助你和你的朋友们发现和创造生活的地方。" src="<?=static_url('img/logo.png');?>" height="35" />
+                <div id="logo" class="tipsy_nw" title="奇异果是一个帮助你和你的朋友们发现和创造生活的地方。">
+                    <a href="<?=site_url('/');?>">
+                        <img src="<?=static_url('img/logo.png');?>" height="35" />
                     </a>
                 </div>
                 
                 <ul id="kk_menu">
                 
 					<?php if ( is_logged_in() ): ?>
-					<li class="menu_item <?=isset($current_user_home) ? $current_user_home : '' ;?>">
+					<li class="menu_item <?=isset($current_user_home) ? 'current_menu' : '' ;?>">
 						<a href="<?=get_user_url( get_current_user_id() );?>">
 							个人主页
 						</a>
@@ -118,7 +147,7 @@
 					<?php else: // 未登录，显示首页 ?>
 
 						
-                    <li class="menu_item <?= isset($current_home) ? $current_home : '' ;?>">
+                    <li class="menu_item <?= isset($current_home) ? 'current_menu' : '' ;?>">
                         <a href="<?=site_url('');?>">
                             首页
                         </a>
@@ -133,7 +162,7 @@
                     </li>
                     <?php endif; ?>
                      
-                    <li class="menu_item <?= isset($current_group) ? $current_group : '' ;?>">
+                    <li class="menu_item <?= isset($current_group) ? 'current_menu' : '' ;?>">
                     	<a href="<?=site_url('group');?>">
                     		果群
                     	</a>
@@ -165,7 +194,7 @@
                         </div>
                     </li>
                     -->
-                    <li class="menu_item <?= isset($current_event) ? $current_event : '' ;?>">
+                    <li class="menu_item <?= isset($current_event) ? 'current_menu' : '' ;?>">
                     	<a href="<?=site_url('event');?>">
                     		活动
                     	</a>
@@ -180,13 +209,13 @@
                             </span>
  -->
                              <span class="submenu_item">
-                            	<a href="<?=site_url('event/my_event');?>">
+                            	<a href="<?=site_url('event/my_events');?>">
                             		浏览活动
                             	</a>
                             </span>
                             <span class="submenu_item">
                             	<a href="<?=site_url('event/my_missions');?>">
-                            		我的活动/任务
+                            		我的任务
                             	</a>
                             </span>
 
@@ -194,7 +223,7 @@
                         </div>
                     </li>
                     
-                    <li class="menu_item <?= isset($current_event) ? $current_event : '' ;?>">
+                    <li class="menu_item <?= isset($current_explore) ? 'current_menu' : '' ;?>">
                     	<a href="<?=site_url('explore');?>">
                     		探索
                     	</a>
@@ -282,7 +311,15 @@
 				
 				<!-- User Controller -->
 				<div id="user_controller">
-	
+					
+					<?php if ( isset( $_SERVER['HTTP_REFERER'] ) ) : ?>
+					<span class="submenu_item">
+						<a href="<?=$_SERVER['HTTP_REFERER'];?>" class="icon icon_back">
+							返回上页
+						</a>
+					</span>
+					<?php endif; ?>
+					
 					<?php 
 						// 判断登录状态
 						if ($this->tank_auth->is_logged_in()) :
@@ -300,10 +337,7 @@
 								<a id="logout_btn" href="<?=base_url();?>user/logout?redirect=" class="icon icon_logout">
 									退出
 								</a>
-								<script>
-									var $user_logout_action = '<?=base_url();?>user/logout?redirect=';
-									var $user_home = '<?=base_url();?>';
-								</script>
+
 							</span>
 							
 							<span class="submenu_item">
@@ -311,6 +345,9 @@
 									邀请朋友
 								</a>
 							</span>
+							
+
+								
 					<?php
 						else:
 					?>

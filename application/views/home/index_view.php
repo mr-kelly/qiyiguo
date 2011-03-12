@@ -66,7 +66,7 @@
 								</ul>
 								<?php endif; ?>
 								
-								<div class="align_right" style="margin-right: 30px;">
+								<div class="clearboth align_right" style="margin-right: 30px;">
 									<a href="<?=site_url('group');?>">
 										&gt;&gt;查看更多
 									</a>
@@ -76,7 +76,8 @@
 								
 							</div>
 							
-							
+							<!-- 
+
 							
 							<div class="home_block">
 								<h2 class="tipsy_w" title="消息盒子整合了用户、果群的各种信息">消息盒子</h2>
@@ -92,10 +93,11 @@
 								</ul>
 							</div>
 							
+ -->
 
 						</div>
 						
-						<div style="height:1200px;"></div>
+						<div style="height:1100px;"></div>
 					</div>
         		</div>
             </div>

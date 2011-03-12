@@ -49,6 +49,7 @@
 	
 div.user_relation_tabs ul.tab_menu li {
 	width: 113px;
+	*margin: 0;
 }
 
 .user_relation_tabs div.tab_div {

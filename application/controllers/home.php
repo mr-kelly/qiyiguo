@@ -5,9 +5,21 @@ class Home extends KK_Controller {
 		$this->load->model('group_model');
 		$this->load->model('user_mood_model');
 		
+		
+		//$current_ip = $this->input->ip_address();
+		$current_ip = '59.38.32.1';
+		
+		// 59.38.32.*的IP都可以进入！
+		if ( ereg( "59\.38\.32\..", $current_ip ) ) {
+			//echo 'bnu';
+		}
+		
 		// 限制BNU Only
 		if ( $this->config->item('restrict_bnu') ) {
-			if ( ! isset( $_GET['ilovemrkelly'] ) ) {
+			if ( ! isset( $_GET['kk'] ) ) {
+				
+
+				
 				kk_show_view('home/bnu_only');
 				return;
 			}
@@ -62,6 +74,11 @@ class Home extends KK_Controller {
 		
 		$render['user_admin_groups'] = $this->group_model->get_user_admin_groups( get_current_user_id() , 1000);
 		$render['user_admin_groups_count'] = $this->group_model->get_user_admin_groups_count( get_current_user_id() );
+		
+		// 如果用户没有管理群， 显示推荐
+		if ( empty( $render['user_admin_groups'] ) ) {
+			$render['random_groups'] = $this->group_model->get_groups( array(), 10, 0, true );
+		}
 		
 		kk_show_view('home/start_view', $render );
 	}

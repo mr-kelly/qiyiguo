@@ -24,8 +24,45 @@ var kk_growl = {
 	session_message: function( $message ) {
 		// 用于library Session Message。  持久显示
 		$.jGrowl( $message, { sticky: true } );
+	},
+	
+	notice: function( $message, $header ) {
+
+		$.jGrowl( $message , { header: $header,  life:10000 });
 	}
 }
+
+
+/**
+ *	每10秒检查是否有新的提醒，
+ 	并显示提醒
+ */	
+function notice_check() {
+	$.getJSON( $get_user_notices_url, function(json) {
+		//kk_growl.notice( json );
+		
+		if ( json.status == 1 ) {
+			//alert("有提醒呢");
+			//kk_growl.notice( json, '有提醒' );
+			data = json.data;
+			for ( var key in data ) {
+				kk_growl.success( data[key].content + 
+									'<a href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>', 
+									data[key].title );
+			}
+		}
+		
+	});
+}
+
+$(function(){
+	// 进入页面立刻检查有没提醒...
+	notice_check();
+
+});
+
+setInterval( 'notice_check()', 30000 );	 // 30秒检查notice...
+
 
 
 /**
@@ -49,7 +86,7 @@ function search_submit_check( $this ) {
 $(function() {
 
 	// PNG Fix
-	$(document).pngFix();
+	$('img').pngFix();
 	
 	//$.jGrowl('<img src="http://localhost:8888/kiwiguo/static/img/logo.png" />abc', { sticky: true });
 	//$.jGrowl("A message with a header", { header: 'Important' });
@@ -283,9 +320,9 @@ $(function() {
 		 //alert( document.body.clientWidth );
 		 
 		 // 根据屏幕分辨率默认显示导航菜单
-		 if ( document.body.clientWidth >= 1140 ) {
-		 	$('#nav_btn').trigger('click');
-		 }
+// 		 if ( document.body.clientWidth >= 1140 ) {
+// 		 	$('#nav_btn').trigger('click');
+// 		 }
 	});	 
 	 
 	 

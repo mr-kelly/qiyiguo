@@ -29,11 +29,7 @@
 									
 								</div>
 								
-								<div>
-									<a href="<?=$_SERVER['HTTP_REFERER'];?>">
-										&gt;返回上一页
-									</a>
-								</div>
+								
 							</div>
 						
 						<div class="clearboth"></div>

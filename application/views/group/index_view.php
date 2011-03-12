@@ -8,24 +8,12 @@
             	
             		<div class="content_bottom">
             	
-            	
-						<ul class="groups_show">
-						
-						<?php foreach ( $groups as $g ) : ?>
-							<li>
-								<a href="<?=site_url('group/'.$g['id']);?>">
-									<img class="avatar" height="40" width="40" src="<?=get_group_logo_url( $g['id'] );?>" />
-									
-									<br />
-								
-								
-									<?=$g['name'];?>
-								</a>
-							</li>
-						<?php endforeach; ?>
-							
-						</ul>
-						
+            			<?php
+            				$this->load->view('group/general_groups_show', array(
+            					'groups' => $groups,
+            				));
+            			?>
+            			
 						<div class="clearboth"></div>
 						
 						

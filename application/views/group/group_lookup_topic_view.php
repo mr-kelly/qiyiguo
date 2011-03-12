@@ -39,9 +39,12 @@
 							?>
 						</div>
 						<?php endif; ?>
-
+						
+						<?= kk_pagination( $start, $topics_count, 10);?>
+						
 						<?php $this->load->view('topic/general_topics_list'); ?>
-	
+						
+						<?= kk_pagination( $start, $topics_count, 10);?>
 				</div>
 					
 			</div>

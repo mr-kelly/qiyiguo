@@ -69,6 +69,24 @@
 			
 		}
 		
+		function get_all_topics( $limit=10, $start=0 ) {
+			$this->db->order_by('created', 'desc');
+			
+			$query = $this->db->get('topic', $limit, $start);
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->result_array();
+		}
+		/**
+		 *	一共有多少个话题
+		 */
+		function get_all_topics_count() {
+			$query = $this->db->get('topic');
+			return $query->num_rows();
+		}
 		
 		function get_topics( $model, $model_id, $limit=10, $start=0 ) {
 			$this->db->order_by('created', 'desc');
@@ -87,9 +105,25 @@
 				if ( isset( $topics[$k]['attach_img_id'] ) ) {
 					$topics[$k]['Attach_Img'] = $this->_get_attach( $topics[$k]['attach_img_id'], 'image' );
 				}
+				
+				// 绑定 附加文件
+				if ( isset( $topics[$k]['attach_file_id'] ) ) {
+					$topics[$k]['Attach_File'] = $this->_get_attach( $topics[$k]['attach_file_id'], 'file' );
+				}
+				
 			}
 			
+			
+			
 			return $topics;
+		}
+		
+		function get_topics_count( $model, $model_id ) {
+			$query = $this->db->get_where('topic', array(
+				'model' => $model,
+				'model_id' => $model_id,
+			));
+			return $query->num_rows();
 		}
 		
 		function del_topic( $topic_id ) {

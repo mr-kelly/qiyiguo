@@ -4,8 +4,15 @@
 ?>
 var $static_url = '<?=static_url();?>';
 
+var $site_url = '<?= site_url(); ?>';  <?php //网站基础网址?>
+
+<?php
+	// Ajax Notice 提醒~
+?>
+var $get_user_notices_url = '<?=site_url("notice/ajax_get_notices?ajax=" . rand() );?>';
+
 <?php // ajax获取城市 ?>
-var $get_cities_url = '<?=site_url("user/ajax_get_cities/");?>';
+var $get_cities_url = '<?=site_url("user/ajax_get_cities?ajax=" . rand() );?>';
 
 <?php
 	// Attach 图片的放置地方
@@ -48,7 +55,7 @@ var $current_user_avatar_url = '<?=static_url("upload/avatars/") . get_current_u
 <?php
 	//获得指定群的网址的 ajax控制器
 ?>
-var $ajax_get_group_url_url = '<?= site_url( "group/ajax_get_group_url" );?>';
+var $ajax_get_group_url_url = '<?= site_url( "group/ajax_get_group_url?ajax=" . rand() );?>';
 
 <?php
 	

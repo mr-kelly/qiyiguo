@@ -21,9 +21,11 @@
 								</a>
 							</li>
 							
+							<!--
 							<li>
 								<a href="#setting_logo">果群图标</a>
 							</li>
+							-->
 							
 						</ul>
 						
@@ -130,18 +132,18 @@
 							</div>
 							
 							
-							
+	<!-- 						
 							<div id="setting_logo" class="hidden tab_div">
 								<h2>友群标志</h2>
 								
-<!-- 
+
 								<form action="<?=site_url('group/logo_upload/' . $group['id']);?>" method="post" enctype="multipart/form-data">
 									<input type="file" name="userfile" size="20" />
 									
 									<input type="submit" />
 								</form>
- -->
-							</div>
+
+							</div> -->
 							
 							
 							<div id="setting_group_slug" class="hidden tab_div">
@@ -189,6 +191,11 @@
 			<div class="sidebar_bottom">
 				<?php
 					$this->load->view('sidebar/sidebar_group_profile');
+				?>
+				
+				
+				<?php
+					$this->load->view('sidebar/sidebar_ad_pic');
 				?>
 			</div>
 		</div>

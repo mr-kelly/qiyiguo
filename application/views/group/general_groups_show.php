@@ -5,10 +5,10 @@
 					foreach( $groups as $group ) : 
 						$user_group_url = get_group_url( $group['id'] );
 				?>
-					<li>
+					<li class="tipsy_s" title="<?=$group['intro'];?>">
 						<div>
 							<a href="<?=$user_group_url;?>">
-								<img width="40" src="<?=get_group_logo_url( $group['id'] ); ?>" />
+								<img class="avatar" width="40" src="<?=get_group_logo_url( $group['id'] ); ?>" />
 							</a>
 						</div>
 						

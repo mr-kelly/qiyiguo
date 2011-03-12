@@ -201,4 +201,50 @@ class User_Profiles_Model extends KK_Model {
 		));
 		
 	}
+	
+	
+	/**
+	 *	搜索用户...	 
+	 */
+	function search_users( $data ) {
+		$sql = 'SELECT * FROM kk_user_profiles WHERE';
+		
+		$query_count = 1; // 查询多少个项? (realname? nickname?)
+		
+		if ( isset( $data['realname'] ) ) {
+			$sql .=  ' realname LIKE "%' . $data['realname']  .'%"';
+			
+			if ( $query_count != count( $data ) ) {	// 如果当前项不是最后一个模糊查询项，加１
+				$sql .= ' OR ';
+			}
+			$query_count++;
+		}
+		
+		
+		if ( isset( $data['nickname'] ) ) {
+			$sql .=  ' nickname LIKE "%' . $data['realname']  .'%"';
+			
+			if ( $query_count != count( $data ) ) {
+				$sql .= ' OR ';
+			}
+			$query_count++;
+		}
+		
+		
+		//echo $sql;
+		
+		$query= $this->db->query( $sql );
+		
+		$user_profiles =  $query->result_array();
+		
+		
+		$return_users = array();
+		foreach( $user_profiles as $profile ) {
+			$return_users[] = $this->_get_user( $profile['user_id'] );
+		}
+		return $return_users;
+		
+		
+		
+	}
 }

@@ -235,7 +235,6 @@ $(function(){
 				  // 清空文件传输框
 				  //$('#add_topic_pic_input').val('');
 				  
-				  
 				}
 				
 			 });

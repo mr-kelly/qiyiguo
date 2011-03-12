@@ -45,6 +45,14 @@
 									<label>昵称</label>
 									<input title="您的称呼/称谓" class="required input_text tipsy_sw" id="user_register_nickname" name="nickname" type="text" minlength="1" />
 								</p>
+								
+								<p>
+									<label>性别</label>
+									<span>
+										<input type="radio" class="" name="gender" value="male" />男
+										<input type="radio" class="" name="gender" value="female" />女
+									</span>
+								</p>
 			
 								<p>
 									<label for="password">密码</label>
@@ -78,10 +86,12 @@
 						
 								<br />
 								
-							
-								<a class="kk_btn" id="user_register_submit" type="submit" href="#">
-									<span><span>开始奇异果！</span></span>
-								</a>
+								<div class="align_center">
+									<a class="kk_btn" id="user_register_submit" type="submit" href="#">
+										<span><span>开始奇异果！</span></span>
+									</a>
+								</div>
+								
 							</form>
 	
 						</div><!-- end form div-->

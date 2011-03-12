@@ -15,7 +15,7 @@
 						
 
 						<li>
-							<a href="#">
+							<a href="<?=site_url('home/start');?>">
 								<span class="icon icon_person"></span>
 								开始页
 							</a>
@@ -28,13 +28,13 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="<?=site_url('user/friends');?>">
 								<span class="icon icon_person"></span>
 								收藏朋友
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="<?=site_url('user/setting');?>">
 								<span class="icon icon_person"></span>
 								个人设置
 							</a>
@@ -48,7 +48,7 @@
 							if ( is_logged_in() ) :
 								$ci =& get_instance();
 								$ci->load->model('group_model');
-								$current_user_admin_groups = $ci->group_model->get_user_admin_groups( get_current_user_id() ) ;
+								$current_user_admin_groups = $ci->group_model->get_user_admin_groups( get_current_user_id(), null ) ;
 								
 								if ( !empty( $current_user_admin_groups ) ) :
 									foreach( $current_user_admin_groups as $group ):

@@ -1,6 +1,6 @@
 #home_pic {
-	width: 658px;
-	height: 314px;
+	width: 670px;
+	height: 333px;
 	background: url(../../../img/home_pic.png) no-repeat;
 	position: absolute;
 	top: 0;
@@ -9,12 +9,12 @@
 
 	#home_pic #home_intro {
 		text-indent: -9999px;
-		top: 5px;
-		left: 5px;
+		top: 25px;
+		left: 65px;
 		position: absolute;
 		
-		width: 506px;
-		height: 305px;
+		width: 533px;
+		height: 279px;
 		/*
 		width: 408px;
 		height: 314px;
@@ -29,7 +29,7 @@
 
 #home_show {
 	position: absolute;
-	top: 330px;
+	top: 350px;
 }
 		#home_show h2 {
 			/*background: url(../../../img/sidebar_h2_bg.png) no-repeat;*/

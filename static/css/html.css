@@ -225,8 +225,15 @@ form p {
 	background-position: 0 -5752px;
 }
 .icon_setting_group {
+	background-position: 0 -993px;	
+}
+.icon_setting_group_advanced {
 	background-position: 0 -3830px;
 }
+.icon_quit_group_admin {
+	background-position: 0 -5532px;
+}
+
 .icon_members {
 	background-position: 0 -2550px;
 }
@@ -261,6 +268,9 @@ form p {
 }
 .icon_group {
 	background-position: 0 -5821px;
+}
+.icon_back {
+	background-position: 0 -461px;
 }
 
 .icon_renren {
@@ -305,9 +315,43 @@ form p {
 	background-position: 0 -5856px;
 }
 .icon_mood {
-	background-position: 0 -5874px;
+	background-position: 0 -3711px;
 }
 
+.icon_word {
+	background-position: 0 -4357px;
+}
+.icon_ppt {
+	background-position: 0 -4068px;
+}
+.icon_excel {
+	background-position: 0 -3744px;
+}
+.icon_zip {
+	background-position: 0 -3541px;
+}
+.icon_rar {
+	background-position: 0 -3541px;
+}
+.icon_website {
+	background-position: 0 -2827px;
+}
+.icon_love {
+	background-position: 0 -2636px;
+}
+
+.icon_age {
+	background-position: 0 -655px;
+}
+.icon_boy {
+	background-position: 0 -5912px;
+}
+.icon_girl {
+	background-position: 0 -5892px;
+}
+.icon_intro {
+	background-position: 0 -1061px;
+}
 /**
  *	巨蟹座
  */
@@ -322,11 +366,22 @@ form p {
 	width:80px;
 	height: 24px;
 	background: url(../img/kk_btn.png) no-repeat;
-	display: inline-block;
+	
 	line-height: 24px;
 	text-align: center;
 }
-	a.kk_btn {
+	a.kk_btn, a.kk_btn:active, a.kk_btn:link, a.kk_btn:visited, a.kk_btn:hover {
+		color: #FFF;
+		display: inline-block; /*超链接时*/
+	}
+	
+	
+button.kk_btn {
+	border: 0;
+	color: #FFF;
+}
+	button.kk_btn:hover {
+		border: 0;
 		color: #FFF;
 	}
 

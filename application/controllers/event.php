@@ -7,6 +7,7 @@
 		}
 		
 		function index() {
+			$render['current_event'] = 'current_menu';
 			$render['events'] = $this->event_model->get_events_custom( array() );
 			kk_show_view('event/index_view', $render);
 		}
@@ -16,6 +17,7 @@
 		 *	活动、任务 查看
 		 */
 		function event_lookup( $event_id ) {
+			$render['current_event'] = 'current_menu';
 			$render['event'] = $this->event_model->get_event_by_id( $event_id );
 			$render['event_users'] = $this->event_model->get_event_users( $event_id );
 			$render['event_join_users_count'] = $this->event_model->get_event_users_count( $event_id, 'join');
@@ -25,6 +27,20 @@
 			kk_show_view('event/event_lookup_view', $render);
 		}
 		
+		
+		/**
+		 *	获取当前用户的任务.. (来自私有群组)
+		 */
+		function my_missions() {
+			$render['current_event'] = 'current_menu';
+			kk_show_view('event/my_missions_view', $render);
+		}
+		
+		function my_events() {
+			$render['current_event'] = true;
+			kk_show_view('event/my_events_view', $render);
+			
+		}
 		
 		
 		/**

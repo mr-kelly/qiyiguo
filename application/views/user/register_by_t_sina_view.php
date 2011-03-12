@@ -94,8 +94,8 @@
 					</p>
 
 					
-					<button type="submit" class="awesome blue">
-						<span><span>开始奇异果！</span></span>
+					<button type="submit" class="kk_btn">
+						开始奇异果
 					</button>
 				</form>
 			</div>			

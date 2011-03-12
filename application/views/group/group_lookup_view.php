@@ -29,7 +29,7 @@
             			
 							<?php
 								// 判断用户是否属于该群组，属于，可以发文章
-								if ( $ci->group_model->is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
+								if ( is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
 							?>
 								<div class="add_btn_div">
 									<a onclick="$('.add_topic_div').toggle();$('.add_event_div').hide();return false;" title="向果群发话" class="tipsy_s kk_btn add_topic_btn" href="#">
@@ -70,6 +70,13 @@
 							
 							
 							<?php
+								else:
+									// 不能发布时~
+							?>
+								<div class="grey">
+									...关注/加入群获得发言权
+								</div>
+							<?php
 								endif;  // 以上显示。，能发布友群文章时
 							?>
 					
@@ -78,11 +85,11 @@
 
 								<div id="group_events_div">
 									<h2><?= $group['privacy'] == 'public' ? '活动' : '任务';?></h2>
-									<?php $this->load->view('event/general_events_list', array( 'dateonly' => true, ) ); ?>
+									<?php $this->load->view('event/general_events_show', array( 'dateonly' => true, ) ); ?>
 									
 									<?php if ( count( $events ) >= 10 ) : ?>
 									<div>
-										<a href="<?=site_url('group/' . $group['id'] . '/event' );?>">
+										<a href="<?=site_url('group/' . $group['id'] . '/event?start=10' );?>">
 											&gt;更多活动
 										</a>
 									</div>
@@ -102,7 +109,7 @@
 									
 									<?php if ( count( $topics ) >= 10  ) : ?>
 									<div>
-										<a href="<?=site_url('group/' . $group['id'] . '/topic');?>">
+										<a href="<?=site_url('group/' . $group['id'] . '/topic?start=10');?>">
 											&gt;更多话题
 										</a>
 									</div>

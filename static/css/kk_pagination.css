@@ -1,0 +1,12 @@
+.pagination {
+	text-align: center;
+}
+	.pagination a {
+		font-size: 13px;
+		margin: 0 5px;
+	}
+	.pagination a.current_page {
+		font-weight: bold;
+		text-decoration: underline;
+		font-size: 14px;
+	}

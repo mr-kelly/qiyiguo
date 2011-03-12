@@ -32,6 +32,18 @@
 					</p>
 				</div>
 				
+				
+				<!-- ajax 评论 -->
+				<ul class="chats_container no_scroll" style="margin-left:10px; max-height:none;">
+				
+				</ul>
+				
+				<script>
+					$(function(){
+						$('.chats_container').load('<?=site_url("chat/ajax_get_chats/event/" . $event["id"] );?>');
+					});
+				</script>
+				
 				<?php //print_r( $event ); ?>
 			</div>
 		</div>
@@ -41,13 +53,13 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
+				
 				<?php
-					if ( $event['model'] == 'group' ):
+					$this->load->view('sidebar/sidebar_group_profile', array(
+						'group' => $event['Group'],
+					));
 				?>
-				Group <?=$event['Group']['name'];?>
-				<?php
-					endif;
-				?>
+				
 			</div>
 		</div>
 	</div>

@@ -36,7 +36,11 @@
 			if ( $query->num_rows() == 0 ) {
 				return false;
 			} else {
-				return $query->row_array();
+				$attach = $query->row_array();
+				// 加入文件后缀、文件名
+				$attach['file_name'] = $attach['file'];
+				
+				return $attach;
 			}
 		}
 		

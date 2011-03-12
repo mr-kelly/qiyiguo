@@ -6,51 +6,7 @@
 					<script>
 						
 					</script>
-<div id="sidebar">
-	<div class="sidebar_top">
-		<div class="sidebar_bottom">
-		
-			<div class="sidebar_widget">
-				<h2>更改你的头像</h2>
 
-				
-				<?php
-					// 头像更改设置
-					if ( $user_avatars != null ):
-				?>
-						
-						
-						<?php
-							
-						
-							foreach( $user_avatars as $avatar ):
-							
-							// 头像更改时同时提交 ajax form, 以确保用户修改资料后，未保存按修改头像资料丢失
-						?>
-							<a class="change_avatar" onclick="$('#user_profiles_form').submit();" href="<?=site_url('user/avatar_set' . '/' . $avatar['id'] );?>">
-								<img width="50" src="<?=static_url( sprintf('upload/avatars/%u/%s', get_current_user_id(), $avatar['avatar_thumb']) );?>" />
-							</a>
-						<?php
-							endforeach;
-						?>
-						
-						
-				<?php
-					endif;
-				?>	
-				
-				
-				
-				<div>
-					<a href="<?=site_url('user/avatar');?>">上传头像</a>
-				</div>
-				
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
 
 <div id="content">
 	<div class="content_top">
@@ -420,8 +376,16 @@
 						</div>
 					</div>
 					
-					<div id="privacy_setting" class="tab_div hidden">
-						隐私设置
+					<div id="privacy_setting" class="tab_div hidden form_div">
+						<p>
+							<label>个人页隐私</label>
+							<select name="user_privacy">
+								<option value="3" <?= $current_user_profile['user_privacy'] == 3 ? 'selected="selected"' : '';?>>所有人可见</option>
+								<option value="2" <?= $current_user_profile['user_privacy'] == 2 ? 'selected="selected"' : '';?>>我收藏的人可见</option>
+								<option value="1"<?= $current_user_profile['user_privacy'] == 1 ? 'selected="selected"' : '';?>>朋友(互相收藏)可见</option>
+								<option value="0"<?= $current_user_profile['user_privacy'] == 0 ? 'selected="selected"' : '';?>>封闭(任何人都查看你的个人资料)</option>
+							</select>
+						</p>
 					</div>
 					
 					<div id="slug_setting" class="tab_div hidden">
@@ -466,7 +430,7 @@
 							$('#add_recommend_id').keyup(function(){
 								if ( $(this).val() != '' ) {
 									$.getJSON(
-										'<?=site_url("user/ajax_get_user");?>' + '/' + $(this).val(), 
+										'<?=site_url("user/ajax_get_user");?>' + '/' + $(this).val() + '?ajax=<?=rand();?>', 
 										function(data){
 										
 											if ( data.status == 1 ) {
@@ -527,6 +491,75 @@
 			
 		
 		</div><!-- end content bottom-->
+	</div>
+</div>
+
+
+
+<div id="sidebar">
+	<div class="sidebar_top">
+		<div class="sidebar_bottom">
+			
+			<?php
+				$this->load->view('sidebar/sidebar_user_profile', array(
+					'user' => get_current_user_profile(),
+				));
+			?>
+			
+			<div class="sidebar_widget">
+			
+				<div class="align_center">
+					<a href="<?=site_url('user/change_password');?>" class="kk_btn">
+						修改密码
+					</a>
+				</div>
+				
+				<h2>更改头像</h2>
+
+				
+				<div>
+					<?php
+						// 头像更改设置
+						if ( $user_avatars != null ):
+					?>
+							
+							
+							<?php
+								
+							
+								foreach( $user_avatars as $avatar ):
+								
+								// 头像更改时同时提交 ajax form, 以确保用户修改资料后，未保存按修改头像资料丢失
+							?>
+								<a class="change_avatar" onclick="$('#user_profiles_form').submit();" href="<?=site_url('user/avatar_set' . '/' . $avatar['id'] );?>">
+									<img width="50" src="<?=static_url( sprintf('upload/avatars/%u/%s', get_current_user_id(), $avatar['avatar_thumb']) );?>" />
+								</a>
+							<?php
+								endforeach;
+							?>
+							
+							
+					<?php
+						endif;
+					?>	
+				</div>
+				
+				
+				<div class="align_center">
+					<a class="kk_btn" href="<?=site_url('user/avatar');?>">上传头像</a>
+				</div>
+				
+			</div>
+			
+			
+			
+
+			<?php
+				$this->load->view('sidebar/sidebar_ad_pic');
+			?>
+			
+			
+		</div>
 	</div>
 </div>
 <?php $this->load->view('footer_view'); ?>

@@ -131,11 +131,20 @@
 						<?php endif; ?>
 						
 	            		<div class="sidebar_widget">
-	            			<h2 class="tipsy_se" title="奇异果每天都在努力着!">每天爱你多一些!</h2>
+	            			<h2 class="tipsy_se" title="我们为了未来而努力着!">每天爱你多一些!</h2>
 	            			<div class="sidebar_widget_content">
-	            				<ul>
-	            					<li>成功开发了朋友关系功能</li>
-	            				</ul>
+	            				<!--
+	            				<p>
+	            					奇异果每天都在与用户共同进步着。
+	            				</p>
+	            				-->
+	            				
+	            				<div class="align_right">
+	            					<a href="<?=site_url('g/qiyiguo');?>">
+	            						&gt;去「奇异果之家」提意见
+	            					</a>
+	            				</div>
+	            				
 	            			</div>
 	            		</div>
 	            		

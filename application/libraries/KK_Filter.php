@@ -13,6 +13,7 @@
 			$this->keywords_to_filter = array(
 				'共产党',
 				'操你',
+				
 			);
 		}
 		/**

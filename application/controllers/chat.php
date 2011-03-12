@@ -72,12 +72,55 @@
 					 *	User Notice
 					 */
 					// 添加chat后，提醒parent用户~  先获取chat, 再获取chat的user_id.
-
+					$current_user_name = get_current_user_name();
+					
 					if ( $parent_chat = $this->chat_model->get_chat_by_id( $parent_id ) ) {
 						// 如果parent_id为0， 那么向 model_id 的user提醒~
-						add_notice( $parent_chat['user_id'], '新的聊天回复', sprintf('/%s/%s/chat', $model, $model_id) );
+						add_notice( $parent_chat['user_id'], 
+										'新的聊天回复', 
+										sprintf('%s回复了你', $current_user_name ), // 当前用户~提醒对方
+										sprintf('/%s/%s/%s', $model, $model_id,   $model == 'user' ? 'chat' : ''),
+										$model,
+										$model_id
+										);
+						
 					} else {
-						// parent_id为0， 向 model 回复
+						// parent_id为0， 向 model 回复, 先获取model所属user_id
+						
+						// 提醒:  发送提醒给对方用户，   当前用户回复了你
+						if ( $model == 'topic' ) {
+							$this->load->model('topic_model');
+							$model_object = $this->topic_model->get_topic_by_id( $model_id );
+							$model_user_id = $model_object['user_id'];
+							
+							if ( $model_object['title'] != '' ) {
+								// 有标题传送标题
+								$notice_content = $model_object['title']; // 回复的主题的内容
+							} else {
+								$notice_content = kk_content_preview( $model_object['content'], 40 );
+								//$notice_content = substr( $model_object['content'], 0 , 40 );
+							}
+							
+							
+							
+							add_notice( $model_user_id,
+										'新的留言',
+										sprintf('%s向你留言了...「%s」', $current_user_name, $notice_content),
+										//$current_user_name . '向「' . $notice_content .'」留言了'  ,
+										sprintf('/%s/%s', $model, $model_id ),
+										$model,
+										$model_id
+										);
+						} elseif ( $model == 'user') {
+							add_notice( $model_id, // User_ID 提醒对方
+											'新的个人聊天', 
+											sprintf('%s向你留言板了', $current_user_name ),
+											sprintf('/%s/%s/chat', $model, $model_id),
+											$model,
+											$model_id
+											);
+						}
+
 					}
 					
 					

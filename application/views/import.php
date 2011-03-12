@@ -21,7 +21,8 @@
     <?=import_css('css/style.css');?>
 	<?=import_css('css/kk_tabs.css');?>
 	<?=import_css('css/kk_table.css');?>
-
+	<?=import_css('css/kk_pagination.css');?>
+	
 	<?php // CKEditor ?>
 	<? //import_js('js/ckeditor/ckeditor_basic.js');?>
 	<? //import_js('ckeditor/adapters/jquery.js');?>

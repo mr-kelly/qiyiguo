@@ -3,6 +3,11 @@
 	class Group extends KK_Controller {
 		function __construct() {
 			parent::__construct();
+			
+			if ( !is_site_admin() ) {
+				exit('admin only');
+			}
+			
 			$this->load->model('group_model');
 		}
 		function index() {

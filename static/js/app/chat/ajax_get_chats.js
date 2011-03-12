@@ -53,7 +53,7 @@ $(function(){
 			
 			// 判断用户有没有输入文字，如果为空，或者==input_tips文字，强迫令其 == tips, 不能提交成功
 			if ( $(this).find('.chat_content').val() == $chat_form_input_tips ) {
-				$(this).find('.chat_content').val('');
+				return false;//$(this).find('.chat_content').val('');
 			}
 			
 			// 防重复提交

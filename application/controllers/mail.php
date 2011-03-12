@@ -10,7 +10,7 @@
 			login_redirect();
 			
 			$this->load->model('user_profiles_model');
-			$this->load->library('kk_mailer');
+			$this->load->library('KK_Mailer');
 			
 			// 若为post提交,处理, 发送邮件email~
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {

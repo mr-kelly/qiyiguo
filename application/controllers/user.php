@@ -312,6 +312,8 @@
 				
 				$this->form_validation->set_rules('slug', '个人网址', 'trim|xss_clean|alpha_dash'); // 不可以纯数字
 				
+				//个人页面的隐私设置
+				$this->form_validation->set_rules('user_privacy', '个人页面隐私', 'trim|xss_clean|requried');
 				
 				// 教育信息 Tab
 				$this->form_validation->set_rules('school_id[]', '学校', 'xss_clean|trim');
@@ -519,6 +521,7 @@
 						
 						// 个人网址 tab
 						'slug' => $slug,
+						'user_privacy' => $this->form_validation->set_value('user_privacy'),
 						
 					));
 					
@@ -616,6 +619,14 @@
 		}
 		
 		
+		
+		/**
+		 *	修改密码...
+		 */
+		function change_password() {
+			$render[] = '';
+			kk_show_view('user/change_password_view', $render);
+		}
 		
 		function test() {
 			echo <<<EOT
@@ -860,7 +871,7 @@ EOT;
 			if ( $action == 'authorize' ) {
 				// 授权 。   转到新浪授权页面， 给用户进行授权， 授权成功, 返回oauth token，进行
 				//redirect( $this->t_sina->getAuthorizeURL('http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback')) );
-				redirect( $this->t_sina->getAuthorizeURL( site_url('user/login_by_t_sina/callback?redirect=' . $this->input->get('redirect')  )) );
+				redirect ( $this->t_sina->getAuthorizeURL( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback?redirect=' . $this->input->get('redirect')  )) );
 				
 			} else if ( $action == 'callback' ) {
 				
@@ -1083,6 +1094,8 @@ EOT;
 			
 			$this->form_validation->set_rules('password', '密码', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
 			
+			$this->form_validation->set_rules('gender', '性别', 'trim|xss_clean|required');
+			
 			$this->form_validation->set_rules('city_id', '城市', 'required|trim|xss_clean');
 			$this->form_validation->set_rules('province_id', '省份', 'required|trim|xss_clean');
 			
@@ -1132,6 +1145,7 @@ EOT;
 						'email_1' => $email,
 						'city_id' => $city_id,
 						'province_id' => $province_id,
+						'gender' => $this->form_validation->set_value('gender'),
 					);
 					//$this->db->where('id' , $this->tank_auth->get_user_id() );
 					//$this->db->update('user_profiles', $data);

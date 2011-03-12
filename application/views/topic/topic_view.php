@@ -22,6 +22,7 @@
 						$('.chats_container').load('<?=site_url("chat/ajax_get_chats/topic/" . $topic["id"] );?>');
 					});
 				</script>
+				
 			</div>
 		</div>
 	</div>

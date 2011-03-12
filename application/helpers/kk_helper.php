@@ -288,15 +288,29 @@
 	 
 	 		Get Notice 在 Notice Controlller 内,ajax控制
 	 */
-	function add_notice( $user_id, $content, $link ) {
+	function add_notice( $user_id, $title='', $content, $link, $model=null, $model_id=null ) {
 		$ci =& get_instance();
 		$ci->load->model('notice_model');
-		return $ci->notice_model->add_notice(  $user_id, $content, $link );
+		return $ci->notice_model->add_notice(  $user_id, $title, $content, $link, $model, $model_id );
 	}
 	
 	
+	/**
+	 *	清洁用户在指定页面的提醒...
+	 		用于清理 过多同一页面的提醒...
+	 */
+	function clean_notice( $user_id, $model, $model_id ) {
+		
+	}
 	
-
+	/**
+	 *	分页函数
+	 */
+	function kk_pagination( $current_start, $total_rows, $per_page=10) {
+		$ci =& get_instance();
+		$ci->load->library('KK_Pagination');
+		echo $ci->kk_pagination->create_links( $current_start, $total_rows, $per_page);
+	}
 
 
 

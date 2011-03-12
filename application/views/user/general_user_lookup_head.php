@@ -3,7 +3,25 @@
 						<a class="sexybox" href="<?=get_user_avatar_url( $user['id'], 'big' );?>">
 							<img class="avatar" width="100" src="<?=get_user_avatar_url( $user['id'] );?>" />
 						</a>
-
+						
+						
+						<?php
+							// 如果用户查看自己
+							if ( $user['id'] == get_current_user_id() ) :
+						?>
+							<form class="lookup_avatar_form" action="<?=site_url('user/avatar_upload/' . get_current_user_id() );?>" method="post" enctype="multipart/form-data">
+								
+								<input onchange="$('.lookup_avatar_form').submit();return false;" class="lookup_avatar_input" type="file" name="userfile" style="visibility:hidden;position:absolute;" />
+								
+							</form>
+							
+						<a class="lookup_avatar_edit" href="#" onclick="$('.lookup_avatar_input').trigger('click'); return false;" title="修改群组的标志LOGO">
+							改头像
+						</a>
+						
+	  
+							
+						<?php endif; ?>
 					</div>
 					
 					<div class="lookup_easy_profile">
@@ -16,7 +34,7 @@
 						</h2>
 						
 						<div class="profile_detail">
-							<span class="icon icon_gender tipsy_s" title="性别">
+							<span class="icon tipsy_s <?= $user['gender'] == 'male' ? 'icon_boy' : 'icon_girl' ;?>" title="性别">
 								<?= $user['gender'] == 'male' ? '男' : '女' ;?>
 							</span>
 							
@@ -35,21 +53,52 @@
 									</span>
 									<?php endif; ?>
 									
+									<?php if ( !empty( $user['age'] ) ) : ?>
+									<span class="icon tipsy_s icon_age" title="年龄">
+										<?=$user['age'];?>岁
+									</span>
+									<?php endif; ?>
+									
+									<?php if ( !empty( $user['constellation'] ) ) : ?>
 									<span class="icon tipsy_s <?=kk_constellation_icon( $user['constellation'] );?>" title="星座">
-										<!-- <b>星座:</b> --> <?=$user['constellation'];?>
+										<!-- <b>星座:</b> -->
+										<?=$user['constellation'];?>
 									</span>
+									<?php endif; ?>
 									
-									<span class="icon tipsy_s" title="年龄">
-										<!-- <b>年龄:</b> --> <?=$user['age'];?>岁
-									</span>
-									
+
+							
+							<?php
+								// 爱情状态
+								if ( !empty( $user['love_status'] ) ) : 
+							?>
+							<span class="tipsy_s icon icon_love" title="恋爱状态">
+								<?php
+									switch( $user['love_status'] ) {
+										case 'single':
+											echo '单身';
+											break;
+										case 'inlove':
+											echo '恋爱中';
+											break;
+										case 'married':
+											echo '已婚';
+											break;
+									}
+								?>
+							</span>
+							<?php
+								endif;
+							?>
 									
 									
 						</div>
-						<div class="icon profile_detail">
-								<?= kk_content_preview( $user['description'] );?>
+						<?php if ( !empty(  $user['description'] ) ) : ?>
+						<div class="tipsy_s icon icon_intro profile_detail" title="自我介绍">
+							<?= kk_content_preview( $user['description'] );?>
 							
 						</div>
+						<?php endif; ?>
 						
 						<div class="user_mood profile_detail">
 							<span class="icon icon_mood">

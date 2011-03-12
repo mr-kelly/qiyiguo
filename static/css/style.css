@@ -80,32 +80,39 @@ img.avatar {
 /**
  *	input[type='text']  修复IE6,添加class
  */
-.input_text, input[type="text"], input[type="password"] {
+.input_text {
 	padding: 3px;
-	
 	width:120px;
 	height: 15px;
-	
 	line-height: 15px;
-
+	border: 1px solid #A6D098;
 	*padding: 0 3px;
 	*height: 21px;
 	*line-height: 21px;
 	
+}
+.input_text, input[type="text"], input[type="password"] {
+	padding: 3px;
+	width:120px;
+	height: 15px;
+	line-height: 15px;
 	border: 1px solid #A6D098;
-	
 }
 
 
 #loading,#loading_error {
 	position:fixed;
+	
 	top: 0;
 	z-index:99999;
 	background:#FFF1A8;
 	width:100px;
 	height:20px;
 	line-height:20px;
-	margin:0 45%;
+	margin:0 45% 0 45%;
+	*position: absolute;
+	*left: 500px;
+	*margin: 0 0 0 0;
 	
 	/*IE*/
 /*
@@ -131,12 +138,10 @@ img.avatar {
 }
 
 #navigator {
-	z-index: 99999;
+	z-index: 9999;
 	position: absolute;
 	top: 150px;
 	left: 0;
-	
-	
 }
 
 	#nav_close {
@@ -154,7 +159,7 @@ img.avatar {
 	width: 37px;
 	height: 100px;
 	background: url(../img/nav_btn.png) no-repeat;/*#96C63F;*/
-	margin: -8px 0 0px 0;
+	margin: 0px 0 0px 0;
 	z-index: 999;
 	text-indent: -9999px;
 	
@@ -268,7 +273,7 @@ img.avatar {
     background:url(../img/topbar_bg.png) repeat-x;
     width:100%;
     height:50px;
-    *height:70px;  /* IE6 纠正,防止Wrapper向上顶 */
+    /* *height:70px;*/  /* IE6 纠正,防止Wrapper向上顶 */
 }
 #kk_topbar span.topbar_corner {
     float:right;
@@ -289,15 +294,15 @@ img.avatar {
 }
 
 
-#kk_topbar_container #logo { float:left;}
-#kk_topbar_container ul#kk_menu {
+#logo { float:left;}
+ul#kk_menu {
     float:left;
     height:37px;
 
     margin:0 0 0 60px;
     position:relative;
 }
-#kk_topbar_container ul#kk_menu li {
+ul#kk_menu li {
     float:left;
     height:37px;
     line-height:40px;
@@ -306,38 +311,49 @@ img.avatar {
     width:80px;
     list-style:none;
 }
-#kk_topbar_container ul#kk_menu li.menu_item a {
+
+	ul#kk_menu li.menu_item {
+		position: relative;
+	}
+	
+ul#kk_menu li.menu_item a {
     height:100%;
     width:100%;
     display:block;
     font-size:13px;
     color:#555;
 }
-#kk_topbar_container ul#kk_menu li.menu_item a:hover {
+ul#kk_menu li.menu_item a:hover {
     color:#FFA700;
     font-size:16px;
     font-weight:bold;
     text-decoration:underline;
 }
 
-#kk_topbar_container ul#kk_menu li.menu_item div.submenu {
+ul#kk_menu li.menu_item div.submenu {
     background:url(../img/topbar_submenu_bg.png);
     height:22px;
     line-height:22px;
     position:absolute;
     top:39px;
+    left: 0;
     width:200px;
+    z-index: 999;
 }
-#kk_topbar_container ul#kk_menu li.menu_item div.submenu a {
+
+ul#kk_menu li.menu_item div.submenu a {
     display:inline;
-    margin:0 5px;
+    margin:0 2px 0 0;
     color:#FFF;
     font-size:13px;
     text-decoration: none;
     font-weight: normal;
 }
-	#kk_topbar_container ul#kk_menu li.menu_item div.submenu a:hover {
+	ul#kk_menu li.menu_item div.submenu a:hover {
 		text-decoration: underline;
+		*color: #FFF;
+		*font-size: 13px;
+		*margin: 0;
 	}
 
 
@@ -348,17 +364,19 @@ div.submenu {
 	z-index: 999;
 }
 	.submenu_item {
-		margin: 0 0px 0 0px;
+		margin: 0 5px 0 0px;
 		padding: 0;
 		display: inline-block;
+		
+		*width: 63px;
 	}
 	
 	
 
-#kk_topbar_container ul#kk_menu li.current_menu div.submenu {
+ul#kk_menu li.current_menu div.submenu {
 	display:block;
 }
-#kk_topbar_container ul#kk_menu li.current_menu a {
+ul#kk_menu li.current_menu a {
     color:#FFA700;
     font-size:15px;
     font-weight:bold;
@@ -401,6 +419,9 @@ div.submenu span.submenu_corner:first-child {
 	 	top: 45px;
 	 	left: 30px;
 	 }
+	 	#user_display .submenu_item {
+	 		*width: 300px;
+	 	}
 	#user_controller {
 		 position: absolute;
 		 top: 45px;
@@ -411,6 +432,7 @@ div.submenu span.submenu_corner:first-child {
 		}
 		#user_controller .submenu_item {
 			margin: 0 5px 0 0;
+			*width: 70px;
 		}
 /**
  *	搜索激活按钮
@@ -584,7 +606,6 @@ div.submenu span.submenu_corner:first-child {
 		line-height:30px;
 		width: 230px;
 		text-align: left;
-		
 	}
 		
 	.sidebar_links li a,  .vertical_links li a{
@@ -593,6 +614,7 @@ div.submenu span.submenu_corner:first-child {
 		display:block;
 		text-indent: 60px;
 		position: relative;
+		line-height: 30px;
 	}
 	
 		.sidebar_links li a:hover,  .vertical_links li a:hover {
@@ -769,7 +791,17 @@ div.submenu span.submenu_corner:first-child {
 			.lookup_avatar {
 				float: left;
 				margin: 8px 0 0 8px;
+				position: relative;
 			}
+				a.lookup_avatar_edit {
+					position: absolute;
+					top: 0px;
+					left: 0px;
+					background: #666;
+					color: #FFF;
+					display: inline-block;
+					
+				} 
 			
 			.lookup_easy_profile {
 			
@@ -787,6 +819,9 @@ div.submenu span.submenu_corner:first-child {
 					.lookup_easy_profile .profile_detail {
 						margin: 2px 0;
 					}
+						.lookup_easy_profile .user_mood {
+							margin: 5px 0 0 0;
+						}
 				
 				/**
 				 *	lookup页面的按钮、  关注、管理员、朋友
@@ -959,6 +994,7 @@ div.submenu span.submenu_corner:first-child {
 		margin:10px 0;
 		padding:0 0 5px 0;
 		position: relative;
+		*width: 100%; /* IE6 Tested */
 	}
 		.topic_user {
 			position: absolute;
@@ -1268,10 +1304,11 @@ div.submenu span.submenu_corner:first-child {
 	}
 	
 	.footer_column ul {
-		margin: 0 0 0 10px;
+		margin: 0 0 0 5px;
 		padding: 0;
 	}
 		.footer_column ul li {
+			*width: 110px;
 			list-style: disc;
 			list-style-position: inside;
 		}
@@ -1279,8 +1316,16 @@ div.submenu span.submenu_corner:first-child {
 #footer_copyright {
 	float:right;
 	margin-right:40px;
-	background: url(../img/kk_logo.png) no-repeat bottom right;
+	position: relative;
 	height: 120px;
 }
+	#kk {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 50px;
+		height: 50px;
+		background: url(../img/kk_logo.png) no-repeat;
+	}
 
 

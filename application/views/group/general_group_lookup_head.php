@@ -5,6 +5,25 @@
 				  <a href="<?= get_group_logo_url( $group['id'] , 'big');?>" class="sexybox">
 					  <img class="avatar" width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
 				  </a>
+				  
+				  
+				  <?php
+					  // 如果当前用户是管理员，显示“修改”
+					  if ( is_group_admin( $group['id'], get_current_user_id() )) :
+				  ?>
+					  <form class="lookup_avatar_form" action="<?=site_url('group/logo_upload/' . $group['id']);?>" method="post" enctype="multipart/form-data">
+						  
+						  <input onchange="$('.lookup_avatar_form').submit();return false;" class="lookup_avatar_input" type="file" name="userfile" style="visibility:hidden;position:absolute;" />
+						  
+					  </form>
+					  
+				  <a class="lookup_avatar_edit" href="#" onclick="$('.lookup_avatar_input').trigger('click'); return false;" title="修改群组的标志LOGO">
+					  改标志
+				  </a>
+				  
+
+					  
+				  <?php endif; ?>
 			  </div>
 			  
 			  <div class="lookup_easy_profile">
@@ -108,9 +127,9 @@
 				  ?>
 				  <div class="profile_detail">
 				      <span class="icon icon_intro">
-				          <b>介绍:</b>
+				          <?=$group['intro'];?>
 				      </span>
-					  <?=$group['intro'];?>
+					  
 				  </div>
 				  <?php
 					  endif;

@@ -157,7 +157,7 @@
 				$upload_data = $this->upload->data();
 				$data['group_id'] = $group_id;
 				$data['upload_data'] = $upload_data;
-				$data['logo_url'] = static_url() . 'upload/groups/' . $group_id .'/' . $upload_data['file_name'];
+				$data['logo_url'] = static_url( 'upload/groups/' . $group_id .'/' . $upload_data['file_name'] );
 
 			}
 			
@@ -200,7 +200,9 @@
 				
 				$this->group_model->set_group_logo($group_id);
 
-				echo 'success!';
+				// 修改群的标志成功，回到群首页~
+				$this->session_message->set('成功修改了群的标志图');
+				redirect( 'g/' . $group_id  );
 			}
 		}
 		
@@ -271,6 +273,7 @@
 			
 			
 			$render = array(
+				'start' => $start,
 				'group' => $group,
 				'group_id' => $group_id,
 				'group_users' => $this->group_model->get_group_users($group_id, 10),
@@ -302,12 +305,15 @@
 			
 				// 群组话题页
 				// 友群话题，并在里面包含的latest chat
-				$topics = $this->topic_model->get_topics('group', $group_id);
+				$topics = $this->topic_model->get_topics('group', $group_id, 10, $start);
+				
 				foreach ( $topics as $key=>$topic ) {
 					$topics[$key]['latest_chat'] = $this->chat_model->get_latest_chat( 'topic', $topics[$key]['id'] );
 				}
 				
 				$render['topics'] = $topics;
+				$render['topics_count'] = $this->topic_model->get_topics_count('group', $group_id);
+				
 				$render['current_group_lookup_topic'] = true;
 				
 				$render['page_title'] = $group['name'] . ' 话题';
@@ -325,9 +331,10 @@
 			
 				// 成员列表、成员管理
 				$this->load->model('event_model');
-				$events = $this->event_model->get_events('group', $group_id);
+				$events = $this->event_model->get_events('group', $group_id, 10, $start );
 				
 				$render['events'] = $events;
+				$render['events_count'] = $this->event_model->get_events_count( 'group', $group_id );
 				$render['current_group_lookup_event'] = true;
 				
 				$render['page_title'] = $group['name'] . ' 活动';
@@ -420,7 +427,7 @@
 			// group_category
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				//表单验证
-				$this->form_validation->set_rules('group_name', '果群名称', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('group_name', '果群名称', 'trim|required|xss_clean|max_length[35]');
 				$this->form_validation->set_rules('group_privacy', '果群公开性', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_category', 'Group Category', 'trim|required|xss_clean');
 				

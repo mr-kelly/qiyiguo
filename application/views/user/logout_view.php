@@ -9,9 +9,24 @@
 			<div class="content_bottom">
 				<div id="logout_pic">
 					<div id="logout_intro">
-						奇异果介绍
+						安全退出奇异果，欢迎下次在来哦！
+						
+						<a href="<?=site_url('/');?>" class="kk_btn">回到首页</a>
+						
 					</div>
 					
+				</div>
+
+				<div id="home_show">
+					
+					
+					<div class="home_block">
+						<h2>推荐</h2>
+					</div>
+					
+					<div class="home_block">
+						<h2>赞助商链接</h2>
+					</div>
 				</div>
 				
 				<div style="height: 800px;"></div>

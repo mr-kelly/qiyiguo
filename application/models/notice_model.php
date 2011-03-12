@@ -12,13 +12,15 @@
 	 */
 	class Notice_Model extends KK_Model {
 	
-		function add_notice( $user_id, $content, $link, $type="notice" ) {
+		function add_notice( $user_id, $title, $content, $link, $model, $model_id, $type="notice" ) {
 			$this->db->insert('notice', array(
 				'user_id' => $user_id,
+				'title' => $title,
 				'content' => $content,
 				'link' => $link,
 				'type' => $type,
-				
+				'model' => $model,
+				'model_id' => $model_id,
 				'created' => date('Y-m-d H:i:s'),
 			));
 			
@@ -26,6 +28,31 @@
 		}
 		
 		
+		/**
+		 *	获取指定Notice
+		 */
+		function get_notice_by_id( $notice_id ) {
+			$query = $this->db->get_where('notice', array(
+				'id' => $notice_id,
+			));
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->row_array();
+			
+		}
+		/**
+		 *	获得指定用户的notice
+		 */
+		function get_notices( $user_id ) {
+			$query = $this->db->get_where('notice', array(
+				'user_id' => $user_id,
+			));
+			
+			return $query->result_array();
+			
+		}
 		/**
 		 *	获取指定类型的未读提醒的数量
 		 */
@@ -50,9 +77,11 @@
 		}
 		
 		
-		//function del_notice( $data ) {
-			
-		//}
+		function del_notice( $notice_id ) {
+			return $this->db->delete('notice', array(
+				'id' => $notice_id,
+			));
+		}
 		
 		
 		

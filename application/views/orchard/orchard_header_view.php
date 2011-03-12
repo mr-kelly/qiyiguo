@@ -7,6 +7,7 @@
 	<?=import_css('css/base.css');?>
 	<?=import_css('css/app/orchard/style.css');?>
 	<?=import_css('css/kk_table.css');?>
+	<?=import_css('css/kk_pagination.css');?>
 	
 </head>
 <body>
@@ -37,7 +38,21 @@
 
 			</li>
 			<li>
-				<a href="<?=site_url('orchard/group');?>">果群</a>
+				<a href="<?=site_url('orchard/group');?>">
+					果群
+				</a>
+			</li>
+			
+			<li>
+				<a href="<?=site_url('orchard/topic');?>">
+					话题
+				</a>
+			</li>
+			
+			<li>
+				<a href="<?=site_url('orchard/chat');?>">
+					聊天
+				</a>
 			</li>
 		</ul>
 		

@@ -172,6 +172,29 @@
 			
 			$this->db->insert('chat', $data);
 		}
+		
+		
+		/** 
+		 * 获取所有聊天
+		 */
+		function get_all_chats( $limit, $start ) {
+			$query = $this->db->get('chat', $limit, $start);
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->result_array();
+		}
+		
+		/**
+		 *	获得所有聊天数目
+		 */
+		function get_all_chats_count() {
+			$query = $this->db->get('chat');
+			return $query->num_rows();
+		}
+		
 		/**
 		 *	获取单条chat及其下所有chat
 		 

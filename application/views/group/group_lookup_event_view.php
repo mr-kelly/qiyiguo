@@ -16,7 +16,9 @@
 				
 				
 				<div id="lookup_main">
+					<?php if ( is_group_user( $group_id, get_current_user_id() ) ) : ?>
 					<div>
+						
 						<a onclick="$('.add_event_div').toggle();return false;" href="#" title="对果群发话~" class="add_event_btn tipsy_s kk_btn">
 							<span><span>新活动▼</span></span>
 						</a>
@@ -29,10 +31,14 @@
 							));
 						?>
 					</div>
+					<?php endif; ?>
 					
 					<?php
-						$this->load->view('event/general_events_list');
+						$this->load->view('event/general_events_show');
 					?>
+					
+					<?= kk_pagination( $start, $events_count, 10 ); ?>
+					
 				</div>
 				
 				<div class="clearboth"></div>
