@@ -26,30 +26,47 @@
 
 
 					<div id="user_profile_detail">
-						<h2><?=get_user_name($user['nickname'], $user['realname']);?><? //$user['name'];?></h2>
 						
 						<ul>
 						
 							<?php if ( $user['realname'] ): ?>
-							<li>真实姓名: <?=$user['realname'];?></li>
+							<li>
+								<span class="profile_label">真实姓名: </span>
+								
+								<?=$user['realname'];?>
+								
+							</li>
 							<?php endif; ?>
 							
+						
+							<?php if ( $user['nickname'] ): ?>
+							<li>
+								<span class="profile_label">昵称: </span>
+								<?=$user['nickname'];?>
+							</li>
+							<?php endif; ?>
+							
+							
+							
 							<?php if ( $user['gender'] ): ?>
-							<li>性别: <?=$user['gender'];?></li>
+							<li>
+								<span class="profile_label">性别: </span>
+								<?=$user['gender'] == 'male' ? '男' : '女';?>
+							</li>
 							<?php endif; ?>
 							
 							<?php if ( $user['birth'] ): ?>
 							
 							<li>
-								<?php
-									$ci =& get_instance();
-									$ci->load->library('humanize');
-									
-								?>
-								年龄: <?=$ci->humanize->age( $user['birth'] ) ; ?>
+								<span class="profile_label">年龄: </span>
+								
+								<?=$user['age']; ?>
 							</li>
 							
-							<li>生日: <?=$user['birth'];?></li>
+							<li>
+								<span class="profile_label">生日: </span>
+								<?=$user['birth'];?>
+							</li>
 							
 							<li>
 								<?php

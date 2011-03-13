@@ -1,6 +1,9 @@
 <?php
 	$this->load->view('header_view');
 ?>
+
+	<?=import_css('css/app/search/index.css');?>
+	
 	<script>
 		$(function(){
 			$('#search_page_input').focus();
@@ -15,8 +18,8 @@
 					<form method="get" action="<?=site_url('search');?>">
 					
 						<input id="search_page_input" tabindex="1" style="width: 550px;" type="text" name="q" value="<?=$q;?>" />
-						<button type="submit" class="btn">
-							<span><span>搜索</span></span>
+						<button type="submit" class="kk_btn">
+							搜索
 						</button>
 						
 					</form>
@@ -24,45 +27,27 @@
 				
 				
 				<?php if ( ! empty( $search_groups ) ) :?>
-				<div>
+				<div id="search_groups">
 					<h2>搜到的果群</h2>
-					<ul class="groups_show">
-					<?php foreach( $search_groups as $search_group ) : ?>
-						<li>
-							<div>
-								<a href="<?=get_group_url( $search_group['id'] );?>">
-									<img width="30" src="<?=get_group_logo_url( $search_group['id'] );?>" />
-								</a>
-							</div>
-							
-							<div>
-								<a href="<?=get_group_url( $search_group['id'] );?>">
-									<?= $search_group['name'];?>
-								</a>
-							</div>
-						</li>
-					<?php endforeach; ?>
+					<?php
+						$this->load->view('group/general_groups_show', array(
+							'groups' => $search_groups,
+						));
+					?>
 					
-						<div class="clearboth"></div>
-						
-					</ul>
 				</div>
 				<?php endif; ?>
 				
 				
 				<?php if ( ! empty ( $search_users ) ) :?>
-				<div>
+				<div id="search_users">
 					<h2>搜到的人</h2>
-					<ul class="users_show">
-					<?php foreach( $search_users as $user ) : ?>
-						<li>
-							<div>
-								<img width="40" src="<?=get_user_avatar_url( $user['id'] ); ?>" />
-							</div>
-							<?= $user['name'];?>
-						</li>
-					<?php endforeach; ?>
-					</ul>
+					<?php
+						$this->load->view('user/general_users_show', array(
+							'users' => $search_users,
+						));
+					?>
+
 				</div>
 				<?php endif; ?>
 				

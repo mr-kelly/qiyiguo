@@ -352,6 +352,18 @@ form p {
 .icon_intro {
 	background-position: 0 -1061px;
 }
+.icon_notice {
+	background-position: 0 -3303px;
+}
+.icon_qq {
+	background-position: 0 -5935px;
+}
+.icon_msn {
+	background-position: 0 -6061px;
+}
+.icon_gtalk {
+	background-position: 0 -6080px;
+}
 /**
  *	巨蟹座
  */

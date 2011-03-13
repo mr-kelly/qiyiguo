@@ -505,17 +505,32 @@
 					'user' => get_current_user_profile(),
 				));
 			?>
+			<div class="sidebar_widget">
+				<h2>安全设置</h2>
+			
+							
+				<ul class="sidebar_menu sidebar_links">
+					<li>
+						<span>
+							<a class="tipsy_e" title="更改自己的登录密码" href="<?=site_url('user/change_password');?>">
+								<span class="hover"></span>
+								<span class="icon icon_setting_group"></span>
+								修改密码
+							</a>
+						</span>
+					</li>
+				</ul>
+				
+			</div>
+			
 			
 			<div class="sidebar_widget">
-			
-				<div class="align_center">
-					<a href="<?=site_url('user/change_password');?>" class="kk_btn">
-						修改密码
-					</a>
-				</div>
+
 				
 				<h2>更改头像</h2>
-
+				<div>
+					你使用过的头像...
+				</div>
 				
 				<div>
 					<?php

@@ -93,13 +93,10 @@
 									
 									
 						</div>
-						<?php if ( !empty(  $user['description'] ) ) : ?>
-						<div class="tipsy_s icon icon_intro profile_detail" title="自我介绍">
-							<?= kk_content_preview( $user['description'] );?>
-							
-						</div>
-						<?php endif; ?>
-						
+
+						<?php 
+							if ( !empty( $user['mood'] ) ) :
+						?>
 						<div class="user_mood profile_detail">
 							<span class="icon icon_mood">
 								<b>心情:</b> <?=$user['mood'];?> <span class="grey small"><?= $ci->humanize->datetime( $user['mood_created'] );?></span>
@@ -109,6 +106,19 @@
 								<?php endif; ?>
 							</span>
 						</div>
+						<?php
+							else: //无心情？显示个人介绍.
+						?>
+						<div class="tipsy_s profile_detail profile_intro" title="自我介绍">
+							<span class="icon icon_intro"></span>
+								
+							<?= kk_content_preview( $user['description'] );?>
+							
+						</div>
+						<?php
+							endif;
+						?>
+						
 					</div>
 					
 					<ul class="lookup_menu">

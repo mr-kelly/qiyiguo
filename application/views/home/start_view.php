@@ -193,7 +193,7 @@
 						
 						<?php if ( !empty( $user_groups_events ) ) : ?>
 						<div class="align_right">
-							<a href="#">
+							<a href="<?=site_url('event/my_events');?>">
 								&gt;我的更多群活动...
 							</a>
 						</div>

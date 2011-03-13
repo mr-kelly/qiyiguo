@@ -7,7 +7,9 @@
             	<div class="content_top">
             	
             		<div class="content_bottom">
-            	
+            			
+            			<h1>果群</h1>
+            			
             			<?php
             				$this->load->view('group/general_groups_show', array(
             					'groups' => $groups,

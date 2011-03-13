@@ -625,6 +625,15 @@
 				// 判断当前用户是否是那个群组的管理员~否则不能操作
 				if ( $return_data = $this->group_model->set_group_admin( $group_id, $user_id ) ) {
 					// 成功提升某人为群组管理员
+					// 提醒那个用户..被升管理员..
+					$group = kk_get_group( $group_id );
+					add_notice( $user_id, 
+								'成为管理员', 
+								sprintf( '你已成为「%s」的管理员', $group['name'] ),
+								sprintf('/%s/%s','g/' , $group_id ),
+								'group',
+								$group_id);
+								
 					ajaxReturn( $return_data, '提升管理员成功!', 1);
 				} else {
 					ajaxReturn( '提升不到', '不能提升其为管理员, 原因不明', 0 );

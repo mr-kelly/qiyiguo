@@ -37,9 +37,11 @@
 						<textarea name="mail_content"></textarea>
 					</p>
 					
-					<p>
-						<input type="submit" />
-					</p>
+					<div class="align_center">
+						<button type="submit" class="kk_btn">
+							发送
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>

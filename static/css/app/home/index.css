@@ -26,6 +26,12 @@
 		opacity:0.8;
 		*/
 	}
+	
+	#home_demo {
+		position: absolute;
+		bottom: 10px;
+		left: 45%;
+	}
 
 #home_show {
 	position: absolute;

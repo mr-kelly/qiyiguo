@@ -28,7 +28,7 @@ var kk_growl = {
 	
 	notice: function( $message, $header ) {
 
-		$.jGrowl( $message , { header: $header,  life:10000 });
+		$.jGrowl( $message , { header: '<span class="icon icon_notice">' + $header + '</span>',  life:10000 });
 	}
 }
 
@@ -46,7 +46,7 @@ function notice_check() {
 			//kk_growl.notice( json, '有提醒' );
 			data = json.data;
 			for ( var key in data ) {
-				kk_growl.success( data[key].content + 
+				kk_growl.notice( data[key].content + 
 									'<a href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>', 
 									data[key].title );
 			}

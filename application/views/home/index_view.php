@@ -11,7 +11,13 @@
 						<div id="home_pic">
 							<div id="home_intro" class="hidden">
 								奇异果介绍 - 世界上第一个群组网络、生活网络，并且它是原产于中国制造。
+								
+								
 							</div>
+							
+							<a id="home_demo" class="sexybox kk_btn tipsy_n" title="看看奇异果怎么用" href="<?=site_url('page/demo');?>">
+								演示
+							</a>
 							
 						</div>
 						

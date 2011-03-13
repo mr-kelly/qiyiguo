@@ -1,0 +1,14 @@
+#search_users, #search_groups {
+	width: 310px;
+	float: left;
+	border-left: 1px dashed #CCC;
+	padding-left: 10px;
+	margin: 10px 0 0 0;
+}
+
+#search_users h2, #search_groups h2 {
+	margin: 0 0 5px 0;
+}
+
+
+

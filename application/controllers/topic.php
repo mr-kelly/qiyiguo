@@ -86,8 +86,9 @@
 // 				
 // 				
 // 			}
-			
-			$data['topic'] = $this->topic_model->get_topic_by_id($topic_id);
+			$topic = $this->topic_model->get_topic_by_id($topic_id);
+			$data['page_title'] = isset( $topic['title'] ) ? $topic['title'] : kk_content_preview( $topic['content'], 102 );
+			$data['topic'] = $topic;
 			
 			$this->load->view('topic/topic_view', $data);
 			

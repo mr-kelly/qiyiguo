@@ -34,14 +34,18 @@
 			
 			// 星座
 			if ( $profile['constellation'] != '' ) {
-				
+				$inner_index += 2;
 			}
 			
 			// 年龄
 			if ( $profile['age'] != '' ) {
-			
+				$inner_index += 2;
 			}
 			
+			// 恋爱状态
+			if ( $profile['love_status'] != '' ) {
+				$inner_index += 6;
+			}
 			
 			
 			// 恋爱状态 2
@@ -66,7 +70,7 @@
 			
 			// Phone 电话 比重大
 			if ( $profile['phone'] != '' ) {
-				$inner_index += 4;
+				$inner_index += 10;
 			}
 			
 			// QQ 比重大
@@ -75,7 +79,11 @@
 			}
 			// MSN 电话 比重大
 			if ( $profile['msn'] != '' ) {
-				$inner_index += 3;
+				$inner_index += 6;
+			}
+			// Gtalk 电话 比重大
+			if ( $profile['gtalk'] != '' ) {
+				$inner_index += 6;
 			}
 			
 			// 个人主页

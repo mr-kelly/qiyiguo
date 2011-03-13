@@ -84,11 +84,3 @@
 	<?=import_js('js/tw_cn.js');?>
 	
 
-	
-	
-	<script>
-		$(function(){
-			//$('body').jscroll();
-		});
-		
-	</script>

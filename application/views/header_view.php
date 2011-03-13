@@ -65,25 +65,6 @@
     ?>
 
 
-
-	<?php
-		// 用户提醒, 不用了
-
-		if ( is_logged_in() ) :
-			$ci =& get_instance();
-			$ci->load->model('notice_model');
-			$user_notices = $ci->notice_model->get_notices( get_current_user_id() );
-			foreach( $user_notices as $notice ) :
-	?>
-		<script>
-			$(function(){
-				//kk_growl.notice( '<a href="<?=site_url($notice["link"]);?>">&gt;&gt;去看看</a>', '<?=$notice["content"];?>');
-			});
-		</script>
-	<?php
-			endforeach;
-		endif;
-	?>
 	
 </head>
 <body>

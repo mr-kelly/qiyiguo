@@ -817,10 +817,13 @@ div.submenu span.submenu_corner:first-child {
 					}
 					
 					.lookup_easy_profile .profile_detail {
-						margin: 2px 0;
+						margin: 5px 0;
 					}
 						.lookup_easy_profile .user_mood {
-							margin: 5px 0 0 0;
+							margin: -px 0 0 0;
+						}
+						.lookup_easy_profile .profile_intro {
+							height: 40px;
 						}
 				
 				/**
@@ -882,6 +885,9 @@ div.submenu span.submenu_corner:first-child {
 					padding: 0 0 0 10px;
 					border-left: 1px dashed #CCC;
 				}
+					#lookup_content h2 {
+						font-size: 14px;
+					}
 				
 				
 				
