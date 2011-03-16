@@ -28,7 +28,7 @@ var $default_user_avatar = '<?=static_url("img/default_avatar.jpg");?>';
 <?php
 	// 聊天chat自动刷新的时间
 ?>
-var $chat_refresh_time = 5000;
+var $chat_refresh_time = 10000;
 
 <?php	
 		if ( is_logged_in() ):

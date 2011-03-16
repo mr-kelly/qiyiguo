@@ -6,6 +6,11 @@
 			//exit('cannot enter test');
 			
 		}
+		
+		function ip() {
+			echo $this->input->ip_address();
+		}
+		
 		function test_douban() {
 			$this->load->library('Douban');
 			$self = $this->douban->get_self();

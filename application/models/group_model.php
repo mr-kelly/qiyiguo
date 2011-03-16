@@ -79,6 +79,14 @@
 		}
 		
 		/**
+		 *	删除群
+		 */
+		function del_group( $group_id ) {
+			return $this->db->delete('group', array(
+				'id' => $group_id,
+			));
+		}
+		/**
 		 *   新设置 友群成员，
 		 *   制定友群，令用户成为成员 
 		 
@@ -191,13 +199,18 @@
 			
 			if ( $random ) $this->db->order_by( 'id', 'random' );
 			
-			$query = $this->db->get_where('group', $data, $limit);
+			$query = $this->db->get_where('group', $data, $limit, $start, $random);
 			
 			if ( $query->num_rows() == 0 ) {
 				return false;
 			}
 			
 			return $query->result_array();
+		}
+		
+		function get_groups_count() {
+			$query = $this->db->get('group');
+			return $query->num_rows();
 		}
 		
 		
@@ -220,7 +233,7 @@
 		 *	获得所有 友群的 分类~
 		 */
 		function get_group_categories( $data=array() ) {
-		
+			$this->db->order_by('id');
 			$query = $this->db->get_where('group_category', $data);
 			
 			return $query->result_array();

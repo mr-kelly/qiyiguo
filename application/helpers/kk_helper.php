@@ -288,10 +288,10 @@
 	 
 	 		Get Notice 在 Notice Controlller 内,ajax控制
 	 */
-	function add_notice( $user_id, $title='', $content, $link, $model=null, $model_id=null ) {
+	function add_notice( $user_id, $title='', $content, $link, $model=null, $model_id=null, $type='notice' ) {
 		$ci =& get_instance();
 		$ci->load->model('notice_model');
-		return $ci->notice_model->add_notice(  $user_id, $title, $content, $link, $model, $model_id );
+		return $ci->notice_model->add_notice(  $user_id, $title, $content, $link, $model, $model_id, $type );
 	}
 	
 	
@@ -299,7 +299,11 @@
 	 *	清洁用户在指定页面的提醒...
 	 		用于清理 过多同一页面的提醒...
 	 */
-	function clean_notice( $user_id, $model, $model_id ) {
+	function clean_notices( $user_id, $model, $model_id ) {
+		$ci =& get_instance();
+		$ci->load->model('notice_model');
+		
+		return $ci->notice_model->clean_notices( $user_id, $model, $model_id );
 		
 	}
 	
@@ -325,7 +329,7 @@
 	
 		$return_arr = str_split( $content , $limit ); // 返回数组
 		
-		$return = strip_tags( $return_arr[0], '<a><img>' );
+		$return = strip_tags( $return_arr[0], '<a>' );
 		
 		// 如果返回内容很多，证明topic内容很多，添加省略号...
 		if ( sizeof( $return_arr ) > 1 ) {

@@ -26,10 +26,28 @@
 					<p>
 						<?=$event['content'];?>
 					</p>
-					<p>
-						参加人数: <?= $event_join_users_count; ?>
-						关注人数: <?= $event_users_count; ?>
-					</p>
+					
+					<div>
+						<h3>参加人数: <?= $event_join_users_count; ?></h3>
+						
+						
+						<?php foreach ( $event_join_users as $user ) : ?>
+							<a class="tipsy_s" title="<?=$user['name'];?>" href="<?=get_user_url($user['id']);?>">
+								<img width="18" src="<?=get_user_avatar_url( $user['id'] ) ;?>" /> 
+							</a>
+						<?php endforeach; ?>
+					</div>
+					
+					<div>
+						<h3>关注人数: <?= $event_users_count; ?></h3>
+						
+						
+						<?php foreach ( $event_users as $user ) : ?>
+							<a class="tipsy_s" title="<?=$user['name'];?>" href="<?=get_user_url($user['id']);?>">
+								<img width="18" src="<?=get_user_avatar_url( $user['id'] ) ;?>" /> 
+							</a>
+						<?php endforeach; ?>
+					</div>
 				</div>
 				
 				

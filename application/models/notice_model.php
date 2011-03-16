@@ -27,6 +27,23 @@
 			return $this->db->insert_id();
 		}
 		
+		/**
+		 *		清楚指定提醒...
+		 */
+		function clean_notices( $user_id, $model, $model_id ) {
+			return $this->db->delete('notice', array(
+				'model' => $model,
+				'model_id' => $model_id,
+			));
+		}
+		/**
+		 *	清楚所有提醒
+		 */
+		function clear_notices( $user_id ) {
+			return $this->db->delete('notice', array(
+				'user_id' => $user_id,
+			));
+		}
 		
 		/**
 		 *	获取指定Notice
@@ -51,6 +68,18 @@
 			));
 			
 			return $query->result_array();
+			
+		}
+		
+		/**
+		 *	获取指定用户的notice数目...
+		 */
+		function get_notices_count( $user_id ) {
+			$query = $this->db->get_where('notice', array(
+				'user_id' => $user_id,
+			));
+			
+			return $query->num_rows();
 			
 		}
 		/**

@@ -160,23 +160,13 @@
         
         </div>
     	<?php endif; ?>
-<? // {// Google analysts 统计} 
-/*
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-2467823-3");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-*/
-?>
-<?php /*
+
+
+
+
 <!-- Piwik --> 
 <script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://192.168.7.103:8888/kiwiguo/piwik/" : "http://192.168.7.103:8888/kiwiguo/piwik/");
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.qiyiguo.cc/" : "http://piwik.qiyiguo.cc/");
 document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
 </script><script type="text/javascript">
 try {
@@ -184,9 +174,8 @@ var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
 piwikTracker.trackPageView();
 piwikTracker.enableLinkTracking();
 } catch( err ) {}
-</script><noscript><p><img src="http://192.168.7.103:8888/kiwiguo/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tracking Tag -->
-*/?>
+</script><noscript><p><img src="http://piwik.qiyiguo.cc/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
         
 </body>
 </html>

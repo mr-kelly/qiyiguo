@@ -383,7 +383,7 @@
 								<option value="3" <?= $current_user_profile['user_privacy'] == 3 ? 'selected="selected"' : '';?>>所有人可见</option>
 								<option value="2" <?= $current_user_profile['user_privacy'] == 2 ? 'selected="selected"' : '';?>>我收藏的人可见</option>
 								<option value="1"<?= $current_user_profile['user_privacy'] == 1 ? 'selected="selected"' : '';?>>朋友(互相收藏)可见</option>
-								<option value="0"<?= $current_user_profile['user_privacy'] == 0 ? 'selected="selected"' : '';?>>封闭(任何人都查看你的个人资料)</option>
+								<option value="0"<?= $current_user_profile['user_privacy'] == 0 ? 'selected="selected"' : '';?>>封闭(其他人不能查看你的资料)</option>
 							</select>
 						</p>
 					</div>

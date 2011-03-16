@@ -14,7 +14,7 @@
 		
 			<ul class="tab_menu">
 				<li><a href="#login_tab">登录</a></li>
-				<li><a href="#login_forget_password_tab">忘记密码?</a></li>
+				<li><a target="_blank" href="<?=site_url('auth/forgot_password');?>">忘记密码?</a></li>
 				<li>
 					<a href="#login_forget_email_tab">忘记电邮?</a>
 				</li>

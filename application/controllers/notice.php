@@ -15,6 +15,24 @@
 			
 			$user_notices = $this->notice_model->get_notices( get_current_user_id() );
 			
+			// 寻找request, 如果有加入群组的请求...显示为Notice
+			$this->load->model('request_model');
+			$request_num = $this->request_model->get_request_admin_groups_num( get_current_user_id() );
+			if ( $request_num ) {
+				$user_notices[] = array(
+					'id' => 0,
+					'title' => '加入请求',
+					'content' => sprintf( '你有%d个加入群组请求...<a href="%s">&gt;去处理</a>', $request_num, site_url('request') ),
+					'link' => '',
+					'model' => 'request',
+					'model_id' => 0,
+					'user_id' => get_current_user_id(),
+					
+				);
+			}
+			
+			
+			
 			if ( !empty( $user_notices )) {
 				// 有提醒
 				ajaxReturn( $user_notices, '用户的提醒', 1 );

@@ -12,6 +12,12 @@
 		function index($request_id = null, $action = null) {
 			
 			if ( is_numeric($request_id) && $action !=null ) {
+			
+				
+				// 获取该request...
+				$request = $this->request_model->get_request_by_id( $request_id );
+				$group = kk_get_group( $request['model_id'] ); // request对应的group
+				
 				/**
 				 *	用户请求加入群组的处理
 				 
@@ -33,6 +39,11 @@
 					if ( !$this->group_model->is_group_user( $request_group['model_id'], $request_group['user_id'] ) ) {
 						$this->group_model->create_group_user( $request_group['model_id'], $request_group['user_id'], null );
 						
+						add_notice( $request['user_id'], '加入群组',
+									sprintf( '你成功加入了群组「%s」',  $group['name'] ) , 
+									sprintf( '/group/%s', $request['model_id'] ),
+									'group',
+									$request['model_id']);
 						ajaxReturn( null, 'accept', 1);
 						
 						
@@ -48,10 +59,14 @@
 					$data = array( 'status' => 'reject', );
 					
 					$this->request_model->update_request_group_by_id($request_id, $data);
-					// 拒绝后，发短消息通知user
-					// TODO
+					// 拒绝后 通知user
+					add_notice( $request['user_id'], '被拒绝',
+								sprintf( '你被群组%s拒绝了加入',  $group['name']  ), 
+								sprintf( '/group/%s', $request['model_id'] ),
+								'group',
+								$request['model_id']);
 					
-					ajaxReturn(null, 'reject', 1 );
+					ajaxReturn(null, '拒绝了他加入', 1 );
 					
 				} elseif ( $action == 'ignore' ) {
 					$data = array( 'status' => 'ignore', );
@@ -68,6 +83,7 @@
 			
 			$data= array(
 				'request_groups' => $request_groups,
+				'request_groups_count' => $this->request_model->get_request_admin_groups_num( $user_id ),
 			);
 			
 			kk_show_view('request/index_view', $data);

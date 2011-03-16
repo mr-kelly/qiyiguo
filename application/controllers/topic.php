@@ -9,7 +9,7 @@
 			$this->load->library('KK_Filter');
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-				$this->form_validation->set_rules('title', '标题', 'xss_clean|trim');
+				$this->form_validation->set_rules('title', '标题', 'xss_clean|trim|htmlspecialchars');
 				$this->form_validation->set_rules('content', '正文', 'xss_clean|required|trim');
 				$this->form_validation->set_rules('attach_img_id','附加图片', 'integer|xss_clean|trim');
 				$this->form_validation->set_rules('attach_file_id','附加文件', 'integer|xss_clean|trim');
@@ -18,7 +18,9 @@
 					ajaxReturn( null, validation_errors(), 0 );
 				} else {
 					// Create Topic
-					$title = $this->form_validation->set_value('title');
+					$title = $this->kk_filter->filter( 
+								$this->form_validation->set_value('title')
+							);
 					
 					$content = $this->kk_filter->filter( $this->form_validation->set_value('content'),array(
 						'without_html' => false,
@@ -50,11 +52,7 @@
 			
 			kk_show_view('topic/ajax_add_topic_view', $render);
 		}
-		
-		function ajax_create_topic( $model, $model_id ) {
 
-		
-		}
 	
 	
 	
@@ -86,6 +84,8 @@
 // 				
 // 				
 // 			}
+			clean_notices( get_current_user_id(), 'topic', $topic_id );
+			
 			$topic = $this->topic_model->get_topic_by_id($topic_id);
 			$data['page_title'] = isset( $topic['title'] ) ? $topic['title'] : kk_content_preview( $topic['content'], 102 );
 			$data['topic'] = $topic;

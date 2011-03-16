@@ -24,7 +24,7 @@
 				$(function(){
 					// imgAreaSelect 上传后手工调整头像大小
 					$('#upload_pic').imgAreaSelect({ 
-						x1:0, y1:0, x2:480, y2:480, 
+						x1:0, y1:0, x2:100, y2:100, 
 						aspectRatio: '1:1', 
 						handles:true ,
 						onSelectChange: function(img, selection) {
@@ -56,7 +56,7 @@
 			
 			<div>
 				<h2>拖动鼠标，选择要裁剪的部分</h2>
-				<img id="upload_pic" src="<?=$avatar_url;?>" />
+				<img id="upload_pic" src="<?=$avatar_url;?>" style="max-width: 400px;" />
 			
 				<div style="float:right;overflow:hidden;position:relative;width:100px;height:100px;">
 					<img id="avatar_pic" src="<?=$avatar_url;?>" />
@@ -68,11 +68,14 @@
 			<form action="<?=site_url('user/avatar_crop');?>" method="post">
 			  <input type="hidden" name="x1" value="0" />
 			  <input type="hidden" name="y1" value="0" />
-			  <input type="hidden" name="x2" value="480" />
-			  <input type="hidden" name="y2" value="480" />
+			  <input type="hidden" name="x2" value="100" />
+			  <input type="hidden" name="y2" value="100" />
 			  <input type="hidden" name="avatar_file" value="<?=$upload_data['file_name'];?>" />
 			  
-			  <input type="submit" value="提交修改" />
+			  <button class="kk_btn" type="submit">
+			      确定修改
+			  </button>
+			  
 			</form>
 	<?php else: ?>
 		

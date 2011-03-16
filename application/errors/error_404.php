@@ -36,10 +36,24 @@ margin: 			0 0 4px 0;
 	<div id="content">
 		<div class="content_top">
 			<div class="content_bottom">
-			
+				<h1>找不到该页面 ( 404 ) </h1>
+				<div>
+					奇异果找不到这个页面，这应该是我们的错。
+				</div>
+			<!--
 				<h1><?php echo $heading; ?></h1>
 				<?php echo $message; ?>
-				
+			-->
+			</div>
+		</div>
+	</div>
+	
+	<div id="sidebar">
+		<div class="sidebar_top">
+			<div class="sidebar_bottom">
+				<?php
+					$ci->load->view('sidebar/sidebar_ad_pic');
+				?>
 			</div>
 		</div>
 	</div>

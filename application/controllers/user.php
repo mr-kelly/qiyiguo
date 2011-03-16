@@ -238,9 +238,14 @@
 				
 				kk_show_view('user/user_lookup_view', $render);
 			} else if ( $action == 'profile') {
+			
 				$render['current_user_lookup_profile'] = true;
 				kk_show_view('user/user_lookup_profile_view', $render);
+				
 			} else if ( $action == 'chat' ) {
+				// 正在浏览该页面，清楚本用户关于该页面的notices
+				clean_notices(get_current_user_id(), 'user', $user['id'] );
+			
 				$render['current_user_lookup_chat'] = true;
 				kk_show_view('user/user_lookup_chat_view', $render);
 			}
@@ -625,6 +630,36 @@
 		 */
 		function change_password() {
 			$render[] = '';
+			
+			if ( $_SERVER["REQUEST_METHOD"] == 'POST' ) {
+			
+				$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+				$this->form_validation->set_rules('confirm_new_password', 'Confirm new Password', 'trim|required|xss_clean|matches[new_password]');
+				
+				if ( ! $this->form_validation->run() ) {
+
+					ajaxReturn( null, validation_errors(), 0 );
+					
+				} else {
+				
+					if ( $this->tank_auth->change_password(
+						$this->form_validation->set_value('old_password'),
+						$this->form_validation->set_value('new_password') ) ) {
+						
+						// 成功修改密码
+						//$this->session_message->set('成功修改密码');
+						//redirect( '/user/' . get_current_user_id() );
+						ajaxReturn( null, '成功修改密码', 1 );
+					} else {
+						
+						//$this->session_message->set( '修改密码失败' );
+						ajaxReturn( null, '修改密码失败', 0 );
+						
+					}
+				}
+			}
+			
 			kk_show_view('user/change_password_view', $render);
 		}
 		
@@ -871,7 +906,7 @@ EOT;
 			if ( $action == 'authorize' ) {
 				// 授权 。   转到新浪授权页面， 给用户进行授权， 授权成功, 返回oauth token，进行
 				//redirect( $this->t_sina->getAuthorizeURL('http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback')) );
-				redirect ( $this->t_sina->getAuthorizeURL( 'http://' . $_SERVER["HTTP_HOST"] . site_url('user/login_by_t_sina/callback?redirect=' . $this->input->get('redirect')  )) );
+				redirect ( $this->t_sina->getAuthorizeURL( site_url('user/login_by_t_sina/callback?redirect=' . $this->input->get('redirect')  )) );
 				
 			} else if ( $action == 'callback' ) {
 				
@@ -1318,6 +1353,17 @@ EOT;
 				kk_show_view('user/my_groups_view', $render);
 		}
 		
+		/**
+		 *	清楚当前用户的所有notices...
+		 */
+		function clear_notices() {
+			login_redirect();
+			
+			$this->load->model('notice_model');
+			$this->notice_model->clear_notices( get_current_user_id() );
+			$this->session_message->set('已清空所有提醒');
+			redirect( $_SERVER['HTTP_REFERER'] );
+		}
 		
 		/**
 		 *	AJAX的登录页面  iframe
@@ -1408,7 +1454,7 @@ EOT;
 			}
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-				$this->form_validation->set_rules('mood_text', '心情', 'requried|xss_clean|trim');
+				$this->form_validation->set_rules('mood_text', '心情', 'requried|xss_clean|trim|max_length[100]');
 				
 				if ( ! $this->form_validation->run() ) {
 					ajaxReturn( null, validation_errors(), 0 );

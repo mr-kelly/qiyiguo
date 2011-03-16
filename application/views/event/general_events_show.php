@@ -46,6 +46,29 @@
 							</div>
 							
 							<div class="event_content"><?=$event['content'];?></div>
+							
+							<div class="event_meta">
+								<?php
+									$event_user = kk_get_user( $event['user_id'] );
+									$user_url = get_user_url( $event_user['id'] );
+									
+									$ci =& get_instance();
+									$ci->load->model('event_model');
+									//$event_join_users_count = $ci->event_model->get_event_users_count( $event['id'],'join' );
+									$event_users_count  = $ci->event_model->get_event_users_count( $event['id'] );
+								?>
+								<div class="event_user" >
+									<div class="grey">
+										<?=$event_users_count;?>人参与
+									</div>
+									
+									<a href="<?=$user_url;?>" title="组织者: <?=$event_user['name'];?>" class="tipsy_s">
+										<img width="16" src="<?= get_user_avatar_url( $event_user['id'] );?>" />
+									</a>
+									
+								</div>
+
+							</div>
 						</li>
 					<?php
 						$row++;

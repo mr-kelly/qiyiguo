@@ -10,6 +10,7 @@
             			
             			<h1>果群</h1>
             			
+            			<?= kk_pagination( $start, $groups_count, 50 ); ?>
             			<?php
             				$this->load->view('group/general_groups_show', array(
             					'groups' => $groups,
@@ -33,7 +34,11 @@
             		
             			<?php $this->load->view('sidebar/sidebar_group_view'); ?>
             			
-            			<br /><br /><br /><br /><br /><br />
+            			<br />
+            			
+            			<?php
+            				$this->load->view('sidebar/sidebar_ad_pic');
+            			?>
             		
             		
             		

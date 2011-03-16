@@ -3,7 +3,9 @@
 					<div class="sidebar_profile">
 						
 						<div class="profile_img">
-							<img width="50" src="<?=get_user_avatar_url( $user['id'] );?>" />
+							<a href="<?= get_user_url( $user['id'] ); ?>">
+								<img width="50" src="<?=get_user_avatar_url( $user['id'] );?>" />
+							</a>
 						</div>
 						
 						

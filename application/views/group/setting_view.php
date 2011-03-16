@@ -69,7 +69,7 @@
 											<label for="group_verify">加入方式</label>
 											<select id="group_verify" name="verify" class="tipsy_nw" title="其他人加入你果群的方式">
 												<option value="request" <?=$group['verify']=='request' ? 'selected="selected"' : '';?>>需要管理员审核加入</option>
-												<option value="everyone" <?=$group['verify']=='everyone' ? 'selected="selected"' : '';?>>任何人都可以直接加入</option>
+												<? //<option value="everyone">任何人都可以直接加入</option> ?>
 												<option value="closed" <?=$group['verify']=='closed' ? 'selected="selected"' : '';?>>不允许任何人加入</option>
 						
 											

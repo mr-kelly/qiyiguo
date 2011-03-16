@@ -89,7 +89,7 @@
 										</a>
 									</li>
 									<li>
-										<a target="_blank" href="<?=$user['qq'];?>">
+										<a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin=<?=$user['qq'];?>&Site=http://qiyiguo.cc&Menu=yes">
 											<span class="hover"></span>
 											<span class="icon icon_qq"></span>
 											QQ聊天
@@ -101,7 +101,7 @@
 									
 									<? if ( !empty( $user['msn'] ) ) : ?>
 									<li>
-										<a target="_blank" href="#<?=$user['msn'];?>">
+										<a target="_blank" href="msnim:chat?contact=<?=$user['msn'];?>">
 											<span class="hover"></span>
 											<span class="icon icon_msn"></span>
 											MSN聊天

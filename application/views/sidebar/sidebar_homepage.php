@@ -133,11 +133,11 @@
 	            		<div class="sidebar_widget">
 	            			<h2 class="tipsy_se" title="我们为了未来而努力着!">每天爱你多一些!</h2>
 	            			<div class="sidebar_widget_content">
-	            				<!--
+	            				
 	            				<p>
-	            					奇异果每天都在与用户共同进步着。
+	            					奇异果希望带给每个用户最好的服务。期待获得你的批评。
 	            				</p>
-	            				-->
+	            				
 	            				
 	            				<div class="align_right">
 	            					<a href="<?=site_url('g/qiyiguo');?>">

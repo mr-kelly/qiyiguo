@@ -17,12 +17,18 @@
 		 *	活动、任务 查看
 		 */
 		function event_lookup( $event_id ) {
+			
+			clean_notices( get_current_user_id(), 'event', $event_id );
+			
 			$render['current_event'] = 'current_menu';
 			$render['event'] = $this->event_model->get_event_by_id( $event_id );
-			$render['event_users'] = $this->event_model->get_event_users( $event_id );
-			$render['event_join_users_count'] = $this->event_model->get_event_users_count( $event_id, 'join');
+			
+			$render['event_users'] = $this->event_model->get_event_users( $event_id, false );
 			// 关注人数（ 参与+感兴趣）
 			$render['event_users_count'] = $this->event_model->get_event_users_count( $event_id, false);
+			
+			$render['event_join_users_count'] = $this->event_model->get_event_users_count( $event_id, 'join');
+			$render['event_join_users'] = $this->event_model->get_event_users( $event_id );
 			
 			kk_show_view('event/event_lookup_view', $render);
 		}
@@ -141,7 +147,7 @@
 				$this->form_validation->set_rules('create_event_end_hour', '活动结束小时', 'trim|required|xss_clean|integer');
 				$this->form_validation->set_rules('create_event_end_min', '活动结束分钟', 'trim|required|xss_clean|integer');
 				
-				$this->form_validation->set_rules('create_event_name', '活动名称', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('create_event_name', '活动名称', 'trim|required|xss_clean|max_length[20]');
 				$this->form_validation->set_rules('create_event_content', '活动简介', 'trim|required|xss_clean');
 				
 				
@@ -168,8 +174,8 @@
 						
 						'start' => $create_event_start_date . ' '. $create_event_start_hour . ':' . $create_event_start_min . ':00',
 						'end' => $create_event_end_date . ' '. $create_event_end_hour . ':' . $create_event_end_min . ':00',
-						'name' => $create_event_name,
-						'content' => $create_event_content,
+						'name' => $this->kk_filter->filter( $create_event_name ),
+						'content' => $this->kk_filter->filter( $create_event_content ),
 						'model' => $model,
 						'model_id' => $model_id,
 						'user_id' => $this->tank_auth->get_user_id(),

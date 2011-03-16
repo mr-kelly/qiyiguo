@@ -8,9 +8,13 @@
 		}
 		
 		function index() {
+			$start = $this->input->get('start');
+			
 			$data = array(
-				'groups' => $this->group_model->get_groups(),
+				'groups' => $this->group_model->get_groups( array(), 50, $start, true ),
 				'current_group' => 'current_menu',
+				'start' => $start,
+				'groups_count' => $this->group_model->get_groups_count(),
 			);
 			kk_show_view('group/index_view', $data);
 		}
@@ -98,7 +102,7 @@
 				}
 			}
 			
-			
+			$render['group_id'] = $group_id;
 			$render['group'] = $this->group_model->get_group_by_id( $group_id );
 			
 			if ( $action == 'setting' ) {
@@ -394,6 +398,39 @@
 		
 		
 		/**
+		 *	消灭该群~  由群创始人
+		 */
+		function destroy( $group_id, $action=null ) {
+			if ( !is_group_owner( $group_id, get_current_user_id() ) ) {
+				exit( 'group owner only');
+			}
+			
+			
+			$group = kk_get_group( $group_id );
+			$render['group'] = $group;
+			
+			if ( $action == 'sure' ) {
+				
+				if ( is_group_owner( $group_id, get_current_user_id() ) ) {
+					
+					
+					
+					$this->group_model->del_group( $group_id );
+					
+					// 成功删除了群组...
+					
+					$this->session_message->set( sprintf( '成功删除了群组「%s」', $group['name'] ) );
+					redirect( 'group' );
+					
+				} else {
+					exit( 'group owner only');
+				}
+			}
+			
+			kk_show_view('group/destroy_view', $render);
+		}
+		
+		/**
 		 *	设置某人成某群组的管理员，前提当然是你是管理员
 		 */
 // 		function ajax_set_group_admin( $group_id, $user_id ) {
@@ -500,23 +537,82 @@
 		 
 		 		只改变身份，保留群组
 		 */
-		function ajax_cancel_group_admin( $group_id ) {
-			login_redirect();
-			
-			// 最后一个管理员不能退出！就是只剩一个管理员的情况下
-			if ( $this->group_model->get_group_admins_count( $group_id ) == 1 ) {
-				ajaxReturn( null, '你是最后一个管理员。你需要找到另一个管理员，才能退出该群组', 0);
-				//exit()
+		function ajax_cancel_group_admin( $group_id, $user_id = null ) {
+		
+			if ( $user_id == null ) {
+				login_redirect();
+				
+				// 最后一个管理员不能退出！就是只剩一个管理员的情况下
+				if ( $this->group_model->get_group_admins_count( $group_id ) == 1 ) {
+					ajaxReturn( null, '你是最后一个管理员。你需要找到另一个管理员，才能退出该群组', 0);
+					//exit()
+				} else {
+					$this->group_model->update_group_user( $group_id, get_current_user_id(),array(
+						'user_role' => 'member',
+					));
+				}
+				
+				ajaxReturn( null, '已取消管理员身份了', 1);
+				
 			} else {
-				$this->group_model->update_group_user( $group_id, get_current_user_id(),array(
-					'user_role' => 'member',
-				));
+			
+				// 不能取消自己...
+				if ( $user_id == get_current_user_id() ) {
+					ajaxReturn( null, '不行', 0 );
+					return;
+				}
+				
+				// 如果设置了用户ID，那么判断当前用户是否为group owner
+				if ( is_group_owner( $group_id, get_current_user_id() ) ) {
+					// 是group owner，那么设置吧
+					$this->group_model->update_group_user( $group_id, $user_id, array(
+						'user_role' => 'member',
+					));
+					
+					$group = kk_get_group( $group_id );
+					
+					add_notice( $user_id, 
+								'撤销管理员', 
+								sprintf( '你在%s的管理员身份被撤销', $group['name'] ),
+								sprintf( '/%s/%s', 'group', $group_id ),
+								'group',
+								$group_id
+								);
+					ajaxReturn( null, '取消他的管理员身份了', 1);
+					
+				} else {
+					ajaxReturn( null, '非群组创建人不能取消别人管理员权限', 0 );
+					
+				}
+			
+			}
+		}
+		
+		
+		/**
+		 *	取消群组的成员身份
+		 */
+		function ajax_cancel_group_member( $group_id, $user_id ) {
+			
+			if ( $this->group_model->del_group_user( $group_id, $user_id ) ) {
+				// 提醒对方被赶出群
+				$group = kk_get_group( $group_id );
+				
+				add_notice( $user_id, 
+							'赶出群', 
+							sprintf( '你已被%s管理员驱逐出群', $group['name'] ),
+							sprintf( '/%s/%s', 'group', $group_id ),
+							'group',
+							$group_id
+							);
+				
+				ajaxReturn( null, '成功驱赶出群', 1 );
+			} else {
+				ajaxReturn( null, '无法驱赶出群', 0 );
 			}
 			
-			ajaxReturn( null, '已取消管理员身份了', 1);
-			
-			
 		}
+		
 		
 		///////////////////// iframe 下面
 		/**,. 
@@ -542,7 +638,7 @@
 					// 执行 友群加入用户~  
 					$result = $this->group_model->create_group_user($group_id, $user_id);
 					if ( $result ) {
-						ajaxReturn( null, '成功加入'.$group['name'], 1);
+						ajaxReturn( 'join', '成功加入'.$group['name'], 1);
 					} else {
 						ajaxReturn(null, '加入失败，可能已加入 may joined', 0);
 					}
@@ -630,7 +726,7 @@
 					add_notice( $user_id, 
 								'成为管理员', 
 								sprintf( '你已成为「%s」的管理员', $group['name'] ),
-								sprintf('/%s/%s','g/' , $group_id ),
+								sprintf('/%s/%s','group' , $group_id ),
 								'group',
 								$group_id);
 								
@@ -642,6 +738,8 @@
 				ajaxReturn( 'no admin no action', '你不是管理员，不能提升管理员', 0 );
 			}
 		}
+		
+		
 		
 		
 		/**

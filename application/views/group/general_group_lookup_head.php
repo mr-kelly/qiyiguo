@@ -56,6 +56,7 @@
 				  
 					  
 					  <?php
+					  if ( ! is_group_owner( $group['id'], get_current_user_id() ) ) :
 								// 管理员判断...
 							  if ( is_group_admin($group['id'], get_current_user_profile('id'))):
 					  ?>
@@ -74,6 +75,12 @@
 							  ?>
 					  <?php
 							  endif;
+					  else:
+					      // 如果是创始人...
+					  ?>
+					  		<span title="您是群创始人" class="tipsy_s kk_btn_blue">创始人</span>
+					  <?php
+					  endif;
 					  ?>
 					  
 					  <span class="kk_btn_blue tipsy_s" title="<?=$group['page_view'];?>人看过">
@@ -170,7 +177,11 @@
 							成员列表
 						</a>
 					</li>
-					<!--<li><a href="<?=site_url('group/' . $group['id'] . '/chat');?>" class="<?= isset($current_group_lookup_chat) ? 'selected' : '' ; ?>">聊天</a></li>-->
+					<!--
+					<li>
+						<a href="<?=site_url('group/' . $group['id'] . '/chat');?>" class="<?= isset($current_group_lookup_chat) ? 'selected' : '' ; ?>">群聊</a>
+					</li>
+					-->
 					<!--<li><a href="<?=site_url('group/' . $group['id'] . '/stream');?>" class="<?= isset($current_group_lookup_stream) ? 'selected' : '' ; ?>">新闻台</a></li>-->
 				</ul>
 				

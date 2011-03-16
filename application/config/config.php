@@ -32,6 +32,22 @@ $config['renren_url'] = 'http://www.renren.com/profile.do?id=%s'; // 输入人�
 $config['t_sina_url'] = 'http://t.sina.com.cn/';
 $config['douban_url'] = 'http://www.douban.com/people/%s/';
 
+
+$config['guo_id_min'] = 10000;
+$config['guo_id_max'] = 100000; // 注册全部是五位数
+
+//$config['mail_smtp_server'] = 'smtp.gmail.com';
+$config['mail_smtp_server'] = 'smtp.qq.com';
+$config['mail_smtp_port'] = 465;
+$config['mail_smtp_auth'] = true;
+$config['mail_smtp_secure'] = 'ssl';
+//$config['mail_username'] = 'qiyiguo.cc@gmail.com';
+$config['mail_username'] = 'qiyiguo.cc@foxmail.com';
+//$config['mail_password'] = '23110388';
+$config['mail_password'] = '626626';
+
+//$mail->Username = 'qiyiguo.cc@gmail.com';
+//$mail->Password = '23110388';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -43,11 +59,12 @@ $config['douban_url'] = 'http://www.douban.com/people/%s/';
 |	http://example.com/
 |
 */
-$config['base_url']	= "/kiwiguo/";
+$config['base_url']	= "";
 
 
 // 静态文件所在路径
 $config['static_url'] = 'static/'; // 程序文件根目录
+
 
 
 
@@ -361,7 +378,7 @@ $config['rewrite_short_tags'] = FALSE;
 | Comma-delimited, e.g. '10.0.1.200,10.0.1.201'
 |
 */
-$config['proxy_ips'] = '';
+$config['proxy_ips'] = '127.0.0.1';
 
 
 /* End of file config.php */

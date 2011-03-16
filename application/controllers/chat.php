@@ -53,7 +53,7 @@
 // 					$this->form_validation->set_rules('chat_title','Chat Title', 'trim|xss_clean');
 // 				}
 				
-				$this->form_validation->set_rules('chat_content','评论内容', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('chat_content','评论内容', 'trim|required|xss_clean|htmlspecialchars|max_length[200]');
 				$this->form_validation->set_rules('chat_parent_id', 'Chat Parent', 'trim|required|xss_clean|numeric');
 
 				
@@ -61,8 +61,12 @@
 					ajaxReturn( null, validation_errors(), 0 );
 				} else {
 					$title = $this->form_validation->set_value('chat_title');
-					$content = $this->form_validation->set_value('chat_content');
-					$user_id = $this->tank_auth->get_user_id();
+					
+					$content = $this->kk_filter->filter( 
+									$this->form_validation->set_value('chat_content')
+								);
+								
+					$user_id = get_current_user_id();
 					$parent_id = $this->form_validation->set_value('chat_parent_id');
 					
 					
@@ -75,14 +79,18 @@
 					$current_user_name = get_current_user_name();
 					
 					if ( $parent_chat = $this->chat_model->get_chat_by_id( $parent_id ) ) {
-						// 如果parent_id为0， 那么向 model_id 的user提醒~
-						add_notice( $parent_chat['user_id'], 
-										'新的聊天回复', 
-										sprintf('%s回复了你', $current_user_name ), // 当前用户~提醒对方
-										sprintf('/%s/%s/%s', $model, $model_id,   $model == 'user' ? 'chat' : ''),
-										$model,
-										$model_id
-										);
+						// Chat 回复 Chat 的提醒
+						// 如果parent_id为0， 那么向 model_id 的user提醒~  // 当前用户不提醒
+						if ( get_current_user_id() != $parent_chat['user_id'] ) {
+						
+							add_notice( $parent_chat['user_id'], 
+											'新的聊天回复', 
+											sprintf('%s回复了你', $current_user_name ), // 当前用户~提醒对方
+											sprintf('/%s/%s/%s', $model, $model_id,   $model == 'user' ? 'chat' : ''),
+											$model,
+											$model_id
+											);
+						}
 						
 					} else {
 						// parent_id为0， 向 model 回复, 先获取model所属user_id
@@ -102,23 +110,49 @@
 							}
 							
 							
+							if ( get_current_user_id() != $model_user_id ) {
 							
-							add_notice( $model_user_id,
-										'新的留言',
-										sprintf('%s向你留言了...「%s」', $current_user_name, $notice_content),
-										//$current_user_name . '向「' . $notice_content .'」留言了'  ,
-										sprintf('/%s/%s', $model, $model_id ),
-										$model,
-										$model_id
-										);
-						} elseif ( $model == 'user') {
-							add_notice( $model_id, // User_ID 提醒对方
-											'新的个人聊天', 
-											sprintf('%s向你留言板了', $current_user_name ),
-											sprintf('/%s/%s/chat', $model, $model_id),
+								add_notice( $model_user_id,
+											'新的留言',
+											sprintf('%s向你留言了...「%s」', $current_user_name, $notice_content),
+											//$current_user_name . '向「' . $notice_content .'」留言了'  ,
+											sprintf('/%s/%s', $model, $model_id ),
 											$model,
-											$model_id
+											$model_id,
+											'chat'
 											);
+											
+							}
+										
+						} elseif ( $model == 'user') {
+							if ( get_current_user_id() != $model_id ) {
+							
+								add_notice( $model_id, // User_ID 提醒对方
+												'新的个人聊天', 
+												sprintf('%s向你留言了', $current_user_name ),
+												sprintf('/%s/%s/chat', $model, $model_id),
+												$model,
+												$model_id,
+												'chat'
+												);
+												
+							}
+						} elseif ( $model == 'event' ) {
+							$this->load->model('event_model');
+							$model_object = $this->event_model->get_event_by_id( $model_id );
+							$model_user_id = $model_object['user_id'];
+							
+							if ( get_current_user_id() != $model_user_id ) {
+								add_notice( $model_user_id, // User_ID 提醒对方
+												'新的活动聊天', 
+												sprintf('%s在你的活动留言了', $current_user_name ),
+												sprintf('/%s/%s', $model, $model_id),
+												$model,
+												$model_id,
+												'chat'
+												);
+							}
+											
 						}
 
 					}

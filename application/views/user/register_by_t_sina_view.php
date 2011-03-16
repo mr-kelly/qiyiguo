@@ -1,7 +1,7 @@
 <?php
 	$this->load->view('header_view');
 ?>
-
+<?=import_js('js/app/user/register_by_t_sina.js');?>
 <div id="content">
 	<div class="content_top">
 		<div class="content_bottom">
@@ -9,7 +9,7 @@
 			
 			
 			<div class="form_div">
-				<form method="post" action="<?=site_url('user/register_by_t_sina');?>?redirect=<?=$this->input->get('redirect');?>">
+				<form onsubmit="return ajax_form();" class="ajax_form" method="post" action="<?=site_url('user/register_by_t_sina');?>?redirect=<?=$this->input->get('redirect');?>">
 				<?php
 					$ci =& get_instance();
 					$ci->load->library('t_sina');
@@ -97,6 +97,7 @@
 					<button type="submit" class="kk_btn">
 						开始奇异果
 					</button>
+					
 				</form>
 			</div>			
 			

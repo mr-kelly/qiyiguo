@@ -22,6 +22,16 @@
 				'id' => $group_id,
 			));
 			
+			if ( $query->num_rows() == 0 ) {
+				// 返回空群~ ( 已注销 )
+				return array(
+					'id' => 0,
+					'name' => '[群已注销]',
+					'slug' => '',
+					'intro' => '',
+				);
+			}
+			
 			return $query->row_array();
 		}
 		

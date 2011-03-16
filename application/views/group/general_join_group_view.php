@@ -82,7 +82,16 @@
 							  } else if ( json.status == 1 ) {
 							  
 								  kk_growl.success( json.info );
+								  
+								  
+								  
+								  //if ( json.data == 'join' ) {
+								      
+								  //}
+								  
 								  $('.lookup_relation_btn').load('<?=site_url("group/ajax_get_join_group_btn/" . $group["id"]);?>');
+								  
+								  setInterval('location.reload();', 1000 );
 								  
 							  } else if ( json.status == 0 ) {
 								  // 失败加入

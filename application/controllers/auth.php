@@ -479,14 +479,28 @@ class Auth extends KK_Controller
 	 */
 	function _send_email($type, $email, &$data)
 	{
-		$this->load->library('email');
-		$this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
-		$this->email->reply_to($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
-		$this->email->to($email);
-		$this->email->subject(sprintf($this->lang->line('auth_subject_'.$type), $this->config->item('website_name', 'tank_auth')));
-		$this->email->message($this->load->view('email/'.$type.'-html', $data, TRUE));
-		$this->email->set_alt_message($this->load->view('email/'.$type.'-txt', $data, TRUE));
-		$this->email->send();
+	
+		$this->load->library('KK_Mailer');
+		$this->kk_mailer->send_mail( array(
+				'to' => array(
+					array( $email, ''),
+				),
+				'from' => 'qiyiguo.cc@gmail.com',
+				'from_name' => '「奇异果」密码重置',
+				'subject' => sprintf($this->lang->line('auth_subject_'.$type), $this->config->item('website_name', 'tank_auth')),
+				'body' => $this->load->view('email/'.$type.'-txt', $data, TRUE),
+				'reply_to' => array(
+					array( 'qiyiguo.cc@gmail.com', '「奇异果」' ),
+					),
+		));
+// 		$this->load->library('email');
+// 		$this->email->from($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
+// 		$this->email->reply_to($this->config->item('webmaster_email', 'tank_auth'), $this->config->item('website_name', 'tank_auth'));
+// 		$this->email->to($email);
+// 		$this->email->subject(sprintf($this->lang->line('auth_subject_'.$type), $this->config->item('website_name', 'tank_auth')));
+// 		$this->email->message($this->load->view('email/'.$type.'-html', $data, TRUE));
+// 		$this->email->set_alt_message($this->load->view('email/'.$type.'-txt', $data, TRUE));
+// 		$this->email->send();
 	}
 
 	/**

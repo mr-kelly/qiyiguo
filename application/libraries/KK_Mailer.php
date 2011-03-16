@@ -18,12 +18,13 @@
 // 				),
 // 			);	
 		function send_mail( $option = array('subject'=>'custom') ) {
+			$ci =& get_instance();
 			
 			$default = array(
 				'to' => array(
 					array( 'chepy.v@gmail.com', 'Mrkelly'),
 				),
-				'from' => 'kiwiguo.net@gmail.com',
+				'from' => 'qiyiguo.cc@foxmail.com',
 				'from_name' => '「奇异果」',
 				'subject' => '默认主题',
 				'body' => '默认的邮件内容',
@@ -40,19 +41,29 @@
 			
 			$mail->CharSet = "UTF-8";
 			$mail->IsSMTP();
-			$mail->SMTPAuth = true;
-			$mail->SMTPSecure = 'ssl';
-			$mail->Host = 'smtp.gmail.com';
-			$mail->Port = 465;
+// 			$mail->SMTPAuth = true;
+// 			$mail->SMTPSecure = 'ssl';
+// 			$mail->Host = 'smtp.gmail.com';
+// 			$mail->Port = 465;
+// 			
+// 			$mail->Username = 'qiyiguo.cc@gmail.com';
+// 			$mail->Password = '23110388';
 			
-			$mail->Username = 'kiwiguo.net@gmail.com';
-			$mail->Password = '23110388';
+			$mail->SMTPAuth = $ci->config->item('mail_smtp_auth');
+			$mail->SMTPSecure = $ci->config->item('mail_smtp_secure');
+			$mail->Host = $ci->config->item('mail_smtp_server');
+			$mail->Port = $ci->config->item('mail_smtp_port');
+			
+			$mail->Username = $ci->config->item('mail_username');
+			$mail->Password = $ci->config->item('mail_password');
+			
+			
 			
 			$mail->From = $option['from'];
 			$mail->FromName = $option['from_name'];
 			$mail->Subject = $option['subject'];
 			
-			$mail->AltBody = 'AltBody';
+			$mail->AltBody = $option['body'];
 			
 			$mail->MsgHTML( $option['body'] );
 			

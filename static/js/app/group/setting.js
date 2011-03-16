@@ -1,7 +1,7 @@
 $(function(){
+
 	$('#group_setting_submit').click(function(){
 		$('#group_setting_form').submit();
-		
 		return false;
 	});
 	
@@ -39,5 +39,28 @@ $(function(){
 
 
 });
+
+
+/**
+ *	设置群组管理员的链接...
+ */
+function set_group_user( $this ) {
+	
+	$.getJSON( $($this).attr('href'), function(json) {
+	
+		if ( json.status == 1 ) {
+			
+			kk_growl.success( json.info );
+			location.reload();
+			
+		} else {
+			kk_growl.error( json.info );
+		}
+		
+	});
+	
+	return false;
+}
+
 
 		

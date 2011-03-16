@@ -177,7 +177,7 @@
                     -->
                     <li class="menu_item <?= isset($current_event) ? 'current_menu' : '' ;?>">
                     	<a href="<?=site_url('event');?>">
-                    		活动
+                    		事务
                     	</a>
                         <div class="submenu">
                             <span class="submenu_corner_left"></span>
@@ -191,12 +191,12 @@
  -->
                              <span class="submenu_item">
                             	<a href="<?=site_url('event/my_events');?>">
-                            		浏览活动
+                            		我的事务
                             	</a>
                             </span>
                             <span class="submenu_item">
-                            	<a href="<?=site_url('event/my_missions');?>">
-                            		我的任务
+                            	<a href="<?=site_url('event/add_event');?>">
+                            		创建事务
                             	</a>
                             </span>
 
@@ -282,7 +282,7 @@
 								$user_profile = get_current_user_profile();
 							?>
 							<?=get_current_user_name();?> (<?=get_current_user_id();?>)
-							: <?= $user_profile['mood']; ?>
+							: <?= kk_content_preview( $user_profile['mood'], 51 ); ?>
 						</a>
 					</span>
 				
@@ -292,6 +292,27 @@
 				
 				<!-- User Controller -->
 				<div id="user_controller">
+					
+					<?php 
+						if ( is_logged_in() ) :
+							$ci =& get_instance();
+							$ci->load->model('notice_model');
+							if ( $ci->notice_model->get_notices_count( get_current_user_id() ) ) :
+					?>
+					
+						<span class="submenu_item">
+							<a href="<?=site_url('user/clear_notices');?>" class="icon icon_clear tipsy_n" title="提醒太多很烦？点击这里清空所有提醒">
+								清空提醒
+							</a>
+						</span>
+						
+					<?php
+							endif;
+						endif;
+					?>
+					
+					
+					
 					
 					<?php if ( isset( $_SERVER['HTTP_REFERER'] ) ) : ?>
 					<span class="submenu_item">
@@ -306,7 +327,6 @@
 						if ($this->tank_auth->is_logged_in()) :
 					?>
 
-						
 
 							
 							<span class="submenu_item">

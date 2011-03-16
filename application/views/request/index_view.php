@@ -17,7 +17,7 @@
             <div id="content">
             	<div class="content_top">
             		<div class="content_bottom">
-	
+						<h2><?=$request_groups_count;?>个请求</h2>
 						
 						<?php
 							if ( $request_groups ) {
@@ -38,9 +38,10 @@
 										<a class="reject_request negative" href="<?=site_url('request/index/' . $rg['id']. '/reject');?>">
 											拒绝
 										</a>
+										<!--
 										<a class="ignore_request regular" href="<?=site_url('request/index/' . $rg['id']. '/ignore');?>">
 											忽略
-										</a>
+										</a>-->
 									</div>
 									
 									<div class="clearboth"></div>
@@ -52,38 +53,38 @@
 						?>
 						
 						<script>
-// 							$(function(){
-// 								// 用于统一拒绝、忽略按钮
-// 								function request_ajax($ele,$message) {
-// 									$.post(
-// 										$ele.attr('href'),
-// 										function(data){
-// 											data = $.parseJSON(data);
-// 											alert(data.info);
-// 											
-// 											  // div.buttons // div.request_group
-// 											$ele.parent().html($message);
-// 										}
-// 									);
-// 								}
-// 								
-// 								$('.accept_request').click(function(){
-// 									request_ajax($(this),'你允许了加入');
-// 									return false;
-// 								});
-// 								
-// 								
-// 			
-// 								
-// 								$('.reject_request').click(function(){
-// 									request_ajax($(this), '拒绝了他加入');
-// 									return false;
-// 								});
+							$(function(){
+								// 用于统一拒绝、忽略按钮
+								function request_ajax($ele,$message) {
+									$.post(
+										$ele.attr('href'),
+										function(data){
+											data = $.parseJSON(data);
+											kk_growl.success(data.info);
+											
+											  // div.buttons // div.request_group
+											$ele.parent().html($message);
+										}
+									);
+								}
+								
+								$('.accept_request').click(function(){
+									request_ajax($(this),'你允许了加入');
+									return false;
+								});
+								
+								
+			
+								
+								$('.reject_request').click(function(){
+									request_ajax($(this), '拒绝了他加入');
+									return false;
+								});
 // 								$('.ignore_request').click(function(){
 // 									request_ajax($(this), '忽略了他的申请');
 // 									return false;
 // 								});
-// 							});
+							});
 						</script>
 						
 						

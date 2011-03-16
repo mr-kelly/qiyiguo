@@ -2,6 +2,8 @@
 	$this->load->view('header_view');
 ?>
 
+	<?=import_js('js/app/group/setting.js');?>
+
 	<div id="content">
 		<div class="content_top">
 			<div class="content_bottom">
@@ -12,8 +14,8 @@
 						<tr>
 							<th>果号</th>
 							<th>用户</th>
-							<th>备注名</th>
-							<th>加入时间</th>
+							<!--<th>备注名</th>-->
+							<!--<th>加入时间</th>-->
 							<!--<th>活跃度</th>-->
 							<th>操作</th>
 						</tr>
@@ -37,14 +39,42 @@
 								<?php endif; ?>
 								
 							</td>
-							<td>备注名</td>
-							<td>...</td>
+							<!--<td>备注名</td>-->
+							<!--<td>...</td>-->
 							<!--<td>dafsadf</td>-->
 							<td>
-								<a href="<?=site_url('group/ajax_set_group_admin/' . $group['id'] . '/'. $user['id'] );?>">
+							<script>
+
+							</script>
+								<?php
+									// 非当前登录用户自己,才显示管理员设置项
+									if ( get_current_user_id() != $user['id'] ) :
+								?>
+								
+								<?php if ( !is_group_admin( $group['id'], $user['id'] ) ): ?>
+								<a onclick="return set_group_user(this);" href="<?=site_url('group/ajax_set_group_admin/' . $group['id'] . '/'. $user['id'] );?>">
 									提升为管理员
+								</a> /
+								<?php else: ?>
+									
+									<?php if ( is_group_owner( $group['id'], get_current_user_id() ) ) : ?>
+									<a onclick="return set_group_user(this);" href="<?=site_url('group/ajax_cancel_group_admin/' . $group['id'] . '/'. $user['id'] );?>">
+										撤销管理员
+									</a> /
+									<?php endif; ?>
+									
+								<?php endif; ?>
+								
+								<a onclick="return set_group_user(this);" class="tipsy_s" title="把他驱赶出群" href="<?=site_url('group/ajax_cancel_group_member/' . $group['id'] . '/' . $user['id'] );?>">
+									驱赶
 								</a>
-								/ 驱赶 / 修改备注名</td>
+								
+								
+								
+								<?php
+									endif;
+								?>
+
 						</tr>
 					<?php 
 						$row++;

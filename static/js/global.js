@@ -40,14 +40,21 @@ var kk_growl = {
 function notice_check() {
 	$.getJSON( $get_user_notices_url, function(json) {
 		//kk_growl.notice( json );
-		
+
 		if ( json.status == 1 ) {
 			//alert("有提醒呢");
 			//kk_growl.notice( json, '有提醒' );
 			data = json.data;
 			for ( var key in data ) {
+			
+				// 提醒中的链接... 如果没有链接，不显示
+				if ( data[key].link != '' ) {
+					$link = '<a href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>';
+				} else {
+					$link = '';
+				}
 				kk_growl.notice( data[key].content + 
-									'<a href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>', 
+									$link, 
 									data[key].title );
 			}
 		}
@@ -82,6 +89,41 @@ function search_submit_check( $this ) {
 	}
 	
 }
+
+/**
+ *	通用的ajax按钮...
+ */
+function ajax_btn( $this ) {
+
+}
+
+function ajax_form( $this, $redirect ) {
+
+
+	$('.ajax_form').validate({
+			submitHandler: function(form) {
+				$('.ajax_form').ajaxSubmit({
+					dataType: 'json',
+					success: function(json) {
+						if ( json.status == 1 ) {
+							kk_growl.success(json.info);
+							
+						} else {
+							kk_growl.error(json.info);
+						}
+					}
+				});
+			},
+			success: function(label) {
+				label.text('').addClass('success');
+			},
+			error: function() {
+				alert('error');
+			}
+	});
+
+}
+
 
 $(function() {
 
@@ -361,10 +403,10 @@ function mood_form() {
 		},
 		success: function(json) {
 			if ( json.status == 1 ) {
-				kk_growl.success('心情改变了');
+				kk_growl.success( json.info );
 				setInterval( 'location.reload()', 1000 );
 			} else {
-				kk_growl.error('心情改变错误.未知');
+				kk_growl.error( json.info );
 			}
 		}
 	});

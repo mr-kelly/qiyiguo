@@ -6,15 +6,39 @@
 	class KK_Filter {
 		function __construct() {
 		
-			$this->replace_chr = '***'; // 用于替换的字符串`
+			//$this->replace_chr = '***'; // 用于替换的字符串`
 			
 			
-			// 定义非法字符。  后面应该在数据库去读取
-			$this->keywords_to_filter = array(
-				'共产党',
-				'操你',
-				
-			);
+			// 后面应该在数据库去读取过滤词库
+			$ci =& get_instance();
+			$query = $ci->db->get('filter');
+			$this->keywords_to_filter = $query->result_array();
+			
+// 			$this->keywords_to_filter = array(
+// 				'共产党',
+// 				'操你',
+// 				
+// '和谐' => '水产',
+// '党' => '派对', 
+// 俯卧撑 -> 运动 
+// SB、妈、母、娘、逼 -> 文明用语 
+// 粪、屎 -> 代谢产物 
+// 放屁 -> 文明用语 
+// 社会主义 -> 初级阶段 
+// 人木又 -> 好五倍的权利 
+// 政府 -> gov 
+// 无界 -> 没边 
+// GFW -> Wall 
+// 煤矿 -> 黑色燃料基地 
+// 坦克 -> 打炮车 
+// 独裁 -> 一把剪刀 
+// 领导人 -> 擎天柱 
+// 垃圾、lj -> 废品 
+// 公安、警察-> 平平安安 
+// 藏 -> hide 
+// 网监 -> 太监 
+// 人大 -> 议会
+// 			);
 		}
 		/**
 		 *	行动！ 过滤！
@@ -66,9 +90,9 @@
 		private function keywords_filter( $string ) {
 
 			
-			foreach( $this->keywords_to_filter as $kw ) {
+			foreach( $this->keywords_to_filter as $filter ) {
 				// 替换非法字符～
-				$string = str_replace( $kw, $this->replace_chr, $string );
+				$string = str_replace( $filter['keyword'], $filter['filter'], $string );
 			}
 			
 			

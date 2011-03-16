@@ -28,6 +28,18 @@
 		
 		
 		
+		function get_request_by_id( $request_id ) {
+			$query = $this->db->get_where('request', array(
+				'id' => $request_id,
+			));
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->row_array();
+		}
+		
 		/**
 		 *	获取指定用户身份是admin的所有小组的request_groups (requests)!
 		 
@@ -95,14 +107,38 @@
 				'user_id' => $user_id,
 				'user_role' => 'admin',
 			));
+			
+			if ( $admin_groups->num_rows() == 0 ) {
+				return false;
+			}
+			
+			// 查询用户管理的群组有多少request请求加入
+			$sql = 'SELECT * FROM kk_request WHERE ';
+			foreach( $admin_groups->result_array() as $key=>$admin_group ) {
+				if ( $key != 0 ) {
+					$sql .= ' OR ';
+				}
+				$sql .= sprintf( ' ( model="group" AND model_id=%d AND status="waiting" )', $admin_group['group_id'] );
+				
+			}
+			
+			return $this->db->query( $sql )->num_rows();
+			
 			if ( $admin_groups->num_rows() != 0 ) {
 				$admin_groups = $admin_groups->result_array();
 				
 				// 透过一组group_id, 获取所有的request_group, 要在waiting状态
 				$this->db->from('request');
-				foreach ( $admin_groups as $request_group ) {
-					$this->db->where('model', 'group');
-					$this->db->where('model_id =' . $request_group['group_id'] .' AND status="waiting"' ); // waiting状态必须
+				foreach ( $admin_groups as $admin_group ) {
+					$this->db->where(array(
+						'model' => 'group',
+						'model_id' => $admin_group['group_id'],
+						'status' => 'waiting',
+					));
+					//$this->db->where('model', 'group');
+					//$this->db->where('model_id' , $admin_group['group_id'] ); // waiting状态必须
+					//$this->db->where('status','waiting');
+					
 				}
 				$request_groups_query = $this->db->get();
 				

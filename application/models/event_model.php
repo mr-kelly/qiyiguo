@@ -209,10 +209,9 @@
 // 				'event_id' => $event_id,
 // 				'type' => $type,
 // 			));
-			
 			$return_users = array();
 			foreach( $event_users->result_array() as $event_user ) {
-				array_push( $return_users, $this->_get_user( $event_user['user_id'] ) );
+				$return_users[] = $this->_get_user( $event_user['user_id'] );
 			}
 			
 			return $return_users;

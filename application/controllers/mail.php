@@ -62,7 +62,7 @@
 					// 发Mails
 					$this->kk_mailer->send_mail( array(
 						'to' => $mail_to_user_list,
-						'from' => get_current_user_profile('email'),
+						//'from' => get_current_user_profile('email'),
 						'from_name' => get_current_user_profile('name'),
 						'reply_to' => $mail_from_user_list,
 						
