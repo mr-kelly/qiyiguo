@@ -1332,8 +1332,8 @@ div.submenu span.submenu_corner:first-child {
 .footer_column {
 	float:left;
 	text-align:left;
-	margin-left:40px;
-	width: 120px;
+	margin-left:35px;
+	width: 130px;
 }
 
 	.footer_column h2 {
@@ -1356,6 +1356,7 @@ div.submenu span.submenu_corner:first-child {
 	margin-right:40px;
 	position: relative;
 	height: 120px;
+	width: 350px;
 }
 	#kk {
 		position: absolute;

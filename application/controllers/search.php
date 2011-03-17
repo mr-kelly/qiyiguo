@@ -42,8 +42,11 @@
 						'nickname' => $q,
 					));
 					
-					// 搜用户~
-					//$render['search_users'] = $this-
+					// Stream Search : 话题/活动
+					$this->load->model('stream_model');
+					$render['search_stream'] = $this->stream_model->search_stream( $q );
+					
+					
 				}
 			}
 			

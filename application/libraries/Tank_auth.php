@@ -210,8 +210,13 @@ class Tank_auth
 	 */
 	function create_user($username, $email, $password, $email_activation, $custom_id = false, $role='')  // Custom ID... 是否自定义ID～
 	{
+		$username = 'mrkelly';  // 作废Tank_auth 的username; 因为奇异果使用ID作为username
+		
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
+			
+			
+			
 
 		} elseif (!$this->ci->users->is_email_available($email)) {
 			$this->error = array('email' => 'auth_email_in_use');
@@ -237,7 +242,8 @@ class Tank_auth
 				'id' => $new_user_id,  
 				'role' => $role,
 				
-				'username'	=> $username,
+				//'username'	=> $username,
+				'username' => $new_user_id, // 用ID作为用户的用户名， 这样用户可以通过ID或邮箱进行登录
 				'password'	=> $hashed_password,
 				'email'		=> $email,
 				'last_ip'	=> $this->ci->input->ip_address(),

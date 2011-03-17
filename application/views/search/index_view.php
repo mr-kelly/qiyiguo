@@ -51,8 +51,14 @@
 				</div>
 				<?php endif; ?>
 				
-				<?php //print_r( $search_groups ); ?>
+				<?php //print_r( $search_stream ); ?>
 				
+				<?php
+					$this->load->view('stream/general_stream_list', array(
+						'stream' => $search_stream,
+					));
+				?>
+					
 			</div>
 		</div>
 	</div>

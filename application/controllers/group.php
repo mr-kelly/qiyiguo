@@ -504,7 +504,7 @@
 					));
 					
 					$this->session_message->set(
-												sprintf( 'Hi.你已创建了群「%s」。<br />点击「邀请入群」，邀请你的朋友们加入吧。', $group_name )
+												sprintf( '群号:%d; 创建了群「%s」。<br />点击「邀请入群」，邀请你的朋友们加入吧。', $group_id, $group_name )
 											);
 					
 					ajaxReturn(

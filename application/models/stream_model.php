@@ -259,6 +259,75 @@
 			return $a['modified'] > $b['modified'];
 		}
 		
+		
+		/**
+		 *	搜索stream。。。 包括公开群组的（话题， 活动）
+		 */
+		function search_stream( $q, $limit=50, $start=0 ) {
+		
+			$return_stream = array();
+			
+			$topics_sql = 'SELECT kk_topic.* FROM kk_topic, kk_group
+							WHERE kk_topic.model_id = kk_group.id
+							AND kk_group.privacy = "public"
+							AND ( kk_topic.title LIKE "%' . $q . '%"
+							OR kk_topic.content LIKE "%' . $q . '%" )
+							LIMIT ' . $start . ',' . $limit;
+			
+							
+			$topics = $this->db->query( $topics_sql )->result_array();
+			
+			
+			foreach( $topics as $topic ) {
+				$return_stream[] = array(
+					'User' => kk_get_user( $topic['user_id'] ),
+					'Group' => kk_get_group( $topic['model_id'] ),
+					'Object' => array(
+						'act' => '发布了',
+						'title' => '话题',
+						'text' => !empty( $topic['title'] ) ? $topic['title'] : kk_content_preview($topic['content'],36) ,
+						'link' => sprintf('/%s/%s', 'topic', $topic['id'] ),
+					),
+					'created' => $topic['created'],
+					'modified' => $topic['modified'],
+				);
+			}
+			
+			
+			
+			$events_sql = 'SELECT kk_event.* FROM kk_event, kk_group
+							WHERE kk_event.model_id = kk_group.id
+							AND kk_group.privacy = "public"
+							AND ( kk_event.name LIKE "%' . $q . '%"
+							OR kk_event.content LIKE "%' . $q . '%" )
+							LIMIT ' . $start . ',' . $limit;
+			$events = $this->db->query( $events_sql )->result_array();
+			
+			foreach( $events as $event ) {
+				$return_stream[] = array(
+					'User' => kk_get_user( $event['user_id'] ),
+					'Group' => kk_get_group( $event['model_id'] ),
+					'Object' => array(
+						'act' => '组织了',
+						'title' => '活动',
+						'text' => $event['name'],
+						'link' => sprintf('/%s/%s', 'event', $event['id'] ),
+					),
+					'created' => $event['created'],
+					'modified' => $event['modified'],
+				);
+			}
+							
+							
+			
+			
+			
+			return $return_stream;
+			
+		}
+		
+		
+		
 		/**
 		 *	获取指定用户发布、参与、感兴趣的活动
 		 */

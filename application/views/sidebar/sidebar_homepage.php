@@ -18,7 +18,7 @@
 								<form id="user_login_form" class="home_user_login_form" method="post" action="<?=site_url('user/login?ajax=' . rand() );?>">
 									<p>
 										<label>电邮</label>
-										<input id="user_login_login" title="注册时所填的Email、电子邮箱" class="required email tipsy_se input_text" type="text" name="login" minlength="3" />
+										<input id="user_login_login" title="注册时所填的Email、电子邮箱" class="required tipsy_se input_text" type="text" name="login" minlength="3" />
 										
 									</p>
 									<p>
