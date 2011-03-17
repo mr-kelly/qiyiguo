@@ -82,8 +82,10 @@
 									<?php endforeach; ?>
 									</select>
 								</p>
+
+								<input class="form_key" name="form_key" type="hidden" value="<?=$form_key_token['form_key'];?>" />
+								<input class="form_key_token" name="form_key_token" type="hidden" />
 								
-						
 								<br />
 								
 								<div class="align_center">

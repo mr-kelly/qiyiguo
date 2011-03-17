@@ -11,7 +11,7 @@
 					//print_r( $douban_self );
 				?>
 			<div class="form_div">
-				<form method="post" action="<?=site_url('user/register_by_douban');?>?redirect=<?=$this->input->get('redirect');?>">
+				<form class="ajax_form" method="post" action="<?=site_url('user/register_by_douban');?>?redirect=<?=$this->input->get('redirect');?>">
 
 					<p>
 						<a target="_blank" href="http://t.sina.com.cn/<?=$douban_self['id'];?>">
@@ -27,22 +27,22 @@
 					
 					<p>
 						<label>电邮</label>
-						<input type="text" name="email" />
+						<input class="required" type="text" name="email" />
 					</p>
 					
 					<p>
 						<label>备用密码</label>
-						<input type="password" name="password" />
+						<input class="required" type="password" name="password" />
 					</p>
 					
 					<p>
 						<label>真实姓名</label>
-						<input type="text" name="realname" />
+						<input class="required" type="text" name="realname" />
 					</p>
 					
 					<p>
 						<label>昵称</label>
-						<input type="text" name="nickname" value="<?=$douban_self['title']['$t'];?>" />
+						<input class="required" type="text" name="nickname" value="<?=$douban_self['title']['$t'];?>" />
 					</p>
 					
 					<p>
@@ -92,8 +92,8 @@
 
 					<p>
 						<label>性别</label>
-						<input type="radio" name="gender" value="male" /> 男
-						<input type="radio" name="gender" value="female" /> 女
+						<input class="" type="radio" name="gender" value="male" /> 男
+						<input class="required" type="radio" name="gender" value="female" /> 女
 					<p>
 						<label>所在城市</label>
 						<select class="dict_province location_select" name="province_id">
@@ -120,7 +120,7 @@
 					</p>
 					
 					
-					<button type="submit" class="btn">
+					<button type="submit" class="kk_btn">
 						开始奇异果
 					</button>
 				</form>

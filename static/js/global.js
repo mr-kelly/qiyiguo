@@ -49,7 +49,7 @@ function notice_check() {
 			
 				// 提醒中的链接... 如果没有链接，不显示
 				if ( data[key].link != '' ) {
-					$link = '<a href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>';
+					$link = '<a target="_blank" href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>';
 				} else {
 					$link = '';
 				}
@@ -96,10 +96,8 @@ function search_submit_check( $this ) {
 function ajax_btn( $this ) {
 
 }
-
-function ajax_form( $this, $redirect ) {
-
-
+$(function(){
+	// Ajax 表单
 	$('.ajax_form').validate({
 			submitHandler: function(form) {
 				$('.ajax_form').ajaxSubmit({
@@ -107,6 +105,11 @@ function ajax_form( $this, $redirect ) {
 					success: function(json) {
 						if ( json.status == 1 ) {
 							kk_growl.success(json.info);
+							
+							if ( json.data != null ) {
+								// redirect
+								window.location = json.data;
+							}
 							
 						} else {
 							kk_growl.error(json.info);
@@ -121,14 +124,14 @@ function ajax_form( $this, $redirect ) {
 				alert('error');
 			}
 	});
+});
 
-}
 
 
 $(function() {
 
 	// PNG Fix
-	$('img').pngFix();
+	//$('body').pngFix();
 	
 	//$.jGrowl('<img src="http://localhost:8888/kiwiguo/static/img/logo.png" />abc', { sticky: true });
 	//$.jGrowl("A message with a header", { header: 'Important' });

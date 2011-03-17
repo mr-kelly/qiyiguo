@@ -100,6 +100,165 @@
 		}
 		
 		
+		
+		/**
+		 *	获得用户的的Stream....用于显示在用户页面~
+		 
+		 	包括： 用户发布的群话题、群活动
+		 			用户评论的群话题、
+		 			参与、关注的群活动
+		 */
+		function get_user_stream( $user_id, $limit=20, $start=0 ) {
+			$stream_array = array();
+			
+			// 用户发的话题....
+			$user_topics_sql = sprintf( 
+							'SELECT kk_topic.* FROM kk_topic,kk_group 
+								WHERE kk_topic.user_id=%d 
+								AND kk_group.privacy="public" 
+								AND kk_group.id = kk_topic.model_id  
+								ORDER BY kk_topic.modified DESC 
+								LIMIT %d,%d', 
+							$user_id ,
+							$start,
+							$limit
+							);
+						
+						
+			$user_topics = $this->db->query( $user_topics_sql )->result_array();
+			
+			foreach( $user_topics as $topic ) {
+				$stream_array[] = array(
+					'User' => kk_get_user( $topic['user_id'] ),
+					'Group' => kk_get_group( $topic['model_id'] ),
+					'Object' => array(
+						'act' => '发布了',
+						'title' => '话题',
+						'text' => !empty( $topic['title'] ) ? $topic['title'] : kk_content_preview( $topic['content'], 36 ),
+						'link' => sprintf( '/%s/%s', 'topic', $topic['id'] ),
+					),
+					'created' => $topic['created'],
+					'modified' => $topic['modified'],
+				);
+			}
+			
+			
+			// 用户发的活动
+			$user_events_sql = sprintf(
+								'SELECT kk_event.* FROM kk_event,kk_group 
+									WHERE kk_event.user_id=%d 
+									AND kk_group.privacy="public" 
+									AND kk_group.id = kk_event.model_id  
+									ORDER BY kk_event.modified DESC 
+									LIMIT %d,%d',
+								$user_id,
+								$start,
+								$limit
+								);
+								
+			$user_events = $this->db->query( $user_events_sql )->result_array();
+			
+			foreach( $user_events as $event ) {
+				$stream_array[] = array(
+					'User' => kk_get_user( $event['user_id'] ),
+					'Group' => kk_get_group( $event['model_id'] ),
+					'Object' => array(
+						'act' => '组织了',
+						'title' => '活动',
+						'text' => $event['name'],
+						'link' => sprintf( '/%s/%s', 'event', $event['id'] ),
+					),
+					'created' => $event['created'],
+					'modified' => $event['modified'],
+				);
+			}
+			
+			// 用户关注的活动
+			$user_join_events_sql = sprintf(
+										'SELECT kk_event.* FROM kk_event, kk_event_user, kk_group
+										WHERE kk_event_user.user_id=%d
+										AND kk_event_user.event_id=kk_event.id
+										AND kk_group.privacy="public"
+										AND kk_group.id=kk_event.model_id
+										ORDER BY kk_event.modified DESC
+										LIMIT %d,%d',
+										$user_id,
+										$start,
+										$limit
+									);
+			$user_join_events = $this->db->query( $user_join_events_sql )->result_array();
+			
+			foreach( $user_join_events as $event ) {
+				$stream_array[] = array(
+					'User' => kk_get_user( $event['user_id'] ),
+					'Group' => kk_get_group( $event['model_id'] ),
+					'Object' => array(
+						'act' => '参与了',
+						'title' => '活动',
+						'text' => $event['name'],
+						'link' => sprintf( '/%s/%s', 'event', $event['id'] ),
+					),
+					'created' => $event['created'],
+					'modified' => $event['modified'],
+				);
+			}
+			
+			
+			// 用户的话题评论   //获得评论，并获取对应的topic的群组
+			$user_topics_chat_sql = sprintf( 'SELECT 
+										kk_chat.user_id, 
+										kk_chat.model_id AS topic_id,
+										kk_topic.title AS topic_title,
+										kk_topic.content AS topic_content,
+										kk_chat.created, 
+										kk_chat.modified, 
+										kk_topic.model_id AS group_id
+										
+										FROM kk_chat,kk_topic,kk_group
+										WHERE kk_chat.user_id=%d
+										AND kk_chat.model="topic"
+										AND kk_chat.model_id = kk_topic.id
+										AND kk_topic.model_id = kk_group.id
+										ORDER BY kk_chat.modified DESC
+										LIMIT %d,%d',
+										$user_id,
+										$start,
+										10 ); // 限制10条评论
+										
+			$user_topics_chat = $this->db->query( $user_topics_chat_sql )->result_array();
+			
+			foreach( $user_topics_chat as $chat ) {
+				$stream_array[] = array(
+					'User' => kk_get_user( $chat['user_id'] ),
+					'Group' => kk_get_group( $chat['group_id'] ),
+					'Object' => array(
+						'act' => '评论了',
+						'title' => '聊天',
+						'text' => !empty( $chat['topic_title'] ) ? $chat['topic_title'] : kk_content_preview( $chat['topic_content'], 36) ,
+						'link' => sprintf( '/%s/%s', 'topic', $chat['topic_id'] ),
+					),
+					'created' => $chat['created'],
+					'modified' => $chat['modified'],
+				);
+			}
+			
+			
+			// 时间排序函数
+			function modified_sort( $a, $b ) {
+				return $a['modified'] < $b['modified'];
+			}
+			
+			// 按照modified排序
+			usort( $stream_array, 'modified_sort' );
+			
+			return $stream_array;
+		}
+		
+		
+		function _modified_sort( $a, $b ) {
+			return $a['modified'] > $b['modified'];
+		}
+		
 		/**
 		 *	获取指定用户发布、参与、感兴趣的活动
 		 */

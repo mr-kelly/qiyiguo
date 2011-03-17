@@ -29,8 +29,8 @@
 				'subject' => '默认主题',
 				'body' => '默认的邮件内容',
 				'reply_to' => array(
-					array( 'bnu.sife@gmail.com', '北师珠赛扶' ),
-					//array( 'chepy.v@gmail.com', 'Mr Kelly' ),
+					//array( 'bnu.sife@gmail.com', '北师珠赛扶' ),
+					array( 'chepy.v@gmail.com', 'Mr Kelly' ),
 				),
 			);
 			
@@ -84,10 +84,13 @@
 			
 			$mail->IsHTML( true );
 			
+			
+			return $mail->Send();
+			
 			if(!$mail->Send()) {
-			echo "Mailer Error: " . $mail->ErrorInfo;
+				echo "Mailer Error: " . $mail->ErrorInfo;
 			} else {
-			echo "Message has been sent";
+				echo "Message has been sent";
 			}
 			
 		}

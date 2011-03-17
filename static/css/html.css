@@ -216,6 +216,7 @@ form p {
  */
 .icon {
 	background: url(../img/icons.png) no-repeat;
+	_background: url(../img/ie6/icons.gif) no-repeat;
 	height: 16px;
 	display: inline-block;
 	padding: 0 0 0 18px;
@@ -415,4 +416,5 @@ button.kk_btn {
 }
 .kk_btn_blue {
 	background: url(../img/kk_btn_blue.png) no-repeat;
+	_background: url(../img/ie6/kk_btn_blue.gif) no-repeat;
 }

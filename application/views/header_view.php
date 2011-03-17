@@ -61,7 +61,8 @@
 	<script type="text/javascript" src="<?=site_url('import/js_vars');?>"></script>
 	
     <?php
-    	$this->load->view('import');
+    	$render['form_key_token'] = !empty( $form_key_token ) ? $form_key_token : '';
+    	$this->load->view('import', $render );
     ?>
 
 
@@ -103,7 +104,7 @@
             <div id="kk_topbar_container">
                 <div id="logo" class="tipsy_nw" title="奇异果是一个帮助你和你的朋友们发现和创造生活的地方。">
                     <a href="<?=site_url('/');?>">
-                        <img src="<?=static_url('img/logo.png');?>" height="35" />
+                        <img src="<?=static_url('img/logo.gif');?>" height="35" />
                     </a>
                 </div>
                 
@@ -356,8 +357,15 @@
 								<?php 
 									// Redirect-> 如果设置GET redirect,那么就display redirect~  没有，将redirect设为当前页面 
 									// 这样，可以令跳转的登录窗口生效
+									//IE 6到指定的登录页
+									if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ):
+								?>
+								<a id="" class="icon icon_login" href="<?=site_url('user/login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
+								<?php
+									else:
 								?>
 								<a id="login_btn" class="sexybox_iframe icon icon_login" href="<?=site_url('user/iframe_login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
+								<?php endif; ?>
 									登录
 								</a>
 							</span>

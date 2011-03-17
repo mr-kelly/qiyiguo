@@ -70,7 +70,17 @@
 				if ( is_group_admin( $group['id'], get_current_user_id() ) ):
 		?>
 		<div class="align_center">
+			<?php
+				// IE6转到指定页面添加群组
+				if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ):
+				//if ( ie6 ) :
+			?>
+			<a title="添加关系群(友情链接群)" class="tipsy_n kk_btn" href="<?=site_url('relation/choose_group_relation/' . $group['id'] );?>">
+			<?php
+				else:
+			?>
 			<a title="添加关系群(友情链接群)" class="tipsy_n sexybox kk_btn" href="<?=site_url('relation/ajax_choose_group_relation/' . $group['id'] );?>">
+			<?php endif; ?>
 				<span><span>&gt;添加友情群</span></span>
 			</a>
 			

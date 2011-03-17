@@ -7,7 +7,7 @@
 			</p>
 			
 			<p>
-				<label>或 搜索果群</label>
+				<label>输入群名</label>
 				<input class="search_groups" type="text" name="search_groups" />
 			</p>
 			
@@ -28,13 +28,12 @@
 			
 			$('.add_group_id').keyup(function(){
 				
-				$('.search_result').load( '<?=site_url("search/ajax_search_group_by_id");?>' + '/' + $(this).val() );
+				$('.search_result').load( '<?=site_url("search/ajax_search_group_by_id");?>' + '/' + $(this).val() + '?ajax=<?=rand();?>' );
 			});
 			
 			
 			$('.search_groups').keyup(function() {
-	
-				$('.search_result').load( '<?=site_url("search/ajax_search_groups_by_string");?>?q=' + $(this).val() );
+				$('.search_result').load( '<?=site_url("search/ajax_search_groups_by_string");?>?q=' + $(this).val()  + '&ajax=<?=rand();?>' );
 				
 			});
 		});

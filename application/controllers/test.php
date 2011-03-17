@@ -6,7 +6,25 @@
 			//exit('cannot enter test');
 			
 		}
-		
+		function test_formkey() {
+			$key_token =  $this->kk_formkey->create_key_token();
+			//print_r( $key_token );
+			
+			if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
+				echo $_POST['form_key'];
+			}
+			
+			
+			echo sprintf('<form method="post">
+				<input name="form_key" type="hidden" value="%s" />
+				<input type="submit" />
+			</form>',
+			$key_token['form_key']
+			);
+			
+			
+			
+		}
 		function ip() {
 			echo $this->input->ip_address();
 		}

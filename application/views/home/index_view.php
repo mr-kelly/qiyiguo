@@ -57,7 +57,7 @@
 									<li>
 										<div class="group_logo">
 											<a href="<?=site_url('group/' . $random_group['id']);?>">
-												<img class="avatar" src="<?=get_group_logo_url( $random_group['id'] );?>" width="40" />
+												<img class="avatar" src="<?=get_group_logo_url( $random_group['id'] );?>" width="40" height="40" />
 											</a>
 										</div>
 										

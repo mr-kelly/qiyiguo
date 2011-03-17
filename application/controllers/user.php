@@ -223,6 +223,8 @@
 			
 			// 哪一项页
 			if( $action == 'home' ) {
+				
+				$render['user_stream'] = $this->stream_model->get_user_stream( $user_id );
 				$render['current_user_lookup_home'] = true;
 				
 				// 首页读取stream
@@ -795,7 +797,8 @@ EOT;
 		 	$type    ajax, general（PHP普通模式)
 		 */
 		function login( $type="ajax") {
-			
+		
+
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				
 				
@@ -865,6 +868,16 @@ EOT;
 						ajaxReturn(null, validation_errors(), 0);
 						
 					}
+					
+					
+					// 正常浏览...					
+					// 如果是IE6。。。 转到首页提示登录 ie6修复
+					if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ) {
+						$this->session_message->set('你要登录后才能查看该页面');
+						redirect( '/' );
+					}
+					
+					
 					$data['show_captcha'] = FALSE;
 					if ($this->tank_auth->is_max_login_attempts_exceeded($login)) {
 						$data['show_captcha'] = TRUE;
@@ -885,14 +898,16 @@ EOT;
 			
 			
 			
-			$data = array(
+			$render = array(
+				'form_key_token' => $this->kk_formkey->create_key_token(),
 			);
+			
 			// 非post状态时, 
 			if ( $this->tank_auth->is_logged_in() ) {
 				redirect( $this->input->get('redirect') );
 			}
 			
-			$this->load->view('user/login_view', $data);
+			$this->load->view('user/login_view', $render);
 		}
 		
 		
@@ -1055,7 +1070,7 @@ EOT;
 					$password = $this->form_validation->set_value('password');
 					
 					if ( !$this->tank_auth->create_user( '', $email, $password, FALSE ) ) {
-						exit( 'create user error' );
+						ajaxReturn( null, '该电邮可能被注册过了', 0 );
 					}
 					
 					// 创建后立即登录
@@ -1098,8 +1113,10 @@ EOT;
 					);
 					
 					$this->user_profiles_model->create_user_profile( $current_user_id, $profile_data );
-						
-					redirect( $this->input->get('redirect') );
+					
+					// 成功？
+					ajaxReturn( site_url( $this->input->get('redirect') ), '成功通过豆瓣注册', 1 );
+					//redirect( $this->input->get('redirect') );
 					
 					
 				}
@@ -1134,6 +1151,8 @@ EOT;
 			$this->form_validation->set_rules('city_id', '城市', 'required|trim|xss_clean');
 			$this->form_validation->set_rules('province_id', '省份', 'required|trim|xss_clean');
 			
+			$this->form_validation->set_rules('form_key_token', '表单钥匙', 'required');
+			
 			if ( !$this->form_validation->run() ) {
 				//表单验证失败
 				ajaxReturn(null, validation_errors(), 0);
@@ -1146,11 +1165,30 @@ EOT;
 				$province_id = $this->form_validation->set_value('province_id');
 				$city_id = $this->form_validation->set_value('city_id');
 				
+				$form_key_token = $this->form_validation->set_value('form_key_token');
+				
+				if ( !$this->kk_formkey->check_key_token( $form_key_token ) ) {
+					ajaxReturn( null, '表单钥匙错误', 0 );
+				}
+
 				//检查email是否已经注册
 				if (!$this->tank_auth->is_email_available($email)) {
 					// 被注册了！返回错误！
 					ajaxReturn(null, '这个邮箱已经被注册过了！', 0);
 				} else {
+				
+					// 检查邮箱可不可用，是不是乱填
+					if ( !$this->_domain_exists ( $email ) ) {
+						ajaxReturn( null, '邮箱无效！', 0 );
+					}
+// 					if ( $this->kk_mailer->send_mail( array(
+// 														  'to' => array(
+// 														  array( $email, $realname ),
+// 													  ))) ) {
+// 						ajaxReturn( null, '邮箱无效！', 0 );
+// 						return;
+// 					}
+					
 					//没注册，那么添加用户吧    -- 不设username
 					$this->tank_auth->create_user( '' , $email, $password, FALSE);
 					
@@ -1238,7 +1276,8 @@ EOT;
 					$password = $this->form_validation->set_value('password');
 					
 					if ( !$this->tank_auth->create_user( '', $email, $password, FALSE ) ) {
-						exit( 'create user error' );
+						//exit( 'create user error' );
+						ajaxReturn( null, '失败。是不是该电邮地址已被注册?', 0 );
 					}
 					
 					// 立即登录
@@ -1316,7 +1355,8 @@ EOT;
 					
 					
 					// 通过新浪微博注册成功！！redirect!
-					redirect( $this->input->get('redirect') );
+					ajaxReturn( site_url( $this->input->get('redirect') ), '通过微博注册成功', 1 );
+					//redirect(  );
 				}
 			}
 			
@@ -1374,7 +1414,8 @@ EOT;
 		}
 		
 		function iframe_register() {
-			kk_show_view('user/register');
+			$render['form_key_token'] = $this->kk_formkey->create_key_token();
+			kk_show_view('user/register', $render );
 		}
 		
 		
@@ -1520,5 +1561,14 @@ EOT;
 			if ( !$this->user_profiles_model->is_user( $user_id ) ) {
 				show_404();
 			}
+		}
+		
+		
+		/**
+		 *	检查邮箱地址是否真实可以发邮件..!!
+		 */
+		function _domain_exists($email,$record = 'MX') {
+			list($user,$domain) = split('@',$email);
+			return checkdnsrr($domain,$record);
 		}
 	}

@@ -18,7 +18,7 @@
 	<?php endforeach; ?>
 	
 <?php else: ?>
-	NO Groups
+	找不到群
 <?php endif; ?>
 
 </ul>

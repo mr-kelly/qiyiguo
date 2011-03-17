@@ -301,6 +301,8 @@ ul#kk_menu {
 
     margin:0 0 0 60px;
     position:relative;
+    z-index: 999;
+    
 }
 ul#kk_menu li {
     float:left;
@@ -620,11 +622,13 @@ div.submenu span.submenu_corner:first-child {
 		.sidebar_links li a:hover,  .vertical_links li a:hover {
 			
 			background: url(../img/sidebar_a_hover.png) right;
+			_background: url(../img/ie6/sidebar_a_hover.gif) right;
 			color: #333;
 	
 		}
 			.sidebar_links li a:hover span.hover, .vertical_links li a:hover span.hover {
 				background: #FFF url(../img/sidebar_a_hover_span.png) right;
+				_background: #FFF url(../img/ie6/sidebar_a_hover_span.gif) right;
 				width: 30px;
 				height: 30px;
 				position: absolute;
@@ -1273,6 +1277,34 @@ div.submenu span.submenu_corner:first-child {
 			.event_even {
 				border-left: 1px dashed #CCC;
 			}
+			
+			
+.stream_list {
+	margin: 0;
+	padding: 0;
+}
+	.stream_list li {
+		list-style: none;
+		clear: both;
+		margin: 10px 0;
+		height: 55px;
+		width: 100%;
+		border-bottom: 1px dashed #CCC;
+		padding: 5px 0;
+	}
+		.stream_list .stream_logo {
+			float: left;
+		}
+
+		.stream_title, .stream_content {
+			margin-left: 55px;
+		}
+		
+		.stream_title {
+			font-size: 13px;
+			margin-bottom: 5px;
+		}
+		
 /** Footer */
 
 #footer_ad {

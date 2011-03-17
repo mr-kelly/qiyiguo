@@ -69,7 +69,15 @@
 										<label for="password">密码</label>
 										<input title="请设置您的密码" class="required input_text tipsy_sw" id="user_register_password" name="password" type="password" minlength="4" />
 									</p>
-							
+									
+									<p>
+										<label>性别</label>
+										<span>
+											<input type="radio" class="" name="gender" value="male" />男
+											<input type="radio" class="" name="gender" value="female" />女
+										</span>
+									</p>
+									
 									<p>
 										<label>所在省份</label>
 										<select id="user_register_province_id" name="province_id" class="required">
@@ -97,7 +105,10 @@
 										<?php endforeach; ?>
 										</select>
 									</p>
-							
+									
+									<input class="form_key" name="form_key" type="hidden" value="<?=$form_key_token['form_key'];?>" />
+									<input class="form_key_token" name="form_key_token" type="hidden" />
+									
 									<br />
 									
 									<div class="align_center">

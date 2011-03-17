@@ -111,7 +111,7 @@
 									
 									<? if ( !empty( $user['gtalk'] ) ) : ?>
 									<li>
-										<a target="_blank" href="#<?=$user['gtalk'];?>">
+										<a class="tipsy_w" target="_blank" href="#" title="<?=$user['gtalk'];?>">
 											<span class="hover"></span>
 											<span class="icon icon_gtalk"></span>
 											Gtalk聊天
@@ -174,8 +174,52 @@
 							?>
 							</ul>
 							
-							<h2>公开群组的话题</h2>
-							<h2>参与公开群组的活动</h2>
+							<?php
+								//print_r( $user_stream );
+							?>
+							
+							
+							<?php if ( !empty( $user_stream ) ) : ?>
+							<ul class="stream_list">
+							<?php foreach( $user_stream as $stream ) : ?>
+								<li>
+									<div class="stream_logo">
+										<img width="50" height="50" src="<?=get_group_logo_url( $stream['Group']['id'] );?>" />
+									</div>
+									<div class="stream_title">
+										<?=$stream['Object']['title'];?>
+										
+										<span class="small grey float_right">
+											<?php
+												$ci =& get_instance();
+											?>
+											<?=$ci->humanize->datetime( $stream['modified'] );?>
+										</span>
+										
+									</div>
+									<div class="stream_content">
+										<? //$stream['modified'];?>
+										<a href="<?=get_user_url( $stream['User']['id'] );?>">
+											<?= $stream['User']['name'];?>
+										</a>
+										在公开群
+										<a href="<?=get_group_url( $stream['Group']['id'] );?>">
+											<?= $stream['Group']['name'];?>
+										</a>
+										<?=$stream['Object']['act'];?>
+										<a href="<?=site_url( $stream['Object']['link'] );?>">
+											<?=$stream['Object']['text'];?>
+										</a>
+									</div>
+									
+								</li>
+							<?php endforeach; ?>
+							</ul>
+							<?php else: ?>
+							<div class="grey">
+								他还没有任何个人动态...
+							</div>
+							<?php endif; ?>
 						
 						</div>
 						

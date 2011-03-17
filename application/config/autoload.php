@@ -54,11 +54,13 @@ $autoload['packages'] = array(APPPATH.'third_party');
 */
 
 $autoload['libraries'] = array(
-	'tank_auth','form_validation',
+	'tank_auth', 
+	'form_validation',
 	'session_message',
 	'humanize',
 	'stream',
 	'KK_Filter',
+	'KK_Formkey',
 	//'KK_Controller',
 	//'KK_Model',
 	);

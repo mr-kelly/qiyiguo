@@ -51,6 +51,20 @@
 					$mail_to_user_list = array();
 					foreach ( $mail_send_to as $user ) {
 						array_push( $mail_to_user_list , array( $user['email'] , $user['name'] ) );
+						
+						
+						$mail_domain = explode('@', $user['email'] );
+						$mail_domain = 'http://' . $mail_domain[1];
+						
+						// 提醒对方有人发了邮件...
+						add_notice( $user['id'], 
+										'新邮件', 
+										'有人发了一封电邮到你的邮箱',
+										$mail_domain,
+										'mail',
+										0 );
+										
+									
 					}
 					
 					// 寄信人,回复人Emails数组, // 回复人, 加上自己, 让对方可以回复自己

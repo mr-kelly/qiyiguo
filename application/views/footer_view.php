@@ -126,6 +126,9 @@
 					<span>
 						version 0.90
 					</span>
+					<span>
+						<a class="grey" href="http://www.google.com/chrome">使用谷歌浏览器会有意想不到的效果</a>
+					</span>
 					
 					<span>
 						<?php

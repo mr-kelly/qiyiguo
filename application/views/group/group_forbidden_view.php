@@ -20,10 +20,22 @@
 						<?=$group['name'];?> 
 					</h2>
 					
+					<div>
+						<?=kk_get_province_name( $group['province_id'] );?>
+						<?=kk_get_city_name( $group['city_id'] );?>
+					</div>
+					
 					<div class="group_intro grey">
-						<?=$group['intro'];?>
 						
-						(<?=$group_users_count;?>个成员)
+
+						
+						<div>
+							<?=$group['intro'];?>
+						</div>
+						
+						<div>
+							(<?=$group_users_count;?>个成员)
+						</div>
 					</div>
 				</div>
 				

@@ -39,8 +39,8 @@
 			 </p>
 			 
 			 <p>
-				 <a class="btn" href="#" onclick="return add_topic_submit();">
-					 <span><span>&nbsp;发!&nbsp;</span></span>
+				 <a class="btn kk_btn" href="#" onclick="return add_topic_submit();">
+					 <span><span>&nbsp;确定发布&nbsp;</span></span>
 				 </a>
 				 
 				 <a id="add_topic_file_btn" class="icon icon_add" href="javascript:void(0);">添加附件(小于1MB)</a>

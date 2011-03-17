@@ -84,6 +84,9 @@
 		width: 80px;
 		line-height: 18px;
 		text-align: center;
+		*text-align: left;
+		*width: 85px;
+
 	}
 	
 	

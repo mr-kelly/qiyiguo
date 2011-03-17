@@ -1,4 +1,15 @@
-    
+<script>
+	<?php
+		// 读取form_token
+		if ( !empty( $form_key_token ) ) :
+	?>
+		var $form_token = '<?=$form_key_token['form_token'];?>';
+	<?php
+		endif;
+	?>
+</script>
+
+
     <? // jQuery ?>
     <?=import_js('js/lib/lib.js');?>
     <?=import_js('js/css_fixed.js');?>
@@ -75,7 +86,8 @@
 	<? //import_js('js/GetSet.js');?>
 	
 	<? // jQuery png Fix for IE6 ?>
-	<?=import_js('js/kk.pngFix.pack.js');?>
+	<?=import_js('js/kk.pngFix.js');?>
+	
 	
 	<?=import_js('js/global.js');?>
 	

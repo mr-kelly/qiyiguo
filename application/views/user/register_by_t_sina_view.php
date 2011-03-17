@@ -9,7 +9,7 @@
 			
 			
 			<div class="form_div">
-				<form onsubmit="return ajax_form();" class="ajax_form" method="post" action="<?=site_url('user/register_by_t_sina');?>?redirect=<?=$this->input->get('redirect');?>">
+				<form class="ajax_form" method="post" action="<?=site_url('user/register_by_t_sina');?>?redirect=<?=$this->input->get('redirect');?>">
 				<?php
 					$ci =& get_instance();
 					$ci->load->library('t_sina');
@@ -30,22 +30,22 @@
 					
 					<p>
 						<label>电邮</label>
-						<input type="text" name="email" />
+						<input class="required" type="text" name="email" />
 					</p>
 					
 					<p>
 						<label>备用密码</label>
-						<input type="password" name="password" />
+						<input class="required" type="password" name="password" />
 					</p>
 					
 					<p>
 						<label>真实姓名</label>
-						<input type="text" name="realname" />
+						<input class="required" type="text" name="realname" />
 					</p>
 					
 					<p>
 						<label>昵称</label>
-						<input type="text" name="nickname" value="<?=$user_t_sina['screen_name'];?>" />
+						<input class="required" type="text" name="nickname" value="<?=$user_t_sina['screen_name'];?>" />
 					</p>
 					
 					<p>

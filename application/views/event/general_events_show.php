@@ -59,12 +59,15 @@
 								?>
 								<div class="event_user" >
 									<div class="grey">
+										
+										<a href="<?=$user_url;?>" title="组织者: <?=$event_user['name'];?>" class="tipsy_s">
+											<img width="16" src="<?= get_user_avatar_url( $event_user['id'] );?>" />
+										</a>
+										
 										<?=$event_users_count;?>人参与
 									</div>
 									
-									<a href="<?=$user_url;?>" title="组织者: <?=$event_user['name'];?>" class="tipsy_s">
-										<img width="16" src="<?= get_user_avatar_url( $event_user['id'] );?>" />
-									</a>
+
 									
 								</div>
 

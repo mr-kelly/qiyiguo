@@ -10,7 +10,7 @@
 		<?=import_js('js/app/user/login.js');?>
 		<?=import_css('css/app/user/login.css');?>
 		
-		<div class="kk_tabs">
+		<div class="kk_tabs" style="width:560px;">
 		
 			<ul class="tab_menu">
 				<li><a href="#login_tab">登录</a></li>

@@ -15,7 +15,7 @@
 							<h2>登录</h2>
 							
 							<div class="form_div">
-								<form id="user_login_form" class="home_user_login_form" method="post" action="<?=site_url('user/login');?>">
+								<form id="user_login_form" class="home_user_login_form" method="post" action="<?=site_url('user/login?ajax=' . rand() );?>">
 									<p>
 										<label>电邮</label>
 										<input id="user_login_login" title="注册时所填的Email、电子邮箱" class="required email tipsy_se input_text" type="text" name="login" minlength="3" />
@@ -119,7 +119,7 @@
 							<?php foreach( $random_users as $random_user ) :?>
 								<li>
 									<a class="tipsy_s" href="<?=site_url('user/' . $random_user['id']);?>" title="<?=$random_user['name'];?> <?= !empty( $random_user['Mood'] ) ? ': ' . $random_user['Mood']['text'] : '';?>">
-										<img class="avatar" width="30" src="<?=get_user_avatar_url( $random_user['id'] );?>" />
+										<img class="avatar" width="30" height="30" src="<?=get_user_avatar_url( $random_user['id'] );?>" />
 									</a>
 								</li>
 							<?php endforeach; ?>

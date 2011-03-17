@@ -1,7 +1,13 @@
 <?php
 	// 全局应用的 javascript 变量
 	$ci =& get_instance();
+	
+
 ?>
+
+
+
+
 var $static_url = '<?=static_url();?>';
 
 var $site_url = '<?= site_url(); ?>';  <?php //网站基础网址?>
