@@ -45,7 +45,18 @@
 				return false;
 			}
 			
-			return $topic->row_array();
+			$topic = $topic->row_array();
+			
+			if ( isset( $topic['attach_img_id'] ) ) {
+				$topic['Attach_Img'] = $this->_get_attach( $topic['attach_img_id'], 'image' );
+			}
+			
+			// 绑定 附加文件
+			if ( isset( $topic['attach_file_id'] ) ) {
+				$topic['Attach_File'] = $this->_get_attach( $topic['attach_file_id'], 'file' );
+			}
+			
+			return $topic;
 		}
 		
 		
@@ -127,11 +138,34 @@
 		}
 		
 		function del_topic( $topic_id ) {
-			return $this->db->del('topic', array(
+		
+			// TODO 同时删除评论、图片、附件
+			
+			
+			return $this->db->delete('topic', array(
 				'id' => $topic_id,
 			));	
 		}
+		
+		
+		/**
+		 *	获取热门话题...人气比较高的. 人气 > 10的
+		 */
+		function get_hot_topics( $limit, $start, $random=true ) {
+		
+		}
 
 		
+		/**
+		 *	 提升某话题的查看量
+		 */
+		function up_topic_page_view( $topic_id ) {
+			$topic = $this->get_topic_by_id( $topic_id );
+			
+			$this->db->where('id', $topic['id'] );
+			return $this->db->update('topic', array(
+				'page_view' => $topic['page_view'] + 1,
+			));
+		}
 	
 	}

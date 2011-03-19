@@ -63,6 +63,10 @@
 			$mail->FromName = $option['from_name'];
 			$mail->Subject = $option['subject'];
 			
+			
+			// 邮件内容加上"来自奇异果"
+			$optinon['body'] .= '<div><a href="http://qiyiguo.cc">这封电邮从「奇异果」发出</a></div>';
+			
 			$mail->AltBody = $option['body'];
 			
 			$mail->MsgHTML( $option['body'] );

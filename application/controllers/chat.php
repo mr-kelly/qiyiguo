@@ -32,6 +32,26 @@
 
 		
 		/**
+		 *	获得指定的chat
+		 */
+		function get_chat_by_id( $chat_id ) {
+			$chat = $this->db->get_where('chat', array(
+				'id' => $chat_id,
+			));
+			
+			if ( $chat->num_rows() == 0 ) {
+				return false;
+			}
+			
+			$chat = $chat->row_array();
+			
+			return $chat;
+		}
+		
+
+		
+		
+		/**
 		 *	添加新聊天,  ajax
 		 *  $for - 指定对应的模型   group / user
 		 *   is_title 是否需要标题title
@@ -190,6 +210,29 @@
 		}
 		
 		
+		
+		/**
+		 *	删除评论
+		 */
+		function ajax_delete_chat( $chat_id ) {
+			
+			if ( !is_logged_in() ) {
+				ajaxReturn( 'login_required', '未登录', 0 );
+			}
+			
+			// 判断评论是否属于当前用户的...
+			$chat = $this->chat_model->get_chat_by_id( $chat_id );
+			
+			if ( $chat['user_id'] == get_current_user_id() ) {
+				if ( $this->chat_model->del_chat( $chat_id ) ) {
+					ajaxReturn( null, '成功删除评论', 1);
+				} else {
+					ajaxReturn( null, '无法删除评论', 0);
+				}
+				
+			}
+			
+		}
 // 		function add_topic( $model, $model_id) {
 // 			$this->_add($model, $model_id,  true);
 // 		}

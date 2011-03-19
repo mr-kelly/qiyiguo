@@ -71,13 +71,23 @@
 						
 						
 					</div>
-					<a href="#" class="chat_reply icon icon_reply">回复↓</a>
 					
+					<a href="#" class="chat_reply icon icon_reply">回复↓</a>
+
 					<?php
 						// 聊天层次太长了！！！ 提醒用户可以电邮他
 						if ( $chat['depth'] > 8 ):
 					?>
-					<a href="<?=site_url('mail?' . 'send_to=' . $chat['User']['id'] );?>" class="tipsy_n chat_email icon icon_email" title="聊得起劲？发电邮给他吧">电邮他</a>
+					<a class="chat_email" href="<?=site_url('mail?' . 'send_to=' . $chat['User']['id'] );?>" class="tipsy_n chat_email icon icon_email" title="聊得起劲？发电邮给他吧">电邮他</a>
+					<?php
+						endif;
+					?>
+					
+					<?php
+						// chat的发布人。可以删除chat
+						if ( $chat['user_id'] == get_current_user_id() ) :
+					?>
+						<a onclick="return delete_btn(this);" class="icon icon_delete chat_delete" href="#" ajax="<?=site_url('chat/ajax_delete_chat/' . $chat['id'] );?>">删除</a>
 					<?php
 						endif;
 					?>

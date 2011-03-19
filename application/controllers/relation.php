@@ -20,6 +20,14 @@
 				ajaxReturn(null, 'exist or duplicated', 0);
 			} else {
 				// 成功follow关联
+				// 提醒to_user
+				add_notice( $to_user_id, 
+							'新粉丝',
+							sprintf( '%s收藏了你', get_current_user_name() ),
+							sprintf('/%s/%s','user', get_current_user_id() ),
+							'user',
+							get_current_user_id()   // 查看他的用户页面，那么清楚notice
+								);
 				ajaxReturn( null, '关注了他！', 1 );
 			}
 			
@@ -34,6 +42,8 @@
 			
 			$this->load->model('relation_model');
 			if ( $this->relation_model->del_user_relation( get_current_user_id(), $to_user_id )) {
+				// 取消关注不提醒		
+			
 				ajaxReturn( null, '已取消关注！', 1 );
 			} else {
 				ajaxReturn( null, 'failed!' , 0 );

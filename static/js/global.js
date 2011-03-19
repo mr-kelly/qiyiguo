@@ -28,7 +28,7 @@ var kk_growl = {
 	
 	notice: function( $message, $header ) {
 
-		$.jGrowl( $message , { header: '<span class="icon icon_notice">' + $header + '</span>',  life:10000 });
+		$.jGrowl( $message , { sticky: true, header: '<span class="icon icon_notice">' + $header + '</span>' });
 	}
 }
 
@@ -37,38 +37,52 @@ var kk_growl = {
  *	每10秒检查是否有新的提醒，
  	并显示提醒
  */	
-function notice_check() {
-	$.getJSON( $get_user_notices_url, function(json) {
-		//kk_growl.notice( json );
+ 
 
-		if ( json.status == 1 ) {
-			//alert("有提醒呢");
-			//kk_growl.notice( json, '有提醒' );
-			data = json.data;
-			for ( var key in data ) {
-			
-				// 提醒中的链接... 如果没有链接，不显示
-				if ( data[key].link != '' ) {
-					$link = '<a target="_blank" href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>';
-				} else {
-					$link = '';
-				}
-				kk_growl.notice( data[key].content + 
-									$link, 
-									data[key].title );
+
+function notice_check() {
+		$.getJSON( $get_user_notices_url, function(json) {
+
+			if ( json.status == 1 ) {
+				
+				//alert("有提醒呢");
+				//kk_growl.notice( json, '有提醒' );
+				data = json.data;
+				//if ( data ) {
+					for ( var key in data ) {
+					
+						// 提醒中的链接... 如果没有链接，不显示
+						if ( data[key].link != '' ) {
+							$link = '<a target="_blank" href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>';
+						} else {
+							$link = '';
+						}
+						kk_growl.notice( data[key].content + 
+											$link, 
+											data[key].title );
+											
+						
+					}
+					clearInterval( $notice_interval );
+
 			}
-		}
-		
-	});
+			
+		});
+	//}
 }
 
-$(function(){
-	// 进入页面立刻检查有没提醒...
-	notice_check();
+var $notice_interval = setInterval( 'notice_check()', 30000 );
 
+$(function(){
+	
+	// 进入页面后，检查，是否有， 有 , 消灭计时器
+	// 没有，让循环计时器启动
+	// 循环过程中，检查到有提醒， 消灭计时器
+	
+	notice_check();
 });
 
-setInterval( 'notice_check()', 30000 );	 // 30秒检查notice...
+
 
 
 
@@ -96,6 +110,33 @@ function search_submit_check( $this ) {
 function ajax_btn( $this ) {
 
 }
+
+
+/**
+ *	删除的ajax通用按钮...
+ */
+function delete_btn( $this, $redirect ) {
+	if ( confirm( '确定删除?') ) {
+		$.getJSON( $($this).attr('ajax'), function(json) {
+			if ( json.status == 1 ) {
+				kk_growl.success( json.info );
+				
+				if ( $redirect ) {
+					location.href= $redirect;
+				} else {
+					location.reload(); // 删除后刷新
+				}
+				
+			} else {
+				kk_growl.error( json.info );
+			}
+		});
+	}
+	
+	return false;
+}
+
+
 $(function(){
 	// Ajax 表单
 	$('.ajax_form').validate({

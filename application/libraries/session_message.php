@@ -8,11 +8,16 @@
 		}
 		
 		// set 完后，应该redirect会指定页面！
-		function set($message) {
-			$this->ci->session->set_flashdata('session_message', $message);
+		function set( $message ) {
+			$this->ci->session->set_userdata('session_message', $message);
 		}
 		
 		function get() {
-			return $this->ci->session->flashdata('session_message');
+			$session_message = $this->ci->session->userdata('session_message');
+			
+			// 清除
+			$this->ci->session->set_userdata('session_message', null );
+			
+			return $session_message;
 		}
 	}

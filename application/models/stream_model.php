@@ -92,12 +92,77 @@
 			$query_sql .= sprintf( ' LIMIT %d,%d', $start , $limit );
 			
 			
-			return $this->db->query( $query_sql )->result_array();
+			$topics = $this->db->query( $query_sql )->result_array();
+			
+			foreach( $topics as $key=>$topic ) {
+				$topics[$key]['User'] = kk_get_user( $topic['user_id'] );
+				$topics[$key]['Group'] = kk_get_group( $topic['model_id'] );
+			}
+			
+			return $topics;
 			
 //			return $this->db->get('topic', $limit, $start)->result_array();
 			
 			
 		}
+		
+		
+		
+		function get_user_groups_topics_count( $user_id ) {
+			// 先获得用户关注的群组~ // 获取全部，
+			$groups_sql = sprintf( 'SELECT kk_group_user.group_id FROM kk_group_user INNER JOIN kk_group
+											WHERE kk_group_user.user_id = %d
+											AND kk_group_user.group_id = kk_group.id', 
+											$user_id  );
+			if ( ! empty ($privacy ) ) {
+				// 指定获取 公开或私有的群组
+				$groups_sql .= sprintf( ' AND kk_group.privacy = "%s"', $privacy );
+			}
+			
+			
+			
+			//$groups_sql = .sprintf( ' LIMIT %d,%d', $start, $limit ); 不限制
+			$user_groups = $this->db->query( $groups_sql );
+			
+			
+			if ( $user_groups->num_rows() == 0 ) {
+				return false;  //没有关注群组，返回空
+			}
+			
+			// 抓取对应群组的topics..
+			
+			$query_sql = 'SELECT * FROM kk_topic WHERE';
+			foreach ( $user_groups->result_array() as $key=>$user_group ) {
+// 				$this->db->or_like( array(
+// 					'model' => 'group',
+// 					'model_id' => $user_group['group_id'],
+// 				) );
+				if ( $key == 0 ) { //第一次，不加 OR 查询
+					$query_sql .= sprintf('( model = "%s" AND model_id = %d )', 'group', $user_group['group_id'] );
+				} else {
+					$query_sql .= sprintf(' OR ( model = "%s" AND model_id = %d )', 'group', $user_group['group_id'] );
+				}
+				
+			}
+			
+			// 排序, 最新放前面
+			//$query_sql .= ' ORDER BY created DESC';
+			// 限制
+			//$query_sql .= sprintf( ' LIMIT %d,%d', $start , $limit );
+			return $this->db->query( $query_sql )->num_rows();
+			
+			
+			
+			$topics = $this->db->query( $query_sql )->result_array();
+			
+			foreach( $topics as $key=>$topic ) {
+				$topics[$key]['User'] = kk_get_user( $topic['user_id'] );
+				$topics[$key]['Group'] = kk_get_group( $topic['model_id'] );
+			}
+			
+			return $topics;
+		}
+		
 		
 		
 		
@@ -175,12 +240,17 @@
 			
 			// 用户关注的活动
 			$user_join_events_sql = sprintf(
-										'SELECT kk_event.* FROM kk_event, kk_event_user, kk_group
+										'SELECT kk_event.id,
+										kk_event.name,
+										kk_event.model_id,
+										kk_event_user.user_id,
+										kk_event_user.created,
+										kk_event_user.modified FROM kk_event, kk_event_user, kk_group
 										WHERE kk_event_user.user_id=%d
 										AND kk_event_user.event_id=kk_event.id
 										AND kk_group.privacy="public"
-										AND kk_group.id=kk_event.model_id
-										ORDER BY kk_event.modified DESC
+										AND kk_group.id = kk_event.model_id
+										ORDER BY kk_event_user.modified DESC
 										LIMIT %d,%d',
 										$user_id,
 										$start,
@@ -272,6 +342,7 @@
 							AND kk_group.privacy = "public"
 							AND ( kk_topic.title LIKE "%' . $q . '%"
 							OR kk_topic.content LIKE "%' . $q . '%" )
+							ORDER BY modified DESC
 							LIMIT ' . $start . ',' . $limit;
 			
 							
@@ -300,6 +371,7 @@
 							AND kk_group.privacy = "public"
 							AND ( kk_event.name LIKE "%' . $q . '%"
 							OR kk_event.content LIKE "%' . $q . '%" )
+							ORDER BY modified DESC
 							LIMIT ' . $start . ',' . $limit;
 			$events = $this->db->query( $events_sql )->result_array();
 			
@@ -327,6 +399,12 @@
 		}
 		
 		
+		function search_stream_count( $q ) {
+			// 指定的搜索返回多少条
+			
+			
+		}
+		
 		
 		/**
 		 *	获取指定用户发布、参与、感兴趣的活动
@@ -341,5 +419,68 @@
 		function get_user_topics( $user_id ) {
 			
 		}
-	
+		
+		
+		/**
+		 *	随机stream... 话题，活动
+		 */
+		function get_random_stream( $limit = 10, $start=0 ) {
+		
+			$return_stream = array();
+			
+			$topics_sql = 'SELECT kk_topic.* FROM kk_topic, kk_group
+							WHERE kk_topic.model_id = kk_group.id
+							AND kk_group.privacy = "public"
+							ORDER BY rand()
+							LIMIT ' . $start . ',' . $limit;
+			
+							
+			$topics = $this->db->query( $topics_sql )->result_array();
+			
+			
+			foreach( $topics as $topic ) {
+				$return_stream[] = array(
+					'User' => kk_get_user( $topic['user_id'] ),
+					'Group' => kk_get_group( $topic['model_id'] ),
+					'Object' => array(
+						'act' => '发布了',
+						'title' => '话题',
+						'text' => !empty( $topic['title'] ) ? $topic['title'] : kk_content_preview($topic['content'],36) ,
+						'link' => sprintf('/%s/%s', 'topic', $topic['id'] ),
+					),
+					'created' => $topic['created'],
+					'modified' => $topic['modified'],
+				);
+			}
+			
+			
+			
+			$events_sql = 'SELECT kk_event.* FROM kk_event, kk_group
+							WHERE kk_event.model_id = kk_group.id
+							AND kk_group.privacy = "public"
+							ORDER BY rand()
+							LIMIT ' . $start . ',' . $limit;
+			$events = $this->db->query( $events_sql )->result_array();
+			
+			foreach( $events as $event ) {
+				$return_stream[] = array(
+					'User' => kk_get_user( $event['user_id'] ),
+					'Group' => kk_get_group( $event['model_id'] ),
+					'Object' => array(
+						'act' => '组织了',
+						'title' => '活动',
+						'text' => $event['name'],
+						'link' => sprintf('/%s/%s', 'event', $event['id'] ),
+					),
+					'created' => $event['created'],
+					'modified' => $event['modified'],
+				);
+			}
+							
+							
+			
+			
+			
+			return $return_stream;
+		}
 	}

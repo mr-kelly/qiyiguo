@@ -303,7 +303,7 @@ form p {
 .icon_admin {
 	background-position: 0 -5463px;
 }
-.icon_error {
+.icon_error, .icon_delete {
 	background-position: 0 -858px;
 }
 .icon_yes {
@@ -319,13 +319,13 @@ form p {
 	background-position: 0 -3711px;
 }
 
-.icon_word {
+.icon_doc {
 	background-position: 0 -4357px;
 }
 .icon_ppt {
 	background-position: 0 -4068px;
 }
-.icon_excel {
+.icon_xls {
 	background-position: 0 -3744px;
 }
 .icon_zip {
@@ -334,6 +334,8 @@ form p {
 .icon_rar {
 	background-position: 0 -3541px;
 }
+
+
 .icon_website {
 	background-position: 0 -2827px;
 }

@@ -2,33 +2,49 @@
 	$this->load->view('header_view');
 ?>
 
+	<?=import_css('css/app/event/event_lookup.css');?>
+	
 	<div id="content">
 		<div class="content_top">
 			<div class="content_bottom">
+			
+				<div class="float_right">
+					<?php
+						$this->load->view('event/general_event_join_btn');
+					?>
+				</div>
+				
 				<h1><?=$event['name'];?></h1>
 				
-				<?php
-					$this->load->view('event/general_event_join_btn');
-				?>
+
 				
 				
 				<div class="form_div">
-					<p>
-						<label>开始时间:</label>
+					<div>
+						<span>
+							<b>开始时间: </b>
+						</span>
 						<span><?=$event['start'];?></span>
-					</p>
-					
-					<p>
-						<label>结束时间:</label>
-						<span><?=$event['end'];?></span>
-					</p>
-					
-					<p>
-						<?=$event['content'];?>
-					</p>
+					</div>
 					
 					<div>
-						<h3>参加人数: <?= $event_join_users_count; ?></h3>
+						<span>
+							<b>结束时间: </b>
+						</span>
+						<span><?=$event['end'];?></span>
+					</div>
+					
+					<div>
+						<p>
+							<?=$event['content'];?>
+						</p>
+					</div>
+					
+					<div>
+						<h3>
+							<span class="icon"></span>
+							<?= $event_join_users_count; ?>人参加
+						</h3>
 						
 						
 						<?php foreach ( $event_join_users as $user ) : ?>
@@ -39,7 +55,10 @@
 					</div>
 					
 					<div>
-						<h3>关注人数: <?= $event_users_count; ?></h3>
+						<h3>
+							<span class="icon"></span>
+							<?= $event_users_count; ?>人关注
+						</h3>
 						
 						
 						<?php foreach ( $event_users as $user ) : ?>

@@ -70,8 +70,8 @@
 										
 										<?php if ( isset( $topic['Attach_Img'] ) ) : ?>
 										<div class="topic_attach_img">
-											<a class="sexybox" href="<?=site_url('static/upload/attach_img/');?><?=$topic['Attach_Img']['file'];?>">
-												<img width="80" src="<?=site_url('static/upload/attach_img/');?><?=$topic['Attach_Img']['file'];?>" />
+											<a class="sexybox" href="<?=site_url('static/upload/attach_img' . $topic['Attach_Img']['file']);?>">
+												<img width="80" src="<?=site_url('static/upload/attach_img' . $topic['Attach_Img']['file']);?>" />
 											</a>
 											
 											
@@ -80,8 +80,11 @@
 										
 										<?php if ( isset( $topic['Attach_File'] ) ) : ?>
 										<div class="topic_attach_file">
-											<span class="icon">
-												<?=$topic['Attach_File']['file_name'];?>
+											<span class="icon icon_<?=substr( $topic['Attach_File']['file_ext'], 1);?>">
+												
+												<a target="_blank" href="<?=site_url('static/upload/attach_file' . $topic['Attach_File']['file'] );?>">
+													<?=$topic['Attach_File']['file_name'];?>
+												</a>
 											</span>
 										</div>
 										<?php endif; ?>
@@ -97,6 +100,20 @@
 								
 								<div class="topic_panel">
 									<div class="topic_controller">
+										<?php
+										if ( isset( $group ) ): // 在群组的页
+											// 管理员、发布的用户可以删除
+											if ( is_group_admin( $group['id'] , get_current_user_id() ) 
+													|| $topic['user_id'] == get_current_user_id() 
+													):
+										?>
+										<a href="#" onclick="return delete_btn(this);" class="icon icon_delete" ajax="<?=site_url('topic/ajax_delete/' . $topic['id']);?>">
+											删除
+										</a>
+										<?php
+											endif;
+										endif;
+										?>
 										<a href="<?=site_url('chat/ajax_get_chats/topic/' . $topic['id']);?>?ajax=<?=rand();?>&chat_width=<?= isset( $chat_width ) ? $chat_width : ''; ?>" class="btn chat_button">
 											
 											<?php
@@ -165,7 +182,9 @@
 															
 															
 														</div>
+														
 														<a href="#" class="latest_chat_reply"> &nbsp;[查看所有回复]</a>
+		
 														
 													</div>
 													

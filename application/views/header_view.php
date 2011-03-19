@@ -75,7 +75,7 @@
 	
 	<div id="loading">
 		<img src="<?=static_url('img/loading.gif');?>" />
-		加载中...
+		加载中,请稍候...
 	</div>
 	
 	<div id="loading_error">
@@ -112,8 +112,8 @@
                 
 					<?php if ( is_logged_in() ): ?>
 					<li class="menu_item <?=isset($current_user_home) ? 'current_menu' : '' ;?>">
-						<a href="<?=get_user_url( get_current_user_id() );?>">
-							个人主页
+						<a href="<?=site_url('home/start');?>">
+							首页
 						</a>
                         <div class="submenu">
                             <span class="submenu_corner_left"></span>
@@ -122,7 +122,7 @@
 								<a href="<?=site_url('home/start');?>">开始页</a>
 							</span>
 							<span class="submenu_item">
-								<a href="<?=get_user_url( get_current_user_id() );?>">我的页面</a>
+								<a href="<?=get_user_url( get_current_user_id() );?>">个人主页</a>
 							</span>
                         </div>
 					</li>
@@ -178,7 +178,7 @@
                     -->
                     <li class="menu_item <?= isset($current_event) ? 'current_menu' : '' ;?>">
                     	<a href="<?=site_url('event');?>">
-                    		事务
+                    		事情
                     	</a>
                         <div class="submenu">
                             <span class="submenu_corner_left"></span>
@@ -192,7 +192,7 @@
  -->
                              <span class="submenu_item">
                             	<a href="<?=site_url('event/my_events');?>">
-                            		我的事务
+                            		我的事情
                             	</a>
                             </span>
                             <span class="submenu_item">
@@ -243,7 +243,7 @@
 					
 						<input class="search_input" type="text" name="q" />
 						
-						<button title="搜索" class="tipsy_n search_btn" type="submit">搜索</button>
+						<button title="搜索" class="tipsy_n search_btn" type="submit"><!--搜索--></button>
 						
 					</form>
 					
@@ -402,18 +402,24 @@
         	<?php
         		$ci =& get_instance();
         		// Session Message, 有
-        		if ( $ci->session_message->get() ):
+        		$session_message = $ci->session_message->get();
+        		
+        		if ( $session_message ):
         	?>
         			<script type="text/javascript">
-        				kk_growl.session_message('<?=$ci->session_message->get();?>');
+        				kk_growl.session_message('<?=$session_message;?>');
         			</script>
             
             <?php
             	else:
             		// 用于ajax信息提示
             ?>
-            		<div class="session_message hidden"></div>
-            		
+            		<!--<div class="session_message hidden"></div>-->
+<!-- 
+        			<script type="text/javascript">
+        				kk_growl.session_message('<?=$session_message;?>');
+        			</script>
+ -->
             <?php
             	endif;
             ?>

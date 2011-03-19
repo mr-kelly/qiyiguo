@@ -37,12 +37,14 @@
 	endif;
 ?>
 
+<?php if ( isset( $group ) ) : ?>
 
 <div class="sidebar_widget">
 
-<?php if ( !empty( $relation_groups ) ) :?>
+
 	<h2>关系群</h2>
 	
+<?php if ( !empty( $relation_groups ) ) :?>	
 		<?php
 			$this->load->view('group/general_groups_show', array(
 				'groups' => $relation_groups,
@@ -59,7 +61,12 @@
 			</a>
 		</div>
 		<?php endif; ?>
-		
+<?php
+	else:
+?>
+	<div class="align_center grey">
+		还没有关系群...
+	</div>
 <?php endif; ?>
 		
 
@@ -97,7 +104,9 @@
 
 
 </div>
-
+<?php
+	endif;  // 如果没有$group, 非查看群组页，不显示关系群
+?>
 
 
 
@@ -224,46 +233,11 @@
 	<div class="sidebar_widget">
 		<h2>成员<?= isset($group_users_count) ? ' <span class="small">('. $group_users_count .')</span>' :'';?></h2>
 		
-		<?php if ( !empty( $group_users ) ) :?>
-		<ul class="sidebar_users_list">
-			<?php	
-				foreach ($group_users as $u) {
-			?>
-				<li>
-				
-					<div class="sidebar_user_control">
-						<?php
-							// 若是管理员
-							if ( $this->group_model->is_group_admin($group['id'], $u['id'])) :
-						?>
-						<a class="tipsy_e icon icon_admin" href="javascript:void(0);" title="管理者"></a>
-						<?php
-							endif;            					
-						?>
-						
-						<?php // 发送邮件给指定ID用户的email ?>
-						<a class="tipsy_e icon icon_email" href="<?=site_url('mail?' . 'send_to=' . $u['id'] );?>" title="向<?=$u['name'];?>发送电邮"></a>
-					</div>
-					
-					
-					<a class="sexybox" href="<?=get_user_avatar_url(  $u['id'], 'big' );?>" title="<?=$u['name'];?>">
-						<img width="18" src="<?=get_user_avatar_url(  $u['id'], false );?>" />
-					</a>
-					
-					<a class="tipsy_e" href="<?=get_user_url( $u['id'] );?>" title="<?=$u['id'];?>">
-						<?=$u['name'];?> <!--(<?=$u['id'];?>)-->
-					</a>
-					
-
-					
-				</li>
-			<?php } ?>
-		</ul>
 		<?php
-			else: // 没有成员？
+			$this->load->view('sidebar/sidebar_users_list', array(
+				'users' => $group_users,
+			));
 		?>
-		还没有成员.
-		<?php endif; ?>
 		
 		<div class="align_right">
 			<a href="<?=site_url('group/' . $group['id'] . '/members' );?>">
@@ -273,6 +247,30 @@
 		
 	</div>
     <?php endif; ?>
+    
+    
+    <?php
+    	if ( empty( $relation_groups ) ) :
+    ?>
+    	<div class="sidebar_widget">
+    		<h2>推荐群</h2>
+    		<?php
+    			$ci =& get_instance();
+    			
+    			$ci->load->model('group_model');
+    			
+    			$this->load->view('group/general_groups_show', array(
+    				'groups' => $ci->group_model->get_groups( array(), 8, 0, true ),
+    			));
+    		?>
+    	</div>
+    	
+    	<div class="clearboth"></div>
+    	
+    <?php
+    	endif;
+    ?>
+    
     
     <?php
     	// 提示公开群组的管理员!!! 叫他们开个内部管理的东西！

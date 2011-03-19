@@ -110,7 +110,7 @@
 			);
 			
 			//header("Content-type: text/javascript");
-						
+			header("Content-Type: text/html; charset=utf-8");
 			echo json_encode($arr);
 			exit();
 			
@@ -396,6 +396,26 @@
 		
 	}
 	
+	/**
+	 *	提升某话题的人气...
+	 */
+	function up_topic_page_view( $topic_id ) {
+		$ci =& get_instance();
+		
+		if ( ! $ci->session->userdata( 'up_topic_' . $topic_id ) ) {
+			
+			// 提升人气！ 未设置session参数!
+			$ci->load->model('topic_model');
+			
+			// 设置session~~ 每个user对应一个up_session, 只能提升一次
+			$ci->session->set_userdata( 'up_topic_' . $topic_id , true );
+			return $ci->topic_model->up_topic_page_view( $topic_id );
+			
+		} else {
+			return false;
+		}
+		
+	}
 	
 	
 	/**

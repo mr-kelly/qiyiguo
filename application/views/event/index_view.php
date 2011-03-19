@@ -5,24 +5,15 @@
 	<div id="content">
 		<div class="content_top">
 			<div class="content_bottom">
-				<h2>活动</h2>
+			
+				<h2>事情</h2>
 				<?php
 					$this->load->view('event/general_events_show', array(
 						'events' => $events,
 					));
 				?>
-				<ul class="events_list">
-					<?php foreach( $events as $event ): ?>
-					<li class="event">
-						<h2>
-							<a href="<?=site_url('event/' . $event['id']);?>">
-								<?=$event['name'];?>
-							</a>
-						</h2>
-					</li>
-					<?php endforeach; ?>
-				</ul>
-				<?php //print_r( $events ); ?>
+				
+				
 			</div>
 		</div>
 	</div>

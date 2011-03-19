@@ -43,7 +43,9 @@
 					 <span><span>&nbsp;确定发布&nbsp;</span></span>
 				 </a>
 				 
-				 <a id="add_topic_file_btn" class="icon icon_add" href="javascript:void(0);">添加附件(小于1MB)</a>
+				 <a id="add_topic_file_btn" class="icon icon_add tipsy_s" href="javascript:void(0);" title="可上传doc, xls,ppt, zip, rar文件，容量小于1MB">
+				 	添加附件
+				 </a>
 				 
 				 <?php // 上传文件成功后用于显示文件的标签 ?>
 				 <span id="add_topic_file_display"></span>

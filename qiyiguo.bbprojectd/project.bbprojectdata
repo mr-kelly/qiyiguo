@@ -241,41 +241,6 @@
 			<key>ItemType</key>
 			<string>FolderReference</string>
 		</dict>
-		<key>EAFEED3B-95E1-47D1-BFDA-6C9DF6127588</key>
-		<dict>
-			<key>ItemData</key>
-			<dict>
-				<key>AliasData</key>
-				<data>
-				AAAAAAHOAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAA
-				AAAAAADIa0mwSCsAAAFqO04XdXNlcl9qb2JfdW5pdF9t
-				b2RlbC5waHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-				AAAAAAAAAAAAAAAAAAAAAWo7YsmDVG9URVhUAAAAAP//
-				//8AAAkgAAAAAAAAAAAAAAAAAAAABm1vZGVscwAQAAgA
-				AMhq2TAAAAARAAgAAMmC4+8AAAABABgBajtOAWo5xQFp
-				3JwABavMAAWrxQAAkZ8AAgBQS0tNYWNib29rOlVzZXJz
-				Ok1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlv
-				bjptb2RlbHM6dXNlcl9qb2JfdW5pdF9tb2RlbC5waHAA
-				DgAwABcAdQBzAGUAcgBfAGoAbwBiAF8AdQBuAGkAdABf
-				AG0AbwBkAGUAbAAuAHAAaABwAA8AFAAJAEsASwBNAGEA
-				YwBiAG8AbwBrABIARlVzZXJzL01ya2VsbHkvU2l0ZXMv
-				a2l3aWd1by9hcHBsaWNhdGlvbi9tb2RlbHMvdXNlcl9q
-				b2JfdW5pdF9tb2RlbC5waHAAEwABLwAAFQACAA7//wAA
-				</data>
-				<key>FileURL</key>
-				<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/models/user_job_unit_model.php</string>
-				<key>RelativePath</key>
-				<string>./application/models/user_job_unit_model.php</string>
-				<key>TypeID</key>
-				<string>_CFileLocator</string>
-				<key>Version</key>
-				<integer>1</integer>
-			</dict>
-			<key>ItemName</key>
-			<string>user_job_unit_model.php</string>
-			<key>ItemType</key>
-			<string>FileReference</string>
-		</dict>
 	</dict>
 	<key>com.barebones.DocumentFormatVersion</key>
 	<integer>5</integer>

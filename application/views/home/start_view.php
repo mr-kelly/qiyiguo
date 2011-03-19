@@ -81,42 +81,16 @@
 				<div id="start_show">
 					
 					<div class="start_block">
-						<h2>我的群话题</h2>
-						<ul class="topics_show">
+						<h2>加入的群话题</h2>
+						
 						<?php
-							if ( !empty( $user_groups_topics ) ) : 
-							foreach( $user_groups_topics as $topic ) : 
-								$topic_group = kk_get_group( $topic['model_id'] );
-								$topic_user = kk_get_user( $topic['user_id'] );
+							$this->load->view('topic/general_topics_show', array(
+								'topics' => $user_groups_topics,
+							));
 						?>
-							<li>
-								<div class="float_right">
-									<span class="tipsy_s" title="组织者:<?= $topic_user['name'];?>">
-										<a href="<?= get_user_url( $topic_user['id'] );?>">
-											<img width="24" src="<?= get_user_avatar_url( $topic_user['id'] );?>" />
-										</a>
-									</span>
-									
-									<span class="tipsy_s" title="来自<?= $topic_group['name'];?>">
-										<a href="<?= get_group_url( $topic_group['id'] );?>">
-											<img width="24" src="<?= get_group_logo_url( $topic_group['id'] );?>" />
-										</a>
-									</span>
-
-								</div>
-								
-								<a href="<?=site_url('topic/' . $topic['id'] );?>">
-									<?php if ( $topic['title'] != '' ) : ?>
-										<?= $topic['title'];?>
-									<?php else: ?>
-										<?= kk_content_preview( $topic['content'], 42 );?>
-									<?php endif; ?>
-								</a>
-								
-							</li>
+						
 						<?php
-							endforeach;
-							else:
+							if ( empty( $user_groups_topics ) ):
 						?>
 							<div class="grey align_center">
 								<b>还没加入任何群...</b>
@@ -128,14 +102,15 @@
 						<?php
 							endif;
 						?>
-						</ul>
+						
+						
 						
 						<div class="clearboth"></div>
 						
 						<?php if ( !empty( $user_groups_topics ) ) : ?>
 						<div class="align_right">
-							<a href="<?=site_url('topic/my_topics');?>">
-								&gt;我的更多群话题...
+							<a href="<?=site_url('topic/joined_groups_topics');?>">
+								&gt;更多群话题...
 							</a>
 						</div>
 						<?php endif; ?>
@@ -143,7 +118,7 @@
 					</div>
 					
 					<div class="start_block">
-						<h2>我的群活动</h2>
+						<h2>加入的群活动</h2>
 						
 						<ul class="events_show">
 						<?php 
@@ -193,8 +168,8 @@
 						
 						<?php if ( !empty( $user_groups_events ) ) : ?>
 						<div class="align_right">
-							<a href="<?=site_url('event/my_events');?>">
-								&gt;我的更多群活动...
+							<a href="<?=site_url('event/joined_groups_events');?>">
+								&gt;更多群活动...
 							</a>
 						</div>
 						<?php endif; ?>

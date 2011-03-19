@@ -48,7 +48,13 @@
 			} else {
 				$attach = $query->row_array();
 				// 加入文件后缀、文件名
-				$attach['file_name'] = $attach['file'];
+				$file_ext_pos = strrpos( $attach['file'], '.' ); // 后缀名开始位置
+				$file_last_slash_pos = strrpos( $attach['file'], '/');
+				//echo $file_ext_pos;
+				$attach['file_name'] = substr( $attach['file'], $file_last_slash_pos+1 );
+				$attach['file_ext'] = substr( $attach['file'], $file_ext_pos );
+				
+				//echo $attach['file_ext'] ;
 				
 				return $attach;
 			}

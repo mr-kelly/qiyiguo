@@ -1,0 +1,9 @@
+#content h3 {
+	position: relative;
+	padding-left: 20px;
+}
+	#content h3 .icon {
+		position: absolute;
+		top: 1px;
+		left: 0;
+	}

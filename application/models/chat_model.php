@@ -30,6 +30,32 @@
 			return $query->row_array();
 			
 		}
+		
+		/**
+		 *	删除指定评论、聊天 和他们的子聊天
+		 */
+		function del_chat( $chat_id ) {
+
+			//$chat = $this->chat_model->get_chat_by_id( $chat_id );
+			
+			// 寻找当前chat的children
+			//$children = array();
+			
+			
+			$chats_and_children = $this->get_chat_and_children( $chat_id );
+			
+			foreach( $chats_and_children as $chat ) {
+				$this->db->delete('chat', array(
+					'id' => $chat['id'],
+				));
+			}
+			return true;
+			
+			//return $this->db->delete( 'chat', array(
+			//	'id' => $chat_id,
+			//));
+		}
+		
 		/**
 		 *	获取指定model_id的评论数目
 		 */
@@ -69,28 +95,27 @@
 			
 		}
 		/**
-		 *
+		 *	获取指定chat和它的chat childern...
 		 */
-		function get_chats( $model, $model_id, $limit = 10, $parent_id=0 ) {
+		function get_chats( $model, $model_id, $limit = 100, $parent_id=0 ) {
 			$topics_and_comments = array();  // 中间存取变量
 			
 			$this->db->order_by('created DESC');
-			$topics = $this->db->get_where('chat', array(
+			$chats = $this->db->get_where('chat', array(
 				'model' => $model,
 				'model_id' => $model_id,
 				'parent_id' => $parent_id,
 			), $limit);
 
-			if ( $topics->num_rows != 0 ) {			
-				$topics = $topics->result_array();
+			if ( $chats->num_rows != 0 ) {
+				$chats = $chats->result_array();
 				
-				
-				foreach ( $topics as $topic ) {
+				foreach ( $chats as $chat ) {
 					//if ( $topics_and_comments == array() ) {
 					
 					// 合并topic, comments， 整合数组
-					foreach ( $this->get_chat_and_children( $topic['id'] ) as $chat ) {
-						array_push( $topics_and_comments,  $chat);
+					foreach ( $this->get_chat_and_children( $chat['id'] ) as $c ) {
+						array_push( $topics_and_comments,  $c);
 					}
 					
 					
@@ -109,6 +134,7 @@
 		function get_chat_and_children( $chat_id ) {
 			//清空
 			$this->chat_and_children = array();
+			
 			$this->_get_chat_and_children($chat_id);
 			
 			return $this->chat_and_children;
@@ -126,8 +152,7 @@
 				'id'=>$chat_id,
 			));
 			
-			$chat = $chat->result_array();
-			$chat = $chat[0];
+			$chat = $chat->row_array();
 			$chat['depth'] = $depth;
 			
 			// 关联模型，加入User模型

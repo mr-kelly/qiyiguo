@@ -4,10 +4,10 @@
 					$a_event_user = is_event_user( $event['id'], get_current_user_id() );
 					if ( !$a_event_user  ) : 
 				?>
-				<a class="btn join_event_btn" href="<?=site_url('event/ajax_join_event/' . $event['id']);?>">
+				<a class="kk_btn join_event_btn" href="<?=site_url('event/ajax_join_event/' . $event['id']);?>">
 					<span><span>参加</span></span>
 				</a>
-				<a class="btn join_event_btn" href="<?=site_url('event/ajax_follow_event/' . $event['id']);?>">
+				<a class="kk_btn join_event_btn" href="<?=site_url('event/ajax_follow_event/' . $event['id']);?>">
 					<span><span>有兴趣</span></span>
 				</a>
 				<?php
@@ -21,7 +21,7 @@
 					elseif ( $a_event_user == 'follow' ):
 					// 已经对其有兴趣？ 可以加入！
 				?>
-				<a class="btn join_event_btn" href="<?=site_url('event/ajax_join_event/' . $event['id']);?>">
+				<a class="kk_btn join_event_btn" href="<?=site_url('event/ajax_join_event/' . $event['id']);?>">
 					<span><span>参加</span></span>
 				</a>
 				<a class="btn join_event_btn" href="<?=site_url('event/ajax_follow_event/' . $event['id'] . '/unfollow' );?>">

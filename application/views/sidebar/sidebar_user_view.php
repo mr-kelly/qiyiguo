@@ -72,19 +72,15 @@
 							<?php
 								$user_friends = $ci->relation_model->get_friends( $user['id'] );
 								
-								if ( !empty( $user_friends ) ) :
-									foreach( $user_friends as $friend ):
-							?>
-								<a href="<?=site_url('user/'.$friend['id']);?>">
-									<img height="18" src="<?=get_user_avatar_url($friend['id']);?>" />
-									<?=get_user_name( $friend['nickname'], $friend['realname'] );?>
-								</a>
-							<?php
-									endforeach;
-								else:
+								$this->load->view('sidebar/sidebar_users_list', array(
+									'users' => $user_friends,
+								));
+								
+								if ( empty( $user_friends ) ) :
+
 							?>
 								<div class="align_center grey">
-									<b>还没有朋友</b>
+									<b>还没有朋友..互相收藏成为朋友</b>
 								</div>
 							<?php
 								endif;
@@ -94,20 +90,18 @@
 						<div id="user_fans" class="hidden tab_div">
 							<?php
 								$user_fans = $ci->relation_model->get_fans( $user['id'] );
-								if ( !empty( $user_fans) ) :
-									foreach( $user_fans as $fan ):
-							?>
-							<a href="<?=site_url('user/'. $fan['id']);?>">
 								
-								<?=$fan['realname'];?>
-							</a>
-							<?php
-									endforeach;
-								else:
+								$this->load->view('sidebar/sidebar_users_list', array(
+									'users' => $user_fans,
+								));
+								
+								if ( empty( $user_fans) ) :
 							?>
+
 								<div class="align_center grey">
 									<b>还没有粉丝...快叫朋友收藏你吧</b>
 								</div>
+								
 							<?php
 								endif;
 							?>

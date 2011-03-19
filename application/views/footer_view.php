@@ -117,19 +117,41 @@
 						MrKelly 出品
 					</a>
  -->
- 					<a href="<?=site_url('g/qiyiguo');?>">
- 						奇异果.嘻嘻
- 					</a>
+
+					<div>
+						<span>
+							&copy; 2011
+						</span>
+						
+						<span>
+							<a title="qiyiguo.cc" class="tipsy_s" href="<?=site_url('g/qiyiguo');?>">
+								奇异果.嘻嘻
+							</a>
+						</span>
+					</div>
 					
-					&copy;
+					<div>
+						<span class="footer_grey">
+							<a href="#">
+								<!--边度网络科技有限公司-->
+							</a>
+						</span>
+					</div>
 					
+					<div>
+						<span class="footer_grey">
+							<a target="_blank" href="http://www.miibeian.gov.cn/">
+								粤ICP备07053148号
+							</a>
+						</span>
+					</div>
+					<!--
 					<span>
-						version 0.90
+						version 0.97
 					</span>
-					<span>
-						<a class="grey" href="http://www.google.com/chrome">使用谷歌浏览器会有意想不到的效果</a>
-					</span>
+					-->
 					
+					<!--
 					<span>
 						<?php
 							$ci =& get_instance();
@@ -139,13 +161,20 @@
 							echo $ci->benchmark->memory_usage();
 						?>
 					</span>
+					-->
 					
+					<!-- Chrome -->
+					<a target="_blank" class="tipsy_s grey" href="http://www.google.com/chrome" title="使用谷歌浏览器会有意想不到的特效">
+						<img src="<?=static_url('img/websites/chrome.png');?>" />
+					</a>
 					<a href="<?=base_url();?>wiki/">
 						帮助
 					</a>
 					
+					
+					
 					<div>
-
+						<br />
 						
 						<a href="http://www.cyberpolice.cn/">
 							<img src="<?=static_url('img/gfw/net110.gif');?>" />
@@ -155,6 +184,9 @@
 						<a href="http://www.miibeian.gov.cn/">
 							<img src="<?=static_url('img/gfw/jingying.gif');?>" />
 							<!--经营性网站备案-->
+						</a>
+						<a href="http://qiyiguo.cc/g/qiyiguo">
+							<img width="48" height="48" src="<?=static_url('img/kk_logo.png');?>" />
 						</a>
 					</div>
 				</div>

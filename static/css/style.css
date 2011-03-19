@@ -106,7 +106,7 @@ img.avatar {
 	top: 0;
 	z-index:99999;
 	background:#FFF1A8;
-	width:100px;
+	width:120px;
 	height:20px;
 	line-height:20px;
 	margin:0 45% 0 45%;
@@ -1038,6 +1038,9 @@ div.submenu span.submenu_corner:first-child {
 				text-align: left;
 				margin: 10px 20px 0 0;
 			}
+			.topic_attach_file {
+				margin: 10px 0 0 0;
+			}
 			
 		.topic_panel {
 			/*width:550px;   評論，評論按鈕*/
@@ -1186,11 +1189,20 @@ div.submenu span.submenu_corner:first-child {
 		float:right;
 	}
 	
-	.chat_reply , .latest_chat_reply {
-		margin:0 10px 0 10px;
-		font-weight:bold;
-		float:right;
+/*
+	.chat_controll {
+		float: right;
+		margin: 0 10px 0 10px;
+		
 	}
+*/
+
+		.chat_reply , .latest_chat_reply, .chat_email, .chat_delete {
+			margin:0 5px 0 5px;
+			font-weight:bold;
+			float:right;
+		}
+
 	
 	
 .top_chat .chat_avatar img.avatar {
@@ -1357,7 +1369,13 @@ div.submenu span.submenu_corner:first-child {
 	position: relative;
 	height: 120px;
 	width: 350px;
+	text-align: right;
 }
+
+	.footer_grey, .footer_grey a {
+		color: #AAA;
+	}
+/*
 	#kk {
 		position: absolute;
 		bottom: 0;
@@ -1366,5 +1384,5 @@ div.submenu span.submenu_corner:first-child {
 		height: 50px;
 		background: url(../img/kk_logo.png) no-repeat;
 	}
-
+*/
 

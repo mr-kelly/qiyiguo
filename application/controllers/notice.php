@@ -50,12 +50,20 @@
 			
 			$notice = $this->notice_model->get_notice_by_id( $notice_id );
 			
-			// 未登录或poke的不是自己的notice 或不存在～
+			// 未登录或poke的不是自己的notice 或不存在～ 不存在，返回..
 			if ( !is_logged_in() || 
 					! $notice ||
 					$notice['user_id'] != get_current_user_id() ) {
 					
-				ajaxReturn( null, '你动了别人的奶酪(提醒)', 0 );
+					
+				$this->session_message->set( '找不到该提醒...' );
+				
+				if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
+					redirect( $_SERVER['HTTP_REFERER'] );
+				} else {
+					redirect( '/' );
+				}
+				//ajaxReturn( null, '你动了别人的奶酪(提醒)', 0 );
 				
 				return;
 			}

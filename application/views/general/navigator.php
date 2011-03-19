@@ -72,6 +72,19 @@
 								我的果群
 							</a>
 						</li>
+						<li>
+							<a href="<?=site_url('topic/my_topics');?>">
+								<span class="icon icon_topic"></span>
+								我的话题
+							</a>
+						</li>
+						
+						<li>
+							<a href="<?=site_url('event/my_events');?>">
+								<span class="icon icon_event"></span>
+								我的活动
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

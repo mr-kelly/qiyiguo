@@ -7,14 +7,16 @@
 										<img width="50" height="50" src="<?=get_group_logo_url( $s['Group']['id'] );?>" />
 									</div>
 									<div class="stream_title">
-										<?=$s['Object']['title'];?>
-										
 										<span class="small grey float_right">
 											<?php
 												$ci =& get_instance();
 											?>
 											<?=$ci->humanize->datetime( $s['modified'] );?>
 										</span>
+										
+										<?=$s['Object']['title'];?>
+										
+
 										
 									</div>
 									<div class="stream_content">
@@ -35,8 +37,4 @@
 								</li>
 							<?php endforeach; ?>
 							</ul>
-							<?php else: ?>
-							<div class="grey">
-								他还没有任何个人动态...
-							</div>
 							<?php endif; ?>

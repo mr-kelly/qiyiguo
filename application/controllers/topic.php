@@ -1,8 +1,37 @@
 <?php
 
 	class Topic extends KK_Controller {
+		function __construct() {
+			parent::__construct();
+			$this->load->model('topic_model');
+			
+		}
+		function ajax_delete( $topic_id ) {
 		
-
+			if ( !is_logged_in() ) {
+				ajaxReturn('login_required', '未登录', 0 );
+			}
+			
+			// 群组管理员，话题所属才可以删除
+			$topic = $this->topic_model->get_topic_by_id( $topic_id );
+			//$topic_group = kk_get_group( $topic['model_id'] );
+			
+			if ( $topic['user_id'] == get_current_user_id() ||
+					is_group_admin( $topic['model_id'] , get_current_user_id() ) ) {
+				
+				if ( $this->topic_model->del_topic( $topic_id ) ) {
+				
+					ajaxReturn( null, '成功删除话题', 1 );
+					
+				} else {
+				
+					ajaxReturn( null, '无法删除话题', 0 );
+					
+				}
+			} else {
+				ajaxReturn( null, '没有权限（非群管理员或话题创建者）', 0);
+			}
+		}
 		function ajax_add_topic( $model, $model_id ) {
 		
 			login_redirect();
@@ -61,7 +90,10 @@
 		 *	小组主题
 		 */
 		function topic_lookup($topic_id = 0) {
-		
+			
+			
+			up_topic_page_view( $topic_id );
+			
 			$this->load->model('topic_model');
 			
 // 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -93,6 +125,29 @@
 			$this->load->view('topic/topic_view', $data);
 			
 			
+		}
+		
+		/**
+		 *	我的群话题...
+		 */
+		function joined_groups_topics() {
+			login_redirect();
+			
+			$this->load->model( 'stream_model' );
+			
+			$start = $this->input->get( 'start' );
+			$per_page = 20; // 每页显示...
+			
+			
+			$render['start'] = $start;
+			$render['per_page'] = $per_page;
+			$render['my_topics_count'] = $this->stream_model->get_user_groups_topics_count( get_current_user_id() );
+			
+			// 获取用户关注群组的topics
+			$render['user_groups_topics'] = $this->stream_model->get_user_groups_topics( get_current_user_id(), $per_page, $start );
+			
+			
+			kk_show_view('topic/joined_groups_topics_view', $render);
 		}
 		
 		

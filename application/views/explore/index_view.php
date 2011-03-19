@@ -6,13 +6,13 @@
 			<div class="content_bottom">
 				<h1>探索奇异果</h1>
 				
-				<div>
+				<div class="explore_block">
 					<h2>推荐果群</h2>
 					
 					<div class="clearboth"></div>
 				</div>
 				
-				<div>
+				<div class="explore_block">
 					<h2>新鲜果群</h2><!--最新的5个人以上的群..-->
 					<ul class="groups_show">
 					<?php
@@ -37,7 +37,7 @@
 				</div>
 				
 				
-				<div>
+				<div class="explore_block">
 					<h2>新鲜事</h2>
 					<ul class="topics_show">
 					<?php foreach ( $fresh_topics as $topic ) : ?>
@@ -63,7 +63,7 @@
 					<div class="clearboth"></div>
 				</div>
 				
-				<div>
+				<div class="explore_block">
 					<h2>新鲜活动</h2>
 					<ul class="events_show">
 					<?php foreach( $fresh_events as $event ): ?>
@@ -83,6 +83,15 @@
 	</div>
 
 
+	<div id="sidebar">
+		<div class="sidebar_top">
+			<div class="sidebar_bottom">
+				<?php
+					$this->load->view('sidebar/sidebar_ad_pic');
+				?>
+			</div>
+		</div>
+	</div>
 
 <?php
 	$this->load->view('footer_view');

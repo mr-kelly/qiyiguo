@@ -42,9 +42,13 @@
 			kk_show_view('event/my_missions_view', $render);
 		}
 		
-		function my_events() {
+		/**
+		 *	加入的群的话题 (群话题 )
+		 */
+		function joined_groups_events() {
+			login_redirect();
 			$render['current_event'] = true;
-			kk_show_view('event/my_events_view', $render);
+			kk_show_view('event/joined_groups_events_view', $render);
 			
 		}
 		

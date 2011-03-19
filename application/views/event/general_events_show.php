@@ -45,7 +45,9 @@
 								
 							</div>
 							
-							<div class="event_content"><?=$event['content'];?></div>
+							<div class="event_content">
+									<?= kk_content_preview( $event['content'], 69 );?>
+							</div>
 							
 							<div class="event_meta">
 								<?php

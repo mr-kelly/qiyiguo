@@ -165,7 +165,14 @@
 								));
 							?>
 							
-							
+							<?php
+								// 用户没有stream时...
+								if ( empty( $user_stream ) ):
+							?>
+								<div class="align_center grey">
+									<h2>还没有任何个人动态</h2>
+								</div>
+							<?php endif; ?>
 						
 						</div>
 						

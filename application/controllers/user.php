@@ -171,6 +171,8 @@
 			$this->load->model('user_recommend_model');
 			$this->load->model('stream_model');
 			
+			
+			
 			if ( is_numeric($user_id_slug) ) {
 				// 若传入数字， 判断成ID～～读取该ID的用户
 				$user_id = $user_id_slug;
@@ -192,12 +194,16 @@
 				
 
 			}
-			
+			// 清楚同一页一样的提醒
+			clean_notices( get_current_user_id(), 'user', $user_id );
 			up_user_page_view( $user_id );
+			
+			$start = $this->input->get('start');
 			
 			$user = $this->user_profiles_model->_get_user($user_id);
 			$render['user'] = $user;
 			$render['page_title'] = sprintf( '%s %s', $user['nickname'] , $user['realname'] );
+			$render['start'] = $start;
 			
 			
 			// 传入该用户的"推荐朋友"
@@ -224,7 +230,7 @@
 			// 哪一项页
 			if( $action == 'home' ) {
 				
-				$render['user_stream'] = $this->stream_model->get_user_stream( $user_id );
+				$render['user_stream'] = $this->stream_model->get_user_stream( $user_id, 20, $start );
 				$render['current_user_lookup_home'] = true;
 				
 				// 首页读取stream
@@ -597,7 +603,7 @@
 			}
 			
 			
-			
+			$data['page_title'] = '设置 - ' . get_current_user_name() ;
 			$data['user_avatars'] = $this->user_avatars_model->get_user_avatars( $user_id );
 			$data['current_user_profile'] = get_current_user_profile();
 			
@@ -1367,7 +1373,13 @@ EOT;
 		 *	登出帐户
 		 */
 		function logout() {
+		
 			$this->tank_auth->logout();
+			
+			//$this->session_message->set('你已经成功退出');
+			
+			redirect('/');
+			return;
 			
 			$render = array();
 			kk_show_view('user/logout_view', $render);

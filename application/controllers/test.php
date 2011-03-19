@@ -6,6 +6,17 @@
 			//exit('cannot enter test');
 			
 		}
+		
+		function test_del_chat() {
+			$this->load->model('chat_model');
+			//$chat = $this->chat_model->get_chat_by_id( 147 );
+			//$chats = $this->chat_model->get_chats( 'topic', 4, 100, $chat['parent_id'] );
+			
+			$chats = $this->chat_model->get_chat_and_children( 59 );
+			
+			print_r( $chats );
+			
+		}
 		function test_formkey() {
 			$key_token =  $this->kk_formkey->create_key_token();
 			//print_r( $key_token );
