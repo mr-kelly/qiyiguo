@@ -33,7 +33,9 @@
 
 					<script>
 						$(function(){
-							$('.chats_container').load('<?=site_url("chat/ajax_get_chats/user/" . $user["id"] );?>');
+							//$('.chats_container').load('<?=site_url("chat/ajax_get_chats/user/" . $user["id"] );?>');
+							// 获得当前用户与查看用的悄悄话
+							$('.chats_container').load('<?=site_url("chat/ajax_get_chats/user/" . $user["id"] . "?ajax=". rand() );?>');
 						});
 					</script>
 				</div>

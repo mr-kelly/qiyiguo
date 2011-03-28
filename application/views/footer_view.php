@@ -33,27 +33,38 @@
 					<h2>关于我们</h2>
 					<ul>
 
+
+
 						<li>
-							<a href="<?=site_url('g/qiyiguo');?>" class="tipsy_sw" title="我们的团队也是奇异果的使用者！来看看我们~">
-								官方果群
+							<a href="<?=site_url('page/about_why_qiyiguo');?>">
+								“奇异果”的来源
 							</a>
 						</li>
-						<li>
-							<a href="<?=site_url('page/recruit');?>">加入我们</a>
-						</li>
-						<li>
-							<a href="<?=site_url('page/about_why_qiyiguo');?>">为什么叫“奇异果”</a>
-						</li>
+						<!--
 						<li>
 							<a href="<?=site_url('page/about_design_qiyiguo');?>">设计之禅</a>
 						</li>
+						-->
+						
+						<!--
 						<li>
 							<a href="<?=site_url('page/invest_us');?>">投资我们</a>
+						</li>
+						-->
+						<li>
+							<a href="<?=site_url('page/rule');?>">
+								免责条款
+							</a>
+						</li>
+						<li>
+							<a href="<?=site_url('page/rule');?>">
+								隐私条款
+							</a>
 						</li>
 						
 						<li>
 							<a href="<?=site_url('page/patent');?>">
-								版权专利保护
+								版权专利声明
 							</a>
 						</li>
 						
@@ -64,23 +75,26 @@
 					<h2>联系方式</h2>
 					<ul>
 						<li>
-							<a href="#">意见反馈</a>
+							<a href="<?=site_url('g/qiyiguo');?>" class="tipsy_sw" title="我们的团队也是奇异果的使用者！来看看我们~">
+								官方果群
+							</a>
 						</li>
+						
 						<li>
-							<a href="#">广告投放</a>
+							<a href="<?=site_url('page/recruit');?>">加入我们</a>
+						</li>
+						
+						<li>
+							<a href="<?=site_url('g/qiyiguo');?>">意见反馈</a>
 						</li>
 						<li>
 							<a href="#">新浪微博</a>
 						</li>
-						<li>
-							<a href="#">免责条款</a>
-						</li>
-						<li>
-							<a href="#">隐私条款</a>
-						</li>
+
 					</ul>
 				</div>
 				
+				<!--
 				<div class="footer_column">
 					<h2>实验室</h2>
 					<ul>
@@ -96,7 +110,6 @@
 							<a href="#">更多实验项目</a>
 						</li>
 					</ul>
-					<!--
 					<h2>认证</h2>
 					<ul>
 						<li>
@@ -106,8 +119,8 @@
 							<a href="#">果群认证</a>
 						</li>
 					</ul>
-					-->
 				</div>
+				-->
 				
 				<div id="footer_copyright">
 					<div id="kk"></div>
@@ -167,7 +180,7 @@
 					<a target="_blank" class="tipsy_s grey" href="http://www.google.com/chrome" title="使用谷歌浏览器会有意想不到的特效">
 						<img src="<?=static_url('img/websites/chrome.png');?>" />
 					</a>
-					<a href="<?=base_url();?>wiki/">
+					<a href="<?=site_url('home/demo');?>">
 						帮助
 					</a>
 					
@@ -175,17 +188,21 @@
 					
 					<div>
 						<br />
-						
-						<a href="http://www.cyberpolice.cn/">
+						<!--网络110-->
+						<!--
+						<a target="_blank" href="http://www.cyberpolice.cn/">
 							<img src="<?=static_url('img/gfw/net110.gif');?>" />
-							<!--网络110-->
+							
 						</a>
 						
-						<a href="http://www.miibeian.gov.cn/">
+						<a target="_blank" href="http://www.miibeian.gov.cn/">
 							<img src="<?=static_url('img/gfw/jingying.gif');?>" />
-							<!--经营性网站备案-->
+							
 						</a>
-						<a href="http://qiyiguo.cc/g/qiyiguo">
+						--><!--经营性网站备案-->
+						
+						
+						<a target="_blank" href="http://qiyiguo.cc/g/qiyiguo">
 							<img width="48" height="48" src="<?=static_url('img/kk_logo.png');?>" />
 						</a>
 					</div>

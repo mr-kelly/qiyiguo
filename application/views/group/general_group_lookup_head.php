@@ -1,6 +1,38 @@
 	<?php
 		// 该页面代码被 lookup_head 包围
+		
+		// 判断是否为无顶部菜单模式...  隐藏logo，菜单，搜索框，菜单背景
+		if ( isset( $noheader_mode ) && $noheader_mode ) :
 	?>
+		<style>
+			#kk_header {
+				height: 40px;
+			}
+			#kk_topbar {
+				background: none;
+			}
+			#logo {
+				display: none;
+			}
+			#kk_menu {
+				display: none;
+			}
+			.search {
+				display: none;
+			}
+			
+				#user_display {
+					top: 10px;
+				}
+				#user_controller {
+					top: 10px;
+				}
+			
+		</style>
+	<?php
+		endif;
+	?>
+		
 			  <div class="lookup_avatar">
 				  <a href="<?= get_group_logo_url( $group['id'] , 'big');?>" class="sexybox">
 					  <img class="avatar" width="100" height="100" src="<?= get_group_logo_url( $group['id'] ); ?>" />
@@ -16,8 +48,12 @@
 						  <input onchange="$('.lookup_avatar_form').submit();return false;" class="lookup_avatar_input" type="file" name="userfile" style="visibility:hidden;position:absolute;" />
 						  
 					  </form>
-					  
+				  
+				  <?php if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE') !== false ): ?>
+				  <a class="lookup_avatar_edit" href="<?=site_url('group/logo_upload/' . $group['id']);?>" title="修改群组的标志LOGO">
+				  <?php else: ?>
 				  <a class="lookup_avatar_edit" href="#" onclick="$('.lookup_avatar_input').trigger('click'); return false;" title="修改群组的标志LOGO">
+				  <?php endif; ?>
 					  改标志
 				  </a>
 				  
@@ -32,7 +68,7 @@
 					  <span class="icon icon_group tipsy_s" title="这是一个果群"></span>
 					  <?=$group['name'];?>
 					  
-					  <span class="small grey">
+					  <span class="tipsy_s small grey" title="群号">
 					  	<?=$group['id'];?>
 					  </span>
 					  

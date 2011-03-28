@@ -52,7 +52,7 @@
 						<?php
 							$ci =& get_instance();
 							// 用于年份选择，默认1990
-							foreach( range(1890,intval(date('Y'))) as $year ) :
+							foreach( range(1990,intval(date('Y')) + 10 ) as $year ) :
 						?>
 						<option <?=( $year == date('Y') ) ? 'selected="selected"' : '';?>><?=$year;?></option>
 						<?php
@@ -117,8 +117,8 @@
 					<select class="birth_year" name="create_event_end_year">
 						<?php
 							
-							// 用于年份选择，默认1990
-							foreach( range(1890,intval(date('Y'))) as $year ) :
+							// 用于年份选择，默认1990 , 还有未来10年
+							foreach( range(1990,intval(date('Y')) + 10 ) as $year ) :
 						?>
 						<option <?=( $year == date('Y') ) ? 'selected="selected"' : '';?>><?=$year;?></option>
 						<?php
@@ -184,10 +184,11 @@
 					<textarea class="input_textarea required" name="create_event_content"></textarea>
 				</p>
 				
-
-				<a onclick="return event_add_form_submit();" class="btn" href="#">
-					<span><span>创建</span></span>
-				</a>
+				<div class="align_left">
+					<a onclick="return event_add_form_submit();" class="kk_btn" href="#">
+						<span><span>创建</span></span>
+					</a>
+				</div>
 				
 			</form>
 			

@@ -97,7 +97,7 @@
 		/**
 		 *	获取指定chat和它的chat childern...
 		 */
-		function get_chats( $model, $model_id, $limit = 100, $parent_id=0 ) {
+		function get_chats( $model, $model_id, $limit = 100, $start=0, $parent_id=0 ) {
 			$topics_and_comments = array();  // 中间存取变量
 			
 			$this->db->order_by('created DESC');
@@ -123,6 +123,13 @@
 			}
 			
 			return $topics_and_comments;
+		}
+		
+		/**
+		 *	获得用户的评论...
+		 */
+		function get_user_chats( $user_id ) {
+		
 		}
 		
 		/**

@@ -20,11 +20,13 @@
 		function send_mail( $option = array('subject'=>'custom') ) {
 			$ci =& get_instance();
 			
+			$from_email = 'noreply@qiyiguo.cc'; // 固定锁死 $option['email']
+			
 			$default = array(
 				'to' => array(
 					array( 'chepy.v@gmail.com', 'Mrkelly'),
 				),
-				'from' => 'qiyiguo.cc@foxmail.com',
+				'from' => $from_email,
 				'from_name' => '「奇异果」',
 				'subject' => '默认主题',
 				'body' => '默认的邮件内容',
@@ -59,13 +61,21 @@
 			
 			
 			
-			$mail->From = $option['from'];
+			$mail->From = $from_email;  //$option['from'];
 			$mail->FromName = $option['from_name'];
 			$mail->Subject = $option['subject'];
 			
+			// 判断是否添加附件
+			if ( !empty( $option['attach_file'] ) ) {
+				$mail->AddAttachment( $option['attach_file'] );
+			}
+			
 			
 			// 邮件内容加上"来自奇异果"
-			$optinon['body'] .= '<div><a href="http://qiyiguo.cc">这封电邮从「奇异果」发出</a></div>';
+			$option['body'] .= '<div>
+									<br /><br /><br /><br />
+									<a href="http://qiyiguo.cc">来自我的「奇异果」</a>
+								</div>';
 			
 			$mail->AltBody = $option['body'];
 			
@@ -98,4 +108,8 @@
 			}
 			
 		}
+		
+		
+		
+
 	}

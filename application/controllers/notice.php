@@ -28,6 +28,7 @@
 					'model_id' => 0,
 					'user_id' => get_current_user_id(),
 					
+					//'user_profile' => get_current_user_profile(),
 				);
 			}
 			
@@ -56,7 +57,7 @@
 					$notice['user_id'] != get_current_user_id() ) {
 					
 					
-				$this->session_message->set( '找不到该提醒...' );
+				$this->session_message->set( '提醒已处理过了...' );
 				
 				if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
 					redirect( $_SERVER['HTTP_REFERER'] );

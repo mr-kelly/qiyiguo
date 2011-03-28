@@ -86,9 +86,11 @@ h3 {
     clear:left;
 }
 */
+
+
 p {
     text-indent:2em;
-    margin:0;
+    margin: 10px 0 0 0;
     padding:0;
     letter-spacing: 0px;
 }
@@ -218,8 +220,16 @@ form p {
 	background: url(../img/icons.png) no-repeat;
 	_background: url(../img/ie6/icons.gif) no-repeat;
 	height: 16px;
+	*line-height: 16px;
 	display: inline-block;
 	padding: 0 0 0 18px;
+}
+
+.icon_mac {
+	background-position: 0 -2980px;
+}
+.icon_windows {
+	background-position: 0 -5667px;
 }
 
 .icon_setting {
@@ -234,7 +244,9 @@ form p {
 .icon_quit_group_admin {
 	background-position: 0 -5532px;
 }
-
+.icon_mutual {
+	background-position: 0 -391px;
+}
 .icon_members {
 	background-position: 0 -2550px;
 }
@@ -298,7 +310,7 @@ form p {
 	background-position: 0 -442px;
 }
 .icon_email {
-	background-position: 0 -2508px;
+	background-position: 0 -1634px;
 }
 .icon_admin {
 	background-position: 0 -5463px;
@@ -334,7 +346,16 @@ form p {
 .icon_rar {
 	background-position: 0 -3541px;
 }
+.icon_txt {
+	background-position: 0 -4221px;
+}
+.icon_pdf {
+	background-position: 0 -3371px;
+}
 
+.icon_question {
+	background-position: 0 -2669px;
+}
 
 .icon_website {
 	background-position: 0 -2827px;
@@ -370,14 +391,83 @@ form p {
 .icon_clear {
 	background-position: 0 -2686px;
 }
+.icon_topic {
+	background-position: 0 -1128px;
+}
+.icon_event {
+	background-position: 0 -85px;
+}
+.icon_start {
+	background-position: 0 -5207px;
+}
+.icon_friends {
+	background-position: 0 -2601px;
+}
 /**
- *	巨蟹座
+ *	星座
+ 		array( "20" => "水瓶座"), 
+		array( "19" => "双鱼座"), 
+		array( "21" => "白羊座"), 
+		array( "20" => "金牛座"), 
+		array( "21" => "双子座"), 
+		array( "22" => "巨蟹座"), 
+		array( "23" => "狮子座"), 
+		array( "23" => "处女座"), 
+		array( "23" => "天秤座"), 
+		array( "24" => "天蝎座"), 
+		array( "22" => "射手座"), 
+		array( "22" => "摩羯座") 
  */
+.icon_shuiping {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -350px;
+}
+.icon_shuangyu {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -482px;
+}
+.icon_baiyang {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -505px;
+}
+.icon_jinniu {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -197px;
+}
+.icon_shuangzi {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -88px;
+}
 .icon_juxie {
 	background: url(../img/constellation.png) no-repeat;
 	background-position: -3px -220px;
 	
 }
+.icon_shizi {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -109px;
+}
+.icon_chunv {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -241px;
+}
+.icon_tiancheng {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -328px;
+}
+.icon_tianxie {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -460px;
+}
+.icon_sheshou {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -372px;
+}
+.icon_mojie {
+	background: url(../img/constellation.png) no-repeat;
+	background-position: -3px -66px;
+}
+
 
 
 .kk_btn {
@@ -393,7 +483,11 @@ form p {
 		display: inline-block; /*超链接时*/
 	}
 	
-	
+
+.kk_btn:active {
+
+}
+
 button.kk_btn {
 	border: 0;
 	color: #FFF;

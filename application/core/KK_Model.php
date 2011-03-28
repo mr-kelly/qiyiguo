@@ -173,16 +173,28 @@
 			unset($user['password']);
 			
 			// 设置一个帐户通用名 name, 根据nickname, realname, email生成
-			if ( $user_profile['realname'] == '') {
-				if ( $user_profile['nickname'] == '' ) {
-					$user_profile['name'] = $user['email'];
-				} else {
-					$user_profile['name'] = $user_profile['nickname'];
-				}
-			} else {
-				// Kelly 陈霈霖   （昵称+真名)
+			// 根据name_privacy隐私给出姓名
+			if ( $user_profile['name_privacy'] == 2 ) {
+				// 真实姓名 only
+				$user_profile['name'] = $user_profile['realname'];
+			} elseif ( $user_profile['name_privacy'] == 1 ) {
+				// 真实姓名 + 昵称
 				$user_profile['name'] = $user_profile['nickname'] .' '. $user_profile['realname'];
+			} elseif( $user_profile['name_privacy'] == 0 ) {
+				// 昵称 only
+				$user_profile['name'] = $user_profile['nickname'];
 			}
+			
+// 			if ( $user_profile['realname'] == '') {
+// 				if ( $user_profile['nickname'] == '' ) {
+// 					$user_profile['name'] = $user['email'];
+// 				} else {
+// 					$user_profile['name'] = $user_profile['nickname'];
+// 				}
+// 			} else {
+// 				// Kelly 陈霈霖   （昵称+真名)
+// 				$user_profile['name'] = $user_profile['nickname'] .' '. $user_profile['realname'];
+// 			}
 			
 			/**
 			 *	用户的心情 (mood)

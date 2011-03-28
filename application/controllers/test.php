@@ -7,6 +7,39 @@
 			
 		}
 		
+		function test_string() {
+			$s = '/2011/1/12/asdfsfasfsdf.png';
+			
+//			echo strrpos( $s, '/' )+1;
+			$thumb = substr( $s, strrpos( $s, '/' )+1 );
+			echo $thumb;
+			$thumb = explode( '.',  $thumb);
+ 			print_r( $thumb );
+ 			
+ 			
+// 			echo $thumb[0] . '_thumb.' . $thumb[1];
+// 			
+// 			$return = '';
+// 			foreach( $thumb as $key=>$t ) {
+// 				
+// 				if ( $key != count($thumb)) {
+// 					$return .= $t;
+// 					
+// 				} else {
+// 					// 最后一个？ 加点，后缀名
+// 					$return .= '.' . $t;
+// 				}
+// 			}
+// 			
+// 			echo $return;
+		}
+		function test_del_attach() {
+			$this->load->model('attach_model');
+			
+			echo $this->attach_model->del_attach( 93, 'image' );
+			
+		}
+		
 		function test_del_chat() {
 			$this->load->model('chat_model');
 			//$chat = $this->chat_model->get_chat_by_id( 147 );

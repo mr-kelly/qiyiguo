@@ -16,6 +16,67 @@
 		}
 		
 		
+		/**
+		 *	朋友
+		 */
+		function friends($user_id) {
+			login_redirect();
+			
+			$this->load->model('relation_model');
+			$start = $this->input->get('start');
+			$per_page = 50;
+			$render['per_page'] = $per_page;
+			$render['start'] = $start;
+			$render['user_id'] = $user_id;
+			$render['user'] = kk_get_user( $user_id );
+			
+			$render['friends'] = $this->relation_model->get_friends( $user_id );
+			$render['friends_count'] = $this->relation_model->get_friends_count( $user_id );
+			
+			kk_show_view('user/friends_view', $render);
+		}
+		
+		
+		/**
+		 *	我的粉丝
+		 */
+		function fans( $user_id ) {
+			login_redirect();
+			$this->load->model('relation_model');
+			
+			$start = $this->input->get('start');
+			$per_page = 50;
+			$render['per_page'] = $per_page;
+			$render['start'] = $start;
+			$render['user_id'] = $user_id;
+			$render['user'] = kk_get_user( $user_id );
+			
+			$render['fans'] = $this->relation_model->get_fans( $user_id );
+			$render['fans_count'] = $this->relation_model->get_fans_count( $user_id );
+			kk_show_view('user/fans_view', $render);
+		}
+		
+		/**
+		 *	我的关注
+		 */
+		function follows( $user_id ) {
+			login_redirect();
+			$this->load->model('relation_model');
+			
+			$start = $this->input->get('start');
+			$per_page = 50;
+			
+			$render['per_page'] = $per_page;
+			$render['start'] = $start;
+			$render['user_id'] = $user_id;
+			$render['user'] = kk_get_user( $user_id );
+			
+			$render['follows'] = $this->relation_model->get_follows( $user_id );
+			$render['follows_count'] = $this->relation_model->get_follows_count( $user_id );
+			
+			kk_show_view('user/follows_view', $render);
+		}
+		
 		
 		
 		// 头像的查看，上传处理
@@ -65,7 +126,7 @@
 				$upload_data = $this->upload->data();
 				$data['upload_data'] = $upload_data;
 				// 上传头像文件的网址
-				$data['avatar_url'] = static_url( 'upload/avatars/' . $this->tank_auth->get_user_id() .'/' . $upload_data['file_name']);
+				$data['avatar_url'] = static_url( 'upload/avatars/' . get_current_user_id() .'/' . $upload_data['file_name']);
 				
 				// 直接调整图像的大小 resize, 不创建备份
 				
@@ -79,6 +140,9 @@
 				);
 				$this->load->library('image_lib', $img_config);
 				$this->image_lib->resize();
+				
+				kk_show_view('user/avatar_upload_view', $data); // 防图片缓存了
+				return;
 			}
 			
 			kk_show_view('user/avatar_upload_view', $data);
@@ -129,6 +193,11 @@
 				$this->user_profiles_model->set_user_avatar( $this->tank_auth->get_user_id(), $avatar_id );
 				
 				// 设置成功，回到设置页面
+				//echo $x1 . '<br />';
+				//echo $y1 . '<br />';
+				//exit();
+				
+				
 				$this->session_message->set('头像设置成功！');
 				redirect('user/setting');
 			}
@@ -159,7 +228,7 @@
 			
 		}
 		
-		
+
 		
 		/**
 		 *	查看一个用户的资料~  根据权限显示
@@ -198,10 +267,19 @@
 			clean_notices( get_current_user_id(), 'user', $user_id );
 			up_user_page_view( $user_id );
 			
+			
+
+			
+			
 			$start = $this->input->get('start');
 			
 			$user = $this->user_profiles_model->_get_user($user_id);
+			
 			$render['user'] = $user;
+			
+
+			
+			
 			$render['page_title'] = sprintf( '%s %s', $user['nickname'] , $user['realname'] );
 			$render['start'] = $start;
 			
@@ -215,8 +293,8 @@
 			$render['users_common_groups'] = $this->group_model->get_users_common_groups( get_current_user_id(), $user_id , 6, 0, true);
 
 			
-			// 获取该用户的群.. 6个吧...
-			$render['user_groups'] = $this->group_model->get_user_groups( $user_id , 6, 0, true);
+			// 获取该用户的群.. 12个吧...
+			$render['user_groups'] = $this->group_model->get_user_groups( $user_id , 12, 0, true);
 			$render['user_groups_count'] = $this->group_model->get_user_groups_count( $user_id );
 			
 			// 获取共同好友
@@ -227,12 +305,42 @@
 				$render['current_user_home'] = 'current_menu';
 			}
 			
+			
+			// 判断当前用户是否有权限查看别人的页面   ==== 权限
+			// 如果查看自己的页面。 忽略权限判断
+			if ( $user['id'] != get_current_user_id() ) {
+				if ( $user['user_privacy'] == 0 ) {
+					kk_show_view('user/user_forbidden_view', $render);
+					return;
+				} elseif ( $user['user_privacy'] == 1 ) {
+					// 朋友？
+					if ( ! is_friends ( $user_id, get_current_user_id() ) ) {
+						// 非朋友不可见
+						kk_show_view('user/user_forbidden_view', $render);
+						return;
+					}
+				} elseif( $user['user_privacy'] == 2 ) {
+					// 对方收藏了当前用户？ 那么可见
+					if ( ! is_user_followed( $user['id'], get_current_user_id() ) ) {
+						kk_show_view('user/user_forbidden_view', $render);
+						return;
+					}
+				} elseif ( $user['user_privacy'] == 3 ) {
+					// 任何人可见
+					
+				}
+			}
+			
+			
+			
+			// 正式开始
 			// 哪一项页
 			if( $action == 'home' ) {
 				
 				$render['user_stream'] = $this->stream_model->get_user_stream( $user_id, 20, $start );
 				$render['current_user_lookup_home'] = true;
 				
+				$render['lover'] = $this->relation_model->get_lover( $user_id ); // 获得对方的爱人
 				// 首页读取stream
 // 				$this->load->library('T_sina');
 // 				$weibo = $this->t_sina->getUserWeibo( $user_id );
@@ -281,17 +389,22 @@
 		 *	登录的用户个人设置
 		 */
 		function setting( $action='index') {
-			login_redirect();
+			if ( !is_logged_in() ) {
+				ajaxReturn( 'login_required', '未登录', 0 );
+				exit();
+			}
 			
 			$user_id = $this->tank_auth->get_user_id();
 			
 			$this->load->model('user_t_sina_model');
 			$this->load->model('user_avatars_model');
+			$this->load->model('relation_model');
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				// 处理提交的用户profile资料
 				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[14]');
 				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[16]');
+				$this->form_validation->set_rules('name_privacy', '名字隐私', 'xss_clean|trim');
 				
 				$this->form_validation->set_rules('gender', '性别', 'required|trim|xss_clean');
 				
@@ -325,6 +438,9 @@
 				
 				$this->form_validation->set_rules('slug', '个人网址', 'trim|xss_clean|alpha_dash'); // 不可以纯数字
 				
+				$this->form_validation->set_rules('phone', '手机隐私', 'xss_clean|trim');				
+				$this->form_validation->set_rules('phone_privacy', '手机隐私', 'xss_clean|trim');
+				
 				//个人页面的隐私设置
 				$this->form_validation->set_rules('user_privacy', '个人页面隐私', 'trim|xss_clean|requried');
 				
@@ -356,7 +472,11 @@
 						// 存在了？返回失败吧
 						ajaxReturn( null, '你填写的个人网址已经被人抢先一步了!', 0);
 					}
-				
+					
+					// 恋人号等于当前用户号？ 失败
+					if ( $this->form_validation->set_value('lover_id') == get_current_user_id() ) {
+						ajaxReturn( null, '恋人号不能填自己哦', 0 );
+					}
 				
 				
 					$realname = $this->form_validation->set_value('realname');
@@ -387,8 +507,8 @@
 					$love_status = $this->form_validation->set_value('love_status');
 					$lover_id = $this->form_validation->set_value('lover_id');
 					
-					$this->load->model('relation_model');
-					if ( $love_status != 'single' ) {
+					
+					if ( $love_status != 'single' || $love_status != '' ) { // 非单身
 						
 						// 非单身，那么设置lover relation
 						if ( $lover_id != '' ) {
@@ -508,6 +628,7 @@
 					$this->user_profiles_model->update_user_profile( $user_id, array(
 						'realname' => $realname,
 						'nickname' => $nickname,
+						'name_privacy' => $this->form_validation->set_value('name_privacy'),
 						'gender' => $this->form_validation->set_value('gender'),
 						
 						'birth' => $birth,  // 自动根据生日，获取年龄、星座
@@ -535,6 +656,9 @@
 						// 个人网址 tab
 						'slug' => $slug,
 						'user_privacy' => $this->form_validation->set_value('user_privacy'),
+						
+						'phone' => $this->form_validation->set_value('phone'),
+						'phone_privacy' => $this->form_validation->set_value('phone_privacy'),
 						
 					));
 					
@@ -607,6 +731,9 @@
 			$data['user_avatars'] = $this->user_avatars_model->get_user_avatars( $user_id );
 			$data['current_user_profile'] = get_current_user_profile();
 			
+			// 获得爱人 （ 没设置的话返回false ）
+			$data['lover'] = $this->relation_model->get_lover( get_current_user_id() );
+
 
 			
 			// 读取用户新浪微博的绑定资料
@@ -916,13 +1043,175 @@ EOT;
 			$this->load->view('user/login_view', $render);
 		}
 		
+		function bind_douban( $action = 'authorize' ) {
+			login_redirect();
+			$this->load->library('Douban');
+			$this->load->model('user_douban_model');
+			
+			// 判断当前用户是否已绑定过 , 到数据库
+			if ( $this->user_douban_model->is_user_douban( array( 'user_id' => get_current_user_id() )) ) {
+				// 绑定过？ 返回，显示绑定过了
+				//$this->session_message->set('已绑定过豆瓣了');
+				
+				// 取消绑定
+				if ( $this->user_douban_model->del_user_douban( get_current_user_id() ) ) {
+					$this->session_message->set('已取消豆瓣绑定');
+				} else {
+					$this->session_message->set('失败，无法取消豆瓣绑定');
+				}
+				
+				redirect( 'user/setting' );
+			}
+			
+			//
+			
+			
+			// 未绑定？绑定去吧
+			if ( $action == 'authorize' ) {
+				redirect( $this->douban->get_authorize_url( site_url( 'user/bind_douban/callback' ) ) );
+			} else {
+			
+				// 获取access_token并放入session
+				
+				// Array - access token
+				$access_token = $this->douban->get_access_token( $this->input->get('oauth_token') );
+				// 将access token存入 session～  
+				$this->session->set_userdata('douban_access_token', $access_token );
+				
+				$douban_self = $this->douban->get_self();
+				
+				
+				// 判断该豆瓣是否已经被其他用户绑定了
+				if ( $this->user_douban_model->is_user_douban( array(
+							'uid' => $douban_self['db:uid']['$t'],
+						))) {
+					$this->session_message->set( '该豆瓣帐户已经被其他帐户绑定过了' );
+					redirect( 'user/setting' );
+				}
+				
+				
+				
+				
+				// 好吧，放进数据库，绑定结束
+				if ( $this->user_douban_model->create_user_douban( array(
+																	'user_id' => get_current_user_id(),
+																	'uid' => $douban_self['db:uid']['$t'],
+																	'oauth_token' => $access_token['oauth_token'],
+																	'oauth_token_secret' => $access_token['oauth_token_secret'],
+																		)) ) {
+				
+					// 绑定成功
+					$this->session_message->set('绑定豆瓣成功');
+					
+				
+				} else {
+					$this->session_message->set('失败。无法绑定豆瓣网');
+				}
+				
+				
+				redirect( 'user/setting' );
+					// 	'user_id' => $current_user_id,  // 绑定的用户
+// 						'uid' => $douban_self['db:uid']['$t'],
+// 						'oauth_token' => $douban_token['oauth_token'],
+// 						'oauth_token_secret' => $douban_token['oauth_token_secret'],
+// 						
+				
+			}
+		}
+		/**
+		 *	为当前帐户绑定新浪微博
+		 */
+		function bind_t_sina( $action = 'authorize' ) {
+			login_redirect();
+			$this->load->library('T_sina');
+			$this->load->model('user_t_sina_model');
+			
+			// 判断其他用户是否已经绑定过微博了...
+			// 绑定过的。。。 取消绑定
+// 			if ( $this->user_t_sina_model->is_user_t_sina( array( 'user_id' => get_current_user_id() )) ) {
+// 				// 取消绑定
+// 				if ( $this->user_t_sina_model->delete_user_t_sina( get_current_user_id() ) ) {
+// 					$this->session_message->set('取消绑定新浪微博');
+// 					redirect( 'user/setting' );
+// 				} else {
+// 					$this->session_message->set('失败。 无法取消绑定微博');
+// 					redirect( 'user/setting' );
+// 				}
+// 
+// 			}
+			
+			// 判断当前用户有没有绑定过了。。。
+			if ( $this->user_t_sina_model->is_user_t_sina( array( 'user_id' => get_current_user_id() )  )  ) {
+				// 有绑定过取消绑定
+				if ( $this->user_t_sina_model->delete_user_t_sina( get_current_user_id() ) ) {
+					$this->session_message->set('取消绑定新浪微博');
+					redirect( 'user/setting' );
+				} else {
+					$this->session_message->set('失败。 无法取消绑定微博');
+					redirect( 'user/setting' );
+				}
+
+			}
+			
+			
+			// 绑定吧...
+			//exit( 'to_bind' );
+			
+			if ( $action == 'authorize' ) {
+				redirect ( $this->t_sina->getAuthorizeURL( site_url('user/bind_t_sina/callback'  )) );
+			} elseif ( $action == 'callback' ) {
+
+				// 绑定...
+				//echo 'to_bind';
+				//print_r( $this->t_sina->getAccessToken() );
+				
+				
+				$access_token = $this->t_sina->getAccessToken();
+				// 获得access token后, 放入session & 数据库
+				$this->session->set_userdata('last_key', $access_token);
+				
+				
+			
+
+			
+				// 判断其他用户有没有绑定过...
+				if ( $this->user_t_sina_model->is_user_t_sina( array( 't_sina_id' => $access_token['user_id'] )) ) {
+					$this->session_message->set('这个微博已经被其他帐号绑定过了');
+					redirect('user/setting');
+				
+				}
+				
+				
+				// 放入数据库
+				//$this->user_t_sina_model
+				if ( $this->user_t_sina_model->create_user_t_sina( 
+					get_current_user_id(), 
+					array(
+					't_sina_id' => $access_token['user_id'],
+					'oauth_token' => $access_token['oauth_token'],
+					'oauth_token_secret' => $access_token['oauth_token_secret'],
+				) ) ) {
+					$this->session_message->set('绑定微博成功');
+				} //else {
+				//	$this->session_message->set('这个微博已经被其他帐号绑定过了');
+				//}
+				
+				
+				// 微博绑定成功，回到个人设置页面...
+				redirect( 'user/setting' );
+				
+				//ajaxReturn( null, 't_sina_binded', 1);
+			}
+			
+			
+		}
 		
 		/**
 		 *	新浪微博OAuth 登录， 第一登录转到电邮绑定页面
 		 */
 		function login_by_t_sina( $action = 'authorize' ) {
 		
-			$this->load->library('t_sina');
+			$this->load->library('T_sina');
 			
 			if ( $action == 'authorize' ) {
 				// 授权 。   转到新浪授权页面， 给用户进行授权， 授权成功, 返回oauth token，进行
@@ -939,6 +1228,16 @@ EOT;
 				
 				$this->session->set_userdata( 'last_key' , $last_key );
 				$self = $this->t_sina->getSelf();
+				
+				//print_r ( $self );
+				// TODO  当$self没抓到用户时..
+				//if ( isset( $self['error_code'] ) ) {
+					// 重新authorize
+					
+				//	redirect( 'user/login_by_t_sina' );
+					//echo 
+				//}
+				
 				
 				// 用户是否第一次登录（ user_t_sina 数据库是否存在绑定条目）
 				$this->load->model('user_t_sina_model');
@@ -1553,6 +1852,31 @@ EOT;
 			}
 		}
 		
+		
+		/**
+		 *	删除头像~~  ajax
+		 */
+		function ajax_delete_avatar( $avatar_id ) {
+			login_redirect();
+			
+
+			$this->load->model('user_avatars_model');
+			// 判断那个头像是不是当前用户的
+			if ( !$avatar = $this->user_avatars_model->get_avatar_by_id( $avatar_id ) ) {
+				ajaxReturn( 'none', '头像不存在呢', 0 );
+			}
+			
+			if ( $avatar['user_id'] == get_current_user_id() ) {
+			
+				if ( $this->user_avatars_model->delete_user_avatar( $avatar_id ) ) {
+					ajaxReturn(null, '成功删除头像', 1 );
+				} else {
+					ajaxReturn(null, '无法删除头像，是否已经删除过了？', 0 );
+				}
+			} else {
+				ajaxReturn( 'not yours', '权限不足无法删除头像', 0 );
+			}
+		}
 		
 		/**
 		 *	创建目录函数，用于上传头像是自动生成用户的头像图片存放文件夹

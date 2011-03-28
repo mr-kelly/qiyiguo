@@ -82,9 +82,78 @@
 		 *	删除群
 		 */
 		function del_group( $group_id ) {
-			return $this->db->delete('group', array(
+			// 删除群组
+			$del_group = $this->db->delete('group', array(
 				'id' => $group_id,
 			));
+			
+			// 删除群组、用户关系
+			$del_group_user = $this->db->delete('group_user', array(
+				'group_id' => $group_id,
+			));
+			
+
+			
+			
+			// 删除群组下的活动、话题
+			$ci =& get_instance();
+			$ci->load->model('topic_model');
+			$ci->load->model('event_model');
+			$ci->load->model('relation_model');
+			
+			
+			
+			// 删除关系群...  删除2边... 还有删除双向...
+			$del_group_relation = $ci->relation_model->del_relation(array(
+				'from_id' => $group_id,
+				'model' => 'group',
+				'relation' => 'related',
+			));
+			$ci->relation_model->del_relation( array(
+				'to_id' => $group_id,
+				'model' => 'group',
+				'relation' => 'related',
+			));
+			$ci->db->delete( 'relation_mutual', array(
+				'model_id' => $group_id,
+				'model' => 'group',
+			));
+			$ci->db->delete( 'relation_mutual', array(
+				'mutual_id' => $group_id,
+				'model' => 'group',
+			));
+			
+			
+			// 获取所有的群组话题
+			$topics = $this->db->get_where('topic', array(
+				'model' => 'group', 
+				'model_id' => $group_id,
+			));
+			$topics = $topics->result_array();
+			if ( !empty( $topics ) ) {
+				foreach( $topics as $topic ) {
+					// 开始删除群组下的话题
+					$ci->topic_model->del_topic( $topic['id'] );
+				}
+			}
+			
+			
+			// 获取所有的群组活动
+			$events = $this->db->get_where('event', array(
+				'model' => 'group',
+				'model_id' => $group_id,
+			));
+			$events = $events->result_array();
+			if ( !empty( $events ) ) {
+				foreach ( $events as $event ) {
+					// 开始删除群组下的话题
+					$ci->event_model->del_event( $event['id'] );
+				}
+			}
+			
+			
+			return ( $del_group && $del_group_user );
+			
 		}
 		/**
 		 *   新设置 友群成员，
@@ -285,7 +354,10 @@
 				}
 			}
 			if ( $random ) $groups_sql .= ' ORDER BY rand()';
-			$groups_sql .= sprintf( ' LIMIT %d,%d ', $start, $limit );
+			
+			if ( $limit ) {
+				$groups_sql .= sprintf( ' LIMIT %d,%d ', $start, $limit );
+			}
 			
 			
 			 
@@ -379,12 +451,16 @@
 				}
 			}
 			
+			//print_r( $common_groups_id );
+			//exit();
+			
 			// 将共同群组的详细资料写入.. // 多查询
 // 			$common_groups = array();
 // 			foreach( $common_groups_id as $common_group_id ) {
 // 				$common_groups[] = $this->_get_group( $common_group_id );
 // 			}
-// 
+// 			
+// 			
 // 			return $common_groups; 
 			
 			// 将共同群组的详细资料写入.. // 单查询
@@ -402,12 +478,13 @@
 		/**
 		 *	获取一些新鲜果群... ( 新建的群，并且用户数大于10 ）？
 		 */
-		function get_fresh_groups( $user_num = 10 ) {
+		function get_fresh_groups( $user_num = 10, $limit=6 ) {
 			$sql = sprintf( 'SELECT * FROM kk_group WHERE 
 								( SELECT count( * ) FROM kk_group_user 
 									WHERE group_id = kk_group.id ) > %d
-									ORDER BY created DESC', 
-									$user_num);
+									ORDER BY created DESC
+									LIMIT 0,%d', 
+									$user_num, $limit);
 			
 			$query = $this->db->query( $sql );
 			
@@ -496,6 +573,30 @@
 			
 			return $query->num_rows();
 		}
+		
+		
+		/**
+		 *	获取群组的管理员数字...
+		 */
+		function get_group_admins( $group_id ) {
+			$query = $this->db->get_where('group_user', array(
+				'group_id' => $group_id,
+				'user_role' => 'admin',
+			));
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			$return_admins = array();
+			foreach ( $query->result_array() as $group_user ) {
+				$return_admins[] = $this->_get_user( $group_user['user_id'] );
+			}
+			
+			return $return_admins;
+		}
+		
+		
 		/**
 		 *	获取小组所有已绑定新浪微博的成员的微博, 经过时间排序
 		 

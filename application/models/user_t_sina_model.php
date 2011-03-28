@@ -12,6 +12,15 @@
 		 *	OAuth 绑定。全新改
 		 */
 		function create_user_t_sina( $user_id, $data ) {
+			// 检查是否存在
+			$query = $this->db->get_where('user_t_sina', array(
+				'user_id' => $user_id,
+			) + $data );
+			if ( $query->num_rows() != 0 ) { // 存在
+				return false;
+			}
+			
+			
 			$this->db->insert('user_t_sina', array(
 				'user_id' => $user_id,
 				'created' => date('Y-m-d H:i:s'),
@@ -155,7 +164,7 @@
 		}
 		
 		/**
-		 *	绑定帐户，用于普通帐户的create_user_t_sina
+		 *	绑定帐户，用于普通帐户的create_user_t_sina ( 过期 ）
 		 */
 		function bind_user_t_sina($user_id, $login, $password, $type="user") {
 			$this->load->library('fun_crypt');

@@ -1,3 +1,7 @@
 .form_div label {
 	width: 100px;
 }
+
+.change_avatar {
+	float: left;
+}

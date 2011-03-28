@@ -15,17 +15,24 @@
 			
 			// Nickname 1
 			if ( $profile['nickname'] != '' ) {
-				$inner_index += 1;
+				$inner_index += 2;
 			}
 			
 			// 省市  2
 			if ( $profile['province_id'] != '' ) {
-				$inner_index += 1;
+				$inner_index += 2;
 			}
 			if ( $profile['city_id'] != '' ) {
-				$inner_index += 1;
+				$inner_index += 2;
 			}
 			
+			// 籍贯
+			if ( $profile['hometown_province_id'] != '' ) {
+				$inner_index += 2;
+			}
+			if ( $profile['hometown_city_id'] != '' ) {
+				$inner_index += 2;
+			}
 			
 			// 生日 2
 			if ( $profile['birth'] != '' ) {
@@ -91,6 +98,10 @@
 				$inner_index += 2;
 			}
 			
+			if ( !empty( $profile['link_renren'] ) ) {
+				$inner_index += 2;
+			}
+			
 			
 			// 交友目的
 // 			if ( $profile['target'] != '' ) {
@@ -98,7 +109,7 @@
 // 			}
 			
 			// 兴趣爱好
-			if ( $profile['hobby'] != '' ) {
+			if ( !empty ( $profile['hobby'] ) ) {
 				$inner_index += 2;
 			}
 			
@@ -213,6 +224,18 @@
 // 					$inner_index += 1;
 // 				}
 // 			}
+
+			// 是不是单身，非单身加分多一点哦
+			if ( !empty( $profile['love_status'] ) ) {
+				if ( $profile['love_status'] != 'single' ||
+						$profile['love_status'] != '' ) {
+					
+					$inner_index += 8;
+						
+				} elseif ( $profile['love_status'] == 'single' ) {
+					$inner_index += 5;
+				}
+			}
 			
 			return $inner_index;
 

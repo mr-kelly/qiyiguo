@@ -7,6 +7,7 @@
 		}
 		
 		function index() {
+			$render['page_title'] = '奇异果的公开群组活动';
 			$render['current_event'] = 'current_menu';
 			$render['events'] = $this->event_model->get_events_custom( array() );
 			kk_show_view('event/index_view', $render);
@@ -18,10 +19,17 @@
 		 */
 		function event_lookup( $event_id ) {
 			
+			up_event_page_view( $event_id );
 			clean_notices( get_current_user_id(), 'event', $event_id );
 			
+			$event = $this->event_model->get_event_by_id( $event_id );
+			if ( !$event ) {
+				show_404();
+			}
+			
+			$render['page_title'] = $event['name'];
 			$render['current_event'] = 'current_menu';
-			$render['event'] = $this->event_model->get_event_by_id( $event_id );
+			$render['event'] = $event;
 			
 			$render['event_users'] = $this->event_model->get_event_users( $event_id, false );
 			// 关注人数（ 参与+感兴趣）
@@ -38,17 +46,51 @@
 		 *	获取当前用户的任务.. (来自私有群组)
 		 */
 		function my_missions() {
+			$render['page_title'] = '我的任务';
 			$render['current_event'] = 'current_menu';
 			kk_show_view('event/my_missions_view', $render);
+		}
+		
+		
+
+		
+		/**
+		 *	创建事情页。  显示很多群组...
+		 */
+		function add_event() {
+			login_redirect();
+			
+			$render['page_title'] = '选择一个群组， 创建活动或任务';
+			
+			kk_show_view( 'event/add_event_view', $render );
 		}
 		
 		/**
 		 *	加入的群的话题 (群话题 )
 		 */
-		function joined_groups_events() {
+		function my_events() {
 			login_redirect();
+			login_redirect();
+			
+			$this->load->model( 'stream_model' );
+			
+			$start = $this->input->get( 'start' );
+			$per_page = 20; // 每页显示...
+			
+			
+			$render['page_title'] = '我的群组话题';
+			$render['start'] = $start;
+			$render['per_page'] = $per_page;
+			$render['current_event']= 'current_menu';
+			$render['my_events_count'] = $this->stream_model->get_user_groups_events_count( get_current_user_id() );
+			
+			// 获取用户关注群组的topics
+			$render['user_groups_events'] = $this->stream_model->get_user_groups_events( get_current_user_id(), $per_page, $start );
+			
+			
+			
 			$render['current_event'] = true;
-			kk_show_view('event/joined_groups_events_view', $render);
+			kk_show_view('event/my_events_view', $render);
 			
 		}
 		
@@ -58,7 +100,7 @@
 		 */
 		function ajax_join_event( $event_id, $action = 'join' ) {
 			if ( !is_logged_in() ) {
-				ajaxReturn( null, '未登录', 0 );
+				ajaxReturn( 'login_required', '未登录', 0 );
 			}
 			
 			if ( $action == 'join' ) {
@@ -93,8 +135,9 @@
 		 *	用户关注、感兴趣某活动
 		 */
 		function ajax_follow_event( $event_id, $action = 'follow' ) {
+			
 			if ( !is_logged_in() ) {
-				ajaxReturn( null, '未登录', 0 );
+				ajaxReturn( 'login_required', '未登录', 0 );
 			}
 			
 			if ( $action == 'follow' ) {
@@ -157,27 +200,42 @@
 				
 				if ( ! $this->form_validation->run() ) {
 					// 不通过表单验证~
-					AjaxReturn ( null, validation_errors() , 0 );
+					ajaxReturn ( null, validation_errors() , 0 );
 				} else {
 				
 					//$event_group_id = $this->form_validation->set_value('event_group_id');
 					
+					// 活动开始时间
 					$create_event_start_date = sprintf('%s-%s-%s', $this->form_validation->set_value('create_event_start_year'), $this->form_validation->set_value('create_event_start_month'), $this->form_validation->set_value('create_event_start_day'));
 					$create_event_start_hour = $this->form_validation->set_value('create_event_start_hour');
 					$create_event_start_min = $this->form_validation->set_value('create_event_start_min');
 					
+					$create_event_start = $create_event_start_date . ' '. $create_event_start_hour . ':' . $create_event_start_min . ':00';
+					
+					
+					// 活动结束时间
 					$create_event_end_date = sprintf('%s-%s-%s', $this->form_validation->set_value('create_event_end_year'), $this->form_validation->set_value('create_event_end_month'), $this->form_validation->set_value('create_event_end_day'));
 					$create_event_end_hour = $this->form_validation->set_value('create_event_end_hour');
 					$create_event_end_min = $this->form_validation->set_value('create_event_end_min');
 					
+					$create_event_end = $create_event_end_date . ' '. $create_event_end_hour . ':' . $create_event_end_min . ':00';
+					
+					// 活动开始时间不能大于结束时间
+					if ( $create_event_start > $create_event_end ) {
+						ajaxReturn( null, '活动时间错误', 0 );
+					}
+					
 					$create_event_name = $this->form_validation->set_value('create_event_name');
 					$create_event_content = $this->form_validation->set_value('create_event_content');
 					
+					
+					
+					
 					$this->load->model('event_model');
-					$this->event_model->create_event( array(
+					$event_id = $this->event_model->create_event( array(
 						
-						'start' => $create_event_start_date . ' '. $create_event_start_hour . ':' . $create_event_start_min . ':00',
-						'end' => $create_event_end_date . ' '. $create_event_end_hour . ':' . $create_event_end_min . ':00',
+						'start' => $create_event_start,
+						'end' => $create_event_end,
 						'name' => $this->kk_filter->filter( $create_event_name ),
 						'content' => $this->kk_filter->filter( $create_event_content ),
 						'model' => $model,
@@ -185,6 +243,10 @@
 						'user_id' => $this->tank_auth->get_user_id(),
 						
 					));
+					
+					
+					// 活动创建成功。 组织者自动参加！
+					$this->event_model->create_event_user( $event_id, get_current_user_id() );
 					
 					ajaxReturn('ok', '已成功创建活动', 1);
 				}
@@ -218,6 +280,35 @@
 		function ajax_get_event_join_btn( $event_id ) {
 			$render['event'] = $this->event_model->get_event_by_id( $event_id );
 			kk_show_view('event/general_event_join_btn', $render);
+		}
+		
+		
+		/**
+		 *	删除 活动、任务
+		 */
+		function ajax_delete( $event_id ) {
+			if ( !is_logged_in() ) {
+				ajaxReturn('login_required', '未登录', 0 );
+			}
+			
+			// 获取事件，判断当前用户是否是 事件群组管理者或组织者
+			$event = $this->event_model->get_event_by_id( $event_id );
+			
+			if ( is_group_admin( $event['model_id'], get_current_user_id() ) ||
+					get_current_user_id() == $event['user_id'] ) {
+				
+				if ( $this->event_model->del_event( $event_id ) ) {
+					ajaxReturn( null, '成功删除这件事', 1 );
+				} else {
+					ajaxReturn( null, '无法删除这件事', 0 );
+				}
+						
+				
+			} else {
+				ajaxReturn( null, '你不够权限', 0);
+			}
+					
+
 		}
 		
 	}

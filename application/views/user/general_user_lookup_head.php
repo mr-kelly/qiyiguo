@@ -14,8 +14,12 @@
 								<input onchange="$('.lookup_avatar_form').submit();return false;" class="lookup_avatar_input" type="file" name="userfile" style="visibility:hidden;position:absolute;" />
 								
 							</form>
-							
+						
+						<?php if(strpos(  $_SERVER["HTTP_USER_AGENT"],'MSIE')) : ?>
+						<a class="lookup_avatar_edit" href="<?=site_url('user/avatar');?>" title="修改群组的标志LOGO">
+						<?php else: ?>
 						<a class="lookup_avatar_edit" href="#" onclick="$('.lookup_avatar_input').trigger('click'); return false;" title="修改群组的标志LOGO">
+						<?php endif; ?>
 							改头像
 						</a>
 						
@@ -84,6 +88,9 @@
 										case 'married':
 											echo '已婚';
 											break;
+										case 'persue':
+											echo '追求爱情中';
+											break;
 									}
 								?>
 							</span>
@@ -104,6 +111,7 @@
 								<?php if ( $user['id'] == get_current_user_id() ): //当前用户？提供修改 ?>
 								<a class="sexybox" href="<?=site_url('user/ajax_add_mood');?>">[更改]</a>
 								<?php endif; ?>
+								
 							</span>
 						</div>
 						<?php
@@ -114,6 +122,9 @@
 								
 							<?= kk_content_preview( $user['description'] );?>
 							
+								<?php if ( $user['id'] == get_current_user_id() ): //当前用户？提供修改 ?>
+								<a class="sexybox" href="<?=site_url('user/ajax_add_mood');?>">[添加心情]</a>
+								<?php endif; ?>
 						</div>
 						<?php
 							endif;

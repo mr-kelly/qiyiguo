@@ -45,7 +45,7 @@
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				//表单验证
-				$this->form_validation->set_rules('name', '果群名称', 'trim|required|xss_clean|htmlspecialchars');
+				$this->form_validation->set_rules('name', '果群名称', 'trim|required|xss_clean|htmlspecialchars|max_length[16]');
 				$this->form_validation->set_rules('privacy', '果群公开性', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('category_id', '群类别', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('verify', '加入友群验证方式', 'trim|required|xss_clean');
@@ -56,6 +56,10 @@
 				$this->form_validation->set_rules('city_id', '城市', 'trim|xss_clean');
 				
 				$this->form_validation->set_rules('slug', '群网址', 'trim|xss_clean|alpha_dash');
+				
+				$this->form_validation->set_rules('admin_mode', '管理员通知模式', 'xss_clean|trim');
+				$this->form_validation->set_rules('noheader_mode', '无群组头部模式', 'xss_clean|trim');
+				
 				
 				if ( !$this->form_validation->run() ) {
 					ajaxReturn( null, validation_errors(), 0);
@@ -94,6 +98,9 @@
 						'website' => $this->form_validation->set_value('website'),
 						
 						'slug' => $slug,
+						'admin_mode' => $this->form_validation->set_value( 'admin_mode' ),
+						'noheader_mode' => $this->form_validation->set_value( 'noheader_mode' ),
+						
 					));
 					ajaxReturn( array(
 									'group_url' => get_group_url( $group_id ),
@@ -280,7 +287,7 @@
 				'start' => $start,
 				'group' => $group,
 				'group_id' => $group_id,
-				'group_users' => $this->group_model->get_group_users($group_id, 10),
+				'group_users' => $this->group_model->get_group_users($group_id, 50), // 显示50个群组用户
 				'group_users_count' => $this->group_model->get_group_users_count( $group_id ),
 				//'topics' => $topics,
 				
@@ -290,8 +297,10 @@
 // 				'hide_header' => true,
 // 				'hide_footer' => true,
 
-				'relation_groups' => $this->relation_model->get_relation_groups( $group_id, 6 ), //获取关系群组,限制6个
+				'relation_groups' => $this->relation_model->get_relation_groups( $group_id, 12 ), //获取关系群组,限制6个
 				'relation_groups_count' => $this->relation_model->get_relation_groups_count( $group_id ),
+				
+				'noheader_mode' => $group['noheader_mode'], // 是否是无顶部菜单模式...
 			);
 			
 			if ( $action == 'index' ) {
@@ -301,9 +310,16 @@
 				$render['topics'] = $this->topic_model->get_topics('group', $group_id, 10);
 				$render['events'] = $this->event_model->get_events('group', $group_id, 11);
 				
+				// 没有边栏成员列表
+				$render['no_sidebar_group_users_list'] = true;
+				// 显示边栏活动...
+				$render['show_sidebar_group_events_list'] = true;
+				
 				$render['page_title'] = $group['name'];
 				
 				kk_show_view('group/group_lookup_view', $render);
+				
+				return;
 				
 			} else if ( $action == 'topic' ) {
 			
@@ -464,7 +480,7 @@
 			// group_category
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				//表单验证
-				$this->form_validation->set_rules('group_name', '果群名称', 'trim|required|xss_clean|max_length[35]');
+				$this->form_validation->set_rules('group_name', '果群名称', 'trim|required|xss_clean|max_length[16]');
 				$this->form_validation->set_rules('group_privacy', '果群公开性', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('group_category', 'Group Category', 'trim|required|xss_clean');
 				
@@ -504,13 +520,14 @@
 					));
 					
 					$this->session_message->set(
-												sprintf( '群号:%d; 创建了群「%s」。<br />点击「邀请入群」，邀请你的朋友们加入吧。', $group_id, $group_name )
+												sprintf( '群号:%d; 创建了群「%s」。<br />点击「<a href="%s">邀请入群</a>」，邀请你的朋友们加入吧。', $group_id, $group_name, site_url('group/group_invite/' . $group_id ) )
 											);
 					
 					ajaxReturn(
 						array(
 							'group_name' => $group_name,
 							'group_id' => $group_id, 
+							'group_url' => get_group_url( $group_id ),
 						),
 						'成功创建友群！', 1);
 				}

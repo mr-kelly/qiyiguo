@@ -3,7 +3,13 @@
 		width: 300px;
 		/*height: 320px;*/
 		margin: 0 25px 0 0px;
+		_display: inline;
+		overflow: hidden;
 	}
+		.topics_show {
+			width: 300px;
+			
+		}
 	
 	
 	#inner_index_bar { /** 进度条 */

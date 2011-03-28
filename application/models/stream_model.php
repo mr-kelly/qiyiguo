@@ -6,6 +6,45 @@
 	class Stream_Model extends KK_Model {
 		
 		/**
+		 *	获取用户加入群组的活动、任务的总数量
+		 */
+		function get_user_groups_events_count( $user_id ) {
+			$groups_sql = sprintf( 'SELECT kk_group_user.group_id FROM kk_group_user INNER JOIN kk_group
+							WHERE kk_group_user.user_id = %d
+							AND kk_group_user.group_id = kk_group.id',
+							$user_id );  // 不限制~获取全部群组～
+							
+			if ( !empty ( $privacy ) ) { // 获取关注的公开？私有群组？
+				$groups_sql .= sprintf( ' AND kk_group.privacy = "%s"', $privacy );
+			}
+			
+			$user_groups = $this->db->query( $groups_sql );
+							
+							
+			if ( $user_groups->num_rows() == 0 ) {
+				return false;
+			}
+			
+			// 抓取events...
+			$query_sql = 'SELECT * FROM kk_event WHERE';
+			foreach ( $user_groups->result_array() as $key=>$user_group ) {
+				if ( $key == 0 ) { // 第一次首行不加or
+					$query_sql .= sprintf( ' ( model = "group" AND model_id = %d )', $user_group['group_id'] );
+				} else {
+					$query_sql .= sprintf( ' OR ( model = "group" AND model_id = %d )', $user_group['group_id'] );
+				}
+			}
+			
+			// 排序
+			//$query_sql .= 'ORDER BY created DESC';
+			// 限制
+			//$query_sql .= sprintf( ' LIMIT %d,%d', $start, $limit );
+			
+			
+			return $this->db->query( $query_sql )->num_rows();
+			//return $this->db->query( $query_sql )->result_array() ;
+		}
+		/**
 		 *	获取用户的活动、任务。。不论参与与否.
 		 */
 		function get_user_groups_events( $user_id, $limit=20, $start=0, $privacy=null ) {
@@ -153,14 +192,14 @@
 			
 			
 			
-			$topics = $this->db->query( $query_sql )->result_array();
-			
-			foreach( $topics as $key=>$topic ) {
-				$topics[$key]['User'] = kk_get_user( $topic['user_id'] );
-				$topics[$key]['Group'] = kk_get_group( $topic['model_id'] );
-			}
-			
-			return $topics;
+// 			$topics = $this->db->query( $query_sql )->result_array();
+// 			
+// 			foreach( $topics as $key=>$topic ) {
+// 				$topics[$key]['User'] = kk_get_user( $topic['user_id'] );
+// 				$topics[$key]['Group'] = kk_get_group( $topic['model_id'] );
+// 			}
+// 			
+// 			return $topics;
 		}
 		
 		
@@ -182,7 +221,7 @@
 								WHERE kk_topic.user_id=%d 
 								AND kk_group.privacy="public" 
 								AND kk_group.id = kk_topic.model_id  
-								ORDER BY kk_topic.modified DESC 
+								ORDER BY kk_topic.created DESC 
 								LIMIT %d,%d', 
 							$user_id ,
 							$start,
@@ -214,7 +253,7 @@
 									WHERE kk_event.user_id=%d 
 									AND kk_group.privacy="public" 
 									AND kk_group.id = kk_event.model_id  
-									ORDER BY kk_event.modified DESC 
+									ORDER BY kk_event.created DESC 
 									LIMIT %d,%d',
 								$user_id,
 								$start,
@@ -250,7 +289,7 @@
 										AND kk_event_user.event_id=kk_event.id
 										AND kk_group.privacy="public"
 										AND kk_group.id = kk_event.model_id
-										ORDER BY kk_event_user.modified DESC
+										ORDER BY kk_event_user.created DESC
 										LIMIT %d,%d',
 										$user_id,
 										$start,
@@ -287,9 +326,11 @@
 										FROM kk_chat,kk_topic,kk_group
 										WHERE kk_chat.user_id=%d
 										AND kk_chat.model="topic"
+										
 										AND kk_chat.model_id = kk_topic.id
 										AND kk_topic.model_id = kk_group.id
-										ORDER BY kk_chat.modified DESC
+										
+										ORDER BY kk_chat.created DESC
 										LIMIT %d,%d',
 										$user_id,
 										$start,
@@ -315,7 +356,7 @@
 			
 			// 时间排序函数
 			function modified_sort( $a, $b ) {
-				return $a['modified'] < $b['modified'];
+				return $a['created'] < $b['created'];
 			}
 			
 			// 按照modified排序
@@ -325,9 +366,9 @@
 		}
 		
 		
-		function _modified_sort( $a, $b ) {
-			return $a['modified'] > $b['modified'];
-		}
+// 		function _modified_sort( $a, $b ) {
+// 			return $a['created'] > $b['created'];
+// 		}
 		
 		
 		/**
@@ -342,7 +383,7 @@
 							AND kk_group.privacy = "public"
 							AND ( kk_topic.title LIKE "%' . $q . '%"
 							OR kk_topic.content LIKE "%' . $q . '%" )
-							ORDER BY modified DESC
+							ORDER BY created DESC
 							LIMIT ' . $start . ',' . $limit;
 			
 							
@@ -371,7 +412,7 @@
 							AND kk_group.privacy = "public"
 							AND ( kk_event.name LIKE "%' . $q . '%"
 							OR kk_event.content LIKE "%' . $q . '%" )
-							ORDER BY modified DESC
+							ORDER BY created DESC
 							LIMIT ' . $start . ',' . $limit;
 			$events = $this->db->query( $events_sql )->result_array();
 			

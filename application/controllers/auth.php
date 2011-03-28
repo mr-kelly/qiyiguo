@@ -485,7 +485,7 @@ class Auth extends KK_Controller
 				'to' => array(
 					array( $email, ''),
 				),
-				'from' => 'qiyiguo.cc@gmail.com',
+				//'from' => 'qiyiguo.cc@gmail.com',
 				'from_name' => '「奇异果」密码重置',
 				'subject' => sprintf($this->lang->line('auth_subject_'.$type), $this->config->item('website_name', 'tank_auth')),
 				'body' => $this->load->view('email/'.$type.'-txt', $data, TRUE),

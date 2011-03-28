@@ -12,6 +12,14 @@
 			}
 		}
 		
+		/**
+		 *	删除豆瓣...
+		 */
+		function del_user_douban( $user_id ) {
+			$this->db->where('user_id', $user_id);
+			return $this->db->delete('user_douban');
+		}
+		
 		
 		function create_user_douban( $data ) {
 			$this->db->insert( 'user_douban', $data + array(

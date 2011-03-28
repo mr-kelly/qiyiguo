@@ -6,16 +6,13 @@
  		蓝色 - 字体
  */
  
- 
- 
 
 /* Edit jQuery UI CSS*/
-.ui-widget-content {
+/*.ui-widget-content {
 	background: #FFF;
 	color: #444;
 	font-size:13px;
-}
-
+}*/
 
 img.avatar {
 	border:1px solid #CCC;
@@ -80,6 +77,15 @@ img.avatar {
 /**
  *	input[type='text']  修复IE6,添加class
  */
+
+.input_text, input[type="text"], input[type="password"] {
+	padding: 3px;
+	width:120px;
+	height: 15px;
+	line-height: 15px;
+	border: 1px solid #A6D098;
+}
+
 .input_text {
 	padding: 3px;
 	width:120px;
@@ -91,14 +97,6 @@ img.avatar {
 	*line-height: 21px;
 	
 }
-.input_text, input[type="text"], input[type="password"] {
-	padding: 3px;
-	width:120px;
-	height: 15px;
-	line-height: 15px;
-	border: 1px solid #A6D098;
-}
-
 
 #loading,#loading_error {
 	position:fixed;
@@ -234,7 +232,7 @@ img.avatar {
 			font-weight: bold;
 			font-size: 13px;
 		}
-	.nav_content ul li a {
+	.nav_content a, .nav_content a:visited, .nav_content a:active, .nav_content a:link {
 		display: block;
 		width: 100%;
 		height: 100%;
@@ -248,10 +246,13 @@ img.avatar {
 		text-overflow: ellipsis;
 	}
 		
-		.nav_content ul li a:hover {
+		.nav_content a:hover {
 			/*background: url(../img/sidebar_a_hover.png);*/
 			background: #FFF;
 			color: #333;
+			
+			*background: none;
+			*color: #FFF;
 		}
 		
 			.nav_content ul li a .icon, .nav_content ul li a .group_logo {
@@ -260,6 +261,10 @@ img.avatar {
 				left: 5px;
 				width: 16px;
 			}
+				.nav_content ul li a .group_logo {
+					*left:2px;
+				}
+				
 				.nav_content ul li a .group_logo img {
 					float: left;
 				}
@@ -299,7 +304,7 @@ ul#kk_menu {
     float:left;
     height:37px;
 
-    margin:0 0 0 60px;
+    margin:0 0 0 10px;
     position:relative;
     z-index: 999;
     
@@ -423,7 +428,13 @@ div.submenu span.submenu_corner:first-child {
 	 }
 	 	#user_display .submenu_item {
 	 		*width: 300px;
+			*overflow: hidden;
+			*white-space: nowrap;
+			*text-overflow: ellipsis;
+			 
 	 	}
+	 	
+	 	
 	#user_controller {
 		 position: absolute;
 		 top: 45px;
@@ -484,7 +495,7 @@ div.submenu span.submenu_corner:first-child {
     width:960px;
     margin:0 auto;
     text-align:left;
-    min-height:600px;
+    min-height:400px;
 }
 #kk_container {
     padding: 0 10px;
@@ -509,7 +520,7 @@ div.submenu span.submenu_corner:first-child {
 	-o-border-radius: 10px;
 	border-radius: 10px;
 }
-	.sidebar_widget a {
+	.sidebar_widget a, .sidebar_widget a:active, .sidebar_widget a:link, .sidebar_widget a:visited {
 		color: #5E5E5E;
 	}
 		.sidebar_widget a:hover {
@@ -530,7 +541,7 @@ div.submenu span.submenu_corner:first-child {
 			.sidebar_widget ul li {
 				
 			}
-		.sidebar_widget h2 {
+		#sidebar h2 {
 			background: url(../img/sidebar_h2_bg.png) no-repeat;
 			height: 27px;
 			line-height: 27px;
@@ -654,7 +665,50 @@ div.submenu span.submenu_corner:first-child {
 			.sidebar_user_control {
 				float: right;
 			}
+	
+	#sidebar .sidebar_events_list {
+		margin: 0 0 0 5px;
+		padding: 0;
+	}
+		#sidebar .sidebar_events_list li {
+			/*width: 100%;*/
+			/*height: 100px;*/
+			list-style: none;
+			/*margin: 0px 0 10px 0;*/
+			/*padding: 0 10px 0 0px;*/
+			float: left;
+			*display: inline;
+			position: relative;
+			margin: 0 0 15px 0;
 			
+
+		}
+			#sidebar .sidebar_events_list h2 {
+				margin: 0;
+				padding: 0;
+				background: none;
+				
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				
+			}
+			
+			
+			#sidebar .sidebar_events_list h2 a, #sidebar .sidebar_events_list h2 a:active, #sidebar .sidebar_events_list h2 a:link {
+				font-size: 14px;
+			}
+			
+			#sidebar .sidebar_events_list .event_detail p {
+				text-indent: 0;
+			}
+				
+			#sidebar .events_list li .event_group_logo {
+				position: absolute;
+				top: 0;
+				right: 10px;
+			}
+	
 	
 	.users_show {
 		margin: 0;
@@ -665,23 +719,72 @@ div.submenu span.submenu_corner:first-child {
 			text-align: center;
 			float: left;
 		}
+		
+	.groups_list {
+		margin: 0;
+		padding: 0;
+	}
+		.groups_list li {
+			float: left;
+			width: 210px;
+			list-style: none;
+			height: 30px;
+			
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		
+				/**
+				 *	边栏的
+				 */
+				.sidebar_widget .groups_list li {
+					width: 110px;
+					position: relative;
+					
+				}
+					.sidebar_widget .groups_list li .icon_mutual {
+						position: absolute;
+						left: 14px;
+						top: 3px;
+					}
+				
+				
 	.groups_show {
 		margin: 0;
 		padding: 0;
 	}
 		.groups_show li {
-			margin: 0 5px 5px 0;
+			margin: 5px 5px 5px 0;
 			padding: 0;
 			list-style: none;
-			text-align: center;
+			/*text-align: center;*/
 			float: left;
-			width: 105px;
-			min-height: 85px;
-			*height: 80px;
+			display: inline;
+			width: 210px;
+			height: 90px;
+			/**height: 90px;*/
+			position: relative;
+			
+/*
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+*/
 		}
+			.groups_show li .group_logo {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			.groups_show li .group_intro {
+				margin-left: 60px;
+			}
+				
+
 		
-			.groups_show li div.group_name a {
-				overflow: hidden;
+			.groups_show li div a {
+
 			}
 			
 .sidebar_profile {
@@ -739,6 +842,13 @@ div.submenu span.submenu_corner:first-child {
 		font-size: 14px;
 		margin: 10px 0 10px 0;
 	}
+	
+	#content div {
+		 word-wrap:break-word;	/* 连英文单词也要强制换行 */
+		 word-break:break-all;
+		 /*-moz-binding: url('../../JavaScript/wordwrap.xml#wordwrap');//这里的路径自己安排！*/
+		 /*overflow: hidden;*/
+	}
 	#content p {
 		line-height: 18px;
 	}
@@ -785,13 +895,13 @@ div.submenu span.submenu_corner:first-child {
 		#lookup_main {
 			margin: 100px 0 0 0;
 		}
-			.lookup_aside_widget h2 {
-				font-size: 14px;
-				color: #090;
-				line-height: 27px;
-				border-bottom: 1px dashed #CCC;
-				margin: 20px 0px 0px 0;
-			}
+			
+	 
+					 
+					 
+
+				
+				
 			.lookup_avatar {
 				float: left;
 				margin: 8px 0 0 8px;
@@ -810,7 +920,6 @@ div.submenu span.submenu_corner:first-child {
 			.lookup_easy_profile {
 			
 			}
-			
 			
 				.lookup_easy_profile {
 					margin: 8px 0 0 120px;
@@ -853,6 +962,8 @@ div.submenu span.submenu_corner:first-child {
 				position: absolute;
 				bottom: 1px;
 				right: 30px;
+
+				*bottom: 15px;
 			}
 				.lookup_menu li {
 					list-style: none;
@@ -880,14 +991,15 @@ div.submenu span.submenu_corner:first-child {
 				#lookup_aside {
 					float: left;
 					width: 150px;
-					
+					*overflow:hidden;
 				}
 					
 				#lookup_content {
 					float:right;
 					width: 480px;
 					padding: 0 0 0 10px;
-					border-left: 1px dashed #CCC;
+					border-left: 2px dashed #CCC;
+					*overflow:hidden;
 				}
 					#lookup_content h2 {
 						font-size: 14px;
@@ -914,7 +1026,67 @@ div.submenu span.submenu_corner:first-child {
 					#lookup_aside .vertical_links li a span.icon {
 						left: 20px;
 					}
-
+						
+						#lookup_aside .users_list {
+							margin: 10px 0 0 0;
+							padding: 0;
+						}
+							#lookup_aside .users_list li {
+								list-style: none;
+								margin: 8px 0;
+								position: relative;
+								height: 40px;
+							}
+								#lookup_aside .users_list .user_avatar {
+									position: absolute;
+									top: 0;
+									left: 0;
+									*left: -37px;
+									margin: 0;
+									padding: 0;
+								}
+									#lookup_aside .users_list .user_detail {
+										
+										margin: 0 0 0 37px;
+										width: 112px;
+									}
+							
+							
+							
+					 
+			.lookup_aside_widget h2 {
+				font-size: 14px;
+				color: #090;
+				line-height: 27px;
+				border-bottom: 1px dashed #CCC;
+				margin: 20px 0px 0px 0;
+			}
+			
+			
+				/* 群组首页的左侧栏用户列表 */
+				 .lookup_group_users_list {
+					 margin: 0;
+					 padding: 0 0px 0 0px;
+				 }
+					 .lookup_group_users_list li {
+						 list-style: none;
+						 margin: 10px 0 10px 0;
+						 *position: relative;
+						 
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					 }
+					 
+						 .lookup_group_users_list .user_control {
+						 	 
+						 	 float: right !important;
+						 	 
+							 *position: absolute;
+							 *top: 0;
+							 *right: 0;
+						 }
+				
 
 /* Aside  & its widgets */
 #aside {
@@ -1026,18 +1198,27 @@ div.submenu span.submenu_corner:first-child {
 				top: 0;
 				right: 0;
 			}
-			
-		.topic_title a{
-			font-size: 16px;
-			letter-spacing: 0.1em;
-			font-weight: bold;
+		
+		.topic_topic {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
+			
+			.topic_title a{
+				font-size: 16px;
+				letter-spacing: 0.1em;
+				font-weight: bold;
+			}
 		.topic_content {
 		}
 			.topic_attach_img {
 				text-align: left;
 				margin: 10px 20px 0 0;
 			}
+				.topic_attach_img a img {
+					border: 1px dashed #CCC;
+				}
 			.topic_attach_file {
 				margin: 10px 0 0 0;
 			}
@@ -1048,13 +1229,13 @@ div.submenu span.submenu_corner:first-child {
 			text-align:right;
 		}
 			
-.topics_show {
+.topics_showlist {
 	margin: 0;
 	padding: 0;
 	
 }
 
-	.topics_show li {
+	.topics_showlist li {
 		list-style: none;
 		margin: 5px 0;
 		padding: 0;
@@ -1063,6 +1244,10 @@ div.submenu span.submenu_corner:first-child {
 		height: 26px;
 		
 		text-indent: 5px;
+		
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 			
 			
@@ -1078,7 +1263,10 @@ div.submenu span.submenu_corner:first-child {
 		border-bottom: dashed 1px #CCC;
 		
 		text-indent: 5px;
+		position: relative;
+		
 	}
+
 			/*
 
 .group_topics_list {
@@ -1270,16 +1458,18 @@ div.submenu span.submenu_corner:first-child {
 }
 	.events_list li {
 		width: 45%;
-		height: 100px;
+		/*height: 100px;*/
 		list-style: none;
 		margin: 10px 0;
 		padding: 0 10px;
 		float: left;
+		*display: inline;
+		position: relative;
 	}
 		.events_list h2 {
 			margin: 0;
 		}
-		.events_list h2 a {
+		.events_list h2 a, .events_list h2 a:link, .events_list h2 a:active {
 			font-size: 14px;
 		}
 		
@@ -1288,7 +1478,15 @@ div.submenu span.submenu_corner:first-child {
 		}
 			.event_even {
 				border-left: 1px dashed #CCC;
+				
 			}
+			
+		.events_list li .event_group_logo {
+			position: absolute;
+			top: 0;
+			right: 10px;
+			text-align: center;
+		}
 			
 			
 .stream_list {
@@ -1321,6 +1519,7 @@ div.submenu span.submenu_corner:first-child {
 
 #footer_ad {
 	text-align: center;
+	margin : 20px 0 0px 0;
 }
 	
 	

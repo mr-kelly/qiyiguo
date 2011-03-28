@@ -4,7 +4,7 @@
 				<div class="sidebar_widget">
 					<h2>他的群</h2>
 					<?php
-						$this->load->view('group/general_groups_show', array(
+						$this->load->view('group/general_groups_list', array(
 							'groups' => $user_groups,
 						));
 					?>
@@ -23,8 +23,8 @@
 				<div class="sidebar_widget">
 					<h2>共同群组</h2>
 					<?php
-						$this->load->view('group/general_groups_show', array(
-							'groups' => $user_groups,
+						$this->load->view('group/general_groups_list', array(
+							'groups' => $users_common_groups,
 						));
 					?>
 					<div class="clearboth"></div>
@@ -58,12 +58,16 @@
 							?>
 							<li>
 								<a href="#user_friends">
-									朋友(<?=$ci->relation_model->get_friends_count( $user['id'] );?>)
+									<span>
+										朋友(<?=$ci->relation_model->get_friends_count( $user['id'] );?>)
+									</span>
 								</a>
 							</li>
 							<li>
 								<a href="#user_fans" class="tipsy_s" title="拥趸">
-									粉丝(<?=$ci->relation_model->get_fans_count( $user['id'] );?>)
+									<span>
+										粉丝(<?=$ci->relation_model->get_fans_count( $user['id'] );?>)
+									</span>
 								</a>
 							</li>
 						</ul>
@@ -75,7 +79,15 @@
 								$this->load->view('sidebar/sidebar_users_list', array(
 									'users' => $user_friends,
 								));
-								
+							?>
+							
+							<div class="align_right">
+								<a href="<?=site_url('user/friends/'.$user['id']);?>">
+									&gt;更多朋友
+								</a>
+							</div>
+							
+							<?php
 								if ( empty( $user_friends ) ) :
 
 							?>
@@ -94,7 +106,14 @@
 								$this->load->view('sidebar/sidebar_users_list', array(
 									'users' => $user_fans,
 								));
-								
+							?>
+							<div class="align_right">
+								<a href="<?=site_url('user/fans/'.$user['id']);?>">
+									&gt;更多粉丝
+								</a>
+							</div>
+							
+							<?php
 								if ( empty( $user_fans) ) :
 							?>
 
@@ -110,4 +129,6 @@
 					</div>
 				</div>
 				
-				
+    <?php
+    	$this->load->view('sidebar/sidebar_jiathis');
+    ?>

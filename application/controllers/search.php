@@ -90,8 +90,13 @@
 		*	JS Ajax.  通过搜索获取指定学校
 		*/
 		function ajax_search_groups_by_string() {
-		
+			header("Content-Type: text/html; charset=utf-8");
+			
+			
 			$query_string = trim($this->input->get( 'q' ));
+			
+			//print( $query_string );
+			//exit();
 			
 			if ( empty( $query_string ) ) {
 				$render['search_groups'] = false;

@@ -16,7 +16,9 @@
 				<div class="kk_tabs">
 					<ul class="tab_menu">
 						<li>
-							<a href="#profile_setting">资料设置</a>
+							<a href="#profile_setting">
+								<span>资料设置</span>
+							</a>
 						</li>
 						<!--
 						<li>
@@ -29,19 +31,25 @@
 						-->
 						<li>
 							<a href="#privacy_setting">
-								隐私设置
+								<span>
+									隐私设置
+								</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="#slug_setting">
+								<span>
 								个人网址
+								</span>
 							</a>
 						</li>
 						
 						<li>
 							<a href="#recommend_friend_setting">
+								<span>
 								推荐朋友
+								</span>
 							</a>
 						</li>
 					
@@ -55,7 +63,18 @@
 								<p>
 									<label>真实姓名</label>
 									<input class="required" name="realname" type="text" value="<?= $current_user_profile['realname'];?>" />
+									<select name="name_privacy">
+										<option value="2" <?= $current_user_profile['name_privacy'] == 2 ? 'selected="selected"' : '';?>>只显示真实姓名</option>
+										<option value="1" <?= $current_user_profile['name_privacy'] == 1 ? 'selected="selected"' : '';?>>显示昵称+真实姓名</option>
+										<option value="0" <?= $current_user_profile['name_privacy'] == 0 ? 'selected="selected"' : '';?>>只显示昵称</option>
+									</select>
 								</p>
+								
+								<p>
+									<label>昵称</label>
+									<input class="required" name="nickname" type="text" value="<?= $current_user_profile['nickname'];?>"  />
+								</p>
+								
 								
 								<p>
 									<label>性别</label>
@@ -65,11 +84,7 @@
 									</span>
 								</p>
 								
-								<p>
-									<label>昵称</label>
-									<input class="required" name="nickname" type="text" value="<?= $current_user_profile['nickname'];?>"  />
-								</p>
-								
+
 								<p>
 									<label>生日</label>
 									
@@ -162,8 +177,12 @@
 									<select class="hometown_city location_select" name="hometown_city_id">
 									<?php
 										$ci =& get_instance();
+										if ( empty( $user_province ) ) {
+											$user_province = 11; // 如果没设置，给予默认的
+										}
 										$cities =  $ci->dict_model->get_cities($user_province); 
 										$user_city = $current_user_profile['hometown_city_id']; // 籍贯！
+
 										foreach ( $cities as $city ):
 									?>
 										<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
@@ -173,9 +192,83 @@
 								</p>
 								
 								<p>
+									<label>手机</label>
+									<input type="text" class="input_text" name="phone" value="<?= !empty( $current_user_profile['phone'] ) ? $current_user_profile['phone'] : '';?>" />
+									
+									<select name="phone_privacy">
+										<option value="3" <?= $current_user_profile['phone_privacy'] == 3 ? 'selected="selected"' : '';?>>所有人可见</option>
+										<option value="2" <?= $current_user_profile['phone_privacy'] == 2 ? 'selected="selected"' : '';?>>我收藏的人可见</option>
+										<option value="1"<?= $current_user_profile['phone_privacy'] == 1 ? 'selected="selected"' : '';?>>朋友(互相收藏)可见</option>
+										<option value="0"<?= $current_user_profile['phone_privacy'] == 0 ? 'selected="selected"' : '';?>>封闭(其他人不能查看你的资料)</option>
+									</select>
+								</p>
+								
+								<p>
+									<label>新浪微博</label>
+									<span>
+										<?php
+											// 判断是否已绑定。
+											$ci =& get_instance();
+											$ci->load->model('user_t_sina_model');
+											if ( $ci->user_t_sina_model->is_user_t_sina( array(
+												'user_id' => get_current_user_id(),
+											)) ) :
+												// 已绑定
+												$user_t_sina = $ci->user_t_sina_model->get_user_t_sina( get_current_user_id() );
+										?>
+										
+											
+											<a href="<?=$current_user_profile['t_sina_url'];?>" class="icon icon_t_sina">
+												去新浪微博
+											</a>
+											&nbsp;&nbsp;&nbsp;
+											<a class="btn" href="<?=site_url('user/bind_t_sina');?>">&gt;解除绑定</a>
+										<?php else: ?>
+											<a target="_blank" class="btn" href="<?=site_url('user/bind_t_sina');?>">
+												绑定微博
+											</a>
+										<?php
+											endif;
+											
+										?>
+									</span>
+								</p>
+								
+								<p>
+									<label>豆瓣网</label>
+									<span>
+										<?php
+											// 判断是否已绑定。
+											$ci =& get_instance();
+											$ci->load->model('user_douban_model');
+											if ( $ci->user_douban_model->is_user_douban( array(
+												'user_id' => get_current_user_id(),
+											)) ) :
+										?>
+											<a class="icon icon_douban" href="<?=$current_user_profile['douban_url'];?>">
+												去豆瓣网
+											</a>
+											&nbsp;&nbsp;&nbsp;
+											<a class="btn" href="<?=site_url('user/bind_douban');?>">
+												&gt;解除绑定
+											</a>
+										<?php else: ?>
+											<a target="_blank" class="btn" href="<?=site_url('user/bind_douban');?>">
+												绑定豆瓣
+											</a>
+										<?php
+											endif;
+											
+										?>
+									</span>
+								</p>
+								
+								<p>
 									<label>个人网站</label>
 									<input class="url" name="website" type="text" value="<?= $current_user_profile['website'] ;?>"  />
 								</p>
+								
+
 								
 								<!--
 								<p>
@@ -196,7 +289,8 @@
 								
 								<p>
 									<label>QQ号</label>
-									<input class="digits" name="qq" type="text" value="<?= $current_user_profile['qq'];?>" />
+									<input class="digits tipsy_w" title="填写QQ号后朋友可以通过你的个人页面直接跟你QQ聊天" name="qq" type="text" value="<?= $current_user_profile['qq'];?>" />
+
 								</p>
 								
 								<p>
@@ -220,8 +314,9 @@
 								<p>
 									<label>恋爱状态</label>
 									<select id="love_status" name="love_status">
-										<option value="" <?= $current_user_profile['love_status'] == '' ? 'selected="selected"' :'';?>>未知</option>
+										<option value="" <?= $current_user_profile['love_status'] == '' ? 'selected="selected"' :'';?>>不知道</option>
 										<option value="single" <?= $current_user_profile['love_status'] =='single'? 'selected="selected"' :'';?>>单身</option>
+										<option value="persue" <?= $current_user_profile['love_status'] =='persue'? 'selected="selected"' :'';?>>追求中</option>
 										<option value="inlove" <?= $current_user_profile['love_status'] =='inlove'? 'selected="selected"' :'';?>>恋爱中</option>
 										<option value="married" <?= $current_user_profile['love_status'] =='married'? 'selected="selected"' :'';?>>已婚</option>
 									</select>
@@ -231,7 +326,7 @@
 									$(function(){
 										$('#love_status').change(function(){
 											// 如果恋爱状态设置成“非单身”，那么，显示恋爱对象设置
-											if ( $(this).val() == 'inlove' || $(this).val() == 'married' ) {
+											if ( $(this).val() == 'persue' || $(this).val() == 'inlove' || $(this).val() == 'married' ) {
 												$('#lover_p').show();
 											} else {
 												$('#lover_p').hide();
@@ -545,10 +640,18 @@
 								foreach( $user_avatars as $avatar ):
 								
 								// 头像更改时同时提交 ajax form, 以确保用户修改资料后，未保存按修改头像资料丢失
-							?>
-								<a class="change_avatar" onclick="$('#user_profiles_form').submit();" href="<?=site_url('user/avatar_set' . '/' . $avatar['id'] );?>">
-									<img width="50" src="<?=static_url( sprintf('upload/avatars/%u/%s', get_current_user_id(), $avatar['avatar_thumb']) );?>" />
-								</a>
+							?>	
+								<div class="change_avatar">
+									<a class="change_avatar" onclick="//$('#user_profiles_form').submit();" href="<?=site_url('user/avatar_set/' . $avatar['id'] );?>">
+										<img width="50" src="<?=static_url( sprintf('upload/avatars/%u/%s', get_current_user_id(), $avatar['avatar_thumb']) );?>" />
+									</a>
+									<div>
+										<a href="#" onclick="return delete_btn(this);" ajax="<?=site_url('user/ajax_delete_avatar/' . $avatar['id'] );?>" class="icon icon_delete">
+											删除
+										</a>
+									</div>
+								</div>
+								
 							<?php
 								endforeach;
 							?>
@@ -556,7 +659,10 @@
 							
 					<?php
 						endif;
-					?>	
+					?>
+					
+					<div class="clearboth"></div>
+					
 				</div>
 				
 				

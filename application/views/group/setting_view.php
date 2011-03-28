@@ -12,12 +12,14 @@
 					<div class="kk_tabs">
 						<ul class="tab_menu">
 							<li>
-								<a href="#setting_group_profile">果群资料</a>
+								<a href="#setting_group_profile">
+									<span>果群资料</span>
+								</a>
 							</li>
 							
 							<li>
 								<a href="#setting_group_slug">
-									群网址
+									<span>群网址</span>
 								</a>
 							</li>
 							
@@ -82,10 +84,10 @@
 											<?php
 												$ci =& get_instance();
 												$provinces =  $ci->dict_model->get_provinces();
-												$user_province = get_current_user_profile('province_id'); // 用户当前设置的省份
+												$group_province = $group['province_id']; // 用户当前设置的省份
 												foreach ( $provinces as $prov ):
 											?>
-												<option value="<?=$prov['id'];?>"<?=( $user_province == $prov['id'] ) ? ' selected="selected"' : '' ; ?>><?=$prov['province_name'];?></option>
+												<option value="<?=$prov['id'];?>"<?=( $group_province == $prov['id'] ) ? ' selected="selected"' : '' ; ?>><?=$prov['province_name'];?></option>
 											
 											<?php endforeach; ?>
 											</select>
@@ -94,11 +96,11 @@
 												<option value="">不设置</option>
 											<?php
 												$ci =& get_instance();
-												$cities =  $ci->dict_model->get_cities($user_province);
-												$user_city = get_current_user_profile('city_id');
+												$cities =  $ci->dict_model->get_cities($group_province);
+												$group_city = $group['city_id'];
 												foreach ( $cities as $city ):
 											?>
-												<option value="<?=$city['id'];?>"<?=( $user_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
+												<option value="<?=$city['id'];?>"<?=( $group_city == $city['id'] ) ? ' selected="selected"' : '' ; ?>><?=$city['city_name'];?></option>
 											
 											<?php endforeach; ?>
 											</select>
@@ -118,8 +120,16 @@
 										<p>
 											<label>统治模式</label>
 											<span>
-											<input type="checkbox" name="group_god" value="1" />
-											只有管理员有权发布话题、活动
+												<input type="checkbox" name="admin_mode" value="1" <?= $group['admin_mode'] ? 'checked="checked"' : '' ;?> />
+												只有管理员有权发布话题、活动
+											</span>
+										</p>
+										
+										<p>
+											<label>隐藏菜单</label>
+											<span>
+												<input type="checkbox" name="noheader_mode" value="1" <?= $group['noheader_mode'] ? 'checked="checked"' : '' ;?> />
+												群组页不显示奇异果顶部菜单
 											</span>
 										</p>
 		

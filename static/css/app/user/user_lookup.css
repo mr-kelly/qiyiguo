@@ -18,7 +18,22 @@
 
 
 
-
+#user_profile_detail ul {
+	margin: 0;
+	padding: 0;
+}
+	#user_profile_detail ul li {
+		list-style: none;
+		line-height: 25px;
+	}
+		#user_profile_detail ul li .profile_label {
+			width: 120px;
+			display: inline-block;
+			text-align: right;
+			font-weight: bold;
+			font-size: 14px;
+			margin-right: 20px;
+		}
 
 
 

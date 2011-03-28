@@ -34,11 +34,12 @@
             		
             			<?php $this->load->view('sidebar/sidebar_group_view'); ?>
             			
-            			<br />
+            			
             			
             			<?php
             				$this->load->view('sidebar/sidebar_ad_pic');
             			?>
+            			
             		
             		
             		

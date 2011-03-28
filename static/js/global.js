@@ -10,6 +10,16 @@ function login_redirect() {
 //alert( location.href );
 
 
+// IE时，回到网页的top
+function if_ie_to_top() {
+	
+	if ( navigator.userAgent.indexOf('MSIE') >= 0 ) {
+		scroll( 0, 0);			
+	}
+}
+
+
+
 /**
  *	控制jGrowl的显示
  */
@@ -17,47 +27,56 @@ var kk_growl = {
 	error: function( $message ) {
 		// 错误显示的jGrowl ( 短暂 )
 		$.jGrowl( $message, { header: '<a class="icon icon_error"></a>' } );
+		if_ie_to_top();
+
 	},
 	success: function ( $message ) {
+		
 		$.jGrowl( $message, { header: '<a class="icon icon_yes"></a>' } );
+		if_ie_to_top();
+
 	},
 	session_message: function( $message ) {
 		// 用于library Session Message。  持久显示
 		$.jGrowl( $message, { sticky: true } );
+		if_ie_to_top();
+
 	},
 	
 	notice: function( $message, $header ) {
 
 		$.jGrowl( $message , { sticky: true, header: '<span class="icon icon_notice">' + $header + '</span>' });
+		
+		if_ie_to_top();
 	}
 }
 
 
+
+
 /**
- *	每10秒检查是否有新的提醒，
+ *	检查是否有新的提醒，  ( function , 配合下面的 )
  	并显示提醒
  */	
- 
-
-
 function notice_check() {
 		$.getJSON( $get_user_notices_url, function(json) {
 
 			if ( json.status == 1 ) {
 				
-				//alert("有提醒呢");
-				//kk_growl.notice( json, '有提醒' );
 				data = json.data;
 				//if ( data ) {
 					for ( var key in data ) {
 					
 						// 提醒中的链接... 如果没有链接，不显示
 						if ( data[key].link != '' ) {
-							$link = '<a target="_blank" href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>';
+							$link = '<a href="' + $site_url + 'notice/poke/' + data[key].id + '">...&gt;去看看</a>';
+							
 						} else {
 							$link = '';
 						}
-						kk_growl.notice( data[key].content + 
+						kk_growl.notice( '<div style="float:right;"><a href="' + $site_url + 'notice/poke/' + data[key].id + '"><img width="30" height="30" src="' + data[key].user_avatar_url + '" /></a></div>'
+											+
+											data[key].content + 
 											$link, 
 											data[key].title );
 											
@@ -81,6 +100,10 @@ $(function(){
 	
 	notice_check();
 });
+
+
+
+
 
 
 
@@ -116,7 +139,7 @@ function ajax_btn( $this ) {
  *	删除的ajax通用按钮...
  */
 function delete_btn( $this, $redirect ) {
-	if ( confirm( '确定删除?') ) {
+	if ( confirm( '确定?!') ) {
 		$.getJSON( $($this).attr('ajax'), function(json) {
 			if ( json.status == 1 ) {
 				kk_growl.success( json.info );
@@ -138,7 +161,7 @@ function delete_btn( $this, $redirect ) {
 
 
 $(function(){
-	// Ajax 表单
+	// Ajax 表单 通用
 	$('.ajax_form').validate({
 			submitHandler: function(form) {
 				$('.ajax_form').ajaxSubmit({
@@ -166,6 +189,10 @@ $(function(){
 			}
 	});
 });
+
+
+
+
 
 
 
@@ -264,17 +291,7 @@ $(function() {
     
     
 
-    
-    /**
-     *	绑定日期设置控件
-     */
-// 	$('.datepicker').datepicker( {
-// 		changeMonth: true,
-// 		changeYear: true,
-// 		dateFormat: 'yy-mm-dd',
-// 		yearRange: '1890:2012',
-// 		monthNamesShort:['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-// 	} );
+
     
 
     	/**
@@ -336,15 +353,15 @@ $(function() {
 	/**
 	 *	Session Message, 显示8秒后，消失
 	 */
-	timer = '';
-	
-	function session_message($message, $type) {
-		clearInterval(timer);
-		
-		$(".session_message").html($message).slideDown().focus();
-		
-		timer = setInterval('$(".session_message").slideUp()', 8000);
-	}
+// 	timer = '';
+// 	
+// 	function session_message($message, $type) {
+// 		clearInterval(timer);
+// 		
+// 		$(".session_message").html($message).slideDown().focus();
+// 		
+// 		timer = setInterval('$(".session_message").slideUp()', 8000);
+// 	}
 	
 	function target_message( $target, $message, $type) {
 	
@@ -430,8 +447,6 @@ $(function(){
 	$mood_text_tips = '今天心情怎样？';
 	$('.mood_text').input_tips( $mood_text_tips );
 	
-	
-
 });
 
 

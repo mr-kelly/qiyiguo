@@ -8,10 +8,10 @@
 			parent::__construct();
 
 			// 让?xxx=xxx  生效$_GET
-// 			parse_str($_SERVER['QUERY_STRING'],$_GET); 
-// 			
-// 			header("Cache-Control: no-cache");
-// 			header("Pragma: no-cache");
+			parse_str($_SERVER['QUERY_STRING'],$_GET); 
+			
+			//header("Cache-Control: no-cache");
+			//header("Pragma: no-cache");
 			
 		}
 

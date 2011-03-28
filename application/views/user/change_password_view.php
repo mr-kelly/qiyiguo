@@ -45,6 +45,9 @@
 					$this->load->view('sidebar/sidebar_user_profile', array(
 						'user' => get_current_user_profile(),
 					));
+					
+					
+					$this->load->view('sidebar/sidebar_ad_pic');
 				?>
 			</div>
 		</div>

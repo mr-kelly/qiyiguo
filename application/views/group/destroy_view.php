@@ -20,8 +20,13 @@
 					$(function(){
 						$('#destroy_btn').click(function(){
 							if ( !confirm('真的确定毁灭群组？？！！！') ) {
+								
 								return false;
-							}
+							} else {
+								if ( !confirm('一旦毁灭群, 群的成员、话题、活动将不复存在。你却确定吗?') ) {
+									return false;
+								}
+							}	
 						});
 					});
 				</script>

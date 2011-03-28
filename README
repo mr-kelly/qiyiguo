@@ -1,1 +1,9 @@
 Qiyiguo.cc - Group Based Social Network / Living Network Service
+
+
+
+发行到服务器cherokee时需要修改：
+
+	$config   PATH_INFO 改REQUEST_URI
+	
+	database.php

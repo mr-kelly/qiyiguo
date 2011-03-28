@@ -63,6 +63,20 @@
 
 		}
 		
+		
+		/**
+		 *	获取指定的头像数据库条目
+		 */
+		function get_avatar_by_id( $avatar_id ) {
+			$query = $this->db->get_where('user_avatars', array(
+				'id' => $avatar_id,
+			));
+			$avatar = $query->row_array();
+			
+			
+			return $avatar;
+		}
+		
 		/**
 		 *	判断头像，是否属于指定的用户,,  即user_id跟 avatar表中的user_id搭配
 		 */
@@ -73,6 +87,39 @@
 			$avatar = $avatar[0]; // First Rowan
 			
 			return $avatar['user_id'] == $user_id;
+		}
+		
+		
+		
+		/**
+		 *	删除头像...
+		 */
+		function delete_user_avatar( $avatar_id ) {
+			if ( !$avatar = $this->get_avatar_by_id( $avatar_id ) ) {
+				return false;
+			}
+			
+			$delete_avatar =  $this->db->delete('user_avatars', array(
+				'id' => $avatar_id,
+			));
+			
+			// 同时删除头像文件
+			
+			$ci =& get_instance();
+			$avatar_dir = $ci->config->item('avatar_path');
+			
+			$avatar_file = realpath( $avatar_dir . '/' . $avatar['user_id'] . '/' . $avatar['avatar_file'] ) ;
+			unlink( $avatar_file );
+			
+			// 头像图片缩略图地址
+			$avatar_thumb_file = explode( '.', $avatar['avatar_file'] );
+			$avatar_thumb_file = realpath( $avatar_dir . '/' . $avatar['user_id'] . '/' . $avatar_thumb_file[0] . '_thumb.' . $avatar_thumb_file[1]  ) ;
+			unlink( $avatar_thumb_file );
+			
+			
+			
+			return $delete_avatar;
+			
 		}
 		
 		

@@ -112,9 +112,17 @@ $(function(){
     	KE.create('content_editor');
     	// 标题变成必填
     	$('.create_topic_title').addClass('required');
+    	
+    	// 内容去除字数限制
+    	$('.create_topic_content').attr('maxlength', '');
+    	
     }, function(){
     	KE.remove('content_editor');
     	$('.create_topic_title').removeClass('required');
+    	
+    	
+    	// 字数限制 200
+    	$('.create_topic_content').attr('maxlength', '200');
     });
     
 
@@ -129,11 +137,11 @@ $(function(){
 		 
 		 $(function(){
 		 	
-			 $('#add_topic_pic_btn').click(function(){
-				 $('#add_topic_pic_input').trigger('click');
-				 
-				 return false;
-			 });
+// 			 $('#add_topic_pic_btn').click(function(){
+// 				 $('#add_topic_pic_input').trigger('click');
+// 				 
+// 				 return false;
+// 			 });
 			
 			// 添加附件按钮
 			$('#add_topic_file_btn').click(function(){
@@ -145,8 +153,24 @@ $(function(){
 			 
 		  });
 		  
-		  
+		
 		 // 话题图片上传控制
+// 		 function ajax_pic_upload() {
+// 	         $.ajaxFileUpload({
+// 	         	url: $topic_upload_pic_url,
+// 	         	fileElementId: 'add_topic_pic_input',
+// 	         	secureuri: false,
+// 	         	//dataType: 'json',
+// 	         	success: function( json, status ) {
+// 	         		alert( json.info );
+// 	         	},
+// 	         	error: function( json,status, e ) {
+// 	         		alert('error');
+// 	         	}
+// 	         });
+// 		 }
+		 
+		 
 		 function ajax_pic_upload() {
 			 $.ajaxFileUpload({
 				 url: $topic_upload_pic_url, // '<?=site_url("topic/ajax_topic_upload_pic");?>',

@@ -16,7 +16,7 @@
 
 						<li>
 							<a href="<?=site_url('home/start');?>">
-								<span class="icon icon_person"></span>
+								<span class="icon icon_start"></span>
 								开始页
 							</a>
 						</li>
@@ -28,14 +28,14 @@
 							</a>
 						</li>
 						<li>
-							<a href="<?=site_url('user/friends');?>">
-								<span class="icon icon_person"></span>
+							<a href="<?=site_url('user/follows/' . get_current_user_id() );?>">
+								<span class="icon icon_friends"></span>
 								收藏朋友
 							</a>
 						</li>
 						<li>
 							<a href="<?=site_url('user/setting');?>">
-								<span class="icon icon_person"></span>
+								<span class="icon icon_setting"></span>
 								个人设置
 							</a>
 						</li>
@@ -48,7 +48,7 @@
 							if ( is_logged_in() ) :
 								$ci =& get_instance();
 								$ci->load->model('group_model');
-								$current_user_admin_groups = $ci->group_model->get_user_admin_groups( get_current_user_id(), null ) ;
+								$current_user_admin_groups = $ci->group_model->get_user_groups( get_current_user_id(), null ) ;
 								
 								if ( !empty( $current_user_admin_groups ) ) :
 									foreach( $current_user_admin_groups as $group ):
@@ -83,6 +83,13 @@
 							<a href="<?=site_url('event/my_events');?>">
 								<span class="icon icon_event"></span>
 								我的活动
+							</a>
+						</li>
+						
+						<li>
+							<a href="<?=site_url('group/');?>">
+								<span class="icon icon_group"></span>
+								找果群
 							</a>
 						</li>
 					</ul>

@@ -99,6 +99,20 @@
 			return $query->num_rows();
 		}
 		
+		
+		/**
+		 *	随机获得话题... 公开群组的
+		 */
+		function get_random_topics( $limit=50, $start=0, $group_type = 'public' ) {
+			$topics_sql = sprintf('SELECT kk_topic.* FROM kk_topic, kk_group 
+								WHERE kk_topic.model_id = kk_group.id AND kk_group.privacy="public"
+								ORDER BY kk_topic.created DESC
+								LIMIT %d,%d', $start, $limit);
+								
+			return $this->db->query( $topics_sql )->result_array();
+		}
+		
+		
 		function get_topics( $model, $model_id, $limit=10, $start=0 ) {
 			$this->db->order_by('created', 'desc');
 			
@@ -139,9 +153,36 @@
 		
 		function del_topic( $topic_id ) {
 		
-			// TODO 同时删除评论、图片、附件
+			//  同时删除评论、图片、附件, 先获取该topic
+			$topic = $this->get_topic_by_id ( $topic_id );
+			
+			// 评论
+			$this->db->delete('chat', array(
+				'model' => 'topic',
+				'model_id' => $topic_id,
+			));
+			
+			// 图片
+			if ( !empty( $topic['attach_img_id'] ) ) {
+				$ci =& get_instance();
+				$ci->load->model('attach_model');
+				
+				$ci->attach_model->del_attach( $topic['attach_img_id'], 'image' );
+				
+			}
+			
+			// 附件文件
+			if ( !empty( $topic['attach_file_id'] ) ) {
+				$ci =& get_instance();
+				$ci->load->model('attach_model');
+				
+				$ci->attach_model->del_attach( $topic['attach_file_id'], 'file' );
+				
+			}
 			
 			
+			
+			// 到删除主题吧
 			return $this->db->delete('topic', array(
 				'id' => $topic_id,
 			));	

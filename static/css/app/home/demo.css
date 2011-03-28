@@ -1,0 +1,33 @@
+.
+.demo_left img {
+	float: left;
+}
+.demo_left .demo_content {
+	float: right;
+	width: 300px;
+}
+
+
+
+.demo_left, .demo_right {
+	border-bottom: 1px dashed #CCC;
+	height: 120px;
+}
+.demo_right img {
+	float: right;
+}
+.demo_right .demo_content {
+	float: left;
+	width: 300px;
+}
+
+
+
+.demo_right ul , .demo_left ul {
+	margin: 30px 0 0 0;
+	padding: 0;
+}
+	.demo_right ul li , .demo_left ul li {
+		list-style: none;
+		
+	}

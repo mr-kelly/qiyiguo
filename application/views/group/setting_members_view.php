@@ -66,7 +66,7 @@
 								<?php endif; ?>
 								
 								<a onclick="return set_group_user(this);" class="tipsy_s" title="把他驱赶出群" href="<?=site_url('group/ajax_cancel_group_member/' . $group['id'] . '/' . $user['id'] );?>">
-									驱赶
+									下野
 								</a>
 								
 								
@@ -93,7 +93,11 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
-				
+				<?php
+					$this->load->view('sidebar/sidebar_group_profile', array(
+						'group' => kk_get_group( $group['id'] ),
+					));
+				?>
 			</div>
 		</div>
 	</div>

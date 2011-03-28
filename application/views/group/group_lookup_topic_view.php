@@ -11,7 +11,7 @@
 		var $js_url_ajax_add_topic = '<?=site_url('topic/ajax_add_topic/group/' . $group['id'] );?>';
 	</script>
 	<?=import_js('js/app/group/group_lookup.js');?>
-	
+	 <?=import_js('js/app/topic/general_topics_list.js');?>
 	
 	
 	<div id="content">
@@ -25,7 +25,7 @@
 				<div id="lookup_main">
 						
 						<?php if ( is_group_admin( $group['id'], get_current_user_id() ) ) :?>
-						<a onclick="$('.add_topic_div').toggle();return false;" title="对果群发话~" class="tipsy_s kk_btn add_topic_btn" href="#">
+						<a onclick="$('.add_topic_div').toggle();return false;" title="对果群发话~" class="tipsy_s btn add_topic_btn" href="#">
 							发话▼
 						</a>
 						<div>

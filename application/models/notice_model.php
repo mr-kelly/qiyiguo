@@ -12,9 +12,10 @@
 	 */
 	class Notice_Model extends KK_Model {
 	
-		function add_notice( $user_id, $title, $content, $link, $model, $model_id, $type="notice" ) {
+		function add_notice( $user_id, $title, $content, $link, $model, $model_id, $type="notice" , $from_user_id = null ) {
 			$this->db->insert('notice', array(
 				'user_id' => $user_id,
+				'from_user_id' => $from_user_id,
 				'title' => $title,
 				'content' => $content,
 				'link' => $link,
@@ -34,6 +35,8 @@
 			return $this->db->delete('notice', array(
 				'model' => $model,
 				'model_id' => $model_id,
+				
+				'user_id' => $user_id,
 			));
 		}
 		/**
@@ -66,8 +69,14 @@
 			$query = $this->db->get_where('notice', array(
 				'user_id' => $user_id,
 			));
+			$notices = $query->result_array();
 			
-			return $query->result_array();
+			// 添加用户  TODO
+			foreach( $notices as $key=>$notice ) {
+				$notices[$key]['user_avatar_url'] =  get_user_avatar_url( $notice['from_user_id'] );
+			}
+			
+			return $notices;
 			
 		}
 		

@@ -50,7 +50,7 @@
 		 * 获取 事件集（活动集，任务集）
 		 */
 		function get_events( $model, $model_id, $limit=100, $start=0 ) {
-			 $this->db->order_by('start', 'desc');
+			 $this->db->order_by('created', 'desc');
 			 
 			 $query = $this->db->get_where('event', array(
 			 	'model' => $model,
@@ -111,6 +111,7 @@
 			$sql = sprintf('SELECT * FROM kk_event 
 								WHERE model_id = 
 									( SELECT kk_group.id FROM kk_group WHERE kk_event.model_id = kk_group.id AND kk_group.privacy = "public" )
+									ORDER BY created DESC
 									LIMIT %d,%d', $start, $limit ); // kk_topic.model_id = kk_group.id AND
 									
 			$query = $this->db->query( $sql );
@@ -122,8 +123,24 @@
 		/**
 		 *	删除符合条件的 事件（活动/任务)
 		 */
-		function del_event( $data ) {
-			return $this->db->delete('event_user', $data);
+		function del_event( $event_id ) {
+			// 删除事件
+			$delete_event = $this->db->delete('event', array(
+				'id' => $event_id,
+			));
+			
+			// 删除事件的参与情况
+			$delete_event_user = $this->db->delete('event_user', array(
+				'event_id' => $event_id,
+			));
+			
+			// 删除事件的评论
+			$delete_event_chats = $this->db->delete('chat', array(
+				'model' => 'event',
+				'model_id' => $event_id,
+			));
+			
+			return ( $delete_event && $delete_event_user && $delete_event_chats );
 		}
 		
 		
@@ -232,4 +249,17 @@
 			return $event_users->num_rows();
 		}
 		
+		
+		
+		/**
+		 *	提升活动、事务人气
+		 */
+		function up_event_page_view( $event_id ) {
+			$event = $this->get_event_by_id( $event_id );
+			
+			$this->db->where('id', $event['id'] );
+			return $this->db->update('event', array(
+				'page_view' => $event['page_view'] + 1,
+			));
+		}
 	}

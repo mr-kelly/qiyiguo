@@ -18,7 +18,7 @@
 				<ul class="tab_menu">
 					<li>
 						<a href="#register_tab">
-							快速注册
+							<span>快速注册</span>
 						</a>
 					</li>
 				</ul>

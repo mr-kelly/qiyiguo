@@ -58,6 +58,10 @@
 	<div class="sidebar_top">
 		<div class="sidebar_bottom">
 			<?php
+				$this->load->view('sidebar/sidebar_group_view', array(
+					'group' => $group,
+					'no_join_group_btn' => true,
+				));
 				$this->load->view('sidebar/sidebar_ad_pic');
 			?>
 		</div>

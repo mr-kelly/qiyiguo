@@ -14,9 +14,9 @@
 								|| $topic['user_id'] == get_current_user_id() 
 								):
 					?>
-					<div class="float_right">
+					<div class="delete_btn_div">
 						<a href="#" onclick="return delete_btn(this, '<?= get_group_url( $topic['model_id'] ) ;?>');" class="icon icon_delete" ajax="<?=site_url('topic/ajax_delete/' . $topic['id']);?>">
-							删除
+							删除话题
 						</a>
 					</div>
 					<div class="clearboth"></div>
@@ -30,7 +30,7 @@
 					<div class="topic_lookup_attach_img">
 					<?php if ( isset( $topic['Attach_Img'] ) ): // 话题图片 ?>
 						<a class="sexybox" href="<?= static_url( 'upload/attach_img' . $topic['Attach_Img']['file'] );?>">
-							<img width="100" src="<?= static_url( 'upload/attach_img' . $topic['Attach_Img']['file'] );?>" />
+							<img width="200" src="<?= static_url( 'upload/attach_img' . $topic['Attach_Img']['file'] );?>" />
 						</a>
 					<?php endif; ?>
 					</div>
@@ -39,7 +39,8 @@
 					
 					<?php if ( isset( $topic['Attach_File'] ) ) : // 话题附件?>
 					
-					<a class="icon icon_<?=substr( $topic['Attach_File']['file_ext'], 1 );?>" target="_blank" href="<?= static_url( 'upload/attach_file' . $topic['Attach_File']['file'] );?>">
+					<a class="icon icon_<?=substr( $topic['Attach_File']['file_ext'], 1 );?>" target="_blank" href="<?=site_url('attach/download/' . $topic['attach_file_id'] );?>">
+					<!--<?= static_url( 'upload/attach_file' . $topic['Attach_File']['file'] );?>-->
 						<?=$topic['Attach_File']['file_name'];?>
 					</a>
 					<?php endif ;?>
@@ -86,6 +87,8 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
+			
+				<h2>所属群组</h2>
 				<?php 
 					if ( $topic['model'] == 'group' ):
 						$ci =& get_instance();
@@ -103,11 +106,27 @@
 				
 				<?php endif; ?>
 				
+				<h2>发布者</h2>
 				<?php
 					$this->load->view('sidebar/sidebar_user_profile', array(
 						'user' => kk_get_user( $topic['user_id'] ),
 					));
 				?>
+				
+				<div class="align_center">
+					<span class="kk_btn_blue">
+						<?=$topic['page_view'];?>人看过
+					</span>
+				</div>
+				
+				<?php
+					$this->load->view('sidebar/sidebar_ad_pic');
+				?>
+				
+				<?php
+					$this->load->view('sidebar/sidebar_jiathis');
+				?>
+				
 			</div>
 		</div>	
 	</div>

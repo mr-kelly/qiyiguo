@@ -1,13 +1,20 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
+// 3 - 所有人可见
+// 2 - 我收藏的人可见
+// 1 - 朋友(互相收藏)可见
+// 0 - 封闭(其他人不能查看你的资料)
+
+
+
 
 // 时区
 date_default_timezone_set('Asia/Shanghai');
 
-$config['kk_site_status'] = 'development'; // 开发状态？ development/production
+$config['kk_site_status'] = 'production'; // 开发状态？ development/production
 
-$config['restrict_bnu'] = false; // 是否只允许bnu的内网IP登录
+$config['restrict_bnu'] = true; // 是否只允许bnu的内网IP登录
 
 /**
 	T_sina OAuth  新浪微博OAuth
@@ -37,14 +44,14 @@ $config['guo_id_min'] = 10000;
 $config['guo_id_max'] = 100000; // 注册全部是五位数
 
 //$config['mail_smtp_server'] = 'smtp.gmail.com';
-$config['mail_smtp_server'] = 'smtp.qq.com';
+$config['mail_smtp_server'] = 'smtp.exmail.qq.com';
 $config['mail_smtp_port'] = 465;
 $config['mail_smtp_auth'] = true;
 $config['mail_smtp_secure'] = 'ssl';
 //$config['mail_username'] = 'qiyiguo.cc@gmail.com';
-$config['mail_username'] = 'qiyiguo.cc@foxmail.com';
+$config['mail_username'] = 'noreply@qiyiguo.cc';
 //$config['mail_password'] = '23110388';
-$config['mail_password'] = '626626';
+$config['mail_password'] = '709394';
 
 //$mail->Username = 'qiyiguo.cc@gmail.com';
 //$mail->Password = '23110388';

@@ -14,35 +14,17 @@
 				<div id="lookup_main">
 					
 					<h2>成员列表</h2>
-					<table class="kk_table">
-						<thead>
-							<th>果号</th>
-							<th>名字</th>
-							<th>性别</th>
-						</thead>
-						<tbody>
-						<?php foreach ( $group_members as $member ) : ?>
-							<tr>
-								<td>
-									<?= $member['id'] ; ?>
-								</td>
-								<td>
-									<img width="16" src="<?=get_user_avatar_url( $member['id'] );?>" />
-									<a href="<?= get_user_url( $member['id'] );?>">
-										<?= $member['name'] ;?>
-									</a>
-									<?php if ( is_group_admin( $group_id, $member['id'] ) ):?>
-										<span title="管理者" class="tipsy_w icon icon_admin"></span>
-									<?php endif; ?>
-								</td>
-								<td>
-									<?= $member['gender'] == 'male' ? '男' : '女' ;?>
-								</td>
-							</tr>
-						<?php endforeach; ?>
-						</tbody>
-					</table>
+					<?php
+						$this->load->view('general/general_users_table', array(
+							'users' => $group_members,
+						));
+					?>
 						
+						
+					<div>
+						<a href="#">导出Excel...(工程中)</a>
+					</div>
+					
 				</div>
 			</div>
 		</div>

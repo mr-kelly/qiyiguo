@@ -70,10 +70,18 @@
 					<br />
 					
 					<div>
+						<form method="post">
+							<textarea name="weibo_invite_text" style="height: 40px;width:300px;">我为「<?=$group['name'];?>」建立了一个果群，朋友们快来加入啦。<?=get_group_url( $group['id'] );?></textarea>
+						</form>
+					</div>
+					
+					<div>
 						<a href="#" class="tipsy_n kk_btn" title="通过新浪微博邀请朋友加入<?=$group['name'];?>">
 							告诉朋友
-						</a>
+						</a>						
 					</div>
+					
+					
 				</div>
 				
 				

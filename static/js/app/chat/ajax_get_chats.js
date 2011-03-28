@@ -28,8 +28,9 @@ $(function(){
 			
 			
 			$(this).attr('rows', '3');
-			$(this).nextAll('button[type=submit]').show();
-			$(this).prevAll('.chat_form_avatar').show();
+			$(this).css('height', '40px');
+			//$(this).nextAll('button[type=submit]').show(); // 自动隐藏
+			//$(this).prevAll('.chat_form_avatar').show();
 			
 		}).blur(function(){
 			
@@ -39,12 +40,14 @@ $(function(){
 			}
 			
 			
-			$(this).attr('rows' ,'1');
+			//$(this).attr('rows' ,'1');
+			$(this).css('height', '15px');
 			
 
 			
 			// 延迟取消提交按钮，否则用户按不到，就不见了
-			setTimeout('$("button[type=submit]").hide();$(".chat_form_avatar").hide();', 500);
+			// 自动隐藏
+			//setTimeout('$("button[type=submit]").hide();$(".chat_form_avatar").hide();', 500);
 			
 		});
 		

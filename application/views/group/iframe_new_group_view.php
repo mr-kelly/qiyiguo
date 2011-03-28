@@ -6,7 +6,9 @@
 	<div class="kk_tabs">
 		<ul class="tab_menu">
 			<li>
-				<a href="#new_group_tab">创建果群</a>
+				<a href="#new_group_tab">
+					<span>创建果群</span>
+				</a>
 			</li>
 		</ul>
 
@@ -15,7 +17,7 @@
 			
 			<div class="grey" style="float: right; height: 150px; width:200px;border-left: 1px dashed #CCC;padding: 0 0 0 20px;">
 				作为群的创始人、管理者，你同意并遵守
-				<a target="_blank" href="<?=site_url('page/group_admin_rule');?>">
+				<a target="_blank" href="<?=site_url('page/rule');?>">
 					《果群管理者条款》
 				</a>
 			</div>
@@ -102,6 +104,16 @@
 			
 			
 			
+
+		</div>
+		
+		
+		
+		
+
+	</div>	
+	
+	
 			<script type="text/javascript">
 				$('#submit_btn').click(function() {
 					$('#new_group_form').submit();
@@ -123,7 +135,8 @@
 									
 									
 									// 由于创建群组的页面网址是group/iframe_new_group, 所以会直接到达指定页面
-									window.parent.location = window.location = data.data.group_id;
+									//alert( data.data.group_url );
+									window.parent.location = data.data.group_url;
 									
 									// 转到群组页
 									//window.parent.location = $redirect;
@@ -168,10 +181,6 @@
 // 									});
 // 								});
 			</script>
-		</div>
-		
-
-	</div>				
 <?php
 	$this->load->view('general/general_footer_view');
 ?>

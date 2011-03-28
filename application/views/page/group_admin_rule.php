@@ -22,7 +22,15 @@
 	</div>
 
 
-
+	<div id="sidebar">
+		<div class="sidebar_top">
+			<div class="sidebar_bottom">
+				<?php
+					$this->load->view('sidebar/sidebar_ad_pic');
+				?>
+			</div>
+		</div>
+	</div>
 <?php
 	$this->load->view('footer_view');
 ?>

@@ -12,6 +12,8 @@
             
             <?=import_js('js/app/group/group_lookup.js');?>
             
+            <?=import_js('js/app/topic/general_topics_list.js');?>
+            
 
             
             <div id="content" class="two_columns">
@@ -28,15 +30,95 @@
             			<div id="lookup_main">
             			
 							<?php
-								// 判断用户是否属于该群组，属于，可以发文章
-								if ( is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
+								// 普通用户非统治模式、 管理员统治模式可发话
+								
+								if ( 
+									( is_group_user( $group['id'], get_current_user_id() ) && !$group['admin_mode'] )
+									||
+									( is_group_admin( $group['id'], get_current_user_id() ) && $group['admin_mode'] )
+								   ) :
+								?>
+									<div class="add_btn_div">
+										<a onclick="$('.add_topic_div').toggle();$('.add_event_div').hide();return false;" title="向果群发话" class="tipsy_s btn add_topic_btn" href="#">
+											发话▼
+										</a>
+										
+										<a onclick="$('.add_event_div').toggle();$('.add_topic_div').hide();return false;" href="#" title="创建一个新<?= $group['privacy'] == 'public' ? '活动' : '任务';?>" class="add_event_btn tipsy_s btn">
+											<span><span>新<?= $group['privacy'] == 'public' ? '活动' : '任务';?>▼</span></span>
+										</a>
+										
+										<div class="clearboth"></div>
+									</div>
+									
+									
+									<div class="add_event_btn_div">								
+	
+									</div>
+									
+									<? // 放置 填写主题层 ?>
+									<?php
+										$this->load->view('topic/ajax_add_topic_view', array(
+											'model' => 'group',
+											'model_id' => $group['id'],
+											'hidden' => true,
+										));
+									?>
+									
+									<? // 发布活动、人物层 ?>
+									<div class="add_event_btn_div">
+										<?php
+											$this->load->view('event/ajax_add_event_view', array(
+												'model' => 'group',
+												'model_id' => $group['id'],
+												'hidden' => true,
+											));
+										?>
+									</div>
+								
+								<?php
+								   
+								else:
+									if ( $group['admin_mode'] ) :
+										// 统治模式..
+								?>
+									<div class="grey">
+										统治模式的群。管理者才可以发话和创建活动
+									</div>
+								<?php
+									else:
+								?>
+									<div class="grey">
+										...关注/加入群获得发言权
+									</div>
+								<?php
+									endif;
+								endif;
+								
+// 								if ( ! $group['admin_mode'] ) :
+// 									// 不是统治模式时
+// 									if ( is_group_user( $group['id'] , get_current_user_id() ):
+// 									
+// 									else:
+// 										// 不能发布
+// 									endif;
+// 								else:
+// 									if ( is_group_admin( $group['id'], get_current_user_id() ) :
+// 									
+// 									else:
+// 										// 管理员only
+// 									endif;
+								
+								
+//								if ( is_group_user( $group['id'], $this->tank_auth->get_user_id() ) ):
+									
 							?>
+<!-- 
 								<div class="add_btn_div">
-									<a onclick="$('.add_topic_div').toggle();$('.add_event_div').hide();return false;" title="向果群发话" class="tipsy_s kk_btn add_topic_btn" href="#">
+									<a onclick="$('.add_topic_div').toggle();$('.add_event_div').hide();return false;" title="向果群发话" class="tipsy_s btn add_topic_btn" href="#">
 										发话▼
 									</a>
 									
-									<a onclick="$('.add_event_div').toggle();$('.add_topic_div').hide();return false;" href="#" title="创建一个新<?= $group['privacy'] == 'public' ? '活动' : '任务';?>" class="add_event_btn tipsy_s kk_btn">
+									<a onclick="$('.add_event_div').toggle();$('.add_topic_div').hide();return false;" href="#" title="创建一个新<?= $group['privacy'] == 'public' ? '活动' : '任务';?>" class="add_event_btn tipsy_s btn">
 										<span><span>新<?= $group['privacy'] == 'public' ? '活动' : '任务';?>▼</span></span>
 									</a>
 									
@@ -47,45 +129,72 @@
 								<div class="add_event_btn_div">								
 
 								</div>
+ -->
 								
 								<? // 放置 填写主题层 ?>
 								<?php
-									$this->load->view('topic/ajax_add_topic_view', array(
-										'model' => 'group',
-										'model_id' => $group['id'],
-										'hidden' => true,
-									));
+//									$this->load->view('topic/ajax_add_topic_view', array(
+//										'model' => 'group',
+//										'model_id' => $group['id'],
+//										'hidden' => true,
+//									));
 								?>
 								
 								<? // 发布活动、人物层 ?>
+								<!--
 								<div class="add_event_btn_div">
 									<?php
-										$this->load->view('event/ajax_add_event_view', array(
-											'model' => 'group',
-											'model_id' => $group['id'],
-											'hidden' => true,
-										));
+//										$this->load->view('event/ajax_add_event_view', array(
+//											'model' => 'group',
+//											'model_id' => $group['id'],
+//											'hidden' => true,
+//										));
 									?>
-								</div>
+								</div>-->
 							
 							
 							<?php
-								else:
+//								else:
 									// 不能发布时~
 							?>
+							<!--
 								<div class="grey">
 									...关注/加入群获得发言权
 								</div>
+								-->
 							<?php
-								endif;  // 以上显示。，能发布友群文章时
+//								endif;  // 以上显示。，能发布友群文章时
 							?>
 					
 					
 							<div id="lookup_aside">
-
+								<h2>成员 <?= isset($group_users_count) ? ' <span class="small">('. $group_users_count .')</span>' :'';?></h2>
+								
+								<div class="lookup_aside_widget">
+									
+									<?php
+										$this->load->view('general/general_group_users_list', array(
+											'users' => $group_users,
+										));
+									?>
+									
+									<div class="align_right">
+										<a href="<?=site_url('group/' . $group['id'] . '/members' );?>">
+											&gt;查看成员列表
+										</a>
+									</div>
+									
+								</div>
+								
+						<!--
 								<div id="group_events_div">
 									<h2><?= $group['privacy'] == 'public' ? '活动' : '任务';?></h2>
-									<?php $this->load->view('event/general_events_show', array( 'dateonly' => true, ) ); ?>
+									<?php
+										$this->load->view('event/general_events_list', array( 
+											'dateonly' => true, 
+											'no_group_logo' => true,
+										) ); 
+									?>
 									
 									<?php if ( count( $events ) >= 10 ) : ?>
 									<div>
@@ -97,6 +206,9 @@
 									
 									
 								</div>
+						-->
+													
+								
 							</div>
 							
 							<div id="lookup_content">
@@ -147,27 +259,9 @@
 				</div>
 				
             </div>
+            
+            
 <?php $this->load->view('footer_view'); ?>
 
-<!-- Join Group Box 用于输入加入小组的验证信息 -->
 
-
-        <div id="join_group_box" class="hidden"> 
-			<div class="ui-overlay">
-				<div class="ui-widget-overlay"></div>
-				<div class="ui-widget-shadow ui-corner-all" style="width: 422px; height: 322px; position: absolute; left: 30%; top: 20%;"></div>
-	
-			</div>
-			<div style="position: absolute; width: 400px; height: 300px;left: 30%; top: 20%; padding: 10px;" class="ui-widget ui-widget-content ui-corner-all">
-					<div class="ui-dialog-content ui-widget-content" style="background: none; border: 0;">
-						
-						<textarea id="group_message" name="group_message"></textarea>
-						<a class="btn join_group_btn" href="<?=site_url("group/join_group/". $group["id"]);?>">
-							<span><span>加入</span></span>
-						</a>
-
-						<a href="#" onclick="$('#join_group_box').fadeOut();return false;">Close</a>
-					</div>
-			</div>
-        </div>
        

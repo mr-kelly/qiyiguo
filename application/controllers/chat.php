@@ -73,7 +73,7 @@
 // 					$this->form_validation->set_rules('chat_title','Chat Title', 'trim|xss_clean');
 // 				}
 				
-				$this->form_validation->set_rules('chat_content','评论内容', 'trim|required|xss_clean|htmlspecialchars|max_length[200]');
+				$this->form_validation->set_rules('chat_content','评论内容', 'trim|required|xss_clean|htmlspecialchars|max_length[400]');
 				$this->form_validation->set_rules('chat_parent_id', 'Chat Parent', 'trim|required|xss_clean|numeric');
 
 				
@@ -201,7 +201,7 @@
 		function ajax_get_chats( $model, $model_id ) {
 		
 			$data = array();
-			$data['chats'] = $this->chat_model->get_chats($model, $model_id, null);
+			$data['chats'] = $this->chat_model->get_chats($model, $model_id, 50);
 			
 			$data['model'] = $model;
 			$data['model_id'] = $model_id;

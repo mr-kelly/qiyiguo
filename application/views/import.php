@@ -30,7 +30,7 @@
     <?=import_css('css/html.css');?>
     <?=import_css('css/decorator.css');?>
     <?=import_css('css/style.css');?>
-	<?=import_css('css/kk_tabs.css');?>
+	<?=import_css('css/kk_tabs/kk_tabs.css');?>
 	<?=import_css('css/kk_table.css');?>
 	<?=import_css('css/kk_pagination.css');?>
 	
@@ -48,14 +48,16 @@
 	<? // jQuery jSCroll 滚动条 ?>
 	<?=import_js('js/kk.jscroll.js');?>
 	
+	
+	
 	<? // jQuery iframe auto height ?>
-	<?=import_js('js/kk.iframeAutoHeight.js');?>
+	<? //import_js('js/kk.iframeAutoHeight.js');?>
 	
 	<? // jQueryr pozFixed Position Fixed ?>
-	<?=import_js('js/kk.pozFixed.js');?>
+	<? //import_js('js/kk.pozFixed.js');?>
 
 	<? // jQueryr Center ?>
-	<?=import_js('js/kk.center.js');?>
+	<? //import_js('js/kk.center.js');?>
 	
 	<!-- jGrowl-->
 	<script type="text/javascript" src="<?=static_url('js/jGrowl/jquery.jgrowl.js');?>"></script>
@@ -93,6 +95,6 @@
 	
 	
 	<? // 简繁转换 ?>
-	<?=import_js('js/tw_cn.js');?>
+	<? //import_js('js/tw_cn.js');?>
 	
 

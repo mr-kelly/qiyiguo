@@ -156,6 +156,38 @@
 			<key>ItemType</key>
 			<string>FolderReference</string>
 		</dict>
+		<key>70286E40-7742-4459-B041-03D4A3FAC70E</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAAFeAAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAA
+				AAAAAADIa0mwSCsAAAFp3JwGc3lzdGVtAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAWou+MhggZYAAAAAAAAAAP//
+				//8AAAkgAAAAAAAAAAAAAAAAAAAAB2tpd2lndW8AABAA
+				CAAAyGrZMAAAABEACAAAyGARFgAAAAEAEAFp3JwABavM
+				AAWrxQAAkZ8AAgAsS0tNYWNib29rOlVzZXJzOk1ya2Vs
+				bHk6U2l0ZXM6a2l3aWd1bzpzeXN0ZW0ADgAOAAYAcwB5
+				AHMAdABlAG0ADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsA
+				EgAiVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL3N5
+				c3RlbQATAAEvAAAVAAIADv//AAA=
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/system/</string>
+				<key>RelativePath</key>
+				<string>./system</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>system</string>
+			<key>ItemType</key>
+			<string>FolderReference</string>
+		</dict>
 		<key>704333A9-EB4C-43D0-A825-77C792334477</key>
 		<dict>
 			<key>ItemData</key>

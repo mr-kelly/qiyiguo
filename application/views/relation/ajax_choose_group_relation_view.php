@@ -27,14 +27,21 @@
 			
 			
 			$('.add_group_id').keyup(function(){
-				
-				$('.search_result').load( '<?=site_url("search/ajax_search_group_by_id");?>' + '/' + $(this).val() + '?ajax=<?=rand();?>' );
+				if ( $(this).val().length >= 5 ) {
+					$('.search_result').load( '<?=site_url("search/ajax_search_group_by_id");?>' + '/' + $(this).val() + '?ajax=<?=rand();?>' );
+				}
 			});
 			
 			
 			$('.search_groups').keyup(function() {
-				$('.search_result').load( '<?=site_url("search/ajax_search_groups_by_string");?>?q=' + $(this).val()  + '&ajax=<?=rand();?>' );
-				
+				//$('.search_result').load( '<?=site_url("search/ajax_search_groups_by_string");?>?q=' + $(this).val()  + '&ajax=<?=rand();?>' );
+				$.get(
+					'<?=site_url("search/ajax_search_groups_by_string");?>',
+					{ q : $('.search_groups').val() },
+					function(content) {
+						$('.search_result').html(content);
+					}
+				);
 			});
 		});
 		

@@ -15,15 +15,20 @@
 			// 若为post提交,处理, 发送邮件email~
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				
+				
+				
 				$this->form_validation->set_rules('mail_send_to', '收信人', 'trim|required|xss_clean|callback__numeric_array_check'); // 数字数组字符串
 				$this->form_validation->set_rules('mail_topic', '信件主题', 'trim|required|xss_clean');
 				$this->form_validation->set_rules('mail_content', '信件内容', 'trim|required|xss_clean');
 				
 				if ( ! $this->form_validation->run() ) {
 					// 表单验证不通过~
-					ajaxReturn( null, validation_errors(), 0);
+					$this->session_message->set(  '主题和内容都是不能为空...' );
+					redirect( 'mail?send_to=' . $this->input->get('send_to') ) ;
+					
+					
 				} else {
-					echo 'send it!';
+
 					
 					// mail_send_to,   收信人的ID数组
 					$mail_send_to = explode( ',' , $this->form_validation->set_value('mail_send_to') );
@@ -53,14 +58,16 @@
 						array_push( $mail_to_user_list , array( $user['email'] , $user['name'] ) );
 						
 						
-						$mail_domain = explode('@', $user['email'] );
-						$mail_domain = 'http://' . $mail_domain[1];
+						//$mail_domain = explode('@', $user['email'] );
+						//$mail_domain = 'http://' . $mail_domain[1]; // 获取邮件后缀
+						
+						$user_profile = kk_get_user( $user['id'] );
 						
 						// 提醒对方有人发了邮件...
-						add_notice( $user['id'], 
-										'新邮件', 
-										'有人发了一封电邮到你的邮箱',
-										$mail_domain,
+						add_notice( $user['id'],
+										'新电邮', 
+										sprintf('%s发了一封电邮到你的邮箱', $user_profile['name'] ),
+										'u/' . $user['id'],
 										'mail',
 										0 );
 										
@@ -73,8 +80,33 @@
 							get_current_user_profile('email'),
 							get_current_user_profile('name'),
 						));
+						
+						
+						
+					//print_r( $_FILES );
+					
+					// 判断是否有附件
+					if ( isset( $_FILES ) ) {
+						if ( !empty( $_FILES['mail_file']['name'] ) ) {
+							$file_position = $_FILES['mail_file']['tmp_name']; // 临时存放位置
+							$file_name = $_FILES['mail_file']['name'];
+							
+							$file_destination = './tmp/' . rand() . '/'; 
+							// 创建目录, 确保目录存在
+							$this->_createDir( $file_destination );
+							
+							
+							move_uploaded_file( $file_position, $file_destination . $file_name );
+							
+							$attach_file = $file_destination . $file_name;
+						}
+					} else {
+						$attach_file = '';
+					}
+						
+						
 					// 发Mails
-					$this->kk_mailer->send_mail( array(
+					if ( $this->kk_mailer->send_mail( array(
 						'to' => $mail_to_user_list,
 						//'from' => get_current_user_profile('email'),
 						'from_name' => get_current_user_profile('name'),
@@ -82,11 +114,33 @@
 						
 						'subject' => $mail_topic, 
 						'body' => $mail_content,
-					));
-					
+						'attach_file' => $attach_file,
+					)) ) {
 						
+						// 是否有附件
+						if ( isset( $file_destination ) && isset( $file_name ) )  {
+							// 发送附件后删除附件
+							unlink( $file_destination . $file_name ); // 还要删除目录
+							rmdir( $file_destination );
+							
+						}
+					
+						$this->session_message->set('邮件已经成功发送！');
+						
+						redirect( 'mail?send_to=' . $this->input->get('send_to') ) ;
+						
+					} else {
+					
+						$this->session_message->set('邮件发送失败');
+						
+					}
+					
+					
+					
+
+					
 					// mail_send_to 数组 每个值必须是数字
-					ajaxReturn( null, "Success Mailed!", 1 );
+					//ajaxReturn( null, "Success Mailed!", 1 );
 				}
 				
 			}

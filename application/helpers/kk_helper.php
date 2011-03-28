@@ -290,8 +290,8 @@
 	 */
 	function add_notice( $user_id, $title='', $content, $link, $model=null, $model_id=null, $type='notice' ) {
 		$ci =& get_instance();
-		$ci->load->model('notice_model');
-		return $ci->notice_model->add_notice(  $user_id, $title, $content, $link, $model, $model_id, $type );
+		$ci->load->model('notice_model');																		// 获取当前用户为from_user_id
+		return $ci->notice_model->add_notice(  $user_id, $title, $content, $link, $model, $model_id, $type , get_current_user_id() );
 	}
 	
 	
@@ -325,16 +325,23 @@
 	 
 	 		将topic的content转化成  402字内， 多了显示（显示更多）
 	 */
-	function kk_content_preview( $content, $limit= 402 ) {
+	function kk_content_preview( $content, $limit= 402, $link=null ) {
 	
 		$return_arr = str_split( $content , $limit ); // 返回数组
 		
 		$return = strip_tags( $return_arr[0], '<a>' );
 		
-		// 如果返回内容很多，证明topic内容很多，添加省略号...
+		// 如果返回内容很多，证明topic内容很多，添加省略号...  并添加“更多”
 		if ( sizeof( $return_arr ) > 1 ) {
 			$return .= '...';
+			
+			if ( !empty( $link ) ) {
+				$return .= sprintf( '<a href="%s">[更多]</a>', $link );
+			}
 		}
+		
+		
+
 		
 		return $return;
 		
@@ -417,17 +424,24 @@
 		
 	}
 	
-	
 	/**
-	 *	获取星座， 打印图标 class  :    icon_juxie...
+	 *	提升活动人气
 	 */
-	function kk_constellation_icon( $constellation ) {
-		switch( $constellation ) {
-			case '巨蟹座':
-				return 'icon_juxie';
-				break;
+	function up_event_page_view( $event_id ) {
+		$ci =& get_instance();
+		
+		if ( ! $ci->session->userdata( 'up_event_' . $event_id ) ) {
+			$ci->load->model('event_model');
+			
+			$ci->session->set_userdata( 'up_event_' . $event_id, true );
+			return $ci->event_model->up_event_page_view( $event_id );
+		} else {
+			return false;
 		}
 	}
+	
+	
+
 	
 	/**
 	 *	获得指定群组~

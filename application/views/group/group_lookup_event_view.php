@@ -19,7 +19,7 @@
 					<?php if ( is_group_user( $group_id, get_current_user_id() ) ) : ?>
 					<div>
 						
-						<a onclick="$('.add_event_div').toggle();return false;" href="#" title="对果群发话~" class="add_event_btn tipsy_s kk_btn">
+						<a onclick="$('.add_event_div').toggle();return false;" href="#" title="对果群发话~" class="add_event_btn tipsy_s btn">
 							<span><span>新活动▼</span></span>
 						</a>
 						
@@ -34,8 +34,10 @@
 					<?php endif; ?>
 					
 					<?php
-						$this->load->view('event/general_events_show');
+						$this->load->view('event/general_events_list');
 					?>
+					
+					<div class="clearboth"></div>
 					
 					<?= kk_pagination( $start, $events_count, 10 ); ?>
 					

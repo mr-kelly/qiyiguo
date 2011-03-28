@@ -79,6 +79,7 @@ $autoload['helper'] = array('url',
 							'kk', 'kk_acl',
 							'kk_show_view',
 							'language',
+							'kk_constellation',
 							);
 
 

@@ -19,11 +19,11 @@
 			if($dur < 0){
 			 return $the_time; 
 			} elseif ( $dur == 0 ) {
-				return '刚刚';
+				return '<span class="red">刚刚</span>';
 			} else {
 			 if($dur < 60){
 			 	
-				return $dur.'秒前'; 
+				return '<span class="red">' . $dur. '秒前</span>'; 
 			 }else{
 			  if($dur < 3600){
 			   return floor($dur/60).'分钟前'; 

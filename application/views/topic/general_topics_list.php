@@ -12,11 +12,34 @@
 						// 群组话题不为空，显示
 						if ( !empty($topics) ) : 
 					?>
-						<?php foreach ( $topics as $key=>$topic ) : ?>
+						<?php
+							foreach ( $topics as $key=>$topic ) :
+								if ( !isset( $topic['User'] ) || !isset( $topic['Group'] ) ) {
+									$topic['User'] = kk_get_user( $topic['user_id'] );
+									$topic['Group'] = kk_get_group( $topic['model_id'] );
+								}
+								
+								$user_url = get_user_url( $topic['User']['id'] );
+						?>
 							<li class="topic">
 								<div class="topic_user">
-									<? // 用户头像、名字、 topic的作者 ?>
-									<img width="50" src="<?=get_user_avatar_url(  $topic['User']['id'], false );?>" />
+									<?php
+										// 用户头像、名字、 topic的作者 
+										if ( isset( $show_group_logo ) && $show_group_logo ) :
+											$group_url = get_group_url( $topic['model_id'] );
+									?>
+									
+									<a class="tipsy_s" title="来自群组「<?=$topic["Group"]['name'];?>」" href="<?=$group_url;?>">
+										<img width="50" src="<?=get_group_logo_url( $topic['model_id'] );?>" />
+									</a>
+									
+									<?php else: 	// 照旧显示人的头像吧?>
+									
+									<a href="<?=$user_url;?>">
+										<img width="50" src="<?=get_user_avatar_url(  $topic['User']['id'], false );?>" />
+									</a>
+									
+									<?php endif; ?>
 				
 								</div>
 								
@@ -51,8 +74,17 @@
 										<?php endif; ?>
 				
 										<span>
-											<a href="<?=site_url('user/'.$topic['User']['id']);?>">
-												<span class="small">
+											<?php // 显示来源群？
+												if ( isset( $show_group_logo ) && $show_group_logo ) : 
+											?>
+											来自 
+											<a href="<?=$group_url;?>">
+												<?=$topic['Group']['name'];?> 
+											</a> 的 
+											<?php endif; ?>
+											<a href="<?=$user_url;?>">
+												<span>
+
 													<?=$topic['User']['name'];?>
 												</span>
 											</a>
@@ -65,7 +97,7 @@
 											<?php
 												//$content = strip_tags();
 											?>
-											<?= kk_content_preview( $topic['content'] );?>
+											<?= kk_content_preview( $topic['content'], 402, site_url('topic/' . $topic['id']) );?>
 										</div>
 										
 										<?php if ( isset( $topic['Attach_Img'] ) ) : ?>
@@ -82,7 +114,7 @@
 										<div class="topic_attach_file">
 											<span class="icon icon_<?=substr( $topic['Attach_File']['file_ext'], 1);?>">
 												
-												<a target="_blank" href="<?=site_url('static/upload/attach_file' . $topic['Attach_File']['file'] );?>">
+												<a target="_blank" href="<?=site_url('attach/download/' . $topic['attach_file_id'] );?>">
 													<?=$topic['Attach_File']['file_name'];?>
 												</a>
 											</span>

@@ -12,6 +12,18 @@
 					<?php
 						$this->load->view('event/general_event_join_btn');
 					?>
+					
+					<?php
+						// 如果作者或者群管理员。 可以删除
+						if ( $event['user_id'] == get_current_user_id() ||
+								is_group_admin( $event['model_id'], get_current_user_id() ) ) :
+					?>
+					
+						<a onclick="return delete_btn(this, '<?=get_group_url( $event['model_id'] );?>' );" ajax="<?=site_url('event/ajax_delete/' . $event['id'] );?>" href="#" class="icon icon_delete">
+							删除事情
+						</a>
+					
+					<?php endif; ?>
 				</div>
 				
 				<h1><?=$event['name'];?></h1>
@@ -43,7 +55,9 @@
 					<div>
 						<h3>
 							<span class="icon"></span>
-							<?= $event_join_users_count; ?>人参加
+							<span>
+								<?= $event_join_users_count; ?>人参加
+							</span>
 						</h3>
 						
 						
@@ -57,7 +71,9 @@
 					<div>
 						<h3>
 							<span class="icon"></span>
-							<?= $event_users_count; ?>人关注
+							<span>
+								<?= $event_users_count; ?>人关注
+							</span>
 						</h3>
 						
 						
@@ -77,7 +93,7 @@
 				
 				<script>
 					$(function(){
-						$('.chats_container').load('<?=site_url("chat/ajax_get_chats/event/" . $event["id"] );?>');
+						$('.chats_container').load('<?=site_url("chat/ajax_get_chats/event/" . $event["id"] . "?ajax=" . rand() );?>');
 					});
 				</script>
 				
@@ -90,13 +106,36 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
+			
+
 				
+				<h2>所属群组</h2>
 				<?php
 					$this->load->view('sidebar/sidebar_group_profile', array(
 						'group' => $event['Group'],
 					));
 				?>
 				
+				<h2>组织者</h2>
+				<?php
+					$this->load->view('sidebar/sidebar_user_profile', array(
+						'user' => kk_get_user( $event['user_id'] ),
+					));
+				?>
+				
+				<div class="align_center">
+					<span class="kk_btn_blue">
+						<?=$event['page_view'];?>人看过
+					</span>
+				</div>
+				
+				<?php
+					$this->load->view('sidebar/sidebar_ad_pic');
+				?>
+				
+				<?php
+					$this->load->view('sidebar/sidebar_jiathis');
+				?>
 			</div>
 		</div>
 	</div>

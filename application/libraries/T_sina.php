@@ -156,6 +156,12 @@
 			// RequestToken 写入 session
 			
 			$keys = $this->getRequestToken();
+			
+			//  TODO 如果微博网速慢。。。。
+			//if ( empty( $keys ) ) {
+			//	exit( 'slow network' );
+			//}
+			
 			$ci =& get_instance();
 			$ci->session->set_userdata('keys', $keys);
 			
@@ -167,7 +173,7 @@
 			$ci =& get_instance();
 			
 			$session_keys = $ci->session->userdata('keys');
-			
+
 
 			$o = new WeiboOAuth( WB_AKEY, WB_SKEY,  $session_keys['oauth_token'], $session_keys['oauth_token_secret'] );
 			

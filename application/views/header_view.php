@@ -58,7 +58,7 @@
 	<?php
 		// JS 动态变量
 	?>
-	<script type="text/javascript" src="<?=site_url('import/js_vars');?>"></script>
+	<script type="text/javascript" src="<?=site_url('import/js_vars?ajax=' . rand() );?>"></script>
 	
     <?php
     	$render['form_key_token'] = !empty( $form_key_token ) ? $form_key_token : '';
@@ -81,7 +81,8 @@
 	<div id="loading_error">
 		有加载出错
 	</div>
-       
+	
+
     <?php if ( is_logged_in() ) : // 登录才显示导航菜单?>
     <?php $render = array(); $this->load->view('general/navigator', $render); ?>
 	<?php endif; ?>
@@ -157,9 +158,31 @@
 							</span>
 							
 							<span class="submenu_item">
-								<a class="sexybox_iframe" href="<?=site_url('group/iframe_new_group');?>">创建群组</a>
+								<?php if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ): ?>
+								<a id="create_group_btn" class="" href="<?=site_url('group/iframe_new_group');?>">创建群组</a>
+								<?php else: ?>
+								<a id="create_group_btn" class="sexybox_iframe" href="<?=site_url('group/iframe_new_group');?>">创建群组</a>
+								<?php endif;?>
 							</span>
 							
+                        </div>
+                    </li>
+                    
+                    <li class="menu_item <?= isset($current_topic) ? 'current_menu' : '' ;?>">
+                    	<a href="<?=site_url('topic');?>">
+                    		话题
+                    	</a>
+                        <div class="submenu">
+                            <span class="submenu_corner_left"></span>
+                            <span class="submenu_corner_right"></span>
+                            
+							<span class="submenu_item">
+								<a href="<?=site_url('topic/my_topics');?>">我的话题</a>
+							</span>
+
+							<span class="submenu_item">
+								<a href="<?=site_url('topic/add_topic');?>">创建话题</a>
+							</span>
                         </div>
                     </li>
                     
@@ -178,7 +201,7 @@
                     -->
                     <li class="menu_item <?= isset($current_event) ? 'current_menu' : '' ;?>">
                     	<a href="<?=site_url('event');?>">
-                    		事情
+                    		活动
                     	</a>
                         <div class="submenu">
                             <span class="submenu_corner_left"></span>
@@ -192,12 +215,12 @@
  -->
                              <span class="submenu_item">
                             	<a href="<?=site_url('event/my_events');?>">
-                            		我的事情
+                            		我的活动
                             	</a>
                             </span>
                             <span class="submenu_item">
                             	<a href="<?=site_url('event/add_event');?>">
-                            		创建事务
+                            		创建活动
                             	</a>
                             </span>
 
@@ -207,17 +230,8 @@
                     
                     <li class="menu_item <?= isset($current_explore) ? 'current_menu' : '' ;?>">
                     	<a href="<?=site_url('explore');?>">
-                    		探索
+                    		发现
                     	</a>
-<!-- 
-                        <div class="submenu">
-                            <span class="submenu_corner_left"></span>
-                            <span class="submenu_corner_right"></span>
-                            <span class="submenu_item"></span>
-                            <span class="submenu_item"></span>
-
-                        </div>
- -->
                     </li>
                     
                     
@@ -313,7 +327,11 @@
 					?>
 					
 					
-					
+					<span class="submenu_item">
+						<a target="_blank" style="*width:90px;" title="还没搞懂奇异果干啥？去看看就对了" href="<?=site_url('home/demo');?>" class="tipsy_n icon icon_question">
+							奇异果怎么用
+						</a>
+					</span>
 					
 					<?php if ( isset( $_SERVER['HTTP_REFERER'] ) ) : ?>
 					<span class="submenu_item">
@@ -349,6 +367,8 @@
 							</span>
 							
 
+							
+
 								
 					<?php
 						else:
@@ -360,7 +380,7 @@
 									//IE 6到指定的登录页
 									if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ):
 								?>
-								<a id="" class="icon icon_login" href="<?=site_url('user/login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
+								<a id="" class="icon icon_login" href="<?=site_url('user/iframe_login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
 								<?php
 									else:
 								?>
@@ -371,9 +391,17 @@
 							</span>
 							
 							<span class="submenu_item">
+								<?php 
+									if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ):
+								?>
+								<a id="" class="icon icon_register" href="<?=site_url('user/iframe_register');?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>" title="注册">
+									快速注册
+								</a>
+								<?php else: ?>
 								<a id="register_btn" class="sexybox_iframe icon icon_register" href="<?=site_url('user/iframe_register');?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>" title="注册">
 									快速注册
 								</a>
+								<?php endif; ?>
 							</span>
 							
 							

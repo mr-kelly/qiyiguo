@@ -13,13 +13,13 @@
 	?>
 
 		 <div class="chat_form_div">
-			 <form class="chat_form" method="post" action="<?=site_url('chat/add/' . $model . '/'. $model_id . '?redirect=' . uri_string() . '&chat_width=' . $chat_width );?>">
+			 <form style="margin: 0;" class="chat_form" method="post" action="<?=site_url('chat/add/' . $model . '/'. $model_id . '?redirect=' . uri_string() . '&chat_width=' . $chat_width );?>">
 				 
-				 <img class="avatar hidden chat_form_avatar" width="30" src="<?=get_user_avatar_url( get_current_user_profile('id') );?>" />
-				 <textarea rows="1" class="no_scroll chat_content input_text" style="width:250px;" type="text" name="chat_content"></textarea>
+				 <img class="avatar chat_form_avatar" width="30" src="<?=get_user_avatar_url( get_current_user_profile('id') );?>" />
+				 <textarea rows="1" class="no_scroll chat_content input_text" style="width:220px;" type="text" name="chat_content"></textarea>
 				 <input type="hidden" name="chat_parent_id" value="0" />
 				 
-				 <button type="submit" class="kk_btn hidden" title="按下Ctrl+Enter快捷键回复">回复</button>
+				 <button type="submit" class="kk_btn" title="按下Ctrl+Enter快捷键回复">回复</button>
 				 
 				 <div class="red target_message"></div>
 				 
@@ -78,7 +78,9 @@
 						// 聊天层次太长了！！！ 提醒用户可以电邮他
 						if ( $chat['depth'] > 8 ):
 					?>
-					<a class="chat_email" href="<?=site_url('mail?' . 'send_to=' . $chat['User']['id'] );?>" class="tipsy_n chat_email icon icon_email" title="聊得起劲？发电邮给他吧">电邮他</a>
+					<a class="chat_email icon icon_email" href="<?=site_url('mail?' . 'send_to=' . $chat['User']['id'] );?>" title="聊得起劲？发电邮给他吧">
+						电邮他
+					</a>
 					<?php
 						endif;
 					?>
@@ -97,13 +99,13 @@
 				
 					 <form class="hidden chat_form" method="post" action="<?=site_url('chat/add/' . $model . '/'. $model_id . '?redirect=' . uri_string() . '&chat_width=' . $chat_width );?>">
 						
-						 <img class="avatar hidden chat_form_avatar" width="30" src="<?=get_user_avatar_url( get_current_user_profile('id') );?>" />
+						 <img class="avatar chat_form_avatar" width="30" src="<?=get_user_avatar_url( get_current_user_profile('id') );?>" />
 						 
-						 <textarea rows="1" class="no_scroll input_text chat_content" style="width:200px;" type="text" name="chat_content"></textarea>
+						 <textarea rows="1" class="no_scroll input_text chat_content" style="width:180px;" type="text" name="chat_content"></textarea>
 						 <input type="hidden" name="chat_parent_id" value="<?=$chat['id'];?>" />
 						 <input type="hidden" class="chat_id" value="<?=$chat['id'];?>" />
 						 
-						 <button type="submit" class="hidden kk_btn" title="按下Ctrl+Enter快捷键回复">回复</button>
+						 <button type="submit" class="kk_btn" title="按下Ctrl+Enter快捷键回复">回复</button>
 						 
 						 <div class="red target_message"></div>
 						 

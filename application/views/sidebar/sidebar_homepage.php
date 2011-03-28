@@ -18,7 +18,7 @@
 								<form id="user_login_form" class="home_user_login_form" method="post" action="<?=site_url('user/login?ajax=' . rand() );?>">
 									<p>
 										<label>电邮</label>
-										<input id="user_login_login" title="注册时所填的Email、电子邮箱" class="required tipsy_se input_text" type="text" name="login" minlength="3" />
+										<input id="user_login_login" title="注册时所填的电子邮箱/或果号ID" class="required tipsy_se input_text" type="text" name="login" minlength="3" />
 										
 									</p>
 									<p>
@@ -129,6 +129,11 @@
 							
 						</div>
 						<?php endif; ?>
+						
+						<?php
+							$this->load->view('sidebar/sidebar_client');
+						?>
+						
 						
 	            		<div class="sidebar_widget">
 	            			<h2 class="tipsy_se" title="我们为了未来而努力着!">每天爱你多一些!</h2>

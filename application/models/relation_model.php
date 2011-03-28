@@ -211,7 +211,7 @@
 			
 			
 			$this->db->insert('relation_mutual', $data + array(
-				'created' => 'Y-m-d H:i:s',
+				'created' => date( 'Y-m-d H:i:s' ),
 			));
 			return $this->db->insert_id();
 		}
@@ -269,17 +269,58 @@
 			));
 		}
 		
-		function get_friends( $user_id ) {
+		/** 
+		 * 判断两人是否是朋友
+		 */
+		function is_friends( $from_user_id, $to_user_id ) {
 			$query_1 = $this->db->get_where('relation_mutual',array(
-				'model_id' => $user_id,
+				'mutual_id' => $from_user_id,
+				'model_id' => $to_user_id,
 				'model' => 'user',
 				'relation' => 'friend',
 			));
 			$query_2 = $this->db->get_where('relation_mutual',array(
-				'mutual_id' => $user_id,
+				'mutual_id' => $to_user_id,
+				'model_id' => $from_user_id,
 				'model' => 'user',
 				'relation' => 'friend',
 			));
+			
+			return ( $query_1->num_rows() + $query_2->num_rows() );
+			
+		
+		}
+		
+		/**
+		 *	判断from用户有没有关注、收藏to用户
+		 */
+		function is_user_followed( $from_user_id, $to_user_id ) {
+			$query = $this->db->get_where('relation', array(
+				'from_id' => $from_user_id,
+				'to_id' => $to_user_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			));
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		function get_friends( $user_id, $limit=50, $start=0 ) {
+			$query_1 = $this->db->get_where('relation_mutual',array(
+				'model_id' => $user_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			), $limit, $start);
+			
+			$query_2 = $this->db->get_where('relation_mutual',array(
+				'mutual_id' => $user_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			), $limit, $start);
 			
 			$return = array();
 			
@@ -317,12 +358,12 @@
 		/**
 		 *	获取用户的拥趸
 		 */
-		function get_fans( $user_id ) {
+		function get_fans( $user_id, $limit=50, $start=0 ) {
 			$query = $this->db->get_where('relation', array(
 				'to_id' => $user_id,
 				'model' => 'user',
 				'relation' => 'friend',
-			));
+			), $limit, $start );
 			$return = array();
 			foreach( $query->result_array() as $fan ) {
 				array_push( $return, $this->_get_user( $fan['from_id'] )); // 获取 谁关注你~获取来源，所以用from
@@ -344,6 +385,35 @@
 			return $query->num_rows();
 		}
 		
+		/**
+		 *	获得用户收藏的人
+		 */
+		function get_follows( $user_id, $limit=50, $start=0 ) {
+			$query = $this->db->get_where('relation', array(
+				'from_id' => $user_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			), $limit, $start);
+			$return = array();
+			foreach( $query->result_array() as $fan ) {
+				array_push( $return, $this->_get_user( $fan['to_id'] )); // 获取 谁关注你~获取来源，所以用from
+			}
+			
+			return $return;
+		}
+		
+		/**
+		 *	获得用户收藏的人的人数
+		 */
+		function get_follows_count( $user_id ) {
+			$query = $this->db->get_where('relation', array(
+				'from_id' => $user_id,
+				'model' => 'user',
+				'relation' => 'friend',
+			));
+			
+			return $query->num_rows();
+		}
 		
 		/**
 		 *	获得两个用户之间的共同朋友~
@@ -473,7 +543,10 @@
 				$r = $query->row_array();
 			}
 			
-			return $this->_get_user( $r['to_id'] );
+			
+			$lover =  $this->_get_user( $r['to_id'] );
+			
+			return $lover;
 			
 			
 		}
@@ -485,11 +558,13 @@
 		
 		/**
 		 *	创建关联群组 、  （群组关系）~  单向关系~~~  
-		 *
+		 *  
+	     * 		判断是否存在相反关系，是的话，添加双向关系
 		 *
 		 */
 		function create_group_relation( $from_group_id, $to_group_id ) {
-			return $this->create_relation( array(
+			
+			$group_relation = $this->create_relation( array(
 				'model' => 'group',
 				'relation' => 'related',
 				
@@ -499,6 +574,104 @@
 			));
 			
 			
+			// 跟对方建立关系了。 现在，判断在我对它建立关系之前，它有没有对我建立关系
+			// 如果有。 我们建立双向关系吧
+			if ( $group_relation ) {
+				if ( $this->is_group_related( $to_group_id, $from_group_id ) ) {
+					// 原本就对我有关系了？ 建立双向关系吧
+					return $this->create_group_relation_mutual( $from_group_id, $to_group_id );
+				} // 之前没关系， 什么都不做
+			}
+			
+			
+			return $group_relation;
+			
+			
+		}
+		
+		/**
+		 *	判断 from有没有已经跟to关联
+		 */
+		function is_group_related( $from_group_id , $to_group_id ) {
+			$query = $this->db->get_where('relation', array(
+				'from_id' => $from_group_id,
+				'to_id' => $to_group_id,
+				'model' => 'group',
+				'relation' => 'related',
+			));
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		/**
+		 *	创建群组的双向关系
+		 */
+		function create_group_relation_mutual( $from_group_id, $to_group_id ) {
+			return $this->create_relation_mutual( array(
+				'model' => 'group',
+				'relation' => 'mutual', 
+				'model_id' => $from_group_id,
+				'mutual_id' => $to_group_id,
+			));
+		}
+		
+		
+		/**
+		 *	判断群组目前是否是双向关系
+		 */
+		function is_group_relation_mutual( $from_group_id, $to_group_id ) {
+			$query_1 = $this->db->get_where('relation_mutual', array(
+				'model_id' => $from_group_id,
+				'mutual_id' => $to_group_id,
+				
+				'model' => 'group',
+				'relation' => 'mutual',
+				
+			));
+			
+			$query_2 = $this->db->get_where('relation_mutual', array(
+				'model_id' => $to_group_id,
+				'mutual_id' => $from_group_id,
+				
+				'model' => 'group',
+				'relation' => 'mutual',
+				
+			));
+			
+			return ( $query_1->num_rows() + $query_2->num_rows() );
+		}
+		
+		/**
+		 *	删除关联群组...
+		 */
+		function del_group_relation( $from_group_id, $to_group_id ) {
+			$del_relation =  $this->del_relation( array(
+				'model' => 'group',
+				'relation' => 'related',
+				
+				'from_id' => $from_group_id,
+				'to_id' => $to_group_id,
+			));
+			
+			
+			// 删除后，判断之前双方是否属于“双向关系”， 是的话清除双向关系
+			if ( $this->is_group_relation_mutual(  $to_group_id , $from_group_id ) ) {
+				$this->del_group_relation_mutual( $from_group_id, $to_group_id );
+			}
+			
+			return $del_relation;
+		}
+		
+		function del_group_relation_mutual( $from_group_id , $to_group_id ) {
+			return $this->del_relation_mutual( array(
+				'model_id' => $from_group_id,
+				'mutual_id' => $to_group_id,
+				'model' => 'group',
+			));
 		}
 		
 		/**

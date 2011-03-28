@@ -89,7 +89,7 @@
 										</a>
 									</li>
 									<li>
-										<a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin=<?=$user['qq'];?>&Site=http://qiyiguo.cc&Menu=yes">
+										<a class="tipsy_w" title="直接跟他QQ聊天" target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin=<?=$user['qq'];?>&Site=http://qiyiguo.cc&Menu=yes">
 											<span class="hover"></span>
 											<span class="icon icon_qq"></span>
 											QQ聊天
@@ -101,7 +101,7 @@
 									
 									<? if ( !empty( $user['msn'] ) ) : ?>
 									<li>
-										<a target="_blank" href="msnim:chat?contact=<?=$user['msn'];?>">
+										<a class="tipsy_w" target="_blank" href="msnim:chat?contact=<?=$user['msn'];?>" title="他的MSN地址是<?=$user['msn'];?>">
 											<span class="hover"></span>
 											<span class="icon icon_msn"></span>
 											MSN聊天
@@ -111,7 +111,7 @@
 									
 									<? if ( !empty( $user['gtalk'] ) ) : ?>
 									<li>
-										<a class="tipsy_w" target="_blank" href="#" title="<?=$user['gtalk'];?>">
+										<a onclick="return false;" class="tipsy_w" target="_blank" href="#" title="他的Gtalk地址是<?=$user['gtalk'];?>">
 											<span class="hover"></span>
 											<span class="icon icon_gtalk"></span>
 											Gtalk聊天
@@ -122,39 +122,85 @@
 								</ul>
 							</div>
 							
+							<?php 
+								$current_user_profile = get_current_user_profile();
+								$this_love_status = $current_user_profile['love_status'];
+								
+								if ( !empty($this_love_status) && $this_love_status !='single' && $lover ) :
+									// 恋人user profile
+									//$lover = kk_get_user( $current_user_profile['lover_id'] );
+									
+							?>
+							<div class="lookup_aside_widget">
+								<h2>另一半</h2>
+								<ul class="users_list">
+									<li>
+										<div class="user_avatar">
+											
+											<img width="35" src="<?=get_user_avatar_url( $lover['id'] );?>" />
+										</div>
+										<div class="user_detail">
+											<div>
+												<a href="<?=site_url('u/' . $lover['id'] );?>">
+													<?=$lover['name'];?>
+												</a>
+											</div>
+											
+											<div>
+												<?php if ( $this_love_status == 'married' && $current_user_profile['gender'] == 'male' ): ?>
+													<?= '妻子' ; ?>
+												<?php elseif ( $this_love_status == 'married' && $current_user_profile['gender'] == 'female'  ) : ?>
+													<?= '丈夫' ; ?>
+												<?php elseif ( $this_love_status == 'inlove' ) : ?>
+													<?= '恋人' ; ?>
+												<?php elseif ( $this_love_status == 'persue' ) : ?>
+													<?= '追求中' ; ?>
+												<?php endif;?>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<?php //print_r( $lover ); ?>
+							</div>
+							<div class="clearboth"></div>
+							
+							<?php
+								endif;
+							?>
+							
+							
+							<?php if ( !empty( $user_recommends ) ) : ?>
 							<div class="lookup_aside_widget">
 								<h2>推荐好友</h2>
 								
 								<? //print_r( $user_recommends ); ?>
 								
-								<div class="lookup_aside_content">
+								<ul class="users_list">
 								<?php foreach ( $user_recommends as $user_recommend ) : ?>
-									<div class="user">
-										<div>
-											<img width="30" src="<?=get_user_avatar_url( $user_recommend['id'] );?>" />
+									<li class="user">
+									
+										<div class="user_avatar">
+											<img width="35" src="<?=get_user_avatar_url( $user_recommend['id'] );?>" />
 										</div>
 										
-										<div>
-											<a href="<?=site_url('u/' . $user_recommend['id'] );?>">
-												<?=$user_recommend['name'];?>
-											</a>
+										<div class="user_detail">
+											<div>
+												<a href="<?=site_url('u/' . $user_recommend['id'] );?>">
+													<?=$user_recommend['name'];?>
+												</a>
+											</div>
+											
+											<div>
+												<!--为什么要推荐...-->
+											</div>
 										</div>
 										
-									</div>
+									</li>
 								<?php endforeach; ?>
-								</div>
+								</ul>
 							</div>
-							
-							<?php 
-								$this_love_status = get_current_user_profile('love_status');
-								if ( !empty($this_love_status) && $this_love_status !='single' ) :
-							?>
-							<div class="lookup_aside_widget">
-								<h2>另一半</h2>
-							</div>
-							<?php
-								endif;
-							?>
+							<?php endif; ?>
+					
 							
 						</div>
 						

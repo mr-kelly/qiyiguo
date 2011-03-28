@@ -1,8 +1,6 @@
 <?php $this->load->view('header_view'); ?>
 
 
-
-
 <div id="content">
 	<div class="content_top">
 		<div class="content_bottom">
@@ -55,12 +53,9 @@
 			
 			
 			<div>
-				<h2>拖动鼠标，选择要裁剪的部分</h2>
-				<img id="upload_pic" src="<?=$avatar_url;?>" style="max-width: 400px;" />
-			
-				<div style="float:right;overflow:hidden;position:relative;width:100px;height:100px;">
-					<img id="avatar_pic" src="<?=$avatar_url;?>" />
-				</div>
+				<h2>拖动鼠标，截取头像</h2>
+				<img id="upload_pic" src="<?=$avatar_url;?>" style="max-width: 500px;" />
+
 			</div>
 			
 			
@@ -89,7 +84,7 @@
 		<form action="<?=site_url('user/avatar_upload');?>" method="post" enctype="multipart/form-data">
 			<input type="file" name="userfile" size="20" />
 			
-			<input type="submit" />
+			<input type="submit" value="上传" />
 		</form>
 	<?php
 		endif;
@@ -99,5 +94,27 @@
 		</div>
 	</div>
 </div><!-- End Content -->
+
+	<div id="sidebar">
+		<div class="sidebar_top">
+			<div class="sidebar_bottom">
+			
+				<h2>头像将截取成...</h2>
+				<div style="overflow:hidden;position:relative;width:100px;height:100px;">
+					<img id="avatar_pic" src="<?=$avatar_url;?>" />
+				</div>
+				
+				
+				<h2>你是</h2>
+				<?php
+					$this->load->view('sidebar/sidebar_user_profile', array(
+						'user' => get_current_user_profile(),
+					));
+					
+					$this->load->view('sidebar/sidebar_ad_pic');
+				?>
+			</div>
+		</div>
+	</div>
 
 <?php $this->load->view('footer_view'); ?>

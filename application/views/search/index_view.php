@@ -65,11 +65,13 @@
 				<div class="clearboth"></div>
 				
 				
+				<?php if ( !empty( $search_stream ) ) : ?>
 				<?php
 					$this->load->view('stream/general_stream_list', array(
 						'stream' => $search_stream,
 					));
 				?>
+				<?php endif; ?>
 				
 				<?php 
 					// ,找不到时，推荐
