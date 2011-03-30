@@ -23,7 +23,8 @@
 						<img src="<?=static_url('img/howto_1.png');?>" />
 						
 
-						
+						<!-- 
+
 						<div class="demo_content">
 							<ul>
 								<li>
@@ -38,13 +39,19 @@
 								</li>
 							</ul>
 						</div>
+ -->
 						
 						<div class="clearboth"></div>
 						
 					</div>
 					
+					<div class="align_center">
+						<h2>看看学生会和它的部门怎样建立群组网络</h2>
+					</div>
+					
 					<div class="demo_left">
 						<img src="<?=static_url('img/howto_2.png');?>" />
+						
 						
 						<div class="demo_content">
 							<ul>

@@ -94,6 +94,21 @@
 			$datetime = getdate( $str_time );
 			return $datetime['mday'];
 		}
+		function get_minute( $str_time ) {
+			$str_time = strtotime($str_time);
+			$datetime = getdate( $str_time );
+			return $datetime['minutes'];
+		}
+		function get_hour( $str_time ) {
+			$str_time = strtotime($str_time);
+			$datetime = getdate( $str_time );
+			return $datetime['hours'];
+		}
+		function get_second( $str_time ) {
+			$str_time = strtotime($str_time);
+			$datetime = getdate( $str_time );
+			return $datetime['seconds'];
+		}
 		
 		
 		/* 

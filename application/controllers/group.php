@@ -10,6 +10,7 @@
 		function index() {
 			$start = $this->input->get('start');
 			
+			
 			$data = array(
 				'groups' => $this->group_model->get_groups( array(), 50, $start, true ),
 				'current_group' => 'current_menu',
@@ -43,77 +44,78 @@
 			$this->_if_group_404( $group_id );
 			$render = array();
 			
-			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-				//表单验证
-				$this->form_validation->set_rules('name', '果群名称', 'trim|required|xss_clean|htmlspecialchars|max_length[16]');
-				$this->form_validation->set_rules('privacy', '果群公开性', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('category_id', '群类别', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('verify', '加入友群验证方式', 'trim|required|xss_clean');
-				$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean|htmlspecialchars');
-				$this->form_validation->set_rules('website', '果群网页', 'trim|xss_clean');
-				
-				$this->form_validation->set_rules('province_id', '省份', 'trim|xss_clean');
-				$this->form_validation->set_rules('city_id', '城市', 'trim|xss_clean');
-				
-				$this->form_validation->set_rules('slug', '群网址', 'trim|xss_clean|alpha_dash');
-				
-				$this->form_validation->set_rules('admin_mode', '管理员通知模式', 'xss_clean|trim');
-				$this->form_validation->set_rules('noheader_mode', '无群组头部模式', 'xss_clean|trim');
-				
-				
-				if ( !$this->form_validation->run() ) {
-					ajaxReturn( null, validation_errors(), 0);
-				} else {
-					// Slug Form Validation More
-					// 群网址设置，不可以为纯数字
-					$slug = $this->form_validation->set_value('slug');
-					if ( is_numeric( $slug ) ) {
-						ajaxReturn( null, '群网址不可以为纯数字', 0);
-					}
-					// 保证群网址，没有被别人设置了！
-					if ( $this->group_model->is_group_slug_existed( $slug, $group_id ) ) { // 需要填入当前用户id， 允许用户重复同样地设置slug
-						// 存在了？返回失败吧
-						ajaxReturn( null, '你填写的群网址已经被人抢先一步了!', 0);
-					}
-					
-					
-					$group_privacy = $this->form_validation->set_value('privacy');
-					$group_verify = $this->form_validation->set_value('verify');
-					
-					// 如果是公开群组，强制任何用户都可以加入！
-					if ( $group_privacy == 'public' ) {
-						$group_verify = 'everyone';
-					}
-					
-					$this->group_model->update_group( $group_id , array(
-						'name' => $this->form_validation->set_value('name'),
-						'privacy' => $group_privacy,
-						'category_id' => $this->form_validation->set_value('category_id'),
-						
-						'province_id' => $this->form_validation->set_value('province_id'),
-						'city_id' => $this->form_validation->set_value('city_id'),
-						
-						'verify' => $group_verify,
-						'intro' => $this->form_validation->set_value('intro'),
-						'website' => $this->form_validation->set_value('website'),
-						
-						'slug' => $slug,
-						'admin_mode' => $this->form_validation->set_value( 'admin_mode' ),
-						'noheader_mode' => $this->form_validation->set_value( 'noheader_mode' ),
-						
-					));
-					ajaxReturn( array(
-									'group_url' => get_group_url( $group_id ),
-									), 
-									'果群修改成功', 1);
-				}
-			}
+
 			
 			$render['group_id'] = $group_id;
 			$render['group'] = $this->group_model->get_group_by_id( $group_id );
 			
 			if ( $action == 'setting' ) {
-			
+				// 普通设置
+				if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+					//表单验证
+					$this->form_validation->set_rules('name', '果群名称', 'trim|required|xss_clean|htmlspecialchars|max_length[16]');
+					$this->form_validation->set_rules('privacy', '果群公开性', 'trim|required|xss_clean');
+					$this->form_validation->set_rules('category_id', '群类别', 'trim|required|xss_clean');
+					$this->form_validation->set_rules('verify', '加入友群验证方式', 'trim|required|xss_clean');
+					$this->form_validation->set_rules('intro', '果群简介', 'trim|xss_clean|htmlspecialchars');
+					$this->form_validation->set_rules('website', '果群网页', 'trim|xss_clean');
+					
+					$this->form_validation->set_rules('province_id', '省份', 'trim|xss_clean');
+					$this->form_validation->set_rules('city_id', '城市', 'trim|xss_clean');
+					
+					$this->form_validation->set_rules('slug', '群网址', 'trim|xss_clean|alpha_dash');
+					
+					$this->form_validation->set_rules('admin_mode', '管理员通知模式', 'xss_clean|trim');
+					$this->form_validation->set_rules('noheader_mode', '无群组头部模式', 'xss_clean|trim');
+					
+					
+					if ( !$this->form_validation->run() ) {
+						ajaxReturn( null, validation_errors(), 0);
+					} else {
+						// Slug Form Validation More
+						// 群网址设置，不可以为纯数字
+						$slug = $this->form_validation->set_value('slug');
+						if ( is_numeric( $slug ) ) {
+							ajaxReturn( null, '群网址不可以为纯数字', 0);
+						}
+						// 保证群网址，没有被别人设置了！
+						if ( $this->group_model->is_group_slug_existed( $slug, $group_id ) ) { // 需要填入当前用户id， 允许用户重复同样地设置slug
+							// 存在了？返回失败吧
+							ajaxReturn( null, '你填写的群网址已经被人抢先一步了!', 0);
+						}
+						
+						
+						$group_privacy = $this->form_validation->set_value('privacy');
+						$group_verify = $this->form_validation->set_value('verify');
+						
+						// 如果是公开群组，强制任何用户都可以加入！
+						if ( $group_privacy == 'public' ) {
+							$group_verify = 'everyone';
+						}
+						
+						$this->group_model->update_group( $group_id , array(
+							'name' => $this->kk_filter->filter( $this->form_validation->set_value('name') ),
+							'privacy' => $group_privacy,
+							'category_id' => $this->form_validation->set_value('category_id'),
+							
+							'province_id' => $this->form_validation->set_value('province_id'),
+							'city_id' => $this->form_validation->set_value('city_id'),
+							
+							'verify' => $group_verify,
+							'intro' => $this->kk_filter->filter( $this->form_validation->set_value('intro') ),
+							'website' => $this->form_validation->set_value('website'),
+							
+							'slug' => $slug,
+							'admin_mode' => $this->form_validation->set_value( 'admin_mode' ),
+							'noheader_mode' => $this->form_validation->set_value( 'noheader_mode' ),
+							
+						));
+						ajaxReturn( array(
+										'group_url' => get_group_url( $group_id ),
+										), 
+										'果群修改成功', 1);
+					}
+				}
 				
 				$render['group_categories'] = $this->group_model->get_group_categories();
 
@@ -127,6 +129,28 @@
 			
 			
 			} else if ( $action == 'advanced' ) {
+				
+				if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				
+					$this->form_validation->set_rules('admin_mode', '管理员通知模式', 'xss_clean|trim');
+					$this->form_validation->set_rules('noheader_mode', '无群组头部模式', 'xss_clean|trim');
+					
+
+					if ( !$this->form_validation->run() ) {
+						ajaxReturn( null, validation_errors(), 0);
+					} else {
+					
+						$admin_mode = $this->form_validation->set_value('admin_mode');
+						$noheader_mode = $this->form_validation->set_value('noheader_mode');
+						
+						$this->group_model->update_group( $group_id, array(
+							'admin_mode' => $admin_mode,
+							'noheader_mode' => $noheader_mode,
+						));
+						
+						ajaxReturn(null,'群高级设置成功', 1);
+					}
+				}
 				
 				kk_show_view('group/setting_advanced_view', $render);
 			}
@@ -301,6 +325,8 @@
 				'relation_groups_count' => $this->relation_model->get_relation_groups_count( $group_id ),
 				
 				'noheader_mode' => $group['noheader_mode'], // 是否是无顶部菜单模式...
+				
+				'page_description' => sprintf('%s %s', $group['name'], $group['intro'] ),
 			);
 			
 			if ( $action == 'index' ) {
@@ -494,11 +520,15 @@
 					ajaxReturn( null, validation_errors(), 0);
 				} else {
 					// 验证成功，创建友群！
-					$group_name = $this->form_validation->set_value('group_name');
+					$group_name = $this->kk_filter->filter(  
+									$this->form_validation->set_value('group_name')
+									);
 					$group_privacy = $this->form_validation->set_value('group_privacy');
 					$group_category = $this->form_validation->set_value('group_category');
 					$group_verify = $this->form_validation->set_value('group_verify');
-					$group_intro = $this->form_validation->set_value('intro');
+					$group_intro = $this->kk_filter->filter( 
+										$this->form_validation->set_value('intro')
+									);
 					
 					$owner_id = $this->tank_auth->get_user_id();  // 创始人 user id
 					

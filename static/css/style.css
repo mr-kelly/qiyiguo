@@ -701,6 +701,7 @@ div.submenu span.submenu_corner:first-child {
 			
 			#sidebar .sidebar_events_list .event_detail p {
 				text-indent: 0;
+				
 			}
 				
 			#sidebar .events_list li .event_group_logo {
@@ -708,7 +709,29 @@ div.submenu span.submenu_corner:first-child {
 				top: 0;
 				right: 10px;
 			}
-	
+			
+				#sidebar .sidebar_events_list .event_content {
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					
+					max-width: 230px;
+					*width: 230px;
+				}
+			
+			
+			/**
+			 *	粉丝、朋友
+			 */
+			div.user_relation_tabs ul.tab_menu li {
+				width: 113px;
+				*margin: 0;
+			}
+			
+			.user_relation_tabs div.tab_div {
+				border-top-left-radius: 0px;
+				border-top-right-radius: 0px;
+			}
 	
 	.users_show {
 		margin: 0;
@@ -766,8 +789,9 @@ div.submenu span.submenu_corner:first-child {
 			/**height: 90px;*/
 			position: relative;
 			
-/*
+
 			overflow: hidden;
+/*
 			white-space: nowrap;
 			text-overflow: ellipsis;
 */
@@ -851,6 +875,7 @@ div.submenu span.submenu_corner:first-child {
 	}
 	#content p {
 		line-height: 18px;
+		font-size: 13px;
 	}
 
 	.content_top {
@@ -932,6 +957,9 @@ div.submenu span.submenu_corner:first-child {
 					.lookup_easy_profile .profile_detail {
 						margin: 5px 0;
 					}
+						.lookup_easy_profile .profile_detail span {
+							margin: 0 10px 0 0;
+						}
 						.lookup_easy_profile .user_mood {
 							margin: -px 0 0 0;
 						}

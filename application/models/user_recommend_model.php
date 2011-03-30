@@ -2,6 +2,16 @@
 
 	class User_Recommend_Model extends KK_Model {
 		
+		
+		/**
+		 *	删除推荐
+		 */
+		function delete_recommend( $recommend_id ) {
+			return $this->db->delete('user_recommend', array(
+				'id' => $recommend_id,
+			));
+		}
+		
 		/**
 		 *	添加“推荐好友”、“特别关系”
 		 */
@@ -57,7 +67,7 @@
 			// 读取用户, 分别存入数组
 			$recommend_users = array();
 			foreach( $recommends as $recommend ) {
-				array_push( $recommend_users, $this->_get_user( $recommend['recommend_user_id'] ) );
+				array_push( $recommend_users, array( 'recommend_id'=> $recommend['id'] ) + $this->_get_user( $recommend['recommend_user_id'] ) );
 			}
 			
 			return $recommend_users;

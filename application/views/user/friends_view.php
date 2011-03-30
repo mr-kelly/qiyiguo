@@ -18,6 +18,9 @@
 				</div>
 				
 				<?php
+					kk_pagination( $start, $friends_count, $per_page );
+				?>
+				<?php
 					$this->load->view('general/general_users_table', array(
 						'users' => $friends,
 					));
@@ -39,6 +42,12 @@
 					$this->load->view('sidebar/sidebar_user_profile', array(
 						'user' => $user,
 					));
+					
+					$this->load->view('sidebar/sidebar_user_view', array(
+						'user' => $user,
+					));
+					
+					$this->load->view('sidebar/sidebar_ad_pic');
 				?>
 			</div>
 		</div>

@@ -90,7 +90,8 @@ function notice_check() {
 	//}
 }
 
-var $notice_interval = setInterval( 'notice_check()', 30000 );
+var $notice_interval = setInterval( 'notice_check()', 20000 );
+
 
 $(function(){
 	
@@ -188,6 +189,8 @@ $(function(){
 				alert('error');
 			}
 	});
+	
+	
 });
 
 

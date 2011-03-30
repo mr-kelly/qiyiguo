@@ -30,7 +30,7 @@
 			$render['user_id'] = $user_id;
 			$render['user'] = kk_get_user( $user_id );
 			
-			$render['friends'] = $this->relation_model->get_friends( $user_id );
+			$render['friends'] = $this->relation_model->get_friends( $user_id, $start, $per_page );
 			$render['friends_count'] = $this->relation_model->get_friends_count( $user_id );
 			
 			kk_show_view('user/friends_view', $render);
@@ -51,7 +51,7 @@
 			$render['user_id'] = $user_id;
 			$render['user'] = kk_get_user( $user_id );
 			
-			$render['fans'] = $this->relation_model->get_fans( $user_id );
+			$render['fans'] = $this->relation_model->get_fans( $user_id, $start, $per_page );
 			$render['fans_count'] = $this->relation_model->get_fans_count( $user_id );
 			kk_show_view('user/fans_view', $render);
 		}
@@ -71,7 +71,7 @@
 			$render['user_id'] = $user_id;
 			$render['user'] = kk_get_user( $user_id );
 			
-			$render['follows'] = $this->relation_model->get_follows( $user_id );
+			$render['follows'] = $this->relation_model->get_follows( $user_id, $start, $per_page );
 			$render['follows_count'] = $this->relation_model->get_follows_count( $user_id );
 			
 			kk_show_view('user/follows_view', $render);
@@ -234,7 +234,7 @@
 		 *	查看一个用户的资料~  根据权限显示
 		 */
 		function user_lookup( $user_id_slug, $action='home' ) {
-			login_redirect();
+			//login_redirect();
 			
 			$this->load->model('relation_model');
 			$this->load->model('user_recommend_model');
@@ -281,6 +281,8 @@
 			
 			
 			$render['page_title'] = sprintf( '%s %s', $user['nickname'] , $user['realname'] );
+			$render['page_description'] = sprintf( '%s %s', $user['name'], $user['description'] );
+			
 			$render['start'] = $start;
 			
 			
@@ -304,10 +306,16 @@
 			if ( $user_id == get_current_user_id() ) {
 				$render['current_user_home'] = 'current_menu';
 			}
+			// 没登录，显示禁止显示
+			if ( !is_logged_in() ) {
+				kk_show_view('user/user_forbidden_view', $render);
+				return;
+			}
 			
 			
 			// 判断当前用户是否有权限查看别人的页面   ==== 权限
 			// 如果查看自己的页面。 忽略权限判断
+			
 			if ( $user['id'] != get_current_user_id() ) {
 				if ( $user['user_privacy'] == 0 ) {
 					kk_show_view('user/user_forbidden_view', $render);
@@ -378,7 +386,7 @@
 			$start = $this->input->get( 'start' );
 			
 			$render['user'] = $this->group_model->_get_user( $user_id );
-			$render['user_groups'] = $this->group_model->get_user_groups( $user_id, 50, $start, false );
+			$render['total_user_groups'] = $this->group_model->get_user_groups( $user_id, 50, $start, false );
 			
 			kk_show_view('user/user_groups_view', $render);
 		}
@@ -402,8 +410,8 @@
 			
 			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				// 处理提交的用户profile资料
-				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[14]');
-				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[16]');
+				$this->form_validation->set_rules('realname', '真实姓名', 'trim|required|xss_clean|max_length[8]');
+				$this->form_validation->set_rules('nickname', '称呼', 'trim|required|xss_clean|max_length[10]');
 				$this->form_validation->set_rules('name_privacy', '名字隐私', 'xss_clean|trim');
 				
 				$this->form_validation->set_rules('gender', '性别', 'required|trim|xss_clean');
@@ -1395,10 +1403,68 @@ EOT;
 						
 					));
 					
+					
+					$profile_data = array();
+					
+					// 抓取豆瓣头像
+					if ( !empty( $douban_self['link'][2]['@href'] ) ) {
+						// 有头像，去抓取图像网址
+						$avatar = file_get_contents( $douban_self['link'][2]['@href']  );
+						
+						// 写入头像到文件夹
+					   $avatar_path = $this->config->item('avatar_path') . '/' . $current_user_id . '/';
+					   $this->_createDir($avatar_path);
+					   
+					   // 头像文件夹
+ 					   $avatar_file_name = md5(rand(0,9999));
+ 					   $avatar_file_normal_name = $avatar_file_name . '.png';
+ 					   $avatar_file_thumb_name =  $avatar_file_name . '_thumb.png';
+					   
+ 					   // 下载成2个头像文件, 一个正常，一个thumb缩略图
+ 					   file_put_contents( $avatar_path . $avatar_file_normal_name , $avatar);  // 写入头像文件,用md5加随机数生成随机文件名
+ 					   file_put_contents( $avatar_path . $avatar_file_thumb_name, $avatar );
+ 					   
+					   // 头像下载完了，配置数据库绑定
+					   
+					   $this->load->model('user_avatars_model');
+					   $avatar_id = $this->user_avatars_model->create_user_avatar( $current_user_id, $avatar_file_normal_name );
+					   
+					   
+					   $profile_data['avatar_id'] = $avatar_id;//同步资料的头像
+					}
+				   // 同步头像 ( 先同步头像， 同步资料时放入头像文件的数据id )
+// 				   if ( isset($user_t_sina['profile_image_url'] ) ) {
+// 				   
+// 																   // 修改默认新浪微博配置的头像大小
+// 					   $avatar = file_get_contents( str_replace( '/50/', '/180/', $user_t_sina['profile_image_url']) );
+// 					   
+// 					   // 写入头像到指定头像上传文件夹
+// 					   $avatar_path = $this->config->item('avatar_path') . '/' . $current_user_id . '/';
+// 					   $this->_createDir($avatar_path);
+// 					   
+// 					   $avatar_file_name = md5(rand(0,9999));
+// 					   $avatar_file_normal_name = $avatar_file_name . '.png';
+// 					   $avatar_file_thumb_name =  $avatar_file_name . '_thumb.png';
+// 					   
+// 					   // 下载成2个头像文件, 一个正常，一个thumb缩略图
+// 					   file_put_contents( $avatar_path . $avatar_file_normal_name , $avatar);  // 写入头像文件,用md5加随机数生成随机文件名
+// 					   file_put_contents( $avatar_path . $avatar_file_thumb_name, $avatar );
+// 					   
+// 					   // 头像下载完了，配置数据库绑定
+// 					   
+// 					   $this->load->model('user_avatars_model');
+// 					   $avatar_id = $this->user_avatars_model->create_user_avatar( $current_user_id, $avatar_file_normal_name );
+// 					   
+// 					   
+// 					   $profile_data['avatar_id'] = $avatar_id;//同步资料的头像
+// 				   }
+					
+					
+					
 					// 创建 profile~
 					$birth = sprintf( '%s-%s-%s', $this->form_validation->set_value('birth_year'), $this->form_validation->set_value('birth_month'), $this->form_validation->set_value('birth_day') );
 					
-					$profile_data = array();
+					
 					$profile_data += array(
 						'realname' => $this->form_validation->set_value('realname' ),
 						'nickname' => $this->form_validation->set_value('nickname'),
@@ -1796,6 +1862,20 @@ EOT;
 			kk_show_view('user/ajax_get_recommends_view', $render);
 		}
 		
+		/**
+		 *	删除推荐...
+		 */
+		function ajax_delete_recommend( $recommend_id ) {
+			login_redirect();
+			$this->load->model('user_recommend_model');
+			
+			if ( $this->user_recommend_model->delete_recommend( $recommend_id ) ) {
+				ajaxReturn( null, '成功删除推荐', 1 );
+			} else {
+				ajaxReturn( null, '无法删除推荐', 0 );
+			}
+		}
+		
 		
 		/**
 		 *	为当前用户添加心情, ajax视图
@@ -1813,7 +1893,10 @@ EOT;
 				} else {
 					
 					$this->load->model('user_mood_model');
-					$mood_text = $this->form_validation->set_value( 'mood_text' );
+					$mood_text = $this->kk_filter->filter( 
+									$this->form_validation->set_value( 'mood_text' )
+									);
+									
 					if ( $mood_id = $this->user_mood_model->add_mood( get_current_user_id(), $mood_text ) ) {
 						ajaxReturn( 'mood added', '添加成功！', 1 );
 					} else {

@@ -260,7 +260,12 @@ form p {
 .icon_joined_group {
 	background-position: 0 -2283px;
 }
-
+.icon_delete_group {
+	background-position: 0 -620px;
+}
+.icon_edit {
+	background-position: 0 -3711px;
+}
 .icon_reply {
 	background-position: 0 -1078px;
 }
@@ -477,6 +482,11 @@ form p {
 	
 	line-height: 24px;
 	text-align: center;
+	border: 1px solid #999;
+	border-top-color: #CCC;
+	border-left-color: #CCC;
+	
+	border-radius: 3px;
 }
 	a.kk_btn, a.kk_btn:active, a.kk_btn:link, a.kk_btn:visited, a.kk_btn:hover {
 		color: #FFF;
@@ -489,11 +499,11 @@ form p {
 }
 
 button.kk_btn {
-	border: 0;
 	color: #FFF;
+	padding: 0;
+	cursor: pointer;
 }
 	button.kk_btn:hover {
-		border: 0;
 		color: #FFF;
 	}
 

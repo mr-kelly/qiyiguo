@@ -49,8 +49,23 @@
 			$ci =& get_instance();
 			$ci->load->library('Guo_id');
 			
+			if ( !isset( $data['id'] ) ) {
+				// 如果没有指定群ID...
+				$group_id = $ci->guo_id->generate_group_id();
+			} else {
+				// 指定群ID
+				$group_id = $data['id'];
+			}
+			
+			// 判断群组是否已存在过了
+			if ( $this->is_group( $group_id ) ) {
+				return false;
+			}
+			
+			
+			
 			$this->db->insert('group', $data + array(
-				'id' => $ci->guo_id->generate_group_id(),
+				'id' => $group_id,
 				'created' => date('Y-m-d H:i:s'),
 			));
 			
@@ -706,8 +721,20 @@
 			
 		}
 		
-		
-		
+		/**
+		 *	判断该ID的群组是否存在
+		 */
+		function is_group( $group_id ) {
+			$group = $this->db->get_where('group', array(
+				'id' => $group_id,
+			));
+			
+			if ( $group->num_rows() == 0 ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 		/**
 		 *	判断友群是否私有
 		 */

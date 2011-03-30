@@ -37,7 +37,5 @@
 				
 				<div class="clearboth"></div>
 				
-				<?php else: ?>
-					没有群组...
 				
 				<?php endif; ?>

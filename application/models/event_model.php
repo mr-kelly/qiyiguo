@@ -24,6 +24,15 @@
 			return $this->db->insert_id();
 		}
 		
+		
+		/**
+		 *	修改活动
+		 */
+		function update_event( $event_id, $data ) {
+			$this->db->where('id', $event_id );
+			return $this->db->update('event', $data);
+		}
+		
 		/**
 		 *	获得所有的活动 （慎用、测试
 		 */
@@ -76,7 +85,29 @@
 			
 			return $query->num_rows();
 		}
+	
 		
+		/**
+		 *	获得用户参与的活动
+		 */
+		function get_user_events( $user_id, $limit=10, $start=0 ) {
+			$this->db->order_by('created', 'desc');
+			$query = $this->db->get_where('event_user', array(
+				'user_id' => $user_id,
+			), $limit, $start );
+			
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			$return_events = array();
+			foreach(  $query->result_array() as $event_user ) {
+				$return_events[] = $this->get_event_by_id( $event_user['event_id'] );
+			}
+			
+			return $return_events;
+		}
 		
 		/**
 		 *	根据ID指定获取事件（活动/任务）

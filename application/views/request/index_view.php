@@ -24,13 +24,16 @@
 								foreach ( $request_groups as $rg ) :
 						?>
 								<div class="request_group">
-									<a href="<?=site_url('user/'.$rg['User']['id']);?>">
-										<?=$rg['User']['name'];?> 
-									</a>
-										想加入
-									<a href="<?=site_url('group/'.$rg['Group']['id']);?>">
-										<?=$rg['Group']['name'];?>
-									</a>
+									<div>
+										<a href="<?=site_url('user/'.$rg['User']['id']);?>">
+											<?=$rg['User']['name'];?> 
+										</a>
+											想加入
+										<a href="<?=site_url('group/'.$rg['Group']['id']);?>">
+											<?=$rg['Group']['name'];?>
+										</a>
+										: <?=$rg['message'];?>
+									</div>
 									<div class="buttons">
 										<a class="accept_request positive" href="<?=site_url('request/index/' . $rg['id']. '/accept');?>">
 											允许

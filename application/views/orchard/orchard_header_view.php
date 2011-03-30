@@ -8,7 +8,7 @@
 	<?=import_css('css/app/orchard/style.css');?>
 	<?=import_css('css/kk_table.css');?>
 	<?=import_css('css/kk_pagination.css');?>
-	
+	<?=import_js('js/lib/lib.js');?>
 </head>
 <body>
 
@@ -40,6 +40,17 @@
 			<li>
 				<a href="<?=site_url('orchard/group');?>">
 					果群
+					<ul class="submenu">
+						<li>
+							<a href="<?=site_url('orchard/group/create_group');?>">创建果群</a>
+						</li>
+						<li>
+							<a href="<?=site_url('orchard/group/');?>">修改</a>
+						</li>
+						
+						<div class="clearboth"></div>
+						
+					</ul>
 				</a>
 			</li>
 			

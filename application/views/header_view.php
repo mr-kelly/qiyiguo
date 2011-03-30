@@ -24,7 +24,7 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <meta name="description" content="「奇异果」是一个世界上第一个群组网络，它帮助你和朋友们发现与创造生活的每一刻。你可以这这里发现、创建你的住宅小区、校园社团、朋友组织、商铺等等各种组织。" />
+    <meta name="description" content="<?=isset( $page_description ) ? $page_description : '「奇异果」是一个世界上第一个群组网络，它帮助你和朋友们发现与创造生活的每一刻。你可以这这里发现、创建你的住宅小区、校园社团、朋友组织、商铺等等各种组织。';?>" />
     <meta name="keywords" content="同学,大学生,陈霈霖,Mrkelly,公司,小区,学校,社交网站" />
     
     <meta name="generator" content="BBEdit 9.5" />
@@ -103,7 +103,7 @@
  -->
             
             <div id="kk_topbar_container">
-                <div id="logo" class="tipsy_nw" title="奇异果是一个帮助你和你的朋友们发现和创造生活的地方。">
+                <div id="logo" class="tipsy_nw" title="奇异果帮助你和你的朋友们发现和创造生活。">
                     <a href="<?=site_url('/');?>">
                         <img src="<?=static_url('img/logo.gif');?>" height="35" />
                     </a>

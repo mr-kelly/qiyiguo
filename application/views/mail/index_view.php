@@ -73,10 +73,19 @@ enctype="multipart/form-data">
 					'user' => $current_user_profile,
 				));
 			?>
-			<h2>您的电邮地址</h2>
-			<div class="align_center">
-				<?= $current_user_profile['email'];?>
+			<div class="sidebar_widget">
+				<h2>您的电邮地址</h2>
+				<div class="align_center">
+					<?= $current_user_profile['email'];?>
+				</div>
 			</div>
+			
+			<?php
+				$this->load->view('sidebar/sidebar_user_view', array(
+					'user' => $current_user_profile,
+				));
+			?>
+
 			
 		</div>
 	</div>

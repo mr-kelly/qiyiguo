@@ -36,6 +36,9 @@
 	</tbody>
 </table>
 
+<?php
+	kk_pagination( $start, $groups_count, 20 );
+?>
 
 
 <?php

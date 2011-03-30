@@ -11,7 +11,9 @@
 		 *	关注某人~ 传入对方user_id
 		 */
 		function ajax_follow_user( $to_user_id ) {
-			login_redirect();
+			if ( !is_logged_in() ) {
+				ajaxReturn('login_required', '未登录', 0);
+			}
 			
 			$current_user_id = get_current_user_id();
 			
@@ -28,7 +30,7 @@
 							'user',
 							get_current_user_id()   // 查看他的用户页面，那么清楚notice
 								);
-				ajaxReturn( null, '关注了他！', 1 );
+				ajaxReturn( null, '收藏了他！', 1 );
 			}
 			
 		}
@@ -38,7 +40,9 @@
 		 *	取消关注某人~
 		 */
 		function ajax_unfollow_user( $to_user_id ) {
-			login_redirect();
+			if ( !is_logged_in() ) {
+				ajaxReturn('login_required', '未登录', 0);
+			}
 			
 			$this->load->model('relation_model');
 			if ( $this->relation_model->del_user_relation( get_current_user_id(), $to_user_id )) {

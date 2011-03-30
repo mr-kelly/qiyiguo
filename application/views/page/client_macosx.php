@@ -18,6 +18,12 @@
 				</div>
 			
 			
+				<h3>其它选择</h3>
+				<div>
+					<a href="<?site_url('page/client_windows');?>">
+						&gt;奇异果Windows客户端
+					</a>
+				</div>
 				
 			</div>
 		</div>
@@ -27,6 +33,9 @@
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
 				<?php
+					$this->load->view('sidebar/sidebar_group_profile', array(
+						'group' => kk_get_group( 10000 ),
+					));
 					$this->load->view('sidebar/sidebar_ad_pic');
 				?>
 			</div>

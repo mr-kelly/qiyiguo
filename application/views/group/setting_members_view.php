@@ -94,9 +94,14 @@
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
 				<?php
-					$this->load->view('sidebar/sidebar_group_profile', array(
-						'group' => kk_get_group( $group['id'] ),
-					));
+					$this->load->view('sidebar/sidebar_group_profile');
+					
+					$this->load->view('sidebar/sidebar_group_view');
+				?>
+				
+				
+				<?php
+					$this->load->view('sidebar/sidebar_ad_pic');
 				?>
 			</div>
 		</div>

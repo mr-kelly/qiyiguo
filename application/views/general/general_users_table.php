@@ -2,12 +2,12 @@
 						<thead>
 							<th>果号</th>
 							<th>名字</th>
-							<th>性别</th>
+							<!--<th>性别</th>-->
 						</thead>
 						<tbody>
 						<?php foreach ( $users as $user ) : ?>
 							<tr>
-								<td>
+								<td width="100" class="align_center">
 									<?= $user['id'] ; ?>
 								</td>
 								<td>
@@ -23,10 +23,13 @@
 											endif;
 										endif;
 									?>
-								</td>
-								<td>
+									
 									<?= $user['gender'] == 'male' ? '男' : '女' ;?>
 								</td>
+								<!--
+								<td>
+									
+								</td>-->
 							</tr>
 						<?php endforeach; ?>
 						</tbody>

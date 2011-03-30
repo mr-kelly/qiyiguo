@@ -59,7 +59,19 @@
 					<!--资料设置-->
 					<div id="profile_setting" class="tab_div hidden">
 						<div class="form_div">
-							
+
+								<p>
+									<label>果号</label>
+									<span>
+										<?=$current_user_profile['id'];?>
+									</span>
+								</p>
+								<p>
+									<label>电邮地址</label>
+									<span>
+										<?=$current_user_profile['email'];?>
+									</span>
+								</p>
 								<p>
 									<label>真实姓名</label>
 									<input class="required" name="realname" type="text" value="<?= $current_user_profile['realname'];?>" />
@@ -222,7 +234,7 @@
 												去新浪微博
 											</a>
 											&nbsp;&nbsp;&nbsp;
-											<a class="btn" href="<?=site_url('user/bind_t_sina');?>">&gt;解除绑定</a>
+											<a onclick="$('#loading').show();" class="btn" href="<?=site_url('user/bind_t_sina');?>">&gt;解除绑定</a>
 										<?php else: ?>
 											<a target="_blank" class="btn" href="<?=site_url('user/bind_t_sina');?>">
 												绑定微博
@@ -249,7 +261,7 @@
 												去豆瓣网
 											</a>
 											&nbsp;&nbsp;&nbsp;
-											<a class="btn" href="<?=site_url('user/bind_douban');?>">
+											<a onclick="$('#loading').show();" class="btn" href="<?=site_url('user/bind_douban');?>">
 												&gt;解除绑定
 											</a>
 										<?php else: ?>

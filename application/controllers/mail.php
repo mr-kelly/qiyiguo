@@ -99,9 +99,9 @@
 							move_uploaded_file( $file_position, $file_destination . $file_name );
 							
 							$attach_file = $file_destination . $file_name;
+						} else {
+							$attach_file = '';
 						}
-					} else {
-						$attach_file = '';
 					}
 						
 						

@@ -14,7 +14,7 @@ date_default_timezone_set('Asia/Shanghai');
 
 $config['kk_site_status'] = 'production'; // 开发状态？ development/production
 
-$config['restrict_bnu'] = true; // 是否只允许bnu的内网IP登录
+$config['restrict_bnu'] = false; // 是否只允许bnu的内网IP登录
 
 /**
 	T_sina OAuth  新浪微博OAuth

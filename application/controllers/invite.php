@@ -5,6 +5,8 @@
 	class Invite extends KK_Controller {
 	
 		function index() {
+			login_redirect();
+			
 			$render = array();
 			kk_show_view('invite/index_view', $render);
 		

@@ -32,19 +32,27 @@
 		 *		清楚指定提醒...
 		 */
 		function clean_notices( $user_id, $model, $model_id ) {
-			return $this->db->delete('notice', array(
+			$this->db->where( array(
+				'user_id' => $user_id,
 				'model' => $model,
 				'model_id' => $model_id,
+			));
+			return $this->db->update('notice', array(
+				'status' => 1 , // 已读
 				
-				'user_id' => $user_id,
+// 				'model' => $model,
+// 				'model_id' => $model_id,
+// 				
+// 				'user_id' => $user_id,
 			));
 		}
 		/**
 		 *	清楚所有提醒
 		 */
 		function clear_notices( $user_id ) {
-			return $this->db->delete('notice', array(
-				'user_id' => $user_id,
+			$this->db->where('user_id', $user_id);
+			return $this->db->update('notice', array(
+				'status' => 1,
 			));
 		}
 		
@@ -65,10 +73,11 @@
 		/**
 		 *	获得指定用户的notice
 		 */
-		function get_notices( $user_id ) {
+		function get_notices( $user_id, $status=0, $limit=10, $start=0 ) {
 			$query = $this->db->get_where('notice', array(
 				'user_id' => $user_id,
-			));
+				'status' => $status, // 获取未处理(0)的notice...
+			), $limit, $start );
 			$notices = $query->result_array();
 			
 			// 添加用户  TODO
@@ -86,6 +95,7 @@
 		function get_notices_count( $user_id ) {
 			$query = $this->db->get_where('notice', array(
 				'user_id' => $user_id,
+				'status' => 0,
 			));
 			
 			return $query->num_rows();
@@ -100,12 +110,21 @@
 		
 		
 		/**
-		 *	戳一下notice， 令notice变为 已读  (update)  ( 更新:直接删除， 以免数据库滞留太多没用东西
+		 *	  （过期）戳一下notice， 令notice变为 已读  (update)  ( 更新:直接删除， 以免数据库滞留太多没用东西
+		 
+			 戳一下notice，令status变为1(已经处理)
 		 */
 		function poke_notice_by_id( $notice_id ) {
-			return $this->db->delete('notice', array(
-				'id' => $notice_id,
+			//$notice = $this->get_notice_by_id ( $notice_id );
+			
+			$this->db->where('id', $notice_id );
+			return $this->db->update('notice', array(
+				'status' => 1,  // 已处理
 			));
+			
+// 			return $this->db->delete('notice', array(
+// 				'id' => $notice_id,
+// 			));
 			
 			//$this->db->where('id', $notice_id );
 // 			return $this->db->update('notice', array(
@@ -115,11 +134,11 @@
 		}
 		
 		
-		function del_notice( $notice_id ) {
-			return $this->db->delete('notice', array(
-				'id' => $notice_id,
-			));
-		}
+// 		function del_notice( $notice_id ) {
+// 			return $this->db->delete('notice', array(
+// 				'id' => $notice_id,
+// 			));
+// 		}
 		
 		
 		

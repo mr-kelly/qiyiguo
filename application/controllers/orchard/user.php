@@ -12,7 +12,13 @@
 		}
 		
 		function index() {
-			$render['users'] = $this->user_profiles_model->get_users( array(), 10);
+			$start = $this->input->get('start');
+			
+			$render['start'] = $start;
+			
+			$render['users_count'] = $this->user_profiles_model->get_users_count();
+			
+			$render['users'] = $this->user_profiles_model->get_users( array(), 20, $start);
 			kk_show_view('orchard/user/index_view', $render);
 		}
 		

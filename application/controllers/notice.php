@@ -73,7 +73,7 @@
 			$link = $notice['link'];
 			
 			// 本条notice已经poke(处理), 删除，转到指定页面
-			$this->notice_model->del_notice( $notice_id );
+			$this->notice_model->poke_notice_by_id( $notice_id );
 			
 			redirect( $link );
 			

@@ -50,7 +50,7 @@
 							
 							
 							<div style="margin: 20px 0 0 0;">
-								<h2>这些组织在奇异果...</h2>
+								<h2>这些群组在奇异果...</h2>
 								<?php
 									$this->load->view('group/general_groups_show', array(
 										'groups' => $random_groups,
@@ -110,7 +110,7 @@
 
 						</div>
 						
-						<div style="height:1320px;"></div>
+						<div style="height:1520px;"></div>
 					</div>
         		</div>
             </div>

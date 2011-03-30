@@ -71,7 +71,7 @@
 					
 					<div>
 						<form method="post">
-							<textarea name="weibo_invite_text" style="height: 40px;width:300px;">我为「<?=$group['name'];?>」建立了一个果群，朋友们快来加入啦。<?=get_group_url( $group['id'] );?></textarea>
+							<textarea name="weibo_invite_text" style="height: 40px;width:300px;">我为「<?=$group['name'];?>」建立了一个果群(<?=$group['id'];?>)，朋友们快来加入啦。<?=get_group_url( $group['id'] );?></textarea>
 						</form>
 					</div>
 					

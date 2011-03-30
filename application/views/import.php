@@ -29,10 +29,12 @@
     <?=import_css('css/base.css');?>
     <?=import_css('css/html.css');?>
     <?=import_css('css/decorator.css');?>
-    <?=import_css('css/style.css');?>
+    
 	<?=import_css('css/kk_tabs/kk_tabs.css');?>
 	<?=import_css('css/kk_table.css');?>
 	<?=import_css('css/kk_pagination.css');?>
+	
+	<?=import_css('css/style.css');?>
 	
 	<?php // CKEditor ?>
 	<? //import_js('js/ckeditor/ckeditor_basic.js');?>

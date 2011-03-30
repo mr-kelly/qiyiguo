@@ -123,8 +123,8 @@
 							</div>
 							
 							<?php 
-								$current_user_profile = get_current_user_profile();
-								$this_love_status = $current_user_profile['love_status'];
+								//$current_user_profile = get_current_user_profile();
+								$this_love_status = $user['love_status'];
 								
 								if ( !empty($this_love_status) && $this_love_status !='single' && $lover ) :
 									// 恋人user profile
@@ -137,8 +137,9 @@
 									<li>
 										<div class="user_avatar">
 											
-											<img width="35" src="<?=get_user_avatar_url( $lover['id'] );?>" />
+											<img width="35" height="35" src="<?=get_user_avatar_url( $lover['id'] );?>" />
 										</div>
+										
 										<div class="user_detail">
 											<div>
 												<a href="<?=site_url('u/' . $lover['id'] );?>">

@@ -46,6 +46,9 @@
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
 				<?php
+					$this->load->view('sidebar/sidebar_group_profile', array(
+						'group' => kk_get_group( 10000 ),
+					));
 					$this->load->view('sidebar/sidebar_ad_pic');
 				?>
 			</div>

@@ -3,10 +3,15 @@
 		
 		function __construct() {
 			parent::__construct();
-			//exit('cannot enter test');
+			exit('cannot enter test');
 			
 		}
-		
+		function test_datetime() {
+			$str_time = '2011-1-2 13:00:00';
+			$str_time = strtotime($str_time);
+			$datetime = getdate( $str_time );
+			print_r( $datetime );
+		}
 		function test_string() {
 			$s = '/2011/1/12/asdfsfasfsdf.png';
 			

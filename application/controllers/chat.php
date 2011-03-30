@@ -172,6 +172,24 @@
 												'chat'
 												);
 							}
+							
+							
+							// 活动有回复， 参与活动的所有人收到回复...
+							$event_users = $this->event_model->get_event_users( $model_id );
+							foreach ( $event_users as $u ) {
+								if ( $u['id'] != get_current_user_id() ) { // 如果当前用户也是参与者， 不发提醒
+									add_notice( $u['id'],
+													'参与的活动有回复',
+													sprintf('%s在你参与的活动留言了', $current_user_name),
+													sprintf('/%s/%s', $model, $model_id),
+													$model,
+													$model_id,
+													'chat'
+												);
+								}
+							}
+							
+							
 											
 						}
 

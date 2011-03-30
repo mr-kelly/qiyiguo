@@ -38,7 +38,6 @@
 								<h2>果群资料设置</h2>
 								
 								<div class="form_div">
-									
 										<p>
 											<label>群号</label>
 											<span><?=$group['id'];?></span>
@@ -96,6 +95,11 @@
 												<option value="">不设置</option>
 											<?php
 												$ci =& get_instance();
+												
+												if ( empty( $group_province ) ) {
+													$group_province = 11;
+												}
+												
 												$cities =  $ci->dict_model->get_cities($group_province);
 												$group_city = $group['city_id'];
 												foreach ( $cities as $city ):
@@ -116,6 +120,8 @@
 											<label>果群简介</label>
 											<textarea name="intro"><?=$group['intro'];?></textarea>
 										</p>
+<!-- 
+
 										
 										<p>
 											<label>统治模式</label>
@@ -132,6 +138,8 @@
 												群组页不显示奇异果顶部菜单
 											</span>
 										</p>
+ -->
+
 		
 		
 										
@@ -201,6 +209,8 @@
 			<div class="sidebar_bottom">
 				<?php
 					$this->load->view('sidebar/sidebar_group_profile');
+					
+					$this->load->view('sidebar/sidebar_group_view');
 				?>
 				
 				

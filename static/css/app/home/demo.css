@@ -9,9 +9,11 @@
 
 
 
-.demo_left, .demo_right {
+.demo_left, .demo_right {/*
+
 	border-bottom: 1px dashed #CCC;
-	height: 120px;
+*/
+	height: 105px;
 }
 .demo_right img {
 	float: right;

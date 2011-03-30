@@ -14,7 +14,7 @@
 				<form class="ajax_form" method="post" action="<?=site_url('user/register_by_douban');?>?redirect=<?=$this->input->get('redirect');?>">
 
 					<p>
-						<a target="_blank" href="http://t.sina.com.cn/<?=$douban_self['id'];?>">
+						<a target="_blank" href="http://www.douban.com/people/<?=$douban_self['db:uid']['$t'];?>">
 							<img class="avatar" src="<?=$douban_self['link'][2]['@href'];?>" width="50" />
 						</a>
 						

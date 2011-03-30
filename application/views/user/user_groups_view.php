@@ -13,7 +13,7 @@
 				<div>
 				<?php
 					$this->load->view('group/general_groups_show', array(
-						'groups' => $user_groups,
+						'groups' => $total_user_groups,
 					));
 				?>
 				</div>
@@ -28,6 +28,9 @@
 			<div class="sidebar_bottom">
 				<?php
 					$this->load->view('sidebar/sidebar_user_profile', array(
+						'user' => get_current_user_profile(),
+					));
+					$this->load->view('sidebar/sidebar_user_view', array(
 						'user' => get_current_user_profile(),
 					));
 					

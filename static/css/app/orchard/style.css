@@ -10,11 +10,22 @@ body {
 .clearboth {
 	clear: both;
 }
+.hidden {
+	display: none;
+}
 
 a, a:active, a:link, a:visited {
 	text-decoration: none;
 }
 
+
+
+#message {
+	width: 100%;
+	background: yellow;
+	color: #000;
+	line-height: 22px;
+}
 #header {
 	width: 100%;
 	background: #000;

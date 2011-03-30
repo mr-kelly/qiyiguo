@@ -72,9 +72,9 @@ class Home extends KK_Controller {
 		$this->load->model('stream_model');
 		
 		// 他妈的，提示用户别用IE6了！
-		if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ) {
-			$this->session_message->set( '嘿，奇异果发现你还在使用IE6内核的落后浏览器，部分奇异果的功能你将不能使用。天啊，赶快去..<a target="_blank" href="http://www.google.com/chrome">&gt;下载先进浏览器吧</a>');
-		}
+// 		if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ) {
+// 			$this->session_message->set( '嘿，奇异果发现你还在使用IE6内核的落后浏览器，部分奇异果的功能你将不能使用。天啊，赶快去..<a target="_blank" href="http://www.google.com/chrome">&gt;下载先进浏览器吧</a>');
+// 		}
 		
 		
 		

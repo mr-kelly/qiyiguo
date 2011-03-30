@@ -39,7 +39,9 @@
 	<?php endforeach; ?>
 	</tbody>
 </table>
-
+<?php
+	kk_pagination( $start, $users_count, 20 );
+?>
 
 <?php
 	$this->load->view('orchard/orchard_footer_view');

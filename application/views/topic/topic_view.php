@@ -2,29 +2,39 @@
 	$this->load->view('header_view'); 
 	$ci =& get_instance();
 ?>
+	<?=import_css('css/app/topic/topic_lookup.css');?>
 	
 	<div id="content" class="two_columns">
 		<div class="content_top">
 			<div class="content_bottom">
-				
-				
+					<div class="topic_controll_btn">
+					<?php
+						// 发布者可以修改
+						if ( $topic['user_id'] == get_current_user_id() ) :
+					?>
+						<a href="<?=site_url('topic/edit/' . $topic['id'] );?>" class="icon icon_edit">
+							修改
+						</a>
+					<?php
+						endif;
+					?>
 					<?php
 						// 管理员、发布的用户可以删除
 						if ( is_group_admin( $topic['model_id'] , get_current_user_id() ) 
 								|| $topic['user_id'] == get_current_user_id() 
 								):
 					?>
-					<div class="delete_btn_div">
+					
 						<a href="#" onclick="return delete_btn(this, '<?= get_group_url( $topic['model_id'] ) ;?>');" class="icon icon_delete" ajax="<?=site_url('topic/ajax_delete/' . $topic['id']);?>">
-							删除话题
+							删除
 						</a>
-					</div>
+					
 					<div class="clearboth"></div>
 					
 					<?php
 						endif;
 					?>
-				
+					</div>
 				
 				<div class="float_right">
 					<div class="topic_lookup_attach_img">

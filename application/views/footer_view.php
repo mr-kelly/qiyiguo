@@ -154,7 +154,7 @@
 					<div>
 						<span class="footer_grey">
 							<a target="_blank" href="http://www.miibeian.gov.cn/">
-								粤ICP备07053148号
+								粤ICP备11018498号
 							</a>
 						</span>
 					</div>
@@ -177,7 +177,7 @@
 					-->
 					
 					<!-- Chrome -->
-					<a target="_blank" class="tipsy_s grey" href="http://www.google.com/chrome" title="使用谷歌浏览器会有意想不到的特效">
+					<a target="_blank" class="tipsy_s grey" href="http://www.google.com/chrome" title="使用谷歌浏览器会有最佳浏览效果">
 						<img src="<?=static_url('img/websites/chrome.png');?>" />
 					</a>
 					<a href="<?=site_url('home/demo');?>">

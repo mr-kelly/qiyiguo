@@ -132,7 +132,7 @@
 				<li>
 					<a href="<?=site_url('group/destroy/' . $group['id'] );?>" class="tipsy_e" title="你是群的创始人，毁灭这个群吧？">
 						<span class="hover"></span>
-						<span class="icon icon_create_group"></span>
+						<span class="icon icon_delete_group"></span>
 						毁灭该群
 					</a>
 				</li>
@@ -265,7 +265,7 @@
     
     
     
-    <?php if ( isset( $events ) ) : ?>
+    <?php if ( isset( $events ) && isset( $group ) ) : ?>
     <div class="sidebar_widget">
 		<?php
 			if ( isset( $show_sidebar_group_events_list ) && $show_sidebar_group_events_list ) : 

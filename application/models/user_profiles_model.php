@@ -50,6 +50,15 @@ class User_Profiles_Model extends KK_Model {
 		}
 		return $return_users;
 	}
+	
+	
+	
+	/**
+	 *	获得用户总数量
+	 */
+	function get_users_count() {
+		return $this->db->get('users')->num_rows();
+	}
 	/**
 	 *	获取用户详细资料，单条记录
 	 *  $user_id

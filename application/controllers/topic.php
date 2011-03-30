@@ -10,19 +10,99 @@
 		
 		
 		function index() {
+			$this->load->model('chat_model');
+			
 			$start = $this->input->get('start');
 			
+			$topics = $this->topic_model->get_random_topics();
+			
+			foreach ( $topics as $key=>$topic ) {
+				$topics[$key]['latest_chat'] = $this->chat_model->get_latest_chat( 'topic', $topics[$key]['id'] );
+			}
+			
 			$render['current_topic'] = true;
-			$render['topics'] = $this->topic_model->get_random_topics();
+			$render['topics'] = $topics;
 			$render['start'] = $start;
 			kk_show_view('topic/index_view', $render);
 			
 		}
-		
+		/**
+		 *	编辑话题
+		 */
+		function edit( $topic_id ) {
+			login_redirect();
+			
+			$topic = $this->topic_model->get_topic_by_id( $topic_id );
+			
+			// 话题发布者才可以修改
+			if ( $topic['user_id'] != get_current_user_id() ) {
+				exit( 'topic creater only' );
+			}
+			
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+				$this->form_validation->set_rules('title', '标题', 'xss_clean|trim|htmlspecialchars');
+				$this->form_validation->set_rules('content', '正文', 'xss_clean|required|trim');
+				//$this->form_validation->set_rules('attach_img_id','附加图片', 'integer|xss_clean|trim');
+				//$this->form_validation->set_rules('attach_file_id','附加文件', 'integer|xss_clean|trim');
+				
+				if ( !$this->form_validation->run() ) {
+					ajaxReturn( null, validation_errors(), 0 );
+				} else {
+					// Create Topic
+					$title = $this->kk_filter->filter( 
+								$this->form_validation->set_value('title')
+							);
+					
+					$content = $this->kk_filter->filter( $this->form_validation->set_value('content'),array(
+						'without_html' => false,
+					));
+					//$attach_img_id = $this->form_validation->set_value('attach_img_id');
+					//$attach_file_id = $this->form_validation->set_value('attach_file_id');
+					
+					// 过滤<meta>等非法标签
+					//$content = strip_tags( $content, '<p><a><span><div><b><font>');
+					
+					
+					$this->load->model('topic_model');
+					$update_topic = $this->topic_model->update_topic( $topic_id, array(
+																	'title' => $title,
+																	'content' => $content,
+																	));
+											//$model, $model_id, 
+											//			get_current_user_id(),  // Topic属于谁的
+											//				$content, $title );
+					
+					//ajaxReturn( null, '成功创建话题~', 1);
+					$this->session_message->set( '成功修改话题' );
+					
+					redirect( 'topic/' . $topic_id );
+					
+					// 读取修改后的话题
+					$topic = $this->topic_model->get_topic_by_id( $topic_id );
+					
+				
+				}
+				
+			}
+			
+			
+			
+			$render['topic'] = $topic;
+			$render['topic_id'] = $topic_id;
+			kk_show_view('topic/edit_view',$render);
+		}
 		function add_topic() {
+			login_redirect();
+			$this->load->model('group_model');
+			
+			
 			$render['current_topic'] = true;
+			$render['total_user_groups'] = $this->group_model->get_user_groups( get_current_user_id(), null );
 			kk_show_view('topic/add_topic_view', $render);
 		}
+		
+		
+		
 		function ajax_delete( $topic_id ) {
 		
 			if ( !is_logged_in() ) {
@@ -174,17 +254,25 @@
 			login_redirect();
 			
 			$this->load->model( 'stream_model' );
+			$this->load->model('chat_model');
 			
 			$start = $this->input->get( 'start' );
 			$per_page = 20; // 每页显示...
 			
+			
+			$user_groups_topics = $this->stream_model->get_user_groups_topics( get_current_user_id(), $per_page, $start );
+			
+			foreach ( $user_groups_topics as $key=>$topic ) {
+				$user_groups_topics[$key]['latest_chat'] = $this->chat_model->get_latest_chat( 'topic', $user_groups_topics[$key]['id'] );
+			}
 			$render['current_topic'] = true;
 			$render['start'] = $start;
 			$render['per_page'] = $per_page;
 			$render['my_topics_count'] = $this->stream_model->get_user_groups_topics_count( get_current_user_id() );
 			
 			// 获取用户关注群组的topics
-			$render['user_groups_topics'] = $this->stream_model->get_user_groups_topics( get_current_user_id(), $per_page, $start );
+			$render['user_groups_topics'] = $user_groups_topics;
+			$render['user_topics'] = $this->topic_model->get_user_topics( get_current_user_id(), 5);
 			
 			
 			kk_show_view('topic/my_topics_view', $render);

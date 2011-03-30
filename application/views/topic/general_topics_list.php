@@ -133,7 +133,23 @@
 								<div class="topic_panel">
 									<div class="topic_controller">
 										<?php
-										if ( isset( $group ) ): // 在群组的页
+										if ( !isset( $group ) ) { // 在群组的页
+											$group = kk_get_group( $topic['model_id'] );
+										}
+										?>
+										
+										<?php
+											// 发布者可以修改
+											if ( $topic['user_id'] == get_current_user_id() ) :
+										?>
+										<a href="<?=site_url('topic/edit/' . $topic['id'] );?>" class="icon icon_edit">
+											修改
+										</a>
+										<?php
+											endif;
+										?>
+										<?php
+										
 											// 管理员、发布的用户可以删除
 											if ( is_group_admin( $group['id'] , get_current_user_id() ) 
 													|| $topic['user_id'] == get_current_user_id() 
@@ -144,7 +160,6 @@
 										</a>
 										<?php
 											endif;
-										endif;
 										?>
 										<a href="<?=site_url('chat/ajax_get_chats/topic/' . $topic['id']);?>?ajax=<?=rand();?>&chat_width=<?= isset( $chat_width ) ? $chat_width : ''; ?>" class="btn chat_button">
 											

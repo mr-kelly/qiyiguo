@@ -15,11 +15,109 @@
 		
 		
 		/**
+		 *	编辑活动
+		 */
+		function edit( $event_id ) {
+			login_redirect();
+			
+			$event = $this->event_model->get_event_by_id( $event_id );
+			
+			
+			// 活动发布者才能修改
+			if ( $event['user_id'] != get_current_user_id() ) {
+				exit( 'event creator only!' );
+			}
+			
+			
+			if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+			
+				$this->form_validation->set_rules('create_event_start_year','活动开始年份', 'trim|required|xss_clean|alpha_dash');
+				$this->form_validation->set_rules('create_event_start_month','活动开始月份', 'trim|required|xss_clean|alpha_dash');
+				$this->form_validation->set_rules('create_event_start_day','活动开始日子', 'trim|required|xss_clean|alpha_dash');
+				$this->form_validation->set_rules('create_event_start_hour', '活动开始小时', 'trim|required|xss_clean|integer');
+				$this->form_validation->set_rules('create_event_start_min', '活动开始分钟', 'trim|required|xss_clean|integer');
+				
+				//$this->form_validation->set_rules('create_event_end_date', '活动结束日期', 'trim|required|xss_clean|alpha_dash');
+				
+				$this->form_validation->set_rules('create_event_end_year', '活动结束年份', 'trim|required|xss_clean|alpha_dash');
+				$this->form_validation->set_rules('create_event_end_month', '活动结束月份', 'trim|required|xss_clean|alpha_dash');
+				$this->form_validation->set_rules('create_event_end_day', '活动结束日子', 'trim|required|xss_clean|alpha_dash');
+				$this->form_validation->set_rules('create_event_end_hour', '活动结束小时', 'trim|required|xss_clean|integer');
+				$this->form_validation->set_rules('create_event_end_min', '活动结束分钟', 'trim|required|xss_clean|integer');
+				
+				$this->form_validation->set_rules('create_event_name', '活动名称', 'trim|required|xss_clean|max_length[20]');
+				$this->form_validation->set_rules('create_event_content', '活动简介', 'trim|required|xss_clean');
+				
+				
+				if ( ! $this->form_validation->run() ) {
+					// 不通过表单验证~
+					ajaxReturn ( null, validation_errors() , 0 );
+				} else {
+				
+					//$event_group_id = $this->form_validation->set_value('event_group_id');
+					
+					// 活动开始时间
+					$create_event_start_date = sprintf('%s-%s-%s', $this->form_validation->set_value('create_event_start_year'), $this->form_validation->set_value('create_event_start_month'), $this->form_validation->set_value('create_event_start_day'));
+					$create_event_start_hour = $this->form_validation->set_value('create_event_start_hour');
+					$create_event_start_min = $this->form_validation->set_value('create_event_start_min');
+					
+					$create_event_start = $create_event_start_date . ' '. $create_event_start_hour . ':' . $create_event_start_min . ':00';
+					
+					
+					// 活动结束时间
+					$create_event_end_date = sprintf('%s-%s-%s', $this->form_validation->set_value('create_event_end_year'), $this->form_validation->set_value('create_event_end_month'), $this->form_validation->set_value('create_event_end_day'));
+					$create_event_end_hour = $this->form_validation->set_value('create_event_end_hour');
+					$create_event_end_min = $this->form_validation->set_value('create_event_end_min');
+					
+					$create_event_end = $create_event_end_date . ' '. $create_event_end_hour . ':' . $create_event_end_min . ':00';
+					
+					// 活动开始时间不能大于结束时间
+					if ( $create_event_start > $create_event_end ) {
+						ajaxReturn( null, '活动时间错误', 0 );
+					}
+					
+					$create_event_name = $this->form_validation->set_value('create_event_name');
+					$create_event_content = $this->form_validation->set_value('create_event_content');
+					
+					
+					
+					
+					$this->load->model('event_model');
+					$update_event = $this->event_model->update_event($event_id, array(
+						
+						'start' => $create_event_start,
+						'end' => $create_event_end,
+						'name' => $this->kk_filter->filter( $create_event_name ),
+						'content' => $this->kk_filter->filter( $create_event_content ),
+						//'model' => $model,
+						//'model_id' => $model_id,
+						'user_id' => $this->tank_auth->get_user_id(),
+						
+					));
+					
+					$this->session_message->set( '已修改活动' );
+					redirect( 'event/' . $event_id );
+					
+					//ajaxReturn('ok', '已成功修改活动', 1);
+				}
+			}
+			
+			
+			
+			$render['event'] = $event;
+			$render['event_id'] = $event_id;
+			kk_show_view('event/edit_view', $render);
+			
+		}
+		
+		
+		/**
 		 *	活动、任务 查看
 		 */
 		function event_lookup( $event_id ) {
 			
 			up_event_page_view( $event_id );
+			
 			clean_notices( get_current_user_id(), 'event', $event_id );
 			
 			$event = $this->event_model->get_event_by_id( $event_id );
@@ -59,8 +157,10 @@
 		 */
 		function add_event() {
 			login_redirect();
+			$this->load->model('group_model');
 			
 			$render['page_title'] = '选择一个群组， 创建活动或任务';
+			$render['add_events_user_groups'] = $this->group_model->get_user_groups( get_current_user_id() , null );
 			
 			kk_show_view( 'event/add_event_view', $render );
 		}
@@ -84,9 +184,11 @@
 			$render['current_event']= 'current_menu';
 			$render['my_events_count'] = $this->stream_model->get_user_groups_events_count( get_current_user_id() );
 			
-			// 获取用户关注群组的topics
+			// 获取用户关注群组的events
 			$render['user_groups_events'] = $this->stream_model->get_user_groups_events( get_current_user_id(), $per_page, $start );
 			
+			// 获取用户组织的活动
+			$render['user_events'] = $this->event_model->get_user_events( get_current_user_id(), 5 );
 			
 			
 			$render['current_event'] = true;
@@ -103,11 +205,25 @@
 				ajaxReturn( 'login_required', '未登录', 0 );
 			}
 			
+			$event = $this->event_model->get_event_by_id( $event_id );
+			
 			if ( $action == 'join' ) {
 			
 				if ( $event_user_id = $this->event_model->create_event_user( $event_id, get_current_user_id(), 'join' ) ) {
-					// TODO 参加活动后，notice用户!!!
+					// 参加活动后，notice组织者!!!
+					if ( $event['user_id'] != get_current_user_id() ) {
+						add_notice( $event['user_id'],
+									'你组织的活动有新人参与',
+									sprintf('%s参与了你的活动', get_current_user_name() ),
+									sprintf('/%s/%s', 'event', $event_id),
+									'event',
+									$event_id,
+									'join_event'
+						);
+					}
+					
 					ajaxReturn( null, '成功参加了这该活动~', 1);
+					
 				} else {
 					ajaxReturn( null, '貌似你已经是参加者了', 0 );
 				}
@@ -141,8 +257,9 @@
 			}
 			
 			if ( $action == 'follow' ) {
-			
+				
 				if ( $event_user_id = $this->event_model->create_event_user( $event_id, get_current_user_id(), 'follow' ) ) {
+					
 					ajaxReturn( null, '你已对这个活动表示兴趣', 1 );
 				} else {
 					ajaxReturn( null, '错误:无法对其有兴趣', 0 );
@@ -225,8 +342,8 @@
 						ajaxReturn( null, '活动时间错误', 0 );
 					}
 					
-					$create_event_name = $this->form_validation->set_value('create_event_name');
-					$create_event_content = $this->form_validation->set_value('create_event_content');
+					$create_event_name = $this->kk_filter->filter( $this->form_validation->set_value('create_event_name') );
+					$create_event_content = $this->kk_filter->filter( $this->form_validation->set_value('create_event_content') );
 					
 					
 					

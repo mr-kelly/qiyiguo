@@ -1,14 +1,37 @@
-		
+				<?php
+					// 如果是非user_lookup页面，那么要手工传入一些参数了...
+					$ci =& get_instance();
+					if ( !isset( $user_groups ) ) {
+						$ci->load->model('group_model');
+						$user_groups = $ci->group_model->get_user_groups( $user['id'] );
+					}
+					if ( !isset( $user_groups_count ) ) {
+						$ci->load->model('group_model');
+						$user_groups_count = $ci->group_model->get_user_groups_count( $user['id'] );
+					}
+					if ( !isset( $users_common_groups ) ) {
+						$ci->load->model('group_model');
+						$users_common_groups = $ci->group_model->get_users_common_groups( get_current_user_id(), $user['id'] );
+					}
+				?>
 				
 
 				<div class="sidebar_widget">
-					<h2>他的群</h2>
+					<h2><?= get_current_user_id() == $user['id'] ? '我' : '他';?>的群</h2>
 					<?php
 						$this->load->view('group/general_groups_list', array(
 							'groups' => $user_groups,
 						));
 					?>
-					
+					<?php
+						if ( empty( $user_groups ) ) :
+					?>
+					<div class="align_center grey">
+						不给力...没有加入一个群
+					</div>
+					<?php
+						endif;
+					?>
 					<div class="clearboth"></div>
 					
 					<div class="align_right">
@@ -66,7 +89,7 @@
 							<li>
 								<a href="#user_fans" class="tipsy_s" title="拥趸">
 									<span>
-										粉丝(<?=$ci->relation_model->get_fans_count( $user['id'] );?>)
+										拥趸(<?=$ci->relation_model->get_fans_count( $user['id'] );?>)
 									</span>
 								</a>
 							</li>
@@ -109,7 +132,7 @@
 							?>
 							<div class="align_right">
 								<a href="<?=site_url('user/fans/'.$user['id']);?>">
-									&gt;更多粉丝
+									&gt;更多拥趸
 								</a>
 							</div>
 							

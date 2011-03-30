@@ -35,6 +35,15 @@
 		}
 
 		
+		/**
+		 *	升级、修改话题
+		 */
+		function update_topic( $topic_id , $data ) {
+			$this->db->where('id', $topic_id );
+			return $this->db->update('topic', $data );
+			
+			
+		}
 		
 		function get_topic_by_id( $topic_id) {
 			$topic = $this->db->get_where('topic', array(
@@ -150,6 +159,23 @@
 			));
 			return $query->num_rows();
 		}
+		
+		/**
+		 *	获得用户发布的话题
+		 */
+		function get_user_topics( $user_id, $limit=10, $start=0 ) {
+			$this->db->order_by('created', 'desc');
+			$query = $this->db->get_where('topic', array(
+				'user_id' => $user_id,
+			), $limit, $start);
+			
+			if ( $query->num_rows() == 0 ) {
+				return false;
+			}
+			
+			return $query->result_array();
+		}
+		
 		
 		function del_topic( $topic_id ) {
 		

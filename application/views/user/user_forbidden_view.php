@@ -14,7 +14,7 @@
 		<div class="content_bottom align_center">
 			
 			<h1 style="font-size:30px;color:#AAA;text-align:center;">
-				&gt;_&lt; 不能查看用户...
+				&gt;_&lt; 他不让你看...
 			</h1>
 			
 			<div>
@@ -71,6 +71,14 @@
 						endif;
 					?>
 					</span>
+					
+					<?php if ( !is_logged_in() ) : ?>
+					<div class="red" style="margin-top:20px;">
+						必须登录后才可以查看... 
+						<a href="#" onclick="$('#login_btn').trigger('click');return false;">&gt;登录</a>
+					</div>
+					<?php endif; ?>
+					
 				</div>
 				
 				<div>

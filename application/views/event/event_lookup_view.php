@@ -7,11 +7,30 @@
 	<div id="content">
 		<div class="content_top">
 			<div class="content_bottom">
-			
+				
+
+				
 				<div class="float_right">
 					<?php
 						$this->load->view('event/general_event_join_btn');
 					?>
+					
+
+				</div>
+				
+				
+				<h1><?=$event['name'];?></h1>
+				
+				<div>
+					<?php
+						if ( $event['user_id'] == get_current_user_id() ):
+					?>
+						<a href="<?=site_url('event/edit/' . $event['id'] );?>" class="icon icon_edit">
+							修改
+						</a>
+					<?php endif; ?>
+					
+					
 					
 					<?php
 						// 如果作者或者群管理员。 可以删除
@@ -20,15 +39,11 @@
 					?>
 					
 						<a onclick="return delete_btn(this, '<?=get_group_url( $event['model_id'] );?>' );" ajax="<?=site_url('event/ajax_delete/' . $event['id'] );?>" href="#" class="icon icon_delete">
-							删除事情
+							删除
 						</a>
 					
 					<?php endif; ?>
 				</div>
-				
-				<h1><?=$event['name'];?></h1>
-				
-
 				
 				
 				<div class="form_div">
