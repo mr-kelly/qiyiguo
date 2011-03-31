@@ -387,7 +387,8 @@
 			
 			$render['user'] = $this->group_model->_get_user( $user_id );
 			$render['total_user_groups'] = $this->group_model->get_user_groups( $user_id, 50, $start, false );
-			
+			$render['user_groups_count'] = $this->group_model->get_user_groups_count( $user_id );
+			$render['start'] = $start;
 			kk_show_view('user/user_groups_view', $render);
 		}
 		
@@ -397,10 +398,11 @@
 		 *	登录的用户个人设置
 		 */
 		function setting( $action='index') {
-			if ( !is_logged_in() ) {
-				ajaxReturn( 'login_required', '未登录', 0 );
-				exit();
-			}
+			login_redirect();
+// 			if ( !is_logged_in() ) {
+// 				ajaxReturn( 'login_required', '未登录', 0 );
+// 				exit();
+// 			}
 			
 			$user_id = $this->tank_auth->get_user_id();
 			
@@ -729,7 +731,7 @@
 				
 				$this->form_validation->set_rules('description', '个人简介', 'trim|xss_clean');
 				
-				ajaxReturn(null, $this->input->post('realname'), 0);
+				ajaxReturn(null, $realname, 0);
 				
 				
 			}

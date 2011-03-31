@@ -17,7 +17,10 @@
 					));
 				?>
 				</div>
-			
+				
+				<?php
+					kk_pagination( $start, $user_groups_count, 50 );
+				?>
 			</div>
 		</div>
 	</div>

@@ -824,6 +824,7 @@ div.submenu span.submenu_corner:first-child {
 		}
 			.sidebar_profile h3 a {
 				font-size: 14px;
+				text-decoration: underline;
 			}
 		.sidebar_profile .profile_detail {
 			margin: 0 0 0 60px;
@@ -958,10 +959,10 @@ div.submenu span.submenu_corner:first-child {
 						margin: 5px 0;
 					}
 						.lookup_easy_profile .profile_detail span {
-							margin: 0 10px 0 0;
+							margin: 0 5px 0 0;
 						}
 						.lookup_easy_profile .user_mood {
-							margin: -px 0 0 0;
+							margin: 0px 0 0 0;
 						}
 						.lookup_easy_profile .profile_intro {
 							height: 40px;

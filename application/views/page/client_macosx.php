@@ -12,7 +12,7 @@
 				</p>
 				
 				<div class="align_center">
-					<a href="#" class="kk_btn">
+					<a href="http://jiajiao.bnuep.com/t/download/mac_qiyiguo.cc.app.zip" class="kk_btn">
 						下载客户端
 					</a>
 				</div>

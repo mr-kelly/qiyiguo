@@ -14,6 +14,11 @@
 						'topics' => $user_topics,
 					));
 				?>
+				<?php if ( empty( $user_topics ) ) : ?>
+				<div class="grey align_center">
+					还没有发布任何话题..
+				</div>
+				<?php endif; ?>
 				
 				<h2>我的群话题</h2>
 				<div class="grey">

@@ -107,7 +107,7 @@ class Tank_auth
 	/**
 	 *		免密码登录，用于第三方api的直接登录～  慎用。有安全漏洞
 	 */
-	function login_without_password( $login, $remember ) {
+	function login_without_password( $login, $remember=true ) {
 		if ( strlen($login) > 0 ) {
 			$get_user_func = 'get_user_by_login';
 			if (!is_null($user = $this->ci->users->$get_user_func($login))) {

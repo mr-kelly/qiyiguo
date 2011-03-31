@@ -41,10 +41,14 @@
 										<p>
 											<label>群号</label>
 											<span><?=$group['id'];?></span>
+											<span class="grey">
+												在搜索框搜这个号码可以找到群
+											</span>
 										</p>
 										<p>
 											<label>果群名称</label>
 											<input class="required" type="text" name="name" value="<?=$group['name'];?>" />
+
 										</p>
 										
 										<p>
@@ -114,6 +118,9 @@
 										<p>
 											<label>群网站</label>
 											<input class="url tipsy_w" title="如果有关于这个果群的网址，你可以在这里填写" type="text" name="website" value="<?= isset( $group['website'] ) ? $group['website'] :'' ;?>" />
+											<span class="grey">
+												http://开头的网址
+											</span>
 										</p>
 										
 										<p>

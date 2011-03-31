@@ -217,7 +217,7 @@
 								if ( empty( $user_stream ) ):
 							?>
 								<div class="align_center grey">
-									<h2>还没有任何个人动态</h2>
+									<h2>他在奇异果还是一动不动的</h2>
 								</div>
 							<?php endif; ?>
 						

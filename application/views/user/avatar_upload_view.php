@@ -98,11 +98,13 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
-			
+				
+				<?php if ( !empty( $avatar_url ) ): ?>
 				<h2>头像将截取成...</h2>
 				<div style="overflow:hidden;position:relative;width:100px;height:100px;">
 					<img id="avatar_pic" src="<?=$avatar_url;?>" />
 				</div>
+				<?php endif; ?>
 				
 				
 				<h2>你是</h2>

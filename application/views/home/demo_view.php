@@ -47,12 +47,21 @@
 					
 					<div class="align_center">
 						<h2>看看学生会和它的部门怎样建立群组网络</h2>
+						<div>
+							<embed src='http://player.youku.com/player.php/sid/XMjU1MDk2NjM2/v.swf' quality='high' width='480' height='400' align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash'></embed>
+						</div>
+						
+						<h2>群组连接的综合演示</h2>
+						<div>
+							<embed src='http://player.youku.com/player.php/sid/XMjU0NzQ5MDU2/v.swf' quality='high' width='480' height='400' align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash'></embed>
+						</div>
+						
 					</div>
 					
 					<div class="demo_left">
 						<img src="<?=static_url('img/howto_2.png');?>" />
 						
-						
+						<!--
 						<div class="demo_content">
 							<ul>
 								<li>
@@ -61,6 +70,14 @@
 									</a>
 								</li>
 							</ul>
+						</div>
+						-->
+					</div>
+					
+					<div class="align_center">
+						<h2>看看金融一班和金融二班怎样建立班级关系</h2>
+						<div>
+							<embed src='http://player.youku.com/player.php/sid/XMjU1MDk1Mjgw/v.swf' quality='high' width='480' height='400' align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash'></embed>
 						</div>
 					</div>
 					
@@ -71,9 +88,9 @@
 						<div class="demo_content">
 							<ul>
 								<li>
-									<a href="#">
-										看看海华七栋宿舍楼的同学们怎样保持联系
-									</a>
+									<span>
+										宿舍楼的同学们可建立 楼群、宿舍群，来组织DotA游戏
+									</span>
 								</li>
 							</ul>
 						</div>
@@ -86,9 +103,9 @@
 						<div class="demo_content">
 							<ul>
 								<li>
-									<a href="#">
-										看看老师们怎样利用奇异果高效工作
-									</a>
+									<span>
+										老师们可以建立教务群，与学生分享知识和通知公告
+									</span>
 								</li>
 							</ul>
 						</div>
@@ -103,9 +120,9 @@
 						<div class="demo_content">
 							<ul>
 								<li>
-									<a href="#">
-										看看一群挚友们怎样用奇异果创造他们的生活
-									</a>
+									<span>
+										一群挚友们可以利用奇异果记录生活的点滴、分享美丽的人生
+									</span>
 								</li>
 							</ul>
 						</div>
@@ -119,9 +136,9 @@
 						<div class="demo_content">
 							<ul>
 								<li>
-									<a href="#">
-										看看一个学生部门怎样利用奇异果组织工作
-									</a>
+									<span>
+										学生部门可以利用奇异果管理、组织工作
+									</span>
 								</li>
 							</ul>
 						</div>

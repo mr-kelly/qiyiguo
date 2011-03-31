@@ -49,11 +49,11 @@
 						  
 					  </form>
 				  
-				  <?php if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE') !== false ): ?>
+				  <?php //if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE') !== false ): ?>
 				  <a class="lookup_avatar_edit" href="<?=site_url('group/logo_upload/' . $group['id']);?>" title="修改群组的标志LOGO">
-				  <?php else: ?>
-				  <a class="lookup_avatar_edit" href="#" onclick="$('.lookup_avatar_input').trigger('click'); return false;" title="修改群组的标志LOGO">
-				  <?php endif; ?>
+				  <?php //else: ?>
+				  <!--<a class="lookup_avatar_edit" href="#" onclick="$('.lookup_avatar_input').trigger('click'); return false;" title="修改群组的标志LOGO">-->
+				  <?php //endif; ?>
 					  改标志
 				  </a>
 				  

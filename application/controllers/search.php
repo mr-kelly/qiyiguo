@@ -6,7 +6,7 @@
 		 *	主搜索页
 		 */
 		function index() {
-		
+			$this->load->model('search_model');
 			$this->load->model('group_model');
 			
 			// 搜索字符串
@@ -48,6 +48,9 @@
 					
 					
 				}
+				
+				// 搜索记录
+				$this->search_model->search_record( $q );
 			}
 			
 			

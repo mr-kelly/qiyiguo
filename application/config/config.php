@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
+// 部署时修改  database.php,  uri_protocol,     restrict_bnu
 // 3 - 所有人可见
 // 2 - 我收藏的人可见
 // 1 - 朋友(互相收藏)可见

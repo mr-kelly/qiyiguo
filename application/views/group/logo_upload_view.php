@@ -102,10 +102,12 @@
 	<div id="sidebar">
 		<div class="sidebar_top">
 			<div class="sidebar_bottom">
+				<?php if ( !empty( $logo_url) ) : ?>
 				<h2>标志将截取成...</h2>
 				<div style="overflow:hidden;position:relative;width:100px;height:100px;">
 					<img id="avatar_pic" src="<?=$logo_url;?>" />	
 				</div>
+				<?php endif; ?>
 				
 				
 				

@@ -4,7 +4,7 @@
     	<a href="<?=site_url('user/ajax_user_option/navigator/close');?>" id="nav_close" class="<?= get_user_option('navigator') == 'close' ? 'hidden' : '' ;?>"></a>
     	
     	<?php // navigator是close时， 主题内容不显示 ?>
-    	<div class="nav_content <?= get_user_option('navigator') == 'close' ? 'hidden' : '' ;?>">
+    	<div class="nav_content <?= get_user_option('navigator') != 'close' ? '' : 'hidden' ;?>">
     		<div class="nav_content_top">
     			<div class="nav_content_bottom">
     				<?php

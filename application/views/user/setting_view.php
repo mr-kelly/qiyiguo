@@ -65,6 +65,9 @@
 									<span>
 										<?=$current_user_profile['id'];?>
 									</span>
+									<span class="grey">
+										在搜索框搜这个号码可以找到群
+									</span>
 								</p>
 								<p>
 									<label>电邮地址</label>
@@ -230,7 +233,7 @@
 										?>
 										
 											
-											<a href="<?=$current_user_profile['t_sina_url'];?>" class="icon icon_t_sina">
+											<a target="_blank" href="<?=$current_user_profile['t_sina_url'];?>" class="icon icon_t_sina">
 												去新浪微博
 											</a>
 											&nbsp;&nbsp;&nbsp;
@@ -257,7 +260,7 @@
 												'user_id' => get_current_user_id(),
 											)) ) :
 										?>
-											<a class="icon icon_douban" href="<?=$current_user_profile['douban_url'];?>">
+											<a target="_blank" class="icon icon_douban" href="<?=$current_user_profile['douban_url'];?>">
 												去豆瓣网
 											</a>
 											&nbsp;&nbsp;&nbsp;
@@ -318,7 +321,7 @@
 								<p>
 									<label>人人网ID号</label>
 									<input class="digits tipsy_w" name="link_renren" type="text" value="<?= $current_user_profile['link_renren'];?>" title="人人网个人主页网址是http://www.renren.com/profile.do?id={您的人人网ID}"  />
-									<a class="sexybox_iframe" href="<?=base_url();?>wiki/获得人人网的id号">
+									<a class="sexybox_iframe" href="http://wiki.qiyiguo.cc/获得人人网的id号">
 										如何知道自己的人人网的ID号？
 									</a>
 								</p>

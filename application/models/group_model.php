@@ -279,8 +279,39 @@
 			return $topic->row_array();
 		}
 		
-		function get_groups( $data=array(), $limit=10, $start=0, $random=false ) {
+		function get_groups( $data=array(), $limit=10, $start=0, $random=false, $user_num=1 ) {
 			
+			// $user_num  ==> 群组用户数..要大于...
+			
+			
+			
+// 	 		$sql = sprintf( 'SELECT * FROM kk_group WHERE 
+// 								 ');
+// 								 
+// 			$sql .= sprintf( ' ( SELECT count( * ) FROM kk_group_user 
+// 									WHERE group_id = kk_group.id ) > %d', $user_num);
+// 													
+// 								
+// 			foreach( $data as $key=>$d ) {
+// 				$sql .= sprintf(' AND kk_group.%s = "%s" ', $key, $d );
+// 			}
+// 			
+// 
+// 			if ( $random ) {
+// 				$sql .= ' ORDER BY rand() ';
+// 			}
+// 			
+// 			if ( $limit ) {
+// 				$sql .= sprintf(' LIMIT 0, %d', $limit );
+// 			}
+// 			
+// 			$query = $this->db->query( $sql );
+// 			
+// 			if ( $query->num_rows() == 0 ) {
+// 				return false;
+// 			}
+			
+//			return $query->result_array();
 			if ( $random ) $this->db->order_by( 'id', 'random' );
 			
 			$query = $this->db->get_where('group', $data, $limit, $start, $random);
@@ -493,13 +524,19 @@
 		/**
 		 *	获取一些新鲜果群... ( 新建的群，并且用户数大于10 ）？
 		 */
-		function get_fresh_groups( $user_num = 10, $limit=6 ) {
+		function get_fresh_groups( $user_num = 10, $limit=6, $start=0, $random=false ) {
 			$sql = sprintf( 'SELECT * FROM kk_group WHERE 
 								( SELECT count( * ) FROM kk_group_user 
-									WHERE group_id = kk_group.id ) > %d
-									ORDER BY created DESC
-									LIMIT 0,%d', 
-									$user_num, $limit);
+									WHERE group_id = kk_group.id ) > %d ', $user_num );
+			
+			if ( $random ) {
+				$sql .= sprintf( ' ORDER BY rand()' );
+			} else {
+				$sql .= sprintf( ' ORDER BY created DESC' );
+			}
+			if ( $limit ) {
+				$sql .= sprintf( ' LIMIT %d,%d', $start, $limit);
+			}
 			
 			$query = $this->db->query( $sql );
 			

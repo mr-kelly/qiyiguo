@@ -19,10 +19,10 @@
 							
 						</div>
 						
-						<div id="home_show">
+						<div id="home_show" style="width:100%;">
 							
 							<div class="align_center">
-								<img src="<?=static_url('img/howto_0.png');?>" />
+								<img src="<?=static_url('img/howto_0.jpg');?>" />
 							</div>
 							
 							<div class="align_center">
@@ -110,7 +110,7 @@
 
 						</div>
 						
-						<div style="height:1520px;"></div>
+						<div style="height:1600px;"></div>
 					</div>
         		</div>
             </div>

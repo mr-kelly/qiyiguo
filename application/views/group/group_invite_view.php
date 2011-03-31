@@ -23,8 +23,6 @@
 					
 					<p>
 						<?= $group['name'];?>的网址。
-					</p>
-					<p>
 						将它复制到到QQ群、QQ聊天、MSN，邀请朋友加入你的群...
 					</p>
 					
@@ -62,25 +60,42 @@
 					
 					<h2>发到新浪微博</h2>
 					
+					<?php
+						$ci =& get_instance();
+						$ci->load->model('user_t_sina_model');
+						if ( $ci->user_t_sina_model->is_user_t_sina( array( 'user_id' => get_current_user_id(),)) ) :
+					?>
+					
 					<p>
-						你可以通过将<?=$group['name'];?>的网址发布到新浪微博，
+						将<?=$group['name'];?>的网址发布到新浪微博，
 						邀请朋友来到你的群
 					</p>
 					
 					<br />
 					
+					<form method="post" action="<?=site_url('group/group_invite/' . $group['id'] . '/t_sina' );?>">
+						<div>
+								<textarea name="t_sina_text" style="height: 40px;width:300px;">我为「<?=$group['name'];?>」建立了一个果群(<?=$group['id'];?>)，朋友们快来加入啦。<?=get_group_url( $group['id'] );?></textarea>
+						</div>
+						
+						<div>
+							<br />
+							<button type="submit" class="tipsy_n kk_btn" title="通过新浪微博邀请朋友加入<?=$group['name'];?>">
+								告诉朋友
+							</button>						
+						</div>
+					</form>
+					<?php
+						else:
+					?>
+
 					<div>
-						<form method="post">
-							<textarea name="weibo_invite_text" style="height: 40px;width:300px;">我为「<?=$group['name'];?>」建立了一个果群(<?=$group['id'];?>)，朋友们快来加入啦。<?=get_group_url( $group['id'] );?></textarea>
-						</form>
+						你还未绑定新浪微博，到<a href="<?=site_url('user/setting');?>">个人设置</a>页绑定
 					</div>
-					
-					<div>
-						<a href="#" class="tipsy_n kk_btn" title="通过新浪微博邀请朋友加入<?=$group['name'];?>">
-							告诉朋友
-						</a>						
-					</div>
-					
+
+					<?php
+						endif;
+					?>
 					
 				</div>
 				
@@ -96,6 +111,7 @@
 			
 				<?php
 					$this->load->view('sidebar/sidebar_group_profile');
+					$this->load->view('sidebar/sidebar_group_view');
 				?>
 				
 				<?php

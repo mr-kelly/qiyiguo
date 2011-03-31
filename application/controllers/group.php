@@ -12,7 +12,7 @@
 			
 			
 			$data = array(
-				'groups' => $this->group_model->get_groups( array(), 50, $start, true ),
+				'groups' => $this->group_model->get_fresh_groups( 2 , 50, $start, true),
 				'current_group' => 'current_menu',
 				'start' => $start,
 				'groups_count' => $this->group_model->get_groups_count(),
@@ -430,7 +430,29 @@
 		 *  Controller Action
 		 *  当前登录用户邀请其他用户加入群组
 		 */
-		function group_invite( $group_id ) {
+		function group_invite( $group_id, $action="" ) {
+			login_redirect();
+			
+			if ( $action == 't_sina' ) {
+				if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+					
+					$this->form_validation->set_rules('t_sina_text', '微博文字', 'required|trim|xss_clean');
+					
+					if ( !$this->form_validation->run() ) {
+						$this->session_message->set('微博内容不能为空');
+						redirect('group/group_invite/' . $group_id );
+					} else {
+						// 开始发微博
+						$this->load->library('T_sina');
+						$weibo = $this->t_sina->getUserWeibo( get_current_user_id() );
+						
+						$weibo_update = $weibo->update( $this->form_validation->set_value('t_sina_text') );
+						
+						$this->session_message->set('微博邀请已发送');
+						redirect('group/group_invite/' . $group_id );
+					}
+				}
+			}
 			
 			$render['group'] = $this->group_model->_get_group( $group_id );
 			$render['current_group'] = 'current_menu';

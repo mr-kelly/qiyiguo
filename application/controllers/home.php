@@ -28,7 +28,7 @@ class Home extends KK_Controller {
 			if ( !ereg( "59\.38\.32\..", $current_ip )
 					&& !ereg( '219\.131\.222\..', $current_ip )
 					&& !ereg( "119\.146\.188\.." , $current_ip ) ) {
-				
+								//119.146.188.178 另一人
 				// kk 通行证
 				if ( ! isset( $_GET['kk'] ) ) {
 					kk_show_view('home/bnu_only');

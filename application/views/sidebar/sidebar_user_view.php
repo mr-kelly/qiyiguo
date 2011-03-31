@@ -151,7 +151,13 @@
 						
 					</div>
 				</div>
-				
+	
+	
+	
+	
     <?php
     	$this->load->view('sidebar/sidebar_jiathis');
     ?>
+    
+    
+    <div class="clearboth"></div>

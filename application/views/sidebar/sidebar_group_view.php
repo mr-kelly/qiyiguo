@@ -354,3 +354,5 @@
     	$this->load->view('sidebar/sidebar_jiathis');
     ?>
     </div>
+    
+    <div class="clearboth"></div>

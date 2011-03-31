@@ -38,6 +38,7 @@ div.kk_tabs ul.tab_menu li {
 		background: url(./tab_r.jpg) 100% 0;
 		line-height: 31px;
 		height: 31px;
+		cursor: pointer;
 	}
 		div.kk_tabs ul.tab_menu li a span {
 			background: url(./tab_l.jpg) no-repeat;
