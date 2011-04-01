@@ -170,7 +170,7 @@
 		    $config['upload_path'] = $group_path;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '2048';   //可以上传2MB
-			$config['max_width']  = '2024';
+			$config['max_width']  = '2048';
 			$config['max_height']  = '1768';
 			$config['overwrite'] = true;  //覆盖
 			$config['file_name'] = 'group_logo_' . $group_id . '.png' ;
@@ -188,8 +188,24 @@
 				
 			} else {
 				//上传成功，
-				// 提供裁剪界面...
+
+				
 				$upload_data = $this->upload->data();
+				
+				// 直接调整图像的大小 resize, 不创建备份
+				
+				$img_config = array(
+					'image_library' => 'gd2',
+					'source_image' => $upload_data['full_path'],
+					//'create_thumb' => TRUE,
+					'maintain_ratio' => TRUE,
+					'width'=> 480,
+					'height' => 400,		// 重新调整！
+				);
+				$this->load->library('image_lib', $img_config);
+				$this->image_lib->resize();
+				
+				// 提供裁剪界面...
 				$data['group_id'] = $group_id;
 				$data['upload_data'] = $upload_data;
 				$data['logo_url'] = static_url( 'upload/groups/' . $group_id .'/' . $upload_data['file_name'] );

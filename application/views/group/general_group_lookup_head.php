@@ -187,7 +187,7 @@
 					</li>
 					<li>
 						<a href="<?=site_url('group/' . $group['id'] . '/topic');?>" class="<?= isset($current_group_lookup_topic) ? 'selected' : '' ; ?>">
-							<?= $group['privacy'] == 'public' ? '话题' : '议论';?>
+							<?= $group['privacy'] == 'public' ? '群信' : '议论';?>
 						</a>
 					</li>
 					<li>

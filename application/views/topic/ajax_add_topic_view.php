@@ -68,7 +68,7 @@
 				<?php
 					// 如果是IE， 不通过js转接到“上传”控件, 只显示“添加图片”，让用户点击下面的“浏览”
 					if( strpos( $_SERVER["HTTP_USER_AGENT"],'MSIE') !== false
-							|| strpos( $_SERVER["HTTP_USER_AGENT"],'firefox') !== false ) :
+							|| strpos( $_SERVER["HTTP_USER_AGENT"],'Firefox') !== false ) :
 				?>
 					<a id="add_topic_pic_btn" class="icon icon_add tipsy_s"  title="可上传doc, xls,ppt, zip, rar文件，容量小于1MB">
 						添加附件→
@@ -101,7 +101,7 @@
 		 	<?php
 		 		// 如果是IE， 不通过js转接到“上传”控件, 只显示“添加图片”，让用户点击下面的“浏览”
 				if(strpos(  $_SERVER["HTTP_USER_AGENT"],'MSIE')
-					|| strpos( $_SERVER["HTTP_USER_AGENT"],'firefox') !== false ) :
+					|| strpos( $_SERVER["HTTP_USER_AGENT"],'Firefox') !== false ) :
 		 	?>
 		 		<a id="add_topic_pic_btn" class="icon icon_add">添加图片↓</a>
 		 	<?php

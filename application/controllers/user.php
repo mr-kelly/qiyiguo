@@ -110,7 +110,7 @@
 		    $config['upload_path'] = $user_avatar_path;
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size'] = '2048';   //可以上传2MB
-			$config['max_width']  = '2024';
+			$config['max_width']  = '2048';
 			$config['max_height']  = '1768';
 			//$config['overwrite'] = true;  不覆盖，随机重命名文件
 			$config['encrypt_name'] = true;
@@ -135,8 +135,8 @@
 					'source_image' => $upload_data['full_path'],
 					//'create_thumb' => TRUE,
 					'maintain_ratio' => TRUE,
-					'width'=> 640,
-					'height' => 480,		// 重新调整！
+					'width'=> 480,
+					'height' => 400,		// 重新调整！
 				);
 				$this->load->library('image_lib', $img_config);
 				$this->image_lib->resize();
