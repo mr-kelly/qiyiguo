@@ -1266,7 +1266,7 @@ div.submenu span.submenu_corner:first-child {
 
 	.topics_showlist li {
 		list-style: none;
-		margin: 5px 0;
+		margin: 10px 0;
 		padding: 0;
 		border-bottom: dashed 1px #CCC;
 		line-height: 26px;
@@ -1288,7 +1288,7 @@ div.submenu span.submenu_corner:first-child {
 		list-style: none;
 		height: 26px;
 		line-height: 26px;
-		margin: 5px 0;
+		margin: 10px 0;
 		border-bottom: dashed 1px #CCC;
 		
 		text-indent: 5px;

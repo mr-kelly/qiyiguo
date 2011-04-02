@@ -40,13 +40,21 @@
 	?>
 			   <?php
 				  //加入、关注按钮
+				  // 如果群设置了
+				  if ( $group['verify'] != 'request' ):
 			   ?>
 			   <a class="kk_btn join_group_btn" href="<?=site_url("group/ajax_join_group/". $group["id"]);?>">
 			       <?= $group['privacy'] == 'public' ? '关注群' : '加入群'; ?>
 			   </a>
-			   <a href="<?=site_url('group/ajax_request_join_group/' . $group['id'] );?>" class="hidden sexybox join_verify_btn">
+			   <?php
+			   	  else:
+			   ?>
+			   <a href="<?=site_url('group/ajax_request_join_group/' . $group['id'] );?>" class="kk_btn sexybox join_verify_btn">
 				  加入群组验证信息
 			   </a>
+			   <?php 
+			   	  endif;
+			   ?>
 			   
 	
 	<?php

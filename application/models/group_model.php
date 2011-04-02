@@ -501,23 +501,23 @@
 			//exit();
 			
 			// 将共同群组的详细资料写入.. // 多查询
-// 			$common_groups = array();
-// 			foreach( $common_groups_id as $common_group_id ) {
-// 				$common_groups[] = $this->_get_group( $common_group_id );
-// 			}
-// 			
-// 			
-// 			return $common_groups; 
+			$common_groups = array();
+			foreach( $common_groups_id as $common_group_id ) {
+				$common_groups[] = $this->_get_group( $common_group_id );
+			}
+			
+			
+			return $common_groups; 
 			
 			// 将共同群组的详细资料写入.. // 单查询
 			//$this->db->from('group');
-			if ( $random ) $this->db->order_by('id', 'random');
-			foreach( $common_groups_id as $common_group_id ) {
-				$this->db->or_where( 'id', $common_group_id );
-			}
-			
-			return $this->db->get('group', $limit, $start )->result_array();
-			
+// 			if ( $random ) $this->db->order_by('id', 'random');
+// 			foreach( $common_groups_id as $common_group_id ) {
+// 				$this->db->or_where( 'id', $common_group_id );
+// 			}
+// 			
+// 			return $this->db->get('group', $limit, $start )->result_array();
+// 			
 			
 		}
 		

@@ -355,7 +355,7 @@
 			
 			$upload_config = array(
 				'upload_path' => $upload_path,
-				'allowed_types' => 'rar|zip|doc|xls|ppt|txt|pdf', //上传的文件限制
+				'allowed_types' => 'rar|zip|doc|xls|ppt|txt|pdf|docx|xlsx|pptx', //上传的文件限制
 				'max_size' => '1024',
 				//'max_width' => '4096',
 				//'max_height' => '3000',

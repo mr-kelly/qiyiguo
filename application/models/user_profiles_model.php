@@ -39,7 +39,7 @@ class User_Profiles_Model extends KK_Model {
 		if ( $random ) {	// 是否随机...
 			$this->db->order_by('id', 'random');
 		} else { // 不随机，按照创建时间排序
-			$this->db->order_by('created','desc');
+			$this->db->order_by('last_login','desc');
 		}
 		
 		$us = $this->db->get_where('users', $data, $limit, $start);

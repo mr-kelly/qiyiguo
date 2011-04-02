@@ -77,6 +77,7 @@
 			$sql = sprintf('SELECT * FROM kk_topic 
 								WHERE model_id = 
 									( SELECT kk_group.id FROM kk_group WHERE kk_topic.model_id = kk_group.id AND kk_group.privacy = "public" )
+									ORDER BY created DESC
 									LIMIT %d,%d', $start, $limit ); // kk_topic.model_id = kk_group.id AND
 			//获得公开群组
 			$query = $this->db->query( $sql );

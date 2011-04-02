@@ -61,6 +61,7 @@
 				$this->load->view('sidebar/sidebar_group_view', array(
 					'group' => $group,
 					'no_join_group_btn' => true,
+					'no_sidebar_group_users_list' => false,
 				));
 				$this->load->view('sidebar/sidebar_ad_pic');
 			?>

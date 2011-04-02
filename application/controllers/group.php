@@ -34,6 +34,8 @@
 		 */
 		function setting($group_id, $action = 'setting' ) {
 			login_redirect();
+			$this->load->model('relation_model');
+			$start = $this->input->get('start');
 			
 			// 管理员only
 			if ( ! is_group_admin ( $group_id, get_current_user_id() ) ) {
@@ -48,6 +50,9 @@
 			
 			$render['group_id'] = $group_id;
 			$render['group'] = $this->group_model->get_group_by_id( $group_id );
+			$render['relation_groups'] = $this->relation_model->get_relation_groups( $group_id, 12 ); //获取关系群组,限制6个
+			$render['relation_groups_count'] = $this->relation_model->get_relation_groups_count( $group_id );
+			$render['start'] = $start;
 			
 			if ( $action == 'setting' ) {
 				// 普通设置
@@ -123,7 +128,8 @@
 				
 			} else if ( $action == 'members' ) {
 				$render['group_id'] = $group_id;
-				$render['group_members'] = $this->group_model->get_group_users( $group_id );
+				$render['group_members'] = $this->group_model->get_group_users( $group_id, 20, $start );
+				$render['group_members_count'] = $this->group_model->get_group_users_count( $group_id );
 				
 				kk_show_view('group/setting_members_view', $render);
 			
@@ -307,6 +313,7 @@
 			if ( $this->group_model->is_group_private($group_id) && !$this->group_model->is_group_user( $group_id, $current_user_id ) ) {
 				$render['group'] = $group;
 				$render['group_users_count'] = $this->group_model->get_group_users_count( $group_id );
+				$render['group_users'] = $this->group_model->get_group_users($group_id, 50);
 				
 				kk_show_view('group/group_forbidden_view', $render);
 				

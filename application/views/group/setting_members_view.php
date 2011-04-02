@@ -8,6 +8,9 @@
 		<div class="content_top">
 			<div class="content_bottom">
 				<h2>果群成员管理</h2>
+				<?php
+					kk_pagination( $start, $group_members_count, 20);
+				?>
 				
 				<table class="kk_table">
 					<thead>
@@ -53,20 +56,20 @@
 								
 								<?php if ( !is_group_admin( $group['id'], $user['id'] ) ): ?>
 								<a onclick="return set_group_user(this);" href="<?=site_url('group/ajax_set_group_admin/' . $group['id'] . '/'. $user['id'] );?>">
-									提升为管理员
+									提升为主人
 								</a> /
 								<?php else: ?>
 									
 									<?php if ( is_group_owner( $group['id'], get_current_user_id() ) ) : ?>
 									<a onclick="return set_group_user(this);" href="<?=site_url('group/ajax_cancel_group_admin/' . $group['id'] . '/'. $user['id'] );?>">
-										撤销管理员
+										撤销主人
 									</a> /
 									<?php endif; ?>
 									
 								<?php endif; ?>
 								
 								<a onclick="return set_group_user(this);" class="tipsy_s" title="把他驱赶出群" href="<?=site_url('group/ajax_cancel_group_member/' . $group['id'] . '/' . $user['id'] );?>">
-									下野
+									驱赶
 								</a>
 								
 								

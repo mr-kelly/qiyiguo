@@ -45,7 +45,7 @@ class Home extends KK_Controller {
 		
 
 		
-		$random_users = $this->user_profiles_model->get_users( array(), 24, 0, true); // 随机用户~~
+		$random_users = $this->user_profiles_model->get_users( array(), 24, 0, false); // 随机用户~~
 		
 		// 添加用户Mood
 		foreach( $random_users as $key=>$random_user ) {
@@ -57,6 +57,7 @@ class Home extends KK_Controller {
 			'random_users' => $random_users,
 			'page_title' => '奇异果 - 发现并创造你的社团、组织、班级',
 			'current_home' => 'current_menu',
+			'loading_text' => '第一次进入加载...',
 		);
 		
 		kk_show_view('home/index_view', $render);

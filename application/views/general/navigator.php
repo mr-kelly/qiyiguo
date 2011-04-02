@@ -30,7 +30,7 @@
 						<li>
 							<a href="<?=site_url('user/follows/' . get_current_user_id() );?>">
 								<span class="icon icon_friends"></span>
-								收藏朋友
+								朋友收藏
 							</a>
 						</li>
 						<li>

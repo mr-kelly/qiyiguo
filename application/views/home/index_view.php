@@ -126,7 +126,7 @@
 						
 						
 						<?php //$this->load->view('sidebar/sidebar_ad_pic');?>
-						
+
 						
             		</div> <!-- sidebar_bottom -->
             	</div>	<!-- sidebar top-->

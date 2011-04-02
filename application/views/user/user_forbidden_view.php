@@ -74,8 +74,18 @@
 					
 					<?php if ( !is_logged_in() ) : ?>
 					<div class="red" style="margin-top:20px;">
-						必须登录后才可以查看... 
-						<a href="#" onclick="$('#login_btn').trigger('click');return false;">&gt;登录</a>
+						必须登录后才可以查看... 				
+						<?php 
+							if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ):
+						?>
+						<a id="" class="icon icon_login" href="<?=site_url('user/iframe_login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
+						<?php
+							else:
+						?>
+						<a id="login_btn" class="sexybox_iframe icon icon_login" href="<?=site_url('user/iframe_login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
+						<?php endif; ?>
+							&gt;登录
+						</a>
 					</div>
 					<?php endif; ?>
 					

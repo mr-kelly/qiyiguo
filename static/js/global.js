@@ -466,7 +466,9 @@ function mood_form() {
 		success: function(json) {
 			if ( json.status == 1 ) {
 				kk_growl.success( json.info );
-				setInterval( 'location.reload()', 1000 );
+				$.fancybox.close();
+				parent.location.reload();
+				//setInterval( 'parent.location.reload()', 1000 );
 			} else {
 				kk_growl.error( json.info );
 			}

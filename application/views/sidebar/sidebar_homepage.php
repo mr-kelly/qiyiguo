@@ -49,7 +49,18 @@
 							<div class="login_more">
 
 								<div class="other_login_item">
+									<?php 
+										// Redirect-> 如果设置GET redirect,那么就display redirect~  没有，将redirect设为当前页面 
+										// 这样，可以令跳转的登录窗口生效
+										//IE 6到指定的登录页
+										if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ):
+									?>
+									<a id="" class="btn icon icon_login" href="<?=site_url('user/iframe_login' );?>?redirect=<?= isset($_GET['redirect']) ? $this->input->get('redirect') : uri_string();?>"> 
+									<?php
+										else:
+									?>
 									<a class="btn" href="#" onclick="$('#register_btn').trigger('click');return false;">
+									<?php endif; ?>
 										<span><span>快速注册奇异果</span></span>
 									</a>
 								</div>
@@ -110,7 +121,14 @@
 		            		<?php //$this->load->view('sidebar/sidebar_group_view'); ?>
 	            		</div>
 	            		
-
+	            		<div class="sidebar_widget">
+							<h2>学生会在奇异果</h2>
+							<div>
+								<embed src='http://player.youku.com/player.php/sid/XMjU1MDk2NjM2/v.swf' quality='high' width='230' height='190' align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash'></embed>
+							</div>
+						</div>
+						
+						
 	            		<?php if ( !empty( $random_users ) ) : ?>
 	            		<div class="sidebar_widget">
 							<h2 class="tipsy_s" title="这些都是奇异果的用户哦~">这些人在奇异果</h2>

@@ -98,7 +98,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822',
-				'rar'   =>  'application/x-rar-compressed'
+				'rar'   =>  array('application/octet-stream','application/x-rar-compressed'),
 			);
 
 

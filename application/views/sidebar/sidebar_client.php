@@ -5,7 +5,7 @@
 <div class="sidebar_widget">
 	<h2>奇异果客户端</h2>
 	
-	<ul class="sidebar_links">
+	<ul class="sidebar_links"><!--
 		<li>
 			<a href="<?=site_url('page/client_windows');?>">
 				<span class="hover"></span>
@@ -13,7 +13,7 @@
 				奇异果 for Windows
 			</a>	
 		</li>
-
+-->
 	
 		<li>
 			<a href="<?=site_url('page/client_macosx');?>">

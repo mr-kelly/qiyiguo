@@ -12,7 +12,7 @@
 							// 若是管理员
 								if ( $this->group_model->is_group_admin($group['id'], $u['id'])) :
 						?>
-						<a class="tipsy_e icon icon_admin" href="javascript:void(0);" title="管理者"></a>
+						<a class="tipsy_e icon icon_admin" href="javascript:void(0);" title="主人"></a>
 						<?php
 								endif;   
 							endif;

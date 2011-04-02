@@ -83,7 +83,7 @@
 				if ( $userQ->num_rows == 0 ) {
 					
 					return array(
-						'id'=>0,
+						'id'=> $user_id,
 						'user_id'=>0,
 						'realname'=>'',
 						'nickname'=>'',

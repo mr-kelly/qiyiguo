@@ -34,7 +34,7 @@
 			<object width="150" height="50" align="middle">
 			<param name="allowScriptAccess" value="sameDomain" />
 			<param name="wmode" value="transparent" />
-			<embed src="http://muzicons.com/musicon_v_srv_new.swf" width="150" height="50" menu="false" quality="high"  align="middle" type="application/x-shockwave-flash" flashvars="&autostart=1&nomuz=muzicon%20unavailable&site=http://muzicons.com/&icon_pic=13.png&music_file=http://test.qiyiguo.cc/static/depapepe.mp3&bg_color=ffcc00&type_of_clip=simple&text_color=FFFFFF&text_message=rasta" wmode="transparent" menu="false" quality="high">
+			<embed src="http://muzicons.com/musicon_v_srv_new.swf" width="150" height="50" menu="false" quality="high"  align="middle" type="application/x-shockwave-flash" flashvars="&autostart=1&nomuz=muzicon%20unavailable&site=http://muzicons.com/&icon_pic=13.png&music_file=http://qiyiguo.cc/static/depapepe.mp3&bg_color=ffcc00&type_of_clip=simple&text_color=FFFFFF&text_message=rasta" wmode="transparent" menu="false" quality="high">
 			</embed>
 			</object>
 			
@@ -44,6 +44,11 @@
 		<br />
 		
 		<br /><br /><br />
+		
+		<h2>奇异果目前仅向以下学校开放</h2>
+		<div>
+			<img src="<?=static_url('img/bnu_uic.jpg');?>" />
+		</div>
 		
 		<a href="http://qiyiguo.cc">
 			&copy; 某果
