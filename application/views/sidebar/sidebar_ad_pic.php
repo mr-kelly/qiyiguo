@@ -12,3 +12,10 @@
 					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>
 				</div>
+				
+				<div class="sidebar_widget">
+					<h2>发现、推荐</h2>
+					<a href="<?=site_url('explore');?>">
+						<img src="<?=static_url('img/explore.jpg');?>" />
+					</a>
+				</div>

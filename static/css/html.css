@@ -217,14 +217,16 @@ form p {
  *	超链小图标
  */
 .icon {
-	background: url(../img/icons.png) no-repeat;
-	_background: url(../img/ie6/icons.gif) no-repeat;
+	background: url(../img/icons.gif) no-repeat;
+	/*_background: url(../img/ie6/icons.gif) no-repeat;*/
 	height: 16px;
 	*line-height: 16px;
 	display: inline-block;
 	padding: 0 0 0 18px;
 }
-
+.icon_lock {
+	background-position: 0 -6101px;
+}
 .icon_mac {
 	background-position: 0 -2980px;
 }

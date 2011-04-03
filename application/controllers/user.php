@@ -110,8 +110,8 @@
 		    $config['upload_path'] = $user_avatar_path;
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size'] = '2048';   //可以上传2MB
-			$config['max_width']  = '2048';
-			$config['max_height']  = '1768';
+			//$config['max_width']  = '2048';
+			//$config['max_height']  = '1768';
 			//$config['overwrite'] = true;  不覆盖，随机重命名文件
 			$config['encrypt_name'] = true;
 			

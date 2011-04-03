@@ -23,6 +23,8 @@
 			$render['current_topic'] = true;
 			$render['topics'] = $topics;
 			$render['start'] = $start;
+			$render['page_title'] = '果群话题';
+			
 			kk_show_view('topic/index_view', $render);
 			
 		}

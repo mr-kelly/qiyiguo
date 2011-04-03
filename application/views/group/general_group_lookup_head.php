@@ -86,7 +86,7 @@
 					  <?php else: ?>
 					  
 					  <span class="kk_btn_blue tipsy_s" title="内部成员才能进入">
-					      私密群
+					      <span class="icon icon_lock"></span>私密群
 					  </span>
 					  <?php endif; ?>
 				  

@@ -78,11 +78,11 @@
 				  $(function(){
 					  $('.join_group_btn').click(function(){
 						  //点击“加入”群组以后...
-						  if ( !confirm( '确定要' + $(this).text() +'?' ) ) {
-							  return false;
-						  }
+// 						  if ( !confirm( '确定要' + $(this).text() +'?' ) ) {
+// 							  return false;
+// 						  }
 						  
-						  $.getJSON( $(this).attr('href'), function(json) {
+						  $.getJSON( $(this).attr('href') + '?ajax=' + Math.random() , function(json) {
 							  //alert(json);
 							  if ( json.data == 'message' && json.status == 0 ) {
 							  
@@ -99,9 +99,10 @@
 								      
 								  //}
 								  
-								  $('.lookup_relation_btn').load('<?=site_url("group/ajax_get_join_group_btn/" . $group["id"]);?>');
+								  //$('.lookup_relation_btn').load('<?=site_url("group/ajax_get_join_group_btn/" . $group["id"]);?>');
 								  
-								  setInterval('location.reload();', 1000 );
+								  //setInterval('location.reload();', 1000 );
+								  location.reload();
 								  
 							  } else if ( json.status == 0 ) {
 								  // 失败加入

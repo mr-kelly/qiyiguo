@@ -15,7 +15,7 @@
 				'groups' => $this->group_model->get_fresh_groups( 2 , 50, $start, true),
 				'current_group' => 'current_menu',
 				'start' => $start,
-				'groups_count' => $this->group_model->get_groups_count(),
+				'groups_count' => $this->group_model->get_fresh_groups_count(  2  ),
 			);
 			kk_show_view('group/index_view', $data);
 		}
@@ -176,8 +176,8 @@
 		    $config['upload_path'] = $group_path;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '2048';   //可以上传2MB
-			$config['max_width']  = '2048';
-			$config['max_height']  = '1768';
+			//$config['max_width']  = '2048';
+			//$config['max_height']  = '1768';
 			$config['overwrite'] = true;  //覆盖
 			$config['file_name'] = 'group_logo_' . $group_id . '.png' ;
 			
@@ -475,6 +475,41 @@
 						redirect('group/group_invite/' . $group_id );
 					}
 				}
+			} elseif ( $action == 'guo_id' ) {
+				
+				if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+					$this->form_validation->set_rules('guo_id','果号', 'trim|required|xss_clean');
+					
+					if ( !$this->form_validation->run() ) {
+						$this->session_message->set('果号不能为空');
+						redirect('group/' . $group_id );
+					} else {
+						$this->load->model('user_profiles_model');
+						
+						$guo_id = $this->form_validation->set_value('guo_id');
+						
+						if ( !$this->user_profiles_model->is_user( $guo_id ) ) {
+							$this->session_message->set('用户不存在');
+							redirect('group/' . $group_id );
+							return;
+						}
+						
+						$the_group = kk_get_group( $group_id );
+						
+						// 存在用户，提醒用户
+						add_notice( $guo_id, '邀请入群', 
+									sprintf('%s邀请你加入%s', get_current_user_name(), $the_group['name'] ),
+									'g/' . $group_id,
+									'group',
+									$group_id);
+						$this->session_message->set('邀请成功');
+						redirect('group/' . $group_id );
+						
+									
+//function add_notice( $user_id, $title='', $content, $link, $model=null, $model_id=null, $type='notice' ) {						
+						
+					}
+				}
 			}
 			
 			$render['group'] = $this->group_model->_get_group( $group_id );
@@ -716,9 +751,6 @@
 				ajaxReturn( 'login_redirect', '尚未登录', 0 );
 			}
 			
-			if ( !$this->tank_auth->is_logged_in() ) {
-				exit('Error!! You directly enter here?');
-			}
 			$user_id = get_current_user_id();
 			$group = $this->group_model->get_group_by_id($group_id);
 			

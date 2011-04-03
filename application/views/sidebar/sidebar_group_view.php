@@ -313,6 +313,34 @@
     	endif;
     ?>
     
+    <?php if ( isset( $group ) ) : ?>
+    <div class="sidebar_widget">
+    	<h2>邀请</h2>
+    	<div class="align_center">
+    		输入对方的果号，邀请对方入群
+    		
+    		
+    	</div>
+    	<div>
+    		<br />
+    		<form method="post" action="<?=site_url('group/group_invite/' . $group['id'] . '/guo_id' );?>">
+    			<p>
+					<label>对方果号</label>
+					<input type="text" name="guo_id" />
+    			</p>
+    			
+    			<div class="align_center">
+    				<button type="submit" class="kk_btn">
+    					邀请
+    				</button>
+    			</div>
+    		</form>
+    	</div>
+    	<?php
+    	
+    	?>
+    </div>
+    <?php endif; ?>
     
     <?php
     	// 提示公开群组的管理员!!! 叫他们开个内部管理的东西！

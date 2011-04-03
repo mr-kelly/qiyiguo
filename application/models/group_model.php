@@ -546,8 +546,18 @@
 			
 			return $query->result_array();
 		}
-		
+		/**
+		 *	获得新鲜群组的数量
+		 */
+		function get_fresh_groups_count( $user_num = 10 ) {
+			$sql = sprintf( 'SELECT * FROM kk_group WHERE 
+								( SELECT count( * ) FROM kk_group_user 
+									WHERE group_id = kk_group.id ) > %d ', $user_num );
 
+			
+			$query = $this->db->query( $sql );
+			return $query->num_rows();
+		}
 		
 		
 		/** 

@@ -4,7 +4,7 @@
  */
 function user_relation_btn( $this ) {
 
-	$.getJSON( $($this).attr('href'), function(json){
+	$.getJSON( $($this).attr('href') + '?ajax=' + Math.random() , function(json){
 		if ( json.status == 1 ) {
 			kk_growl.success( json.info );
 			// 更改“关注”按钮的html视图

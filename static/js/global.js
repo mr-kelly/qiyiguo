@@ -59,9 +59,17 @@ var kk_growl = {
  	并显示提醒
  */	
 function notice_check() {
+
+
+
 		$.getJSON( $get_user_notices_url, function(json) {
 
 			if ( json.status == 1 ) {
+			
+				//新消息提示
+				//$('#sound').html('<iframe src="http://qiyiguo.cc/static/new_notice.mp3" name="Message" width="0" marginwidth="0" height="0" marginheight="0" scrolling="No"   frameborder="0" id="Message" border="0" framespacing="0" noresize="noResize"  vspale="0"> </iframe>');
+				//$('#sound').html('<BGSOUND SRC="http://qiyiguo.cc/static/new_notice.mp3" LOOP="false" />');
+				$('#sound').html('<embed width="0" height="0" src="http://qiyiguo.cc/static/new_notice.mp3" />');
 				
 				data = json.data;
 				//if ( data ) {
@@ -90,7 +98,7 @@ function notice_check() {
 	//}
 }
 
-var $notice_interval = setInterval( 'notice_check()', 20000 );
+var $notice_interval = setInterval( 'notice_check()', 30000 );
 
 
 $(function(){

@@ -100,6 +100,22 @@
 				</div>
 				
 				
+				<div>
+					<h2>输入对方果号</h2>
+					<form method="post" action="<?=site_url('group/group_invite/' . $group['id'] . '/guo_id' );?>">
+						<p>
+							<label>对方果号</label>
+							<input type="text" name="guo_id" />
+						
+						
+						
+							<button type="submit" class="kk_btn">
+								邀请
+							</button>
+						</p>
+					</form>
+				</div>
+				
 			</div>
 		</div>
 	</div>

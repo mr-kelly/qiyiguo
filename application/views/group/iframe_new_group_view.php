@@ -93,6 +93,11 @@
 				<p>
 					<label>简介(选填)</label>
 					<textarea name="intro" style="width:180px;height: 50px;"></textarea>
+					
+				</p>
+				
+				<p class="grey" style="margin-left: 80px;">
+					↑这里最好注明群组所属的地区、学校
 				</p>
 			
 				<div class="align_center">

@@ -11,7 +11,7 @@
 			$this->load->model('event_model');
 			
 			$render['current_explore'] = true;
-			$render['random_groups'] = $this->group_model->get_groups( array(), 12, 0, true );
+			$render['random_groups'] = $this->group_model->get_groups( array('page_view >' => '50',), 12, 0, true );
 			
 			$render['fresh_groups'] = $this->group_model->get_fresh_groups( 1, 12 );
 			

@@ -17,6 +17,7 @@ var $site_url = '<?= site_url(); ?>';  <?php //网站基础网址?>
 ?>
 var $get_user_notices_url = '<?=site_url("notice/ajax_get_notices?ajax=" . rand() );?>';
 
+
 <?php // ajax获取城市 ?>
 var $get_cities_url = '<?=site_url("user/ajax_get_cities?ajax=" . rand() );?>';
 

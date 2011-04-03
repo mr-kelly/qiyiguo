@@ -24,8 +24,8 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <meta name="description" content="<?=isset( $page_description ) ? $page_description : '「奇异果」是一个世界上第一个群组网络，它帮助你和朋友们发现与创造生活的每一刻。你可以这这里发现、创建你的住宅小区、校园社团、朋友组织、商铺等等各种组织。';?>" />
-    <meta name="keywords" content="同学,大学生,陈霈霖,Mrkelly,公司,小区,学校,社交网站" />
+    <meta name="description" content="奇异果 - <?=isset( $page_description ) ? $page_description : '「奇异果」是一个世界上第一个群组网络，它帮助你和朋友们发现与创造生活的每一刻。你可以这这里发现、创建你的住宅小区、校园社团、朋友组织各种群组。';?>" />
+    <meta name="keywords" content="同学,大学生,陈霈霖,Mrkelly,公司,小区,学校,社交网站,社团" />
     <meta name="google-site-verification" content="K8Ch8aWFVaAp6Ek_ru8RGntVWxjqxCkYV16ZGChFF84" />
     <meta name="generator" content="BBEdit 9.5" />
     
@@ -52,7 +52,6 @@
 						   //var $user_home = '<?=base_url();?>';
 					   </script>
 					   
-
 	
 					   
 	<?php
@@ -72,6 +71,10 @@
 	<noscript id="noscript">
 		奇异果发现您的浏览器不支持JavaScript。这将严重影响你对网站浏览！
 	</noscript>
+	
+	<div id="sound">
+	
+	</div>
 	
 	<div id="loading">
 		<img src="<?=static_url('img/loading.gif');?>" />
