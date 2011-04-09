@@ -7,14 +7,14 @@
 				?>
 					<li class="tipsy_s" title="<?=$group['name'];?> <?=$group['intro'];?>">
 						<div class="group_logo">
-							<a href="<?=$user_group_url;?>">
+							<a href="<?=$user_group_url;?>" <?= isset( $_blank ) ? 'target="_blank"' : '';?>>
 								<img class="avatar" width="50" src="<?=get_group_logo_url( $group['id'] ); ?>" />
 							</a>
 						</div>
 						
 						<div class="group_intro">
 							<div>
-								<a href="<?=$user_group_url;?>">
+								<a href="<?=$user_group_url;?>" <?= isset( $_blank ) ? 'target="_blank"' : '';?>>
 									<?= $group['name'];?>
 								</a>
 							</div>

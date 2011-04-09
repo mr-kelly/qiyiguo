@@ -24,6 +24,7 @@
 							<li class="topic">
 								<div class="topic_user">
 									<?php
+										// 特定显示。 显示群组logo而不是用户头像
 										// 用户头像、名字、 topic的作者 
 										if ( isset( $show_group_logo ) && $show_group_logo ) :
 											$group_url = get_group_url( $topic['model_id'] );
@@ -32,6 +33,16 @@
 									<a class="tipsy_s" title="来自群组「<?=$topic["Group"]['name'];?>」" href="<?=$group_url;?>">
 										<img width="50" src="<?=get_group_logo_url( $topic['model_id'] );?>" />
 									</a>
+									<?php
+										// $group['src_group_id'] 设置了的话，显示群组logo
+										elseif ( !empty( $topic['src_group_id'] ) ) :
+											$src_group = kk_get_group( $topic['src_group_id'] );
+									?>
+									<a class="tipsy_s" title="源于群组 <?=$src_group['name'];?>" href="<?=get_group_url( $topic['src_group_id'] );?>">
+										<img width="50" src="<?=get_group_logo_url( $topic['src_group_id'] );?>" />
+									</a>
+									
+									
 									
 									<?php else: 	// 照旧显示人的头像吧?>
 									
@@ -82,12 +93,33 @@
 												<?=$topic['Group']['name'];?> 
 											</a> 的 
 											<?php endif; ?>
+											
 											<a href="<?=$user_url;?>">
 												<span>
 
 													<?=$topic['User']['name'];?>
 												</span>
 											</a>
+											
+											<?php
+												if ( !empty( $topic['src_group_id'] ) ) :
+													$src_group = kk_get_group( $topic['src_group_id'] ) ;
+													$src_user = kk_get_user( $topic['src_user_id'] );
+											?>
+											<span class="grey">
+												转自
+												<a href="<?=get_group_url( $src_group['id'] );?>">
+													<?=$src_group['name'];?>
+												</a>
+												<!--
+												<a href="#">
+													<?=$src_user['name'];?>
+												</a>
+												-->
+											</span>
+											<?php
+												endif;
+											?>
 										</span>
 									</div>
 									
@@ -138,6 +170,16 @@
 										}
 										?>
 										
+										<?php
+											// 群组成员可以转送
+											if ( is_group_user( $group['id'] , get_current_user_id() )):
+										?>
+											<a class="icon icon_transfer tipsy_s" title="转送到其他群组" href="<?=site_url('topic/transfer/' . $topic['id'] );?>">
+												转送
+											</a>
+										<?php
+											endif;
+										?>
 										<?php
 											// 发布者可以修改
 											if ( $topic['user_id'] == get_current_user_id() ) :

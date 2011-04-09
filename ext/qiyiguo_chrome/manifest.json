@@ -1,0 +1,14 @@
+{
+  "name": "奇异果谷歌浏览器提醒器",
+  "version": "1.0",
+  "description": "奇异果社团网络谷歌浏览器提醒器",
+  "background_page":"background.html",
+  "permissions": [
+    "notifications"
+  ],
+  "browser_action": {
+    "default_icon": "icon.gif",
+    "default_title": "奇异果提醒你",
+    "popup": "popup.html"
+  }
+}

@@ -3,15 +3,15 @@
 				<ul class="groups_list">
 				<?php
 					foreach( $groups as $group ) : 
-						$user_group_url = get_group_url( $group['id'] );
+						$group_url = get_group_url( $group['id'] );
 				?>
 					<li>
 						<div>
-							<a href="<?=$user_group_url;?>">
+							<a href="<?=$group_url;?>">
 								<img class="avatar" width="18" src="<?=get_group_logo_url( $group['id'] ); ?>" />
 							</a>
 							
-							<a class="tipsy_s" href="<?=$user_group_url;?>"  title="<?=$group['name'];?> <?=$group['intro'];?>">
+							<a class="tipsy_s" href="<?=$group_url;?>"  title="<?=$group['name'];?> <?=$group['intro'];?>">
 								<?= $group['name'];?>
 							</a>
 							

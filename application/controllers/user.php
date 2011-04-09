@@ -1015,10 +1015,10 @@ EOT;
 					
 					// 正常浏览...					
 					// 如果是IE6。。。 转到首页提示登录 ie6修复
-					if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ) {
-						$this->session_message->set('你要登录后才能查看该页面');
-						redirect( '/' );
-					}
+					//if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') !== false ) {
+					//	$this->session_message->set('你要登录后才能查看该页面');
+					//	redirect( '/' );
+					//}
 					
 					
 					$data['show_captcha'] = FALSE;

@@ -103,7 +103,44 @@
 			kk_show_view('topic/add_topic_view', $render);
 		}
 		
-		
+		/**
+		 *	将一个topic转到另一个用户收藏的群组
+		 */
+		function transfer( $topic_id, $group_id=null ) {
+			login_redirect();
+			
+			$topic = $this->topic_model->get_topic_by_id( $topic_id );
+			
+			// 先判断用户是否该话题群组的成员，是的话，提供转送视图
+			if ( !is_group_user( $topic['model_id'] , get_current_user_id() ) ) {
+				ajaxReturn(null, '你并不属于该群组，不能转送', 0);
+			}
+			
+			if ( ! $group_id ) {
+
+				// topic属于用户的群组。那么提供转发视图 ( 让用户从已加入的群里选择 )
+				$render['user_groups'] = $this->group_model->get_user_groups( get_current_user_id(), null );
+				$render['topic'] = $topic;
+				
+				kk_show_view( 'topic/transfer_view', $render);
+				
+				
+			} else {
+				// 设置了转送目标？～ 转送吧！
+				// 判断转送的目标群组，用户是否已经加入
+				if ( is_group_user( $group_id, get_current_user_id() ) ) {
+					// 属于一员，可以转发
+					if ( $copy_topic_id = $this->topic_model->copy_topic( $topic['id'] , $group_id, get_current_user_id() ) ) {
+						$this->session_message->set( '成功转送话题' );
+						
+						// 转送后到转送的群组首页
+						redirect( '/group/' . $group_id );
+					} else {
+						ajaxReturn( null, 'error copy topic', 0 );
+					}
+				}
+			}
+		}
 		
 		function ajax_delete( $topic_id ) {
 		
@@ -235,9 +272,24 @@
 // 			}
 			clean_notices( get_current_user_id(), 'topic', $topic_id );
 			
+
+			
+			
 			$topic = $this->topic_model->get_topic_by_id($topic_id);
 			if ( !$topic ) {
 				show_404();
+			}
+			
+			// 判断话题所属群组是否是私有群组， 
+			$topic_group = kk_get_group( $topic['model_id'] );
+			if ( $topic_group['privacy'] == 'private' ) {
+				// 如果是，判断是否为群组成员，成员才可以查看
+				if ( !is_group_user( $topic_group['id'], get_current_user_id() )) {
+					$render['group'] = $topic_group;
+					$render['topic'] = $topic;
+					kk_show_view( 'topic/topic_forbidden_view', $render );
+					return;
+				}
 			}
 			
 			$data['current_topic'] = true;
@@ -295,7 +347,7 @@
 			$upload_config = array(
 				'upload_path' => $upload_path,
 				'allowed_types' => 'gif|jpg|png',
-				'max_size' => '1024',
+				'max_size' => '2048',
 				'max_width' => '4096',
 				'max_height' => '3000',
 				'encrypt_name' => true, // 随机名
@@ -358,7 +410,7 @@
 			$upload_config = array(
 				'upload_path' => $upload_path,
 				'allowed_types' => 'rar|zip|doc|xls|ppt|txt|pdf|docx|xlsx|pptx', //上传的文件限制
-				'max_size' => '1024',
+				'max_size' => '4000',
 				//'max_width' => '4096',
 				//'max_height' => '3000',
 				'overwrite' => false,

@@ -45,13 +45,28 @@
 		 *	自定义要获取的event
 		 */
 		function get_events_custom( $data, $limit=100, $start=0 ) {
+			$this->db->order_by('created', 'desc');
+			
 			$query = $this->db->get_where('event', $data , $limit, $start );
+			
+			
 			
 			if ( $query->num_rows() == 0 ) {
 				return false;
 			}
 			
-			return $query->result_array();
+			$events = $query->result_array();
+			
+			// 绑定 附加图片
+			foreach ( $events as $k=>$v ) {
+				$events[$k]['User'] = $this->_get_user( $events[$k]['user_id'] );
+				
+				if ( !empty( $events[$k]['attach_img_id'] ) ) {
+					$events[$k]['Attach_Img'] = $this->_get_attach( $events[$k]['attach_img_id'], 'image' );
+				}
+			}
+			
+			return $events;
 			
 		}
 		
@@ -68,9 +83,19 @@
 			 
 			 if ( $query->num_rows() == 0 ) {
 			 	 return false;
-			 } else {
-			 	return $query->result_array();
-			 }
+			 } 
+			 
+			 $events = $query->result_array();
+			// 绑定 附加图片
+			foreach ( $events as $k=>$v ) {
+				$events[$k]['User'] = $this->_get_user( $events[$k]['user_id'] );
+				
+				if ( !empty( $events[$k]['attach_img_id'] ) ) {
+					$events[$k]['Attach_Img'] = $this->_get_attach( $events[$k]['attach_img_id'], 'image' );
+				}
+			}
+			
+			return $events;
 			 
 		}
 		
@@ -129,6 +154,10 @@
 					$event['Group'] = $this->_get_group( $event['model_id'] );
 				}
 				
+				
+				if ( !empty( $event['attach_img_id'] ) ) {
+					$event['Attach_Img'] = $this->_get_attach( $event['attach_img_id'], 'image' );
+				}
 				
 				return $event;
 				

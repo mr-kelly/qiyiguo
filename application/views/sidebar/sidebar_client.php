@@ -22,6 +22,14 @@
 				奇异果 for Mac OS X
 			</a>
 		</li>
+		
+		<li>
+			<a href="http://jiajiao.bnuep.com/t/download/qiyiguo_chrome.crx">
+				<span class="hover"></span>
+				<span class="icon icon_chrome"></span>
+				奇异果谷歌浏览器插件
+			</a>
+		</li>
 	</ul>
 	
 	

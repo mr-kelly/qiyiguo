@@ -33,7 +33,33 @@
 			
 			return $this->db->insert_id();
 		}
-
+		
+		/**
+		 *	复制话题， 转送话题到目标群组...  并且设置谁复制话题
+		 */
+		function copy_topic( $topic_id, $group_id, $user_id ) {
+			$topic = $this->get_topic_by_id( $topic_id );
+			
+			return $this->db->insert('topic', array(
+				'title' => $topic['title'],
+				'content' => $topic['content'],
+				'model' => $topic['model'],
+				'model_id' => $group_id,  // 这里要变了
+				
+				'user_id' => $user_id,
+				
+				'attach_img_id' => $topic['attach_img_id'],
+				'attach_file_id' => $topic['attach_file_id'],
+				
+				'created' => date('Y-m-d H:i:s'),
+				
+				// 设置源群，源用户 ( 转送前 )
+				'src_user_id' => $topic['user_id'],
+				'src_group_id' => $topic['model_id'],
+				'src_id' => $topic['id'],
+				
+			));
+		}
 		
 		/**
 		 *	升级、修改话题

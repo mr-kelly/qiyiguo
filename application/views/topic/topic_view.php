@@ -8,6 +8,19 @@
 		<div class="content_top">
 			<div class="content_bottom">
 					<div class="topic_controll_btn">
+					
+					<?php
+						// 群组成员可以转送
+						if ( is_group_user( $topic['model_id'] , get_current_user_id() )):
+					?>
+						<a class="icon icon_transfer tipsy_s" title="转送到其他群组" href="<?=site_url('topic/transfer/' . $topic['id'] );?>">
+							转送
+						</a>
+					<?php
+						endif;
+					?>
+					
+					
 					<?php
 						// 发布者可以修改
 						if ( $topic['user_id'] == get_current_user_id() ) :
@@ -60,6 +73,26 @@
 				
 				
 				<h2><?=$topic['title'];?></h2>
+				
+				<?php
+					if ( !empty( $topic['src_group_id'] ) ) :
+						$src_group = kk_get_group( $topic['src_group_id'] ) ;
+						$src_user = kk_get_user( $topic['src_user_id'] );
+				?>
+				<span class="grey">
+					转自
+					<a href="<?=get_group_url( $src_group['id'] );?>">
+						<?=$src_group['name'];?>
+					</a>
+					<!--
+					<a href="#">
+						<?=$src_user['name'];?>
+					</a>
+					-->
+				</span>
+				<?php
+					endif;
+				?>
 				
 				
 				<div>

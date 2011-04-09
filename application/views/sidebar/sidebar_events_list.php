@@ -13,10 +13,52 @@
 			foreach ( $events as $event ):
 		?>
 			<li class="event <?= $row % 2 == 0 ? 'event_even' : '';?>">
+					
 				<h2><a href="<?=site_url('event/' . $event['id']);?>">
 						<?=$event['name'];?>
 					</a></h2>
 				
+				
+				<?php 
+					//if ( !isset( $no_group_logo ) || !$no_group_logo )  : 
+					// 活动图片
+				?>
+					<div class="event_group_logo">
+									<?php
+										if ( empty( $event['attach_img_id'] ) ) :
+										$event_group_logo_url = get_group_logo_url( $event['model_id'] );
+										$event_group_url = get_group_url( $event['model_id'] );
+										$event_group = kk_get_group( $event['model_id'] );
+									?>
+									<a class="tipsy_s" href="<?= $event_group_url ; ?>" title="来自 <?=$event_group['name'];?> <?=$event_group['intro'];?>">
+										<img width="40" height="40" src="<?=$event_group_logo_url;?>" />
+										
+										<br />
+										<?= $event_group['name'];?>
+									</a>
+									
+									<?php
+										else:
+											// 有活动图片？显示活动图片
+									?>
+									
+										<?php if ( !empty( $event['Attach_Img'] ) ) : ?>
+										<div class="event_attach_img">
+											<a class="sexybox" href="<?=site_url('static/upload/attach_img' . $event['Attach_Img']['file']);?>">
+												<img width="40" src="<?=site_url('static/upload/attach_img' . $event['Attach_Img']['file']);?>" />
+											</a>
+											
+											
+										</div>
+										<?php endif; ?>
+										
+									<?php 
+										endif; 
+									?>
+					</div>
+					
+					<?php //endif; ?>
+
 				
 				<?php
 					$event_user = kk_get_user( $event['user_id'] );
@@ -80,19 +122,7 @@
 	
 				</div>
 				
-				<?php if ( !isset( $no_group_logo ) || !$no_group_logo )  : ?>
-				<div class="event_group_logo">
-					<?php
-						$event_group_logo_url = get_group_logo_url( $event['model_id'] );
-						$event_group_url = get_group_url( $event['model_id'] );
-						$event_group = kk_get_group( $event['model_id'] );
-					?>
-					<a class="tipsy_s" href="<?= $event_group_url ; ?>" title="来自 <?=$event_group['name'];?>">
-						<img width="40" height="40" src="<?=$event_group_logo_url;?>" />
-					</a>
-				</div>
-				
-				<?php endif; ?>
+	
 			</li>
 		<?php
 			$row++;

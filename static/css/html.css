@@ -224,6 +224,9 @@ form p {
 	display: inline-block;
 	padding: 0 0 0 18px;
 }
+.icon_transfer {
+	background-position: 0 -5998px
+}
 .icon_lock {
 	background-position: 0 -6101px;
 }

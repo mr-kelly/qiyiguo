@@ -15,7 +15,7 @@
 				
 				<?php
 					// 内涵指数小于60， 提示去提升内涵指数吧
-					if ( $user_inner_index < 60 ) :
+					if ( $user_inner_index < 40 ) :
 				?>
 				
 				<div class="align_center grey">
@@ -60,33 +60,7 @@
 					?>
 				</div>
 				<?php endif; ?>
-				
-				<?php if ( !empty( $user_admin_groups ) ) : ?>
-				
-				<div class="clearboth">
-					<h2 title="在这些群里，你是管理员" class="tipsy_e">你管理的群 (<?=$user_admin_groups_count;?>)</h2>
-					<?php
-						$this->load->view('group/general_groups_show', array(
-							'groups' => $user_admin_groups,
-						));
-					?>
-				</div><!--END 管理群-->
-				
-				<?php
-					else:
-				?>
-				
-					<div class="grey align_center clearboth">
-						你还没有管理任何群...你可以
-						<a class="sexybox_iframe" href="<?=site_url( 'group/iframe_new_group' );?>">
-							&gt;创建一个群
-						</a>
-					</div>
-					
-					
-				<?php
-					endif;
-				?>
+
 
 					
 					
@@ -172,6 +146,34 @@
 				
 				
 				<div class="clearboth"></div>
+				
+				
+				<?php if ( !empty( $user_admin_groups ) ) : ?>
+				
+				<div class="clearboth">
+					<h2 title="在这些群里，你是管理员" class="tipsy_e">你管理的群 (<?=$user_admin_groups_count;?>)</h2>
+					<?php
+						$this->load->view('group/general_groups_show', array(
+							'groups' => $user_admin_groups,
+						));
+					?>
+				</div><!--END 管理群-->
+				
+				<?php
+					else:
+				?>
+				
+					<div class="grey align_center clearboth">
+						你还没有管理任何群...你可以
+						<a class="sexybox_iframe" href="<?=site_url( 'group/iframe_new_group' );?>">
+							&gt;创建一个群
+						</a>
+					</div>
+					
+					
+				<?php
+					endif;
+				?>
 				
 			</div>
 			

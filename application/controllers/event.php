@@ -125,6 +125,18 @@
 				show_404();
 			}
 			
+			// 判断话题所属群组是否是私有群组， 
+			$event_group = kk_get_group( $event['model_id'] );
+			if ( $event_group['privacy'] == 'private' ) {
+				// 如果是，判断是否为群组成员，成员才可以查看
+				if ( !is_group_user( $event_group['id'], get_current_user_id() )) {
+					$render['group'] = $event_group;
+					$render['event'] = $event;
+					kk_show_view( 'event/event_forbidden_view', $render );
+					return;
+				}
+			}
+			
 			$render['page_title'] = $event['name'];
 			$render['current_event'] = 'current_menu';
 			$render['event'] = $event;
@@ -314,6 +326,7 @@
 				$this->form_validation->set_rules('create_event_name', '活动名称', 'trim|required|xss_clean|max_length[20]');
 				$this->form_validation->set_rules('create_event_content', '活动简介', 'trim|required|xss_clean');
 				
+				$this->form_validation->set_rules('attach_img_id','附加图片', 'integer|xss_clean|trim');
 				
 				if ( ! $this->form_validation->run() ) {
 					// 不通过表单验证~
@@ -323,7 +336,11 @@
 					//$event_group_id = $this->form_validation->set_value('event_group_id');
 					
 					// 活动开始时间
-					$create_event_start_date = sprintf('%s-%s-%s', $this->form_validation->set_value('create_event_start_year'), $this->form_validation->set_value('create_event_start_month'), $this->form_validation->set_value('create_event_start_day'));
+					$create_event_start_year = $this->form_validation->set_value('create_event_start_year');
+					$create_event_start_month = $this->form_validation->set_value('create_event_start_month');
+					$create_event_start_day =  $this->form_validation->set_value('create_event_start_day');
+					
+					$create_event_start_date = sprintf('%s-%s-%s', $create_event_start_year , $create_event_start_month , $create_event_start_day);
 					$create_event_start_hour = $this->form_validation->set_value('create_event_start_hour');
 					$create_event_start_min = $this->form_validation->set_value('create_event_start_min');
 					
@@ -331,14 +348,22 @@
 					
 					
 					// 活动结束时间
-					$create_event_end_date = sprintf('%s-%s-%s', $this->form_validation->set_value('create_event_end_year'), $this->form_validation->set_value('create_event_end_month'), $this->form_validation->set_value('create_event_end_day'));
+					$create_event_end_year = $this->form_validation->set_value('create_event_end_year');
+					$create_event_end_month = $this->form_validation->set_value('create_event_end_month');
+					$create_event_end_day = $this->form_validation->set_value('create_event_end_day');
+					
+					$create_event_end_date = sprintf('%s-%s-%s', $create_event_end_year, $create_event_end_month, $create_event_end_day);
 					$create_event_end_hour = $this->form_validation->set_value('create_event_end_hour');
 					$create_event_end_min = $this->form_validation->set_value('create_event_end_min');
 					
 					$create_event_end = $create_event_end_date . ' '. $create_event_end_hour . ':' . $create_event_end_min . ':00';
 					
 					// 活动开始时间不能大于结束时间
-					if ( $create_event_start > $create_event_end ) {
+					// 如果日期
+					//if ( $create_event_start_day > $create_event_end_day ||
+					//		$create_event_start_month > $create_event_end_month ||
+					//			$create_event_start_year > $create_event_end_year ) {
+					if ( strtotime($create_event_start) > strtotime($create_event_end) ) {			
 						ajaxReturn( null, '活动时间错误', 0 );
 					}
 					
@@ -358,6 +383,9 @@
 						'model' => $model,
 						'model_id' => $model_id,
 						'user_id' => $this->tank_auth->get_user_id(),
+						
+						
+						'attach_img_id' => $this->form_validation->set_value('attach_img_id'),
 						
 					));
 					
@@ -426,6 +454,68 @@
 			}
 					
 
+		}
+		
+		/**
+		 *	上传活动图片
+		 */
+		function ajax_event_upload_pic() {
+			
+			
+			$upload_path = sprintf("%sattach_img/%s", $this->config->item('upload_path'), date('Y/m/d/') ) ; // 根据年月日上传目录
+			$this->_createDir($upload_path);
+			
+			$upload_config = array(
+				'upload_path' => $upload_path,
+				'allowed_types' => 'gif|jpg|png',
+				'max_size' => '2048',
+				'max_width' => '4096',
+				'max_height' => '3000',
+				'encrypt_name' => true, // 随机名
+			);
+			
+			$this->load->library('upload', $upload_config);
+			if ( !$this->upload->do_upload() ) {
+				echo sprintf( '<script>parent.alert("%s");</script>', $this->upload->display_errors() );
+				//ajaxReturn( $this->upload->display_errors(), '图片上传失败~', 0);
+			} else {
+				// 上传成功, 处理图片
+				$upload_data = $this->upload->data();
+				
+				$image_config = array(
+					'image_library' => 'gd2',
+					'source_image' => $upload_data['full_path'],
+					'maintain_ratio' => true,
+					'width' => 200,
+					'height' => 120,
+					'create_thumb' => true,
+				);
+				$this->load->library('image_lib');
+				$this->image_lib->initialize( $image_config );
+				$this->image_lib->resize();
+				
+				
+				$this->load->model('attach_model');
+				$return = array(
+					'file' =>  date('/Y/m/d/') . $upload_data['file_name'], // 返回文件的目录+文件名
+					'file_thumb' => date('/Y/m/d/') . $upload_data['raw_name'] . '_thumb'. $upload_data['file_ext'], // 目录+纯文件+thumb+后缀
+					'attach_id' => $this->attach_model->add_picture( date('/Y/m/d/') . $upload_data['file_name'] ),
+				);
+				
+				
+				
+				// 处理母“发话”
+				$this->load->view('event/ajax_event_upload_pic_view', $return );
+				
+				
+				//echo '<script>parent.return_data = "' .$return. '"</script>';
+				//echo sprintf('<script>
+				//	parent.document.getElementById("add_topic_attach_img_id").setAttribute("value", %d);</script>
+				//	', $return['attach_id'] );
+				//ajaxReturn( $return, '图片上传成功！', 1 );
+			}
+			
+			
 		}
 		
 	}

@@ -122,9 +122,11 @@
 	            		</div>
 	            		
 	            		<div class="sidebar_widget">
-							<h2>学生会在奇异果</h2>
+							<h2>奇异果演示视频</h2>
 							<div>
-								<embed src='http://player.youku.com/player.php/sid/XMjU1MDk2NjM2/v.swf' quality='high' width='230' height='190' align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash'></embed>
+								<!--<embed src='http://player.youku.com/player.php/sid/XMjU1MDk2NjM2/v.swf' quality='high' width='230' height='190' align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash'></embed>
+								-->
+								<embed src="http://player.youku.com/player.php/sid/XMjU3MjU2NzEy/v.swf" quality="high" width="230" height="190" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"></embed>
 							</div>
 						</div>
 						

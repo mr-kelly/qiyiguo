@@ -53,7 +53,7 @@ class Home extends KK_Controller {
 		}
 		
 		$render = array(
-			'random_groups' => $this->group_model->get_groups( array(), 30, 0, true ), // 随机~~
+			'random_groups' => $this->group_model->get_fresh_groups( 4, 30, 0, true ), // 随机~~
 			'random_users' => $random_users,
 			'page_title' => '奇异果 - 发现并创造你的社团、组织、班级',
 			'current_home' => 'current_menu',

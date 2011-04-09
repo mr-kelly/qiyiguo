@@ -71,13 +71,13 @@
 							|| strpos( $_SERVER["HTTP_USER_AGENT"],'Firefox') !== false ) :
 				?>
 					<a id="add_topic_pic_btn" class="icon icon_add tipsy_s"  title="可上传doc, xls,ppt, zip, rar文件，容量小于1MB">
-						添加附件→
+						添加文档→
 					</a>
 				<?php
 					else:
 				?>
 					 <a style="margin-left: 20px; " id="add_topic_file_btn" class="icon icon_add tipsy_s" href="javascript:void(0);" title="可上传doc, xls,ppt, zip, rar文件，容量小于1MB">
-						添加附件
+						添加文档
 					 </a>
 				 <?php endif;?>
 				 

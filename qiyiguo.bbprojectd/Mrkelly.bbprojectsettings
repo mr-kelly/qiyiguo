@@ -5,47 +5,27 @@
 	<key>EmbeddedEditorHidden:Mrkelly</key>
 	<false/>
 	<key>ExpandedEditorWidth:Mrkelly:displays([(0, 0), (1280, 800)])</key>
-	<integer>586</integer>
+	<integer>594</integer>
 	<key>ExpandedItems:Mrkelly</key>
 	<array>
-		<string>3838FF27-E018-492B-967D-0F805E6F4BFA</string>
+		<string>97EA313A-77E0-4DC7-B1BF-957D8CD0A5EC</string>
+		<string>18EEAD85-B4AD-4CDF-BFDE-108E8193A480</string>
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAF0AAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFp3JwLYXBwbGljYXRpb24AAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWo5
-			xcbPzcYAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB2tp
-			d2lndW8AABAACAAAyGrZMAAAABEACAAAxs9dRgAAAAEAEAFp3JwA
-			BavMAAWrxQAAkZ8AAgAxS0tNYWNib29rOlVzZXJzOk1ya2VsbHk6
-			U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbgAADgAYAAsAYQBwAHAA
-			bABpAGMAYQB0AGkAbwBuAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBr
-			ABIAJ1VzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNh
-			dGlvbgAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAF8AAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOcUFdmlld3MAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAGGAAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO2gFZ3JvdXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWo7
-			aMbPzZoAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Fw
-			cGxpY2F0aW9uAAAQAAgAAMhq2TAAAAARAAgAAMbPXRoAAAABABQB
-			ajnFAWncnAAFq8wABavFAACRnwACADdLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			AAAOAAwABQB2AGkAZQB3AHMADwAUAAkASwBLAE0AYQBjAGIAbwBv
-			AGsAEgAtVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxp
-			Y2F0aW9uL3ZpZXdzAAATAAEvAAAVAAIADv//AAA=
+			j8h/wcMAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXZp
+			ZXdzAAAQAAgAAMhq2TAAAAARAAgAAMh/UUMAAAABABgBajtoAWo5
+			xQFp3JwABavMAAWrxQAAkZ8AAgA9S0tNYWNib29rOlVzZXJzOk1y
+			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2aWV3czpn
+			cm91cAAADgAMAAUAZwByAG8AdQBwAA8AFAAJAEsASwBNAGEAYwBi
+			AG8AbwBrABIAM1VzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9h
+			cHBsaWNhdGlvbi92aWV3cy9ncm91cAAAEwABLwAAFQACAA7//wAA
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/group/</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -54,19 +34,20 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAGAAAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO2gEcGFnZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWo7
-			tsl2ZfYAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXZp
-			ZXdzAAAQAAgAAMhq2TAAAAARAAgAAMl19XYAAAABABgBajtoAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgA8S0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2aWV3czpw
-			YWdlAA4ACgAEAHAAYQBnAGUADwAUAAkASwBLAE0AYQBjAGIAbwBv
-			AGsAEgAyVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxp
-			Y2F0aW9uL3ZpZXdzL3BhZ2UAEwABLwAAFQACAA7//wAA
+			AAAAAAGIAAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO2gGaW52aXRlAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXJc
+			P8mPOroAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXZp
+			ZXdzAAAQAAgAAMhq2TAAAAARAAgAAMmOyjoAAAABABgBajtoAWo5
+			xQFp3JwABavMAAWrxQAAkZ8AAgA+S0tNYWNib29rOlVzZXJzOk1y
+			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2aWV3czpp
+			bnZpdGUADgAOAAYAaQBuAHYAaQB0AGUADwAUAAkASwBLAE0AYQBj
+			AGIAbwBvAGsAEgA0VXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3Vv
+			L2FwcGxpY2F0aW9uL3ZpZXdzL2ludml0ZQATAAEvAAAVAAIADv//
+			AAA=
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/page/</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/invite/</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -75,24 +56,28 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAGAAAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO2gEdXNlcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAGOAAIAAQlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO2gHc2lkZWJhcgAAAAAAAAAAAAAAAAAAAAAAAAAA
 			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWo7
-			ych/CkoAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXZp
-			ZXdzAAAQAAgAAMhq2TAAAAARAAgAAMh+mcoAAAABABgBajtoAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgA8S0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2aWV3czp1
-			c2VyAA4ACgAEAHUAcwBlAHIADwAUAAkASwBLAE0AYQBjAGIAbwBv
-			AGsAEgAyVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxp
-			Y2F0aW9uL3ZpZXdzL3VzZXIAEwABLwAAFQACAA7//wAA
+			wciE+okAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXZp
+			ZXdzAAAQAAgAAMhq2TAAAAARAAgAAMiEigkAAAABABgBajtoAWo5
+			xQFp3JwABavMAAWrxQAAkZ8AAgA/S0tNYWNib29rOlVzZXJzOk1y
+			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2aWV3czpz
+			aWRlYmFyAAAOABAABwBzAGkAZABlAGIAYQByAA8AFAAJAEsASwBN
+			AGEAYwBiAG8AbwBrABIANVVzZXJzL01ya2VsbHkvU2l0ZXMva2l3
+			aWd1by9hcHBsaWNhdGlvbi92aWV3cy9zaWRlYmFyAAATAAEvAAAV
+			AAIADv//AAA=
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/user/</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
+		<string>AF44735D-9A4F-4E10-9F93-945162BDA02F</string>
+		<string>704333A9-EB4C-43D0-A825-77C792334477</string>
+		<string>067EAA41-1214-4E0D-A8A5-BFB3CE04D493</string>
 	</array>
 	<key>FileFilterID:Mrkelly</key>
 	<string>msng</string>
@@ -101,198 +86,21 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAG+AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8kQc2V0dGluZ192aWV3LnBocAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZq5
-			V8l3s/pURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABHVz
-			ZXIAEAAIAADIatkwAAAAEQAIAADJd0N6AAAAAQAcAWo7yQFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAE1LS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnVzZXI6c2V0dGluZ192aWV3LnBocAAADgAiABAAcwBlAHQAdABp
-			AG4AZwBfAHYAaQBlAHcALgBwAGgAcAAPABQACQBLAEsATQBhAGMA
-			YgBvAG8AawASAENVc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8v
-			YXBwbGljYXRpb24vdmlld3MvdXNlci9zZXR0aW5nX3ZpZXcucGhw
-			AAATAAEvAAAVAAIADv//AAA=
+			AAAAAAGEAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqL6YJc3R5bGUuY3NzAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAapA
+			DcmoUXZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAA2Nz
+			cwAAEAAIAADIatkwAAAAEQAIAADJp+D2AAAAAQAYAWovpgFqLvcB
+			adycAAWrzAAFq8UAAJGfAAIAOktLTWFjYm9vazpVc2VyczpNcmtl
+			bGx5OlNpdGVzOmtpd2lndW86c3RhdGljOmNzczpzdHlsZS5jc3MA
+			DgAUAAkAcwB0AHkAbABlAC4AYwBzAHMADwAUAAkASwBLAE0AYQBj
+			AGIAbwBvAGsAEgAwVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3Vv
+			L3N0YXRpYy9jc3Mvc3R5bGUuY3NzABMAAS8AABUAAgAO//8AAA==
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/user/setting_view.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/static/css/style.css</string>
 			<key>RelativePath</key>
-			<string>./application/views/user/setting_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGKAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFLkRYNQlVHX2xpc3RzLnR4dAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZl9
-			f8mlDUpURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWJs
-			b2dzAAAQAAgAAMhq2TAAAAARAAgAAMmknMoAAAABABQBS5EWAWnc
-			nAAFq8wABavFAACRnwACADlLS01hY2Jvb2s6VXNlcnM6TXJrZWxs
-			eTpTaXRlczpraXdpZ3VvOmJsb2dzOkJVR19saXN0cy50eHQAAA4A
-			HAANAEIAVQBHAF8AbABpAHMAdABzAC4AdAB4AHQADwAUAAkASwBL
-			AE0AYQBjAGIAbwBvAGsAEgAvVXNlcnMvTXJrZWxseS9TaXRlcy9r
-			aXdpZ3VvL2Jsb2dzL0JVR19saXN0cy50eHQAABMAAS8AABUAAgAO
-			//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/blogs/BUG_lists.txt</string>
-			<key>RelativePath</key>
-			<string>./blogs/BUG_lists.txt</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHGAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO7YSY2xpZW50X3dpbmRvd3MucGhwAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZqm
-			xMm0Qe1URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABHBh
-			Z2UAEAAIAADIatkwAAAAEQAIAADJs9FtAAAAAQAcAWo7tgFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAE9LS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnBhZ2U6Y2xpZW50X3dpbmRvd3MucGhwAAAOACYAEgBjAGwAaQBl
-			AG4AdABfAHcAaQBuAGQAbwB3AHMALgBwAGgAcAAPABQACQBLAEsA
-			TQBhAGMAYgBvAG8AawASAEVVc2Vycy9NcmtlbGx5L1NpdGVzL2tp
-			d2lndW8vYXBwbGljYXRpb24vdmlld3MvcGFnZS9jbGllbnRfd2lu
-			ZG93cy5waHAAABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/page/client_windows.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/page/client_windows.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHAAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO7YRY2xpZW50X21hY29zeC5waHAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZqm
-			hsm0QfNURVhUUipjaP////8AAAkgAAAAAAAAAAAAAAAAAAAABHBh
-			Z2UAEAAIAADIatkwAAAAEQAIAADJs9FzAAAAAQAcAWo7tgFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAE5LS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnBhZ2U6Y2xpZW50X21hY29zeC5waHAADgAkABEAYwBsAGkAZQBu
-			AHQAXwBtAGEAYwBvAHMAeAAuAHAAaABwAA8AFAAJAEsASwBNAGEA
-			YwBiAG8AbwBrABIARFVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1
-			by9hcHBsaWNhdGlvbi92aWV3cy9wYWdlL2NsaWVudF9tYWNvc3gu
-			cGhwABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/page/client_macosx.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/page/client_macosx.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHOAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8ESc2lkZWJhcl9jbGllbnQucGhwAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZYg
-			GMmsPm9URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
-			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyavN7wAAAAEAHAFqO8EB
-			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBSS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
-			aWV3czpzaWRlYmFyOnNpZGViYXJfY2xpZW50LnBocAAOACYAEgBz
-			AGkAZABlAGIAYQByAF8AYwBsAGkAZQBuAHQALgBwAGgAcAAPABQA
-			CQBLAEsATQBhAGMAYgBvAG8AawASAEhVc2Vycy9NcmtlbGx5L1Np
-			dGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmlld3Mvc2lkZWJhci9z
-			aWRlYmFyX2NsaWVudC5waHAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_client.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/sidebar/sidebar_client.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGuAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO2gPZm9vdGVyX3ZpZXcucGhwAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZiY
-			r8l3s/dURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXZp
-			ZXdzAAAQAAgAAMhq2TAAAAARAAgAAMl3Q3cAAAABABgBajtoAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgBHS0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2aWV3czpm
-			b290ZXJfdmlldy5waHAAAA4AIAAPAGYAbwBvAHQAZQByAF8AdgBp
-			AGUAdwAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
-			PVVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
-			bi92aWV3cy9mb290ZXJfdmlldy5waHAAABMAAS8AABUAAgAO//8A
-			AA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/footer_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/footer_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHeAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8YXYWpheF9hZGRfdG9waWNfdmlldy5waHAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZqG
-			kcl3s/pURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXRv
-			cGljAAAQAAgAAMhq2TAAAAARAAgAAMl3Q3oAAAABABwBajvGAWo7
-			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAVUtLTWFjYm9vazpVc2Vy
-			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
-			d3M6dG9waWM6YWpheF9hZGRfdG9waWNfdmlldy5waHAAAA4AMAAX
-			AGEAagBhAHgAXwBhAGQAZABfAHQAbwBwAGkAYwBfAHYAaQBlAHcA
-			LgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAEtVc2Vy
-			cy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmll
-			d3MvdG9waWMvYWpheF9hZGRfdG9waWNfdmlldy5waHAAABMAAS8A
-			ABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/topic/ajax_add_topic_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/topic/ajax_add_topic_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAG2AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO6IOaW5kZXhfdmlldy5waHAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZqE
-			1cl3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABGhv
-			bWUAEAAIAADIatkwAAAAEQAIAADJd0N4AAAAAQAcAWo7ogFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAEtLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OmhvbWU6aW5kZXhfdmlldy5waHAAAA4AHgAOAGkAbgBkAGUAeABf
-			AHYAaQBlAHcALgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8A
-			awASAEFVc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGlj
-			YXRpb24vdmlld3MvaG9tZS9pbmRleF92aWV3LnBocAAAEwABLwAA
-			FQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/home/index_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/home/index_view.php</string>
+			<string>./static/css/style.css</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -302,170 +110,22 @@
 			<key>AliasData</key>
 			<data>
 			AAAAAAG4AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO48OaW5kZXhfdmlldy5waHAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZfT
-			e8mJ+NhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
-			b3VwAAAQAAgAAMhq2TAAAAARAAgAAMmJiFgAAAABABwBajuPAWo7
+			a0mwSCsAAAFqO8YOdG9waWNfdmlldy5waHAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAao9
+			6Ml3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXRv
+			cGljAAAQAAgAAMhq2TAAAAARAAgAAMl3Q3gAAAABABwBajvGAWo7
 			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIATEtLTWFjYm9vazpVc2Vy
 			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
-			d3M6Z3JvdXA6aW5kZXhfdmlldy5waHAADgAeAA4AaQBuAGQAZQB4
+			d3M6dG9waWM6dG9waWNfdmlldy5waHAADgAeAA4AdABvAHAAaQBj
 			AF8AdgBpAGUAdwAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8A
 			bwBrABIAQlVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBs
-			aWNhdGlvbi92aWV3cy9ncm91cC9pbmRleF92aWV3LnBocAATAAEv
+			aWNhdGlvbi92aWV3cy90b3BpYy90b3BpY192aWV3LnBocAATAAEv
 			AAAVAAIADv//AAA=
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/group/index_view.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/topic/topic_view.php</string>
 			<key>RelativePath</key>
-			<string>./application/views/group/index_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGiAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4IaG9tZS5waHAAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmN
-			v8mdw+1URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmdU20AAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBGS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczpob21lLnBocAAOABIACABoAG8AbQBlAC4AcABo
-			AHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsAEgA8VXNlcnMvTXJr
-			ZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0aW9uL2NvbnRyb2xs
-			ZXJzL2hvbWUucGhwABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/home.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/home.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGiAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4IbWFpbC5waHAAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZe9
-			psl3s+tURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMl3Q2sAAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBGS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczptYWlsLnBocAAOABIACABtAGEAaQBsAC4AcABo
-			AHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsAEgA8VXNlcnMvTXJr
-			ZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0aW9uL2NvbnRyb2xs
-			ZXJzL21haWwucGhwABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/mail.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/mail.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAG4AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOesJZ3JvdXAucGhwAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZeq
-			08mJ+NhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB29y
-			Y2hhcmQAABAACAAAyGrZMAAAABEACAAAyYmIWAAAAAEAHAFqOesB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBPS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczpvcmNoYXJkOmdyb3VwLnBocAAADgAUAAkAZwBy
-			AG8AdQBwAC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsA
-			EgBFVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0
-			aW9uL2NvbnRyb2xsZXJzL29yY2hhcmQvZ3JvdXAucGhwAAATAAEv
-			AAAVAAIADv//AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/orchard/group.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/orchard/group.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGyAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOesIY2hhdC5waHAAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYcM
-			O8mhOkZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB29y
-			Y2hhcmQAABAACAAAyGrZMAAAABEACAAAyaDJxgAAAAEAHAFqOesB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBOS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczpvcmNoYXJkOmNoYXQucGhwAA4AEgAIAGMAaABh
-			AHQALgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAERV
-			c2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24v
-			Y29udHJvbGxlcnMvb3JjaGFyZC9jaGF0LnBocAATAAEvAAAVAAIA
-			Dv//AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/orchard/chat.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/orchard/chat.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGcAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOdAKY29uZmlnLnBocAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZhd
-			zcmdw+1URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABmNv
-			bmZpZwAQAAgAAMhq2TAAAAARAAgAAMmdU20AAAABABgBajnQAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgBDS0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpjb25maWc6
-			Y29uZmlnLnBocAAADgAWAAoAYwBvAG4AZgBpAGcALgBwAGgAcAAP
-			ABQACQBLAEsATQBhAGMAYgBvAG8AawASADlVc2Vycy9NcmtlbGx5
-			L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vY29uZmlnL2NvbmZp
-			Zy5waHAAABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/config/config.php</string>
-			<key>RelativePath</key>
-			<string>./application/config/config.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHcAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8EVc2lkZWJhcl91c2VyX3ZpZXcucGhwAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZpw
-			oMmOxsBURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
-			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyY5WQAAAAAEAHAFqO8EB
-			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBVS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
-			aWV3czpzaWRlYmFyOnNpZGViYXJfdXNlcl92aWV3LnBocAAADgAs
-			ABUAcwBpAGQAZQBiAGEAcgBfAHUAcwBlAHIAXwB2AGkAZQB3AC4A
-			cABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsAEgBLVXNlcnMv
-			TXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0aW9uL3ZpZXdz
-			L3NpZGViYXIvc2lkZWJhcl91c2VyX3ZpZXcucGhwAAATAAEvAAAV
-			AAIADv//AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_user_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/sidebar/sidebar_user_view.php</string>
+			<string>./application/views/topic/topic_view.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -475,23 +135,23 @@
 			<key>AliasData</key>
 			<data>
 			AAAAAAHeAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8EWc2lkZWJhcl9ncm91cF92aWV3LnBocAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZpw
-			l8l3s/lURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
-			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyXdDeQAAAAEAHAFqO8EB
-			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBWS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
-			aWV3czpzaWRlYmFyOnNpZGViYXJfZ3JvdXBfdmlldy5waHAADgAu
-			ABYAcwBpAGQAZQBiAGEAcgBfAGcAcgBvAHUAcABfAHYAaQBlAHcA
-			LgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAExVc2Vy
+			a0mwSCsAAAFqO8YXZ2VuZXJhbF90b3BpY3NfbGlzdC5waHAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaoy
+			j8mOtINURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXRv
+			cGljAAAQAAgAAMhq2TAAAAARAAgAAMmORAMAAAABABwBajvGAWo7
+			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAVUtLTWFjYm9vazpVc2Vy
+			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
+			d3M6dG9waWM6Z2VuZXJhbF90b3BpY3NfbGlzdC5waHAAAA4AMAAX
+			AGcAZQBuAGUAcgBhAGwAXwB0AG8AcABpAGMAcwBfAGwAaQBzAHQA
+			LgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAEtVc2Vy
 			cy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmll
-			d3Mvc2lkZWJhci9zaWRlYmFyX2dyb3VwX3ZpZXcucGhwABMAAS8A
+			d3MvdG9waWMvZ2VuZXJhbF90b3BpY3NfbGlzdC5waHAAABMAAS8A
 			ABUAAgAO//8AAA==
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_group_view.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/topic/general_topics_list.php</string>
 			<key>RelativePath</key>
-			<string>./application/views/sidebar/sidebar_group_view.php</string>
+			<string>./application/views/topic/general_topics_list.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -500,126 +160,22 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAHQAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO48UbG9nb191cGxvYWRfdmlldy5waHAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZpu
-			7cl3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
-			b3VwAAAQAAgAAMhq2TAAAAARAAgAAMl3Q3gAAAABABwBajuPAWo7
-			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAUktLTWFjYm9vazpVc2Vy
-			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
-			d3M6Z3JvdXA6bG9nb191cGxvYWRfdmlldy5waHAADgAqABQAbABv
-			AGcAbwBfAHUAcABsAG8AYQBkAF8AdgBpAGUAdwAuAHAAaABwAA8A
-			FAAJAEsASwBNAGEAYwBiAG8AbwBrABIASFVzZXJzL01ya2VsbHkv
-			U2l0ZXMva2l3aWd1by9hcHBsaWNhdGlvbi92aWV3cy9ncm91cC9s
-			b2dvX3VwbG9hZF92aWV3LnBocAATAAEvAAAVAAIADv//AAA=
+			AAAAAAGoAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqOd4JZ3JvdXAucGhwAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAak+
+			9smoUXVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
+			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmn4PUAAAABABgB
+			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBHS0tNYWNib29rOlVz
+			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
+			b250cm9sbGVyczpncm91cC5waHAAAA4AFAAJAGcAcgBvAHUAcAAu
+			AHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIAPVVzZXJz
+			L01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlvbi9jb250
+			cm9sbGVycy9ncm91cC5waHAAABMAAS8AABUAAgAO//8AAA==
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/group/logo_upload_view.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/group.php</string>
 			<key>RelativePath</key>
-			<string>./application/views/group/logo_upload_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHWAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8kWYXZhdGFyX3VwbG9hZF92aWV3LnBocAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZpu
-			PMl3s/pURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABHVz
-			ZXIAEAAIAADIatkwAAAAEQAIAADJd0N6AAAAAQAcAWo7yQFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAFNLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnVzZXI6YXZhdGFyX3VwbG9hZF92aWV3LnBocAAADgAuABYAYQB2
-			AGEAdABhAHIAXwB1AHAAbABvAGEAZABfAHYAaQBlAHcALgBwAGgA
-			cAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAElVc2Vycy9Ncmtl
-			bGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmlld3MvdXNl
-			ci9hdmF0YXJfdXBsb2FkX3ZpZXcucGhwAAATAAEvAAAVAAIADv//
-			AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/user/avatar_upload_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/user/avatar_upload_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHuAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8kcZ2VuZXJhbF91c2VyX2xvb2t1cF9oZWFkLnBo
-			cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZpt
-			ccmBoVNURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABHVz
-			ZXIAEAAIAADIatkwAAAAEQAIAADJgTDTAAAAAQAcAWo7yQFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAFlLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnVzZXI6Z2VuZXJhbF91c2VyX2xvb2t1cF9oZWFkLnBocAAADgA6
-			ABwAZwBlAG4AZQByAGEAbABfAHUAcwBlAHIAXwBsAG8AbwBrAHUA
-			cABfAGgAZQBhAGQALgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBv
-			AG8AawASAE9Vc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBw
-			bGljYXRpb24vdmlld3MvdXNlci9nZW5lcmFsX3VzZXJfbG9va3Vw
-			X2hlYWQucGhwAAATAAEvAAAVAAIADv//AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/user/general_user_lookup_head.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/user/general_user_lookup_head.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAH2AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO48dZ2VuZXJhbF9ncm91cF9sb29rdXBfaGVhZC5w
-			aHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZps
-			wcmATilURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
-			b3VwAAAQAAgAAMhq2TAAAAARAAgAAMl/3akAAAABABwBajuPAWo7
-			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAW0tLTWFjYm9vazpVc2Vy
-			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
-			d3M6Z3JvdXA6Z2VuZXJhbF9ncm91cF9sb29rdXBfaGVhZC5waHAA
-			AA4APAAdAGcAZQBuAGUAcgBhAGwAXwBnAHIAbwB1AHAAXwBsAG8A
-			bwBrAHUAcABfAGgAZQBhAGQALgBwAGgAcAAPABQACQBLAEsATQBh
-			AGMAYgBvAG8AawASAFFVc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2ln
-			dW8vYXBwbGljYXRpb24vdmlld3MvZ3JvdXAvZ2VuZXJhbF9ncm91
-			cF9sb29rdXBfaGVhZC5waHAAABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/group/general_group_lookup_head.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/group/general_group_lookup_head.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGwAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO6INZGVtb192aWV3LnBocAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZpM
-			eMmy3b5URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABGhv
-			bWUAEAAIAADIatkwAAAAEQAIAADJsm0+AAAAAQAcAWo7ogFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAEpLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OmhvbWU6ZGVtb192aWV3LnBocAAOABwADQBkAGUAbQBvAF8AdgBp
-			AGUAdwAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
-			QFVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
-			bi92aWV3cy9ob21lL2RlbW9fdmlldy5waHAAEwABLwAAFQACAA7/
-			/wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/home/demo_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/home/demo_view.php</string>
+			<string>./application/controllers/group.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -630,8 +186,8 @@
 			<data>
 			AAAAAAHWAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
 			a0mwSCsAAAFqO48VZ3JvdXBfaW52aXRlX3ZpZXcucGhwAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZov
-			nMmTUHJURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ2G
+			sMmTUHJURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
 			b3VwAAAQAAgAAMhq2TAAAAARAAgAAMmS3/IAAAABABwBajuPAWo7
 			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAU0tLTWFjYm9vazpVc2Vy
 			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
@@ -654,304 +210,10 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAHAAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO48Qc2V0dGluZ192aWV3LnBocAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZoo
-			28l3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
-			b3VwAAAQAAgAAMhq2TAAAAARAAgAAMl3Q3gAAAABABwBajuPAWo7
-			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIATktLTWFjYm9vazpVc2Vy
-			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
-			d3M6Z3JvdXA6c2V0dGluZ192aWV3LnBocAAOACIAEABzAGUAdAB0
-			AGkAbgBnAF8AdgBpAGUAdwAuAHAAaABwAA8AFAAJAEsASwBNAGEA
-			YwBiAG8AbwBrABIARFVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1
-			by9hcHBsaWNhdGlvbi92aWV3cy9ncm91cC9zZXR0aW5nX3ZpZXcu
-			cGhwABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/group/setting_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/group/setting_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGiAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4IdXNlci5waHAAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZoO
-			jcmdw+1URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmdU20AAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBGS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczp1c2VyLnBocAAOABIACAB1AHMAZQByAC4AcABo
-			AHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsAEgA8VXNlcnMvTXJr
-			ZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0aW9uL2NvbnRyb2xs
-			ZXJzL3VzZXIucGhwABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/user.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/user.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHOAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8kUdXNlcl9ncm91cHNfdmlldy5waHAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZoO
-			Z8mYjJhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABHVz
-			ZXIAEAAIAADIatkwAAAAEQAIAADJmBwYAAAAAQAcAWo7yQFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAFFLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnVzZXI6dXNlcl9ncm91cHNfdmlldy5waHAAAA4AKgAUAHUAcwBl
-			AHIAXwBnAHIAbwB1AHAAcwBfAHYAaQBlAHcALgBwAGgAcAAPABQA
-			CQBLAEsATQBhAGMAYgBvAG8AawASAEdVc2Vycy9NcmtlbGx5L1Np
-			dGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmlld3MvdXNlci91c2Vy
-			X2dyb3Vwc192aWV3LnBocAAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/user/user_groups_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/user/user_groups_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGyAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOhoNVGFua19hdXRoLnBocAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZn3
-			7MmoUXVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAACWxp
-			YnJhcmllcwAAEAAIAADIatkwAAAAEQAIAADJp+D1AAAAAQAYAWo6
-			GgFqOcUBadycAAWrzAAFq8UAAJGfAAIASUtLTWFjYm9vazpVc2Vy
-			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246bGli
-			cmFyaWVzOlRhbmtfYXV0aC5waHAAAA4AHAANAFQAYQBuAGsAXwBh
-			AHUAdABoAC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsA
-			EgA/VXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0
-			aW9uL2xpYnJhcmllcy9UYW5rX2F1dGgucGhwAAATAAEvAAAVAAIA
-			Dv//AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/libraries/Tank_auth.php</string>
-			<key>RelativePath</key>
-			<string>./application/libraries/Tank_auth.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHIAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8YSbXlfdG9waWNzX3ZpZXcucGhwAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZnA
-			8smkb3JURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXRv
-			cGljAAAQAAgAAMhq2TAAAAARAAgAAMmj/vIAAAABABwBajvGAWo7
-			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAUEtLTWFjYm9vazpVc2Vy
-			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
-			d3M6dG9waWM6bXlfdG9waWNzX3ZpZXcucGhwAA4AJgASAG0AeQBf
-			AHQAbwBwAGkAYwBzAF8AdgBpAGUAdwAuAHAAaABwAA8AFAAJAEsA
-			SwBNAGEAYwBiAG8AbwBrABIARlVzZXJzL01ya2VsbHkvU2l0ZXMv
-			a2l3aWd1by9hcHBsaWNhdGlvbi92aWV3cy90b3BpYy9teV90b3Bp
-			Y3Nfdmlldy5waHAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/topic/my_topics_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/topic/my_topics_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGEAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqL6YJc3R5bGUuY3NzAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZm9
-			0smoUXZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAA2Nz
-			cwAAEAAIAADIatkwAAAAEQAIAADJp+D2AAAAAQAYAWovpgFqLvcB
-			adycAAWrzAAFq8UAAJGfAAIAOktLTWFjYm9vazpVc2VyczpNcmtl
-			bGx5OlNpdGVzOmtpd2lndW86c3RhdGljOmNzczpzdHlsZS5jc3MA
-			DgAUAAkAcwB0AHkAbABlAC4AYwBzAHMADwAUAAkASwBLAE0AYQBj
-			AGIAbwBvAGsAEgAwVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3Vv
-			L3N0YXRpYy9jc3Mvc3R5bGUuY3NzABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/static/css/style.css</string>
-			<key>RelativePath</key>
-			<string>./static/css/style.css</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGqAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4KaW52aXRlLnBocAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmv
-			wsmPB1lURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmOltkAAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBIS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczppbnZpdGUucGhwAA4AFgAKAGkAbgB2AGkAdABl
-			AC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsAEgA+VXNl
-			cnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0aW9uL2Nv
-			bnRyb2xsZXJzL2ludml0ZS5waHAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/invite.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/invite.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGkAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAGQt1MLa2tfdGFicy5jc3MAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmN
-			N8l3s+FURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB2tr
-			X3RhYnMAABAACAAAyGrZMAAAABEACAAAyXdDYQAAAAEAHAGQt1MB
-			ai+mAWou9wFp3JwABavMAAWrxQAAkZ8AAgBES0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzpzdGF0aWM6Y3NzOmtr
-			X3RhYnM6a2tfdGFicy5jc3MADgAYAAsAawBrAF8AdABhAGIAcwAu
-			AGMAcwBzAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIAOlVzZXJz
-			L01ya2VsbHkvU2l0ZXMva2l3aWd1by9zdGF0aWMvY3NzL2trX3Rh
-			YnMva2tfdGFicy5jc3MAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/static/css/kk_tabs/kk_tabs.css</string>
-			<key>RelativePath</key>
-			<string>./static/css/kk_tabs/kk_tabs.css</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGoAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4JZ3JvdXAucGhwAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmM
-			wsmoUXVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmn4PUAAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBHS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczpncm91cC5waHAAAA4AFAAJAGcAcgBvAHUAcAAu
-			AHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIAPVVzZXJz
-			L01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlvbi9jb250
-			cm9sbGVycy9ncm91cC5waHAAABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/group.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/group.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGuAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO04PZ3JvdXBfbW9kZWwucGhwAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmL
-			/cmJ+NhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABm1v
-			ZGVscwAQAAgAAMhq2TAAAAARAAgAAMmJiFgAAAABABgBajtOAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgBIS0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjptb2RlbHM6
-			Z3JvdXBfbW9kZWwucGhwAA4AIAAPAGcAcgBvAHUAcABfAG0AbwBk
-			AGUAbAAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
-			PlVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
-			bi9tb2RlbHMvZ3JvdXBfbW9kZWwucGhwABMAAS8AABUAAgAO//8A
-			AA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/models/group_model.php</string>
-			<key>RelativePath</key>
-			<string>./application/models/group_model.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGwAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4LZXhwbG9yZS5waHAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmM
-			UcmZfHdURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmZC/cAAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBJS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczpleHBsb3JlLnBocAAADgAYAAsAZQB4AHAAbABv
-			AHIAZQAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
-			P1VzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
-			bi9jb250cm9sbGVycy9leHBsb3JlLnBocAAAEwABLwAAFQACAA7/
-			/wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/explore.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/explore.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHOAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8kUdXNlcl9sb29rdXBfdmlldy5waHAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZmD
-			ZcmoUXZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABHVz
-			ZXIAEAAIAADIatkwAAAAEQAIAADJp+D2AAAAAQAcAWo7yQFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAFFLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnVzZXI6dXNlcl9sb29rdXBfdmlldy5waHAAAA4AKgAUAHUAcwBl
-			AHIAXwBsAG8AbwBrAHUAcABfAHYAaQBlAHcALgBwAGgAcAAPABQA
-			CQBLAEsATQBhAGMAYgBvAG8AawASAEdVc2Vycy9NcmtlbGx5L1Np
-			dGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmlld3MvdXNlci91c2Vy
-			X2xvb2t1cF92aWV3LnBocAAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/user/user_lookup_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/user/user_lookup_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
 			AAAAAAG8AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
 			a0mwSCsAAAFyXD8OaW5kZXhfdmlldy5waHAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZl1
-			Z8mPOsBURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABmlu
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAao7
+			YsmPOsBURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABmlu
 			dml0ZQAQAAgAAMhq2TAAAAARAAgAAMmOykAAAAABABwBclw/AWo7
 			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIATUtLTWFjYm9vazpVc2Vy
 			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
@@ -973,146 +235,24 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAGqAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4Kc2VhcmNoLnBocAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZl8
-			1MmoUXVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmn4PUAAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBIS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczpzZWFyY2gucGhwAA4AFgAKAHMAZQBhAHIAYwBo
-			AC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsAEgA+VXNl
-			cnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0aW9uL2Nv
-			bnRyb2xsZXJzL3NlYXJjaC5waHAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/search.php</string>
-			<key>RelativePath</key>
-			<string>./application/controllers/search.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAG0AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO04Qc2VhcmNoX21vZGVsLnBocAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZl8
-			rsm5eQxURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABm1v
-			ZGVscwAQAAgAAMhq2TAAAAARAAgAAMm5CIwAAAABABgBajtOAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgBJS0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjptb2RlbHM6
-			c2VhcmNoX21vZGVsLnBocAAADgAiABAAcwBlAGEAcgBjAGgAXwBt
-			AG8AZABlAGwALgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8A
-			awASAD9Vc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGlj
-			YXRpb24vbW9kZWxzL3NlYXJjaF9tb2RlbC5waHAAABMAAS8AABUA
-			AgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/models/search_model.php</string>
-			<key>RelativePath</key>
-			<string>./application/models/search_model.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGkAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOhoKVF9zaW5hLnBocAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZdv
-			PMl3s+xURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAACWxp
-			YnJhcmllcwAAEAAIAADIatkwAAAAEQAIAADJd0NsAAAAAQAYAWo6
-			GgFqOcUBadycAAWrzAAFq8UAAJGfAAIARktLTWFjYm9vazpVc2Vy
-			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246bGli
-			cmFyaWVzOlRfc2luYS5waHAADgAWAAoAVABfAHMAaQBuAGEALgBw
-			AGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASADxVc2Vycy9N
-			cmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vbGlicmFy
-			aWVzL1Rfc2luYS5waHAAEwABLwAAFQACAA7//wAA
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/libraries/T_sina.php</string>
-			<key>RelativePath</key>
-			<string>./application/libraries/T_sina.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAG8AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO4kNbmF2aWdhdG9yLnBocAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZlz
-			fcmAOVJURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB2dl
-			bmVyYWwAABAACAAAyGrZMAAAABEACAAAyX/I0gAAAAEAHAFqO4kB
-			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBNS0tNYWNib29rOlVz
+			AAAAAAHeAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO8EWc2lkZWJhcl9ncm91cF92aWV3LnBocAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ1+
+			sMl3s/lURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
+			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyXdDeQAAAAEAHAFqO8EB
+			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBWS0tNYWNib29rOlVz
 			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
-			aWV3czpnZW5lcmFsOm5hdmlnYXRvci5waHAAAA4AHAANAG4AYQB2
-			AGkAZwBhAHQAbwByAC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIA
-			bwBvAGsAEgBDVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2Fw
-			cGxpY2F0aW9uL3ZpZXdzL2dlbmVyYWwvbmF2aWdhdG9yLnBocAAA
-			EwABLwAAFQACAA7//wAA
+			aWV3czpzaWRlYmFyOnNpZGViYXJfZ3JvdXBfdmlldy5waHAADgAu
+			ABYAcwBpAGQAZQBiAGEAcgBfAGcAcgBvAHUAcABfAHYAaQBlAHcA
+			LgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAExVc2Vy
+			cy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmll
+			d3Mvc2lkZWJhci9zaWRlYmFyX2dyb3VwX3ZpZXcucGhwABMAAS8A
+			ABUAAgAO//8AAA==
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/general/navigator.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_group_view.php</string>
 			<key>RelativePath</key>
-			<string>./application/views/general/navigator.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAGuAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO2gPaGVhZGVyX3ZpZXcucGhwAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZlp
-			t8l3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXZp
-			ZXdzAAAQAAgAAMhq2TAAAAARAAgAAMl3Q3gAAAABABgBajtoAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgBHS0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2aWV3czpo
-			ZWFkZXJfdmlldy5waHAAAA4AIAAPAGgAZQBhAGQAZQByAF8AdgBp
-			AGUAdwAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
-			PVVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
-			bi92aWV3cy9oZWFkZXJfdmlldy5waHAAABMAAS8AABUAAgAO//8A
-			AA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/header_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/header_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHGAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO04VdXNlcl90X3NpbmFfbW9kZWwucGhwAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZQs
-			HMl3s/dURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABm1v
-			ZGVscwAQAAgAAMhq2TAAAAARAAgAAMl3Q3cAAAABABgBajtOAWo5
-			xQFp3JwABavMAAWrxQAAkZ8AAgBOS0tNYWNib29rOlVzZXJzOk1y
-			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjptb2RlbHM6
-			dXNlcl90X3NpbmFfbW9kZWwucGhwAA4ALAAVAHUAcwBlAHIAXwB0
-			AF8AcwBpAG4AYQBfAG0AbwBkAGUAbAAuAHAAaABwAA8AFAAJAEsA
-			SwBNAGEAYwBiAG8AbwBrABIARFVzZXJzL01ya2VsbHkvU2l0ZXMv
-			a2l3aWd1by9hcHBsaWNhdGlvbi9tb2RlbHMvdXNlcl90X3NpbmFf
-			bW9kZWwucGhwABMAAS8AABUAAgAO//8AAA==
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/models/user_t_sina_model.php</string>
-			<key>RelativePath</key>
-			<string>./application/models/user_t_sina_model.php</string>
+			<string>./application/views/sidebar/sidebar_group_view.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -1122,21 +262,297 @@
 			<key>AliasData</key>
 			<data>
 			AAAAAAGoAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAGRW5YJaW5kZXguY3NzAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZlx
-			4cmuarVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB2V4
-			cGxvcmUAABAACAAAyGrZMAAAABEACAAAya36NQAAAAEAIAGRW5YB
-			ai+oAWovpgFqLvcBadycAAWrzAAFq8UAAJGfAAIARktLTWFjYm9v
-			azpVc2VyczpNcmtlbGx5OlNpdGVzOmtpd2lndW86c3RhdGljOmNz
-			czphcHA6ZXhwbG9yZTppbmRleC5jc3MADgAUAAkAaQBuAGQAZQB4
-			AC4AYwBzAHMADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsAEgA8VXNl
-			cnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL3N0YXRpYy9jc3MvYXBw
-			L2V4cGxvcmUvaW5kZXguY3NzABMAAS8AABUAAgAO//8AAA==
+			a0mwSCsAAAFqOd4JdG9waWMucGhwAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAao5
+			b8l3s+tURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
+			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMl3Q2sAAAABABgB
+			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBHS0tNYWNib29rOlVz
+			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
+			b250cm9sbGVyczp0b3BpYy5waHAAAA4AFAAJAHQAbwBwAGkAYwAu
+			AHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIAPVVzZXJz
+			L01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlvbi9jb250
+			cm9sbGVycy90b3BpYy5waHAAABMAAS8AABUAAgAO//8AAA==
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/static/css/app/explore/index.css</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/topic.php</string>
 			<key>RelativePath</key>
-			<string>./static/css/app/explore/index.css</string>
+			<string>./application/controllers/topic.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAGuAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO04PZ3JvdXBfbW9kZWwucGhwAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ3B
+			m8mJ+NhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABm1v
+			ZGVscwAQAAgAAMhq2TAAAAARAAgAAMmJiFgAAAABABgBajtOAWo5
+			xQFp3JwABavMAAWrxQAAkZ8AAgBIS0tNYWNib29rOlVzZXJzOk1y
+			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjptb2RlbHM6
+			Z3JvdXBfbW9kZWwucGhwAA4AIAAPAGcAcgBvAHUAcABfAG0AbwBk
+			AGUAbAAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
+			PlVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
+			bi9tb2RlbHMvZ3JvdXBfbW9kZWwucGhwABMAAS8AABUAAgAO//8A
+			AA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/models/group_model.php</string>
+			<key>RelativePath</key>
+			<string>./application/models/group_model.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAGuAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO04PdG9waWNfbW9kZWwucGhwAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaov
+			3smDJMBURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABm1v
+			ZGVscwAQAAgAAMhq2TAAAAARAAgAAMmCtEAAAAABABgBajtOAWo5
+			xQFp3JwABavMAAWrxQAAkZ8AAgBIS0tNYWNib29rOlVzZXJzOk1y
+			a2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjptb2RlbHM6
+			dG9waWNfbW9kZWwucGhwAA4AIAAPAHQAbwBwAGkAYwBfAG0AbwBk
+			AGUAbAAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
+			PlVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
+			bi9tb2RlbHMvdG9waWNfbW9kZWwucGhwABMAAS8AABUAAgAO//8A
+			AA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/models/topic_model.php</string>
+			<key>RelativePath</key>
+			<string>./application/models/topic_model.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHeAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO48XZ2VuZXJhbF9ncm91cHNfbGlzdC5waHAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaoz
+			Qcmy2qFURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWdy
+			b3VwAAAQAAgAAMhq2TAAAAARAAgAAMmyaiEAAAABABwBajuPAWo7
+			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAVUtLTWFjYm9vazpVc2Vy
+			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
+			d3M6Z3JvdXA6Z2VuZXJhbF9ncm91cHNfbGlzdC5waHAAAA4AMAAX
+			AGcAZQBuAGUAcgBhAGwAXwBnAHIAbwB1AHAAcwBfAGwAaQBzAHQA
+			LgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAEtVc2Vy
+			cy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmll
+			d3MvZ3JvdXAvZ2VuZXJhbF9ncm91cHNfbGlzdC5waHAAABMAAS8A
+			ABUAAgAO//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/group/general_groups_list.php</string>
+			<key>RelativePath</key>
+			<string>./application/views/group/general_groups_list.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHGAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO8YRdHJhbnNmZXJfdmlldy5waHAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaom
+			qcnFy79URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXRv
+			cGljAAAQAAgAAMhq2TAAAAARAAgAAMnFWz8AAAABABwBajvGAWo7
+			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAT0tLTWFjYm9vazpVc2Vy
+			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
+			d3M6dG9waWM6dHJhbnNmZXJfdmlldy5waHAAAA4AJAARAHQAcgBh
+			AG4AcwBmAGUAcgBfAHYAaQBlAHcALgBwAGgAcAAPABQACQBLAEsA
+			TQBhAGMAYgBvAG8AawASAEVVc2Vycy9NcmtlbGx5L1NpdGVzL2tp
+			d2lndW8vYXBwbGljYXRpb24vdmlld3MvdG9waWMvdHJhbnNmZXJf
+			dmlldy5waHAAABMAAS8AABUAAgAO//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/topic/transfer_view.php</string>
+			<key>RelativePath</key>
+			<string>./application/views/topic/transfer_view.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHeAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO4MXYWpheF9hZGRfZXZlbnRfdmlldy5waHAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaoj
+			BsmF9x5URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWV2
+			ZW50AAAQAAgAAMhq2TAAAAARAAgAAMmFhp4AAAABABwBajuDAWo7
+			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAVUtLTWFjYm9vazpVc2Vy
+			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
+			d3M6ZXZlbnQ6YWpheF9hZGRfZXZlbnRfdmlldy5waHAAAA4AMAAX
+			AGEAagBhAHgAXwBhAGQAZABfAGUAdgBlAG4AdABfAHYAaQBlAHcA
+			LgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAEtVc2Vy
+			cy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmll
+			d3MvZXZlbnQvYWpheF9hZGRfZXZlbnRfdmlldy5waHAAABMAAS8A
+			ABUAAgAO//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/event/ajax_add_event_view.php</string>
+			<key>RelativePath</key>
+			<string>./application/views/event/ajax_add_event_view.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHeAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO8YXYWpheF9hZGRfdG9waWNfdmlldy5waHAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaJV
+			/cl3s/pURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXRv
+			cGljAAAQAAgAAMhq2TAAAAARAAgAAMl3Q3oAAAABABwBajvGAWo7
+			aAFqOcUBadycAAWrzAAFq8UAAJGfAAIAVUtLTWFjYm9vazpVc2Vy
+			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246dmll
+			d3M6dG9waWM6YWpheF9hZGRfdG9waWNfdmlldy5waHAAAA4AMAAX
+			AGEAagBhAHgAXwBhAGQAZABfAHQAbwBwAGkAYwBfAHYAaQBlAHcA
+			LgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAEtVc2Vy
+			cy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmll
+			d3MvdG9waWMvYWpheF9hZGRfdG9waWNfdmlldy5waHAAABMAAS8A
+			ABUAAgAO//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/topic/ajax_add_topic_view.php</string>
+			<key>RelativePath</key>
+			<string>./application/views/topic/ajax_add_topic_view.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHCAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqNZkRYWpheF9hZGRfdG9waWMuanMAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZRh
+			Gcl4sFVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXRv
+			cGljAAAQAAgAAMhq2TAAAAARAAgAAMl4P9UAAAABACABajWZAWo1
+			kAFqMC0Bai73AWncnAAFq8wABavFAACRnwACAEtLS01hY2Jvb2s6
+			VXNlcnM6TXJrZWxseTpTaXRlczpraXdpZ3VvOnN0YXRpYzpqczph
+			cHA6dG9waWM6YWpheF9hZGRfdG9waWMuanMAAA4AJAARAGEAagBh
+			AHgAXwBhAGQAZABfAHQAbwBwAGkAYwAuAGoAcwAPABQACQBLAEsA
+			TQBhAGMAYgBvAG8AawASAEFVc2Vycy9NcmtlbGx5L1NpdGVzL2tp
+			d2lndW8vc3RhdGljL2pzL2FwcC90b3BpYy9hamF4X2FkZF90b3Bp
+			Yy5qcwAAEwABLwAAFQACAA7//wAA
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/static/js/app/topic/ajax_add_topic.js</string>
+			<key>RelativePath</key>
+			<string>./static/js/app/topic/ajax_add_topic.js</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAGCAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqL6YIaHRtbC5jc3MAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaoh
+			lshs2VhURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAA2Nz
+			cwAAEAAIAADIatkwAAAAEQAIAADIbGjYAAAAAQAYAWovpgFqLvcB
+			adycAAWrzAAFq8UAAJGfAAIAOUtLTWFjYm9vazpVc2VyczpNcmtl
+			bGx5OlNpdGVzOmtpd2lndW86c3RhdGljOmNzczpodG1sLmNzcwAA
+			DgASAAgAaAB0AG0AbAAuAGMAcwBzAA8AFAAJAEsASwBNAGEAYwBi
+			AG8AbwBrABIAL1VzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9z
+			dGF0aWMvY3NzL2h0bWwuY3NzAAATAAEvAAAVAAIADv//AAA=
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/static/css/html.css</string>
+			<key>RelativePath</key>
+			<string>./static/css/html.css</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAGKAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFLkRYNQlVHX2xpc3RzLnR4dAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaoT
+			I8mlDUpURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABWJs
+			b2dzAAAQAAgAAMhq2TAAAAARAAgAAMmknMoAAAABABQBS5EWAWnc
+			nAAFq8wABavFAACRnwACADlLS01hY2Jvb2s6VXNlcnM6TXJrZWxs
+			eTpTaXRlczpraXdpZ3VvOmJsb2dzOkJVR19saXN0cy50eHQAAA4A
+			HAANAEIAVQBHAF8AbABpAHMAdABzAC4AdAB4AHQADwAUAAkASwBL
+			AE0AYQBjAGIAbwBvAGsAEgAvVXNlcnMvTXJrZWxseS9TaXRlcy9r
+			aXdpZ3VvL2Jsb2dzL0JVR19saXN0cy50eHQAABMAAS8AABUAAgAO
+			//8AAA==
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/blogs/BUG_lists.txt</string>
+			<key>RelativePath</key>
+			<string>./blogs/BUG_lists.txt</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHOAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO8ESc2lkZWJhcl9hZF9waWMucGhwAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAanT
+			9smYZUJURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
+			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyZf0wgAAAAEAHAFqO8EB
+			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBSS0tNYWNib29rOlVz
+			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
+			aWV3czpzaWRlYmFyOnNpZGViYXJfYWRfcGljLnBocAAOACYAEgBz
+			AGkAZABlAGIAYQByAF8AYQBkAF8AcABpAGMALgBwAGgAcAAPABQA
+			CQBLAEsATQBhAGMAYgBvAG8AawASAEhVc2Vycy9NcmtlbGx5L1Np
+			dGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmlld3Mvc2lkZWJhci9z
+			aWRlYmFyX2FkX3BpYy5waHAAEwABLwAAFQACAA7//wAA
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_ad_pic.php</string>
+			<key>RelativePath</key>
+			<string>./application/views/sidebar/sidebar_ad_pic.php</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
+			AAAAAAHWAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO8EUc2lkZWJhcl9ob21lcGFnZS5waHAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAal1
+			YMmoUXVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
+			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyafg9QAAAAEAHAFqO8EB
+			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBUS0tNYWNib29rOlVz
+			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
+			aWV3czpzaWRlYmFyOnNpZGViYXJfaG9tZXBhZ2UucGhwAA4AKgAU
+			AHMAaQBkAGUAYgBhAHIAXwBoAG8AbQBlAHAAYQBnAGUALgBwAGgA
+			cAAPABQACQBLAEsATQBhAGMAYgBvAG8AawASAEpVc2Vycy9Ncmtl
+			bGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRpb24vdmlld3Mvc2lk
+			ZWJhci9zaWRlYmFyX2hvbWVwYWdlLnBocAATAAEvAAAVAAIADv//
+			AAA=
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_homepage.php</string>
+			<key>RelativePath</key>
+			<string>./application/views/sidebar/sidebar_homepage.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -1146,22 +562,22 @@
 			<key>AliasData</key>
 			<data>
 			AAAAAAGyAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqOd4McmVsYXRpb24ucGhwAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZgY
-			K8mN4a5URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAC2Nv
-			bnRyb2xsZXJzAAAQAAgAAMhq2TAAAAARAAgAAMmNcS4AAAABABgB
-			ajneAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBKS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjpj
-			b250cm9sbGVyczpyZWxhdGlvbi5waHAADgAaAAwAcgBlAGwAYQB0
-			AGkAbwBuAC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsA
-			EgBAVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0
-			aW9uL2NvbnRyb2xsZXJzL3JlbGF0aW9uLnBocAATAAEvAAAVAAIA
+			a0mwSCsAAAFqOhoNVGFua19hdXRoLnBocAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAakd
+			zsmoUXVURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAACWxp
+			YnJhcmllcwAAEAAIAADIatkwAAAAEQAIAADJp+D1AAAAAQAYAWo6
+			GgFqOcUBadycAAWrzAAFq8UAAJGfAAIASUtLTWFjYm9vazpVc2Vy
+			czpNcmtlbGx5OlNpdGVzOmtpd2lndW86YXBwbGljYXRpb246bGli
+			cmFyaWVzOlRhbmtfYXV0aC5waHAAAA4AHAANAFQAYQBuAGsAXwBh
+			AHUAdABoAC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBvAGsA
+			EgA/VXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxpY2F0
+			aW9uL2xpYnJhcmllcy9UYW5rX2F1dGgucGhwAAATAAEvAAAVAAIA
 			Dv//AAA=
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/controllers/relation.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/libraries/Tank_auth.php</string>
 			<key>RelativePath</key>
-			<string>./application/controllers/relation.php</string>
+			<string>./application/libraries/Tank_auth.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -1170,24 +586,23 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAHmAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8EYc2lkZWJhcl91c2VyX3Byb2ZpbGUucGhwAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYlS
-			IMmbARZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
-			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyZqQlgAAAAEAHAFqO8EB
-			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBYS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
-			aWV3czpzaWRlYmFyOnNpZGViYXJfdXNlcl9wcm9maWxlLnBocAAO
-			ADIAGABzAGkAZABlAGIAYQByAF8AdQBzAGUAcgBfAHAAcgBvAGYA
-			aQBsAGUALgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8AawAS
-			AE5Vc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGljYXRp
-			b24vdmlld3Mvc2lkZWJhci9zaWRlYmFyX3VzZXJfcHJvZmlsZS5w
-			aHAAEwABLwAAFQACAA7//wAA
+			AAAAAAGyAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO1oJdXNlcnMucGhwAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWpO
+			UsgrbRZURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAACXRh
+			bmtfYXV0aAAAEAAIAADIatkwAAAAEQAIAADIKvyWAAAAAQAcAWo7
+			WgFqO04BajnFAWncnAAFq8wABavFAACRnwACAExLS01hY2Jvb2s6
+			VXNlcnM6TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9u
+			Om1vZGVsczp0YW5rX2F1dGg6dXNlcnMucGhwAA4AFAAJAHUAcwBl
+			AHIAcwAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBrABIA
+			QlVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNhdGlv
+			bi9tb2RlbHMvdGFua19hdXRoL3VzZXJzLnBocAATAAEvAAAVAAIA
+			Dv//AAA=
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_user_profile.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/models/tank_auth/users.php</string>
 			<key>RelativePath</key>
-			<string>./application/views/sidebar/sidebar_user_profile.php</string>
+			<string>./application/models/tank_auth/users.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -1196,24 +611,23 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
-			AAAAAAHsAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8EZc2lkZWJhcl9ncm91cF9wcm9maWxlLnBocAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYdB
-			Psma7B5URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAB3Np
-			ZGViYXIAABAACAAAyGrZMAAAABEACAAAyZp7ngAAAAEAHAFqO8EB
-			ajtoAWo5xQFp3JwABavMAAWrxQAAkZ8AAgBZS0tNYWNib29rOlVz
-			ZXJzOk1ya2VsbHk6U2l0ZXM6a2l3aWd1bzphcHBsaWNhdGlvbjp2
-			aWV3czpzaWRlYmFyOnNpZGViYXJfZ3JvdXBfcHJvZmlsZS5waHAA
-			AA4ANAAZAHMAaQBkAGUAYgBhAHIAXwBnAHIAbwB1AHAAXwBwAHIA
-			bwBmAGkAbABlAC4AcABoAHAADwAUAAkASwBLAE0AYQBjAGIAbwBv
-			AGsAEgBPVXNlcnMvTXJrZWxseS9TaXRlcy9raXdpZ3VvL2FwcGxp
-			Y2F0aW9uL3ZpZXdzL3NpZGViYXIvc2lkZWJhcl9ncm91cF9wcm9m
-			aWxlLnBocAAAEwABLwAAFQACAA7//wAA
+			AAAAAAG2AAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
+			a0mwSCsAAAFqO6IOc3RhcnRfdmlldy5waHAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaWg
+			jMl3s/hURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABGhv
+			bWUAEAAIAADIatkwAAAAEQAIAADJd0N4AAAAAQAcAWo7ogFqO2gB
+			ajnFAWncnAAFq8wABavFAACRnwACAEtLS01hY2Jvb2s6VXNlcnM6
+			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
+			OmhvbWU6c3RhcnRfdmlldy5waHAAAA4AHgAOAHMAdABhAHIAdABf
+			AHYAaQBlAHcALgBwAGgAcAAPABQACQBLAEsATQBhAGMAYgBvAG8A
+			awASAEFVc2Vycy9NcmtlbGx5L1NpdGVzL2tpd2lndW8vYXBwbGlj
+			YXRpb24vdmlld3MvaG9tZS9zdGFydF92aWV3LnBocAAAEwABLwAA
+			FQACAA7//wAA
 			</data>
 			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/sidebar/sidebar_group_profile.php</string>
+			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/home/start_view.php</string>
 			<key>RelativePath</key>
-			<string>./application/views/sidebar/sidebar_group_profile.php</string>
+			<string>./application/views/home/start_view.php</string>
 			<key>TypeID</key>
 			<string>_CFileLocator</string>
 			<key>Version</key>
@@ -1224,8 +638,8 @@
 			<data>
 			AAAAAAGCAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
 			a0mwSCsAAAFqMC0JZ2xvYmFsLmpzAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZlI
-			wshs4V5URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAAmpz
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaUs
+			Gchs4V5URVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAAmpz
 			ABAACAAAyGrZMAAAABEACAAAyGxw3gAAAAEAGAFqMC0Bai73AWnc
 			nAAFq8wABavFAACRnwACADlLS01hY2Jvb2s6VXNlcnM6TXJrZWxs
 			eTpTaXRlczpraXdpZ3VvOnN0YXRpYzpqczpnbG9iYWwuanMAAA4A
@@ -1242,32 +656,6 @@
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAHoAAIAAAlLS01hY2Jvb2sAAAAAAAAAAAAAAAAAAAAAAADI
-			a0mwSCsAAAFqO8kbcmVnaXN0ZXJfYnlfZG91YmFuX3ZpZXcucGhw
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZhf
-			Rsl3s/pURVhUAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABHVz
-			ZXIAEAAIAADIatkwAAAAEQAIAADJd0N6AAAAAQAcAWo7yQFqO2gB
-			ajnFAWncnAAFq8wABavFAACRnwACAFhLS01hY2Jvb2s6VXNlcnM6
-			TXJrZWxseTpTaXRlczpraXdpZ3VvOmFwcGxpY2F0aW9uOnZpZXdz
-			OnVzZXI6cmVnaXN0ZXJfYnlfZG91YmFuX3ZpZXcucGhwAA4AOAAb
-			AHIAZQBnAGkAcwB0AGUAcgBfAGIAeQBfAGQAbwB1AGIAYQBuAF8A
-			dgBpAGUAdwAuAHAAaABwAA8AFAAJAEsASwBNAGEAYwBiAG8AbwBr
-			ABIATlVzZXJzL01ya2VsbHkvU2l0ZXMva2l3aWd1by9hcHBsaWNh
-			dGlvbi92aWV3cy91c2VyL3JlZ2lzdGVyX2J5X2RvdWJhbl92aWV3
-			LnBocAATAAEvAAAVAAIADv//AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/Mrkelly/Sites/kiwiguo/application/views/user/register_by_douban_view.php</string>
-			<key>RelativePath</key>
-			<string>./application/views/user/register_by_douban_view.php</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>ShowInvisibles:Mrkelly</key>
 	<false/>
@@ -1278,8 +666,8 @@
 	<key>ToolbarVisible:Mrkelly</key>
 	<true/>
 	<key>ViewSplitterPosition:Mrkelly</key>
-	<real>0.3430493175983429</real>
+	<real>0.34000000357627869</real>
 	<key>WindowFrame:Mrkelly:displays([(0, 0), (1280, 800)])</key>
-	<string>rect(44,90,800,982)</string>
+	<string>rect(44,0,800,900)</string>
 </dict>
 </plist>

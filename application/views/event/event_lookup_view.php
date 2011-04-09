@@ -21,6 +21,30 @@
 				
 				<h1><?=$event['name'];?></h1>
 				
+				<div class="float_right">
+					<div class="event_lookup_attach_img">
+					<?php if ( isset( $event['Attach_Img'] ) ): // 话题图片 ?>
+						<a class="sexybox" href="<?= static_url( 'upload/attach_img' . $event['Attach_Img']['file'] );?>">
+							<img width="200" src="<?= static_url( 'upload/attach_img' . $event['Attach_Img']['file'] );?>" />
+						</a>
+					<?php endif; ?>
+					</div>
+					
+					<div class="event_lookup_attach_file">
+					
+					<?php if ( isset( $event['Attach_File'] ) ) : // 话题附件?>
+					
+					<a class="icon icon_<?=substr( $event['Attach_File']['file_ext'], 1 );?>" target="_blank" href="<?=site_url('attach/download/' . $event['attach_file_id'] );?>">
+					<!--<?= static_url( 'upload/attach_file' . $topic['Attach_File']['file'] );?>-->
+						<?=$event['Attach_File']['file_name'];?>
+					</a>
+					<?php endif ;?>
+					
+					</div>
+				</div>
+				
+				
+				
 				<div>
 					<?php
 						if ( $event['user_id'] == get_current_user_id() ):

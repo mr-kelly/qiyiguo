@@ -315,6 +315,9 @@
 				$render['group_users_count'] = $this->group_model->get_group_users_count( $group_id );
 				$render['group_users'] = $this->group_model->get_group_users($group_id, 50);
 				
+				
+				$render['relation_groups'] = $this->relation_model->get_relation_groups( $group_id, 12 ); //获取关系群组,限制6个
+				$render['relation_groups_count'] = $this->relation_model->get_relation_groups_count( $group_id );
 				kk_show_view('group/group_forbidden_view', $render);
 				
 				return;

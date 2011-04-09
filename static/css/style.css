@@ -694,7 +694,6 @@ div.submenu span.submenu_corner:first-child {
 				
 			}
 			
-			
 			#sidebar .sidebar_events_list h2 a, #sidebar .sidebar_events_list h2 a:active, #sidebar .sidebar_events_list h2 a:link {
 				font-size: 14px;
 			}
@@ -703,12 +702,18 @@ div.submenu span.submenu_corner:first-child {
 				text-indent: 0;
 				
 			}
-				
-			#sidebar .events_list li .event_group_logo {
-				position: absolute;
-				top: 0;
-				right: 10px;
+			#sidebar .sidebar_events_list li {
+				position: relative;
 			}
+				#sidebar .sidebar_events_list li .event_group_logo {
+					float: right;
+/*
+					position: absolute;
+					top: 0;
+					right: 10px;
+					z-index: 0;
+*/
+				}
 			
 				#sidebar .sidebar_events_list .event_content {
 					overflow: hidden;
@@ -1235,7 +1240,7 @@ div.submenu span.submenu_corner:first-child {
 		}
 			
 			.topic_title a{
-				font-size: 16px;
+				font-size: 14px;
 				letter-spacing: 0.1em;
 				font-weight: bold;
 			}
@@ -1277,6 +1282,7 @@ div.submenu span.submenu_corner:first-child {
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
+		*white-space: none;
 	}
 			
 			
@@ -1477,6 +1483,11 @@ div.submenu span.submenu_corner:first-child {
 		position: relative;
 		background: #F1F1F1;
 	}
+	
+		#add_event_pic_div {
+			float: right;
+			margin: 30px 20px 0 0;
+		}
 
 /**
  *	Event 活动、任务
